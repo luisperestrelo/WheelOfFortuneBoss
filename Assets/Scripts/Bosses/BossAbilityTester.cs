@@ -9,8 +9,9 @@ public class BossAbilityTester : MonoBehaviour
     public GameObject[] fields;
     public GameObject purpleSlashPrefab;
     public Transform player;
+    public CircularSweepAttack circularSweepAttack;
 
-    
+
 
 
     void Update()
@@ -25,9 +26,14 @@ public class BossAbilityTester : MonoBehaviour
             FireSlash();
         }
 
-        if (Input.GetKeyDown(KeyCode.H))
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            ChangeRandomFieldToFire();
+            circularSweepAttack.StartCircularSweep();
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            circularSweepAttack.StartCircularSweep(0f, false);
         }
     }
 
@@ -45,6 +51,18 @@ public class BossAbilityTester : MonoBehaviour
         StartCoroutine(StopFireAfterDelay(area, 3f));
     }
 
+    public void ChangeFieldToFire(int index)
+    {
+        if (index < 0 || index >= fields.Length)
+        {
+            return;
+        }
+        
+        WheelArea area = fields[index].GetComponent<WheelArea>();
+        area.SetOnFire();
+        StartCoroutine(StopFireAfterDelay(area, 3f));
+    }
+
     private IEnumerator StopFireAfterDelay(WheelArea area, float delay)
     {
         yield return new WaitForSeconds(delay);
@@ -52,7 +70,7 @@ public class BossAbilityTester : MonoBehaviour
         area.StopOnFire();
     }
 
-    private void FireSlash()
+    public void FireSlash()
     {
         GameObject purpleSlash = Instantiate(purpleSlashPrefab, transform.position, Quaternion.identity);
         Vector2 direction = (player.transform.position - transform.position).normalized;
