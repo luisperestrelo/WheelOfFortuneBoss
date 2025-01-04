@@ -36,9 +36,14 @@ public class PlayerSpinMovement : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+/*         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _direction *= -1f;  
+            _direction *= -1f;
+        } */
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            _direction *= -1f;
         }
 
         if (Input.GetKeyDown(KeyCode.W) && Time.time > nextBoostTime)
@@ -53,7 +58,7 @@ public class PlayerSpinMovement : MonoBehaviour
         DrawLine();
 
         _currentAngle += _direction * _currentRotationSpeed * Time.deltaTime;
-        _currentAngle %= 360f; 
+        _currentAngle %= 360f;
 
         if (anchorPoint == null)
         {
