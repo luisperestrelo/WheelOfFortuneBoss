@@ -28,7 +28,6 @@ public class ConcentricShockwavesAttack : MonoBehaviour
             GameObject shockwave = Instantiate(shockwavePrefab, transform.position, Quaternion.identity);
             Shockwave shockwaveScript = shockwave.GetComponent<Shockwave>();
 
-            // Set parameters on the Shockwave script
             shockwaveScript.SetNumberOfSegments(numberOfSegments);
             shockwaveScript.SetShockwaveExpansionSpeed(shockwaveExpansionSpeed);
             shockwaveScript.SetShockwaveDamage(shockwaveDamage);
@@ -61,7 +60,6 @@ public class ConcentricShockwavesAttack : MonoBehaviour
         return randomGaps;
     }
 
-    // Public methods to allow AbilityTestUIManager to modify parameters
     public void SetShockwaveInterval(float interval)
     {
         shockwaveInterval = interval;

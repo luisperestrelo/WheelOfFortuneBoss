@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+//Need to make this only damage the player once, rather than every segment applying damage.
 public class Shockwave : MonoBehaviour
 {
     [SerializeField] private float lifetime = 2f;

@@ -88,7 +88,7 @@ public class AbilityTestUIManager : MonoBehaviour
         UpdateGapSizeUI(concentricShockwavesAttack.GetDefaultGapSize());
 
         // Set slider min and max values
-        durationSlider.minValue = 0f; // Or a small value like 0.1f if you don't want 0 duration
+        durationSlider.minValue = 0f; 
         durationSlider.maxValue = circularSweepAttack.GetDefaultLaserDuration() * 2f;
         speedSlider.minValue = 0f;
         speedSlider.maxValue = circularSweepAttack.GetDefaultLaserRotationSpeed() * 10f;
@@ -279,6 +279,7 @@ public class AbilityTestUIManager : MonoBehaviour
         numberOfSegmentsValueLabel.text = "Segments: " + value.ToString();
     }
 
+    //This doesnt work properly, or rather it does but you would have to input a gazillion numbers
     private void UpdateGapSegmentsUI(List<int> gapSegments)
     {
         // Convert the list of integers to a comma-separated string for display
