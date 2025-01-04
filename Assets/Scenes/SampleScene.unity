@@ -15342,6 +15342,7 @@ MonoBehaviour:
   - {fileID: 1107039695}
   purpleSlashPrefab: {fileID: 5346343120293031779, guid: 184eca63719009c42a7527e1385acf88, type: 3}
   player: {fileID: 801274555}
+  slashCd: 2.5
 --- !u!114 &695954778
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20401,7 +20402,8 @@ MonoBehaviour:
   interval: 2
   xRange: 20
   yRange: 15
-  _targetPrefab: {fileID: 1040150193678450276, guid: 9630d0bdc93c68c4985f00fef5787f92, type: 3}
+  _targetPrefab: {fileID: 1152626290673112737, guid: 9630d0bdc93c68c4985f00fef5787f92, type: 3}
+  player: {fileID: 801274555}
 --- !u!4 &801032605
 Transform:
   m_ObjectHideFlags: 0

@@ -8,9 +8,12 @@ public class BossAbilityTester : MonoBehaviour
     public GameObject purpleSlashPrefab;
     public Transform player;
 
+    [SerializeField]
+    private float slashCd = 2.5f;
+
     void Start()
     {
-        
+        StartCoroutine(SlashLoopRoutine());
     }
 
     void Update()
@@ -19,15 +22,25 @@ public class BossAbilityTester : MonoBehaviour
         {
             ChangeRandomFieldToFire();
         }
+    }
 
-        if (Input.GetKeyDown(KeyCode.P))
+    private IEnumerator SlashLoopRoutine()
+    {
+        while (true)
         {
-            GameObject purpleSlash = Instantiate(purpleSlashPrefab, transform.position, Quaternion.identity);
-            Vector2 direction = (player.transform.position - transform.position).normalized;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            purpleSlash.transform.rotation = Quaternion.Euler(0, 0, angle); 
-            purpleSlash.GetComponent<Rigidbody2D>().velocity = direction * 20f; 
+            yield return new WaitForSeconds(slashCd);
+            if (player != null)
+                FireSlash();
         }
+    }
+
+    private void FireSlash()
+    {
+        GameObject purpleSlash = Instantiate(purpleSlashPrefab, transform.position, Quaternion.identity);
+        Vector2 direction = (player.transform.position - transform.position).normalized;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        purpleSlash.transform.rotation = Quaternion.Euler(0, 0, angle);
+        purpleSlash.GetComponent<Rigidbody2D>().velocity = direction * 20f;
     }
 
     //

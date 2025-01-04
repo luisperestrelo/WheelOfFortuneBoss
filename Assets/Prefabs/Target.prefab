@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7009952677889190466}
   - component: {fileID: 8773847433259039569}
   - component: {fileID: 1719796501930404173}
+  - component: {fileID: 1152626290673112737}
   m_Layer: 0
   m_Name: Target
   m_TagString: Enemy
@@ -141,6 +142,22 @@ MonoBehaviour:
   OnDie:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1152626290673112737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040150193678450276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31855396468443643a634b41b1efef84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fields: []
+  purpleSlashPrefab: {fileID: 5346343120293031779, guid: 184eca63719009c42a7527e1385acf88, type: 3}
+  player: {fileID: 0}
+  slashCd: 2.5
 --- !u!1 &1267734171478716115
 GameObject:
   m_ObjectHideFlags: 0
