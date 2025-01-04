@@ -41,7 +41,7 @@ public class PlayerSpinMovement : MonoBehaviour
             _direction *= -1f;
         } */
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.V))
         {
             _direction *= -1f;
         }
