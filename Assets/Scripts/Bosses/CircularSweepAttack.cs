@@ -5,34 +5,42 @@ using System.Collections.Generic;
 public class CircularSweepAttack : MonoBehaviour
 {
     [SerializeField] private GameObject rotatingLaserPrefab;
-    [SerializeField] private float laserDuration = 5f;
-    [SerializeField] private float laserRotationSpeed = 100f;
+    [SerializeField] private float defaultLaserDuration = 5f;
+    [SerializeField] private float defaultLaserRotationSpeed = 100f;
     [SerializeField] private float telegraphDuration = 1f;
 
     private List<GameObject> _activeLasers = new List<GameObject>();
 
-    public void StartCircularSweep(float startAngle = 0f, bool isClockwise = true)
+    public void StartCircularSweep(float startAngle = 0f, bool isClockwise = true, float duration = -1f, float speed = -1f)
     {
-        StartCoroutine(CircularSweepRoutine(startAngle, isClockwise));
+        if (duration == -1f)
+        {
+            duration = defaultLaserDuration;
+        }
+        if (speed == -1f)
+        {
+            speed = defaultLaserRotationSpeed;
+        }
+        StartCoroutine(CircularSweepRoutine(startAngle, isClockwise, duration, speed));
     }
 
-    private IEnumerator CircularSweepRoutine(float startAngle, bool isClockwise)
+    private IEnumerator CircularSweepRoutine(float startAngle, bool isClockwise, float duration, float speed)
     {
-        GameObject newLaser = SetupTelegraphPhase(startAngle, isClockwise);
+        GameObject newLaser = SetupTelegraphPhase(startAngle, isClockwise, speed);
 
         yield return new WaitForSeconds(telegraphDuration);
 
         ActivateLaser(newLaser);
 
-        StartCoroutine(StopCircularSweepAfterDelay(newLaser, laserDuration));
+        StartCoroutine(StopCircularSweepAfterDelay(newLaser, duration));
     }
 
-    private GameObject SetupTelegraphPhase(float startAngle, bool isClockwise)
+    private GameObject SetupTelegraphPhase(float startAngle, bool isClockwise, float speed)
     {
         GameObject newLaser = Instantiate(rotatingLaserPrefab, transform.position, Quaternion.identity, transform);
         newLaser.transform.Rotate(Vector3.forward, startAngle);
 
-        SetLaserRotationSpeed(newLaser, laserRotationSpeed, isClockwise);
+        SetLaserRotationSpeed(newLaser, speed, isClockwise);
         SetLaserAlpha(newLaser, 0.2f);
         DisableLaserCollider(newLaser);
 
@@ -92,5 +100,15 @@ public class CircularSweepAttack : MonoBehaviour
             LaserRotation laserRotation = laser.GetComponent<LaserRotation>();
             laserRotation.SetRotationDirection(isClockwise);
         }
+    }
+
+    public float GetDefaultLaserDuration()
+    {
+        return defaultLaserDuration;
+    }
+
+    public float GetDefaultLaserRotationSpeed()
+    {
+        return defaultLaserRotationSpeed;
     }
 } 
