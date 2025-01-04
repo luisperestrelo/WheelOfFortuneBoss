@@ -303,8 +303,7 @@ public class AbilityTestUIManager : MonoBehaviour
         gapSizeValueLabel.text = "Gap Size: " + value.ToString();
     }
 
-    // --- Helper Methods --- asdsa
-
+    // --- Helper Methods --- 
     private List<int> ParseGapSegmentsInput(string input)
     {
         List<int> gapSegments = new List<int>();
