@@ -46,6 +46,9 @@ public class BossAbilityTester : MonoBehaviour
     //
     public void ChangeRandomFieldToFire()
     {
+        if (fields.Length == 0)
+            return;
+
         int randomIndex = Random.Range(0, fields.Length);
         WheelArea area = fields[randomIndex].GetComponent<WheelArea>();
 
