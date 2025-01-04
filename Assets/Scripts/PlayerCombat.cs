@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private float defaultDamage = 10f;
-    [SerializeField] private GameObject _fireballPrefab;
+    [SerializeField] private float defaultDamage = 10f,
+        shootCooldown = 0.2f,
+        projectileSpeed = 20f;
+    private Projectile projectilePrefab;
+    [SerializeField] private Projectile _defaultProjectilePrefab;
     
 
     private float currentDamage;
@@ -15,17 +18,27 @@ public class PlayerCombat : MonoBehaviour
     private GameObject _activeShield;
     private ShieldArea _currentShieldArea;
 
+    private bool canShoot = true;
+
     private void Start()
     {
+        projectilePrefab = _defaultProjectilePrefab;
         currentDamage = defaultDamage;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        if (canShoot && Input.GetMouseButton(0))
         {
-            ShootFireBall();
+            ShootProjectile();
         }
+    }
+
+    private IEnumerator ShootCooldownRoutine()
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(shootCooldown);
+        canShoot = true;
     }
 
     public void SetDamageMultiplierForDuration(float multiplier, float duration)
@@ -50,13 +63,27 @@ public class PlayerCombat : MonoBehaviour
         damageCoroutine = null;
     }
 
-    public void ShootFireBall()
+    public void ShootProjectile()
     {
-        GameObject fireball = Instantiate(_fireballPrefab, transform.position, Quaternion.identity);
-        fireball.GetComponent<Fireball>().SetDamage(currentDamage);
-        fireball.GetComponent<Rigidbody2D>().velocity = transform.up * -10f;
+        Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        projectile.SetDamage(currentDamage);
 
-        
+        Vector2 towardMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+        projectile.SetVelocity(towardMouse * projectileSpeed);
+
+        StartCoroutine(ShootCooldownRoutine());
+    }
+    
+    /// <summary>
+    /// Changes what type of projectile the player is currently firing.
+    /// </summary>
+    /// <param name="prefab">The new projecitle. Use null to reset to default.</param>
+    public void SetProjectileType(Projectile prefab)
+    {
+        if (prefab != null)
+            projectilePrefab = prefab;
+        else
+            projectilePrefab = _defaultProjectilePrefab;
     }
 
     public void ActivateShield(GameObject shieldPrefab, ShieldArea source)
