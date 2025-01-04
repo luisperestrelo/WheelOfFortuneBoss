@@ -10,7 +10,7 @@ public class TargetSpawner : MonoBehaviour
         yRange = 15;
 
     [SerializeField]
-    private BossAbilityTester _targetPrefab;
+    private BossControllerSimple _targetPrefab;
 
     [SerializeField]
     private Transform player;
@@ -18,6 +18,9 @@ public class TargetSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (player == null)
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+
         StartCoroutine(SpawnRoutine());
     }
 
@@ -29,7 +32,7 @@ public class TargetSpawner : MonoBehaviour
         while(true)
         {
             Vector2 pos = new(Random.Range(-xRange, xRange), Random.Range(-yRange, yRange));
-            BossAbilityTester target = Instantiate(_targetPrefab, pos, Quaternion.identity);
+            BossControllerSimple target = Instantiate(_targetPrefab, pos, Quaternion.identity);
             target.player = player;
             yield return new WaitForSeconds(interval);
         }

@@ -1,10 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class BossAbilityTester : MonoBehaviour
+/// <summary>
+/// This script is used to play out the boss fight, with the boss abilities. 
+/// </summary>
+/// TODO: Later we should do this with a state machine
+public class BossControllerSimple : MonoBehaviour
 {
-    public GameObject[] fields;
     public GameObject purpleSlashPrefab;
     public Transform player;
 
@@ -14,14 +16,6 @@ public class BossAbilityTester : MonoBehaviour
     void Start()
     {
         StartCoroutine(SlashLoopRoutine());
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            ChangeRandomFieldToFire();
-        }
     }
 
     private IEnumerator SlashLoopRoutine()
@@ -42,26 +36,4 @@ public class BossAbilityTester : MonoBehaviour
         purpleSlash.transform.rotation = Quaternion.Euler(0, 0, angle);
         purpleSlash.GetComponent<Rigidbody2D>().velocity = direction * 20f;
     }
-
-    //
-    public void ChangeRandomFieldToFire()
-    {
-        if (fields.Length == 0)
-            return;
-
-        int randomIndex = Random.Range(0, fields.Length);
-        WheelArea area = fields[randomIndex].GetComponent<WheelArea>();
-
-        area.SetOnFire();
-        
-        // Start a Coroutine to stop the fire after 3 seconds
-        StartCoroutine(StopFireAfterDelay(area, 3f));
-    }
-
-    private IEnumerator StopFireAfterDelay(WheelArea area, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        
-        area.StopOnFire();
-    }
-}
+} 
