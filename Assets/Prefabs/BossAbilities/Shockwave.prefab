@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9f41f1564f3cb84da110a9daf3411e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 2
+  lifetime: 30
   segmentPrefab: {fileID: 4232691128062285619, guid: 518214d44e399e44a9594b144215c6c7, type: 3}
   numberOfSegments: 50
   gapSegments: 

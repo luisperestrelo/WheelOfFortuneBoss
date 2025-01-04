@@ -15,6 +15,8 @@ public class ConcentricShockwavesAttack : MonoBehaviour
     [SerializeField] private int numberOfGaps = 2;
     [SerializeField] private int gapSize = 15;
     [SerializeField] private List<int> gapSegments = new List<int>() { 0, 1 };
+    [SerializeField] private float startRadius = 0f;
+    [SerializeField] private bool expandOutward = true;
 
     public void StartConcentricShockwaves()
     {
@@ -31,6 +33,8 @@ public class ConcentricShockwavesAttack : MonoBehaviour
             shockwaveScript.SetNumberOfSegments(numberOfSegments);
             shockwaveScript.SetShockwaveExpansionSpeed(shockwaveExpansionSpeed);
             shockwaveScript.SetShockwaveDamage(shockwaveDamage);
+            shockwaveScript.SetStartRadius(startRadius);
+            shockwaveScript.SetExpandOutward(expandOutward);
 
             if (useRandomGaps)
             {
@@ -161,4 +165,24 @@ public class ConcentricShockwavesAttack : MonoBehaviour
     {
         return gapSize;
     }
-} 
+
+    public void SetStartRadius(float radius)
+    {
+        startRadius = radius;
+    }
+
+    public float GetDefaultStartRadius()
+    {
+        return startRadius;
+    }
+
+    public void SetExpandOutward(bool expand)
+    {
+        expandOutward = expand;
+    }
+
+    public bool GetExpandOutward()
+    {
+        return expandOutward;
+    }
+}

@@ -45,6 +45,9 @@ public class AbilityTestUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI numberOfGapsValueLabel;
     [SerializeField] private Slider gapSizeSlider;
     [SerializeField] private TextMeshProUGUI gapSizeValueLabel;
+    [SerializeField] private Slider shockwaveStartRadiusSlider;
+    [SerializeField] private TextMeshProUGUI shockwaveStartRadiusValueLabel;
+    [SerializeField] private Toggle shockwaveExpandOutwardToggle;
 
 
     private void Start()
@@ -69,6 +72,8 @@ public class AbilityTestUIManager : MonoBehaviour
         useRandomGapsToggle.onValueChanged.AddListener(OnUseRandomGapsChanged);
         numberOfGapsSlider.onValueChanged.AddListener(OnNumberOfGapsChanged);
         gapSizeSlider.onValueChanged.AddListener(OnGapSizeChanged);
+        shockwaveStartRadiusSlider.onValueChanged.AddListener(OnShockwaveStartRadiusChanged);
+        shockwaveExpandOutwardToggle.onValueChanged.AddListener(OnShockwaveExpandOutwardChanged);
 
         // Initialize UI element values
         UpdateStartAngleUI(0f);
@@ -86,6 +91,8 @@ public class AbilityTestUIManager : MonoBehaviour
         UpdateUseRandomGapsUI(concentricShockwavesAttack.GetUseRandomGaps());
         UpdateNumberOfGapsUI(concentricShockwavesAttack.GetDefaultNumberOfGaps());
         UpdateGapSizeUI(concentricShockwavesAttack.GetDefaultGapSize());
+        UpdateShockwaveStartRadiusUI(concentricShockwavesAttack.GetDefaultStartRadius());
+        UpdateShockwaveExpandOutwardUI(concentricShockwavesAttack.GetExpandOutward());
 
         // Set slider min and max values
         durationSlider.minValue = 0f; 
@@ -108,6 +115,8 @@ public class AbilityTestUIManager : MonoBehaviour
         numberOfGapsSlider.maxValue = 10;
         gapSizeSlider.minValue = 1;
         gapSizeSlider.maxValue = 60;
+        shockwaveStartRadiusSlider.minValue = 0f;
+        shockwaveStartRadiusSlider.maxValue = 30f;
 
  
     }
@@ -233,6 +242,18 @@ public class AbilityTestUIManager : MonoBehaviour
         UpdateGapSizeUI((int)value);
     }
 
+    public void OnShockwaveStartRadiusChanged(float value)
+    {
+        concentricShockwavesAttack.SetStartRadius(value);
+        UpdateShockwaveStartRadiusUI(value);
+    }
+
+    public void OnShockwaveExpandOutwardChanged(bool value)
+    {
+        concentricShockwavesAttack.SetExpandOutward(value);
+        UpdateShockwaveExpandOutwardUI(value);
+    }
+
     // --- UI Update Methods ---
 
     private void UpdateStartAngleUI(float value)
@@ -301,6 +322,16 @@ public class AbilityTestUIManager : MonoBehaviour
     private void UpdateGapSizeUI(int value)
     {
         gapSizeValueLabel.text = "Gap Size: " + value.ToString();
+    }
+
+    private void UpdateShockwaveStartRadiusUI(float value)
+    {
+        shockwaveStartRadiusValueLabel.text = "Start Radius: " + value.ToString("F1");
+    }
+
+    private void UpdateShockwaveExpandOutwardUI(bool value)
+    {
+        shockwaveExpandOutwardToggle.isOn = value;
     }
 
     // --- Helper Methods --- 

@@ -17820,7 +17820,7 @@ MonoBehaviour:
   shockwaveInterval: 3
   numberOfShockwaves: 3
   shockwaveExpansionSpeed: 4
-  shockwaveLifetime: 2.5
+  shockwaveLifetime: 30
   shockwaveDamage: 1
   numberOfSegments: 360
   useRandomGaps: 1

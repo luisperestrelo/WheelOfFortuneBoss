@@ -10,6 +10,8 @@ public class Shockwave : MonoBehaviour
     [SerializeField] private List<int> gapSegments = new List<int>();
     [SerializeField] private float shockwaveExpansionSpeed = 5f;
     [SerializeField] private float shockwaveDamage = 10f;
+    [SerializeField] private float startRadius = 0f;
+    [SerializeField] private bool expandOutward = true;
 
     private void Start()
     {
@@ -26,13 +28,20 @@ public class Shockwave : MonoBehaviour
             if (gapSegments.Contains(i)) continue;
 
             float angle = i * angleStep;
-            Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.up; // Calculate direction based on angle
+            Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.up;
+            //for startRadius = 0, this results in the segment being created at the center of the circle, as it should for expandOutward
 
-            GameObject segment = Instantiate(segmentPrefab, transform.position, Quaternion.identity);
+            Vector3 segmentPosition = direction * startRadius;
+
+            //
+            GameObject segment = Instantiate(segmentPrefab, transform);
+            segment.transform.localPosition = segmentPosition;
+
             ShockwaveSegment segmentScript = segment.GetComponent<ShockwaveSegment>();
             if (segmentScript != null)
             {
-                segmentScript.Initialize(shockwaveExpansionSpeed, direction, shockwaveDamage);
+                Vector3 segmentDirection = expandOutward ? direction : -direction;
+                segmentScript.Initialize(shockwaveExpansionSpeed, segmentDirection, shockwaveDamage, transform, expandOutward);
             }
         }
     }
@@ -56,4 +65,14 @@ public class Shockwave : MonoBehaviour
     {
         shockwaveDamage = damage;
     }
-} 
+
+    public void SetStartRadius(float radius)
+    {
+        startRadius = radius;
+    }
+
+    public void SetExpandOutward(bool expand)
+    {
+        expandOutward = expand;
+    }
+}
