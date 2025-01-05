@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: make the radius come from a CircularPath object attached to the boss
 public class PlayerSpinMovement : MonoBehaviour
 {
     [SerializeField] private Transform anchorPoint;
