@@ -85,8 +85,19 @@ public class PlayerCombat : MonoBehaviour
         Projectile projectile = Instantiate(preprojectile, transform.position, Quaternion.identity);
         projectile.SetDamage(currentDamage);
 
-        Vector2 towardMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-        projectile.SetVelocity(towardMouse * projectileSpeed);
+        //I do not understand the following. It is stolen frrom the forums.
+        Plane plane = new(Vector3.forward, transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 hitPoint;
+
+        float distance;
+        if (plane.Raycast(ray, out distance)) {
+            hitPoint = ray.GetPoint(distance);
+
+            //yay back to the easy stuff
+            Vector2 towardMouse = (hitPoint - transform.position).normalized;
+            projectile.SetVelocity(towardMouse * projectileSpeed);
+        }
 
         StartCoroutine(ShootCooldownRoutine());
     }
