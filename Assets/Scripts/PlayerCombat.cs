@@ -9,7 +9,11 @@ public class PlayerCombat : MonoBehaviour
         projectileSpeed = 20f;
     private Projectile projectilePrefab;
     [SerializeField] private Projectile _defaultProjectilePrefab;
+
+    [SerializeField] private float globalDamageMultiplier = 1f; // we need a better solution later
     
+
+
 
     private float currentDamage;
     private Coroutine damageCoroutine;
@@ -106,5 +110,15 @@ public class PlayerCombat : MonoBehaviour
         }
 
         _currentShieldArea = null;
+    }
+
+    public float GetGlobalDamageMultiplier()
+    {
+        return globalDamageMultiplier;
+    }
+
+    public void SetGlobalDamageMultiplier(float multiplier)
+    {
+        globalDamageMultiplier = multiplier;
     }
 }
