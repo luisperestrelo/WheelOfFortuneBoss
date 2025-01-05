@@ -13,7 +13,9 @@ public class ThrowSpearsAbility : MonoBehaviour
     [SerializeField] private float spawnDistance = 15f;
     [SerializeField] private bool useRandomDirections = false;
     [SerializeField] private float minAngleBetweenSpears = 30f;
+    [SerializeField] private float angleOffset = 0f;
 
+    
     public void ThrowSpears()
     {
         List<float> spearAngles = new List<float>();
@@ -24,7 +26,7 @@ public class ThrowSpearsAbility : MonoBehaviour
         }
         else
         {
-            spearAngles = GenerateEvenlySpacedSpearAngles();
+            spearAngles = GenerateEvenlySpacedSpearAngles(angleOffset);
         }
 
         foreach (float angle in spearAngles)
@@ -34,7 +36,6 @@ public class ThrowSpearsAbility : MonoBehaviour
 
             // Instantiate the telegraph
             GameObject telegraph = Instantiate(spearTelegraphPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
-            // You might want to adjust the telegraph's scale here if needed
 
             // Start a coroutine to throw the spear after the telegraph duration
             //StartCoroutine(ThrowSpearAfterDelay(direction, angle, telegraphDuration, spawnPosition));
@@ -69,13 +70,13 @@ public class ThrowSpearsAbility : MonoBehaviour
         return angles;
     }
 
-    private List<float> GenerateEvenlySpacedSpearAngles()
+    private List<float> GenerateEvenlySpacedSpearAngles(float angleOffset)
     {
         List<float> angles = new List<float>();
         float angleStep = 360f / numberOfSpears;
         for (int i = 0; i < numberOfSpears; i++)
         {
-            angles.Add(i * angleStep);
+            angles.Add(i * angleStep + angleOffset);
         }
         return angles;
     }

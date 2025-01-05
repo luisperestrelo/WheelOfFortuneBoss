@@ -13,6 +13,8 @@ public class Shockwave : MonoBehaviour
     [SerializeField] private float startRadius = 0f;
     [SerializeField] private bool expandOutward = true;
 
+    private bool hasDealtDamage = false; // Since each segment has its own damage, we need a flag to track if damage has been dealt 
+
     private void Start()
     {
         GenerateSegments();
@@ -41,9 +43,25 @@ public class Shockwave : MonoBehaviour
             if (segmentScript != null)
             {
                 Vector3 segmentDirection = expandOutward ? direction : -direction;
-                segmentScript.Initialize(shockwaveExpansionSpeed, segmentDirection, shockwaveDamage, transform, expandOutward);
+                segmentScript.Initialize(shockwaveExpansionSpeed, segmentDirection, shockwaveDamage, this, expandOutward);
             }
         }
+    }
+
+    // Method to reset the damage flag (no usefulness for now, but might in the future (eg reusing same shockwave))
+    public void ResetDamageFlag()
+    {
+        hasDealtDamage = false;
+    }
+
+    public bool HasDealtDamage()
+    {
+        return hasDealtDamage;
+    }
+
+    public void MarkAsDealtDamage()
+    {
+        hasDealtDamage = true;
     }
 
     public void SetNumberOfSegments(int numSegments)

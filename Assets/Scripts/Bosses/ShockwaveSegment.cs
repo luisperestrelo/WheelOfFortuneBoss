@@ -6,7 +6,7 @@ public class ShockwaveSegment : MonoBehaviour
     private Vector3 direction;
     private float damage = 10f;
     [SerializeField] private float lifetime = 30f;
-    private Transform shockwaveOrigin;
+    private Shockwave parentShockwave;
     private bool expandOutward;
 
     private void Update()
@@ -21,12 +21,12 @@ public class ShockwaveSegment : MonoBehaviour
         }
     }
 
-    public void Initialize(float speed, Vector3 direction, float damage, Transform origin, bool expandOutward)
+    public void Initialize(float speed, Vector3 direction, float damage, Shockwave parentShockwave, bool expandOutward)
     {
         this.speed = speed;
         this.direction = direction;
         this.damage = damage;
-        this.shockwaveOrigin = origin;
+        this.parentShockwave = parentShockwave;
         this.expandOutward = expandOutward;
 
         Destroy(gameObject, lifetime);
@@ -36,10 +36,14 @@ public class ShockwaveSegment : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Health playerHealth = other.GetComponent<Health>();
-            if (playerHealth != null)
+            if (!parentShockwave.HasDealtDamage())
             {
-                playerHealth.TakeDamage(damage);
+                Health playerHealth = other.GetComponent<Health>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(damage);
+                    parentShockwave.MarkAsDealtDamage();
+                }
             }
         }
     }
