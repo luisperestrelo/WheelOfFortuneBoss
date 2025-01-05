@@ -18,12 +18,16 @@ public class ConcentricShockwavesAttack : MonoBehaviour
     [SerializeField] private float startRadius = 0f;
     [SerializeField] private bool expandOutward = true;
 
-    public void StartConcentricShockwaves()
+    public void StartConcentricShockwaves(float startRadius = -1f, bool expandOutward = true)
     {
-        StartCoroutine(EmitShockwaves());
+        if (startRadius == -1f)
+        {
+            startRadius = this.startRadius;
+        }
+        StartCoroutine(EmitShockwaves(startRadius, expandOutward));
     }
 
-    private IEnumerator EmitShockwaves()
+    private IEnumerator EmitShockwaves(float startRadius, bool expandOutward)
     {
         for (int i = 0; i < numberOfShockwaves; i++)
         {
@@ -90,7 +94,6 @@ public class ConcentricShockwavesAttack : MonoBehaviour
         shockwaveDamage = damage;
     }
 
-    // Getters for default values
     public float GetDefaultShockwaveInterval()
     {
         return shockwaveInterval;
@@ -116,7 +119,6 @@ public class ConcentricShockwavesAttack : MonoBehaviour
         return shockwaveDamage;
     }
 
-    // Add setters and getters for the new parameters:
     public void SetNumberOfSegments(int numSegments)
     {
         numberOfSegments = numSegments;

@@ -9,7 +9,6 @@ public class CircularSweepAttack : MonoBehaviour
     [SerializeField] private float defaultLaserRotationSpeed = 100f;
     [SerializeField] private float telegraphDuration = 1f;
 
-    // New fields to control parameters from this script
     [Header("Parameters to be set when calling StartCircularSweep")]
     [SerializeField] private float laserDuration = 5f;
     [SerializeField] private float laserRotationSpeed = 100f;
@@ -93,7 +92,7 @@ public class CircularSweepAttack : MonoBehaviour
         }
     }
 
-    // Method to change the rotation direction of an existing laser
+    // Method to change the rotation direction of an existing laser. Not being used yet
     public void ChangeLaserRotationDirection(GameObject laser, bool isClockwise)
     {
         if (_activeLasers.Contains(laser))
@@ -103,7 +102,6 @@ public class CircularSweepAttack : MonoBehaviour
         }
     }
 
-    //Setters for the new parameters
     public void SetLaserDuration(float duration)
     {
         laserDuration = duration;

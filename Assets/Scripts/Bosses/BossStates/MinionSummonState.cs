@@ -3,11 +3,13 @@ using UnityEngine;
 public class MinionSummonState : BossState
 {
     private SpawnRangedMinionsAbility spawnRangedMinionsAbility;
-    private float stateDuration = 5f;
+    private SpawnRadialGhostsAbility spawnRadialGhostsAbility;
+    private float stateDuration = 15f;
 
     public MinionSummonState(BossStateMachine stateMachine, BossController bossController) : base(stateMachine, bossController)
     {
         spawnRangedMinionsAbility = bossController.GetComponent<SpawnRangedMinionsAbility>();
+        spawnRadialGhostsAbility = bossController.GetComponent<SpawnRadialGhostsAbility>();
     }
 
     public override void Enter()
@@ -20,8 +22,9 @@ public class MinionSummonState : BossState
             return;
         }
 
-        // Example: Spawn 3 ranged minions
+        
         spawnRangedMinionsAbility.SpawnMinions();
+        spawnRadialGhostsAbility.SpawnGhosts();
     }
 
     public override void Update()
@@ -30,7 +33,7 @@ public class MinionSummonState : BossState
 
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(new FireFieldsState(stateMachine, bossController));
+            stateMachine.ChangeState(new SpearAndShockwaveState(stateMachine, bossController));
         }
     }
 

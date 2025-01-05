@@ -15,14 +15,17 @@ public class ThrowSpearsAbility : MonoBehaviour
     [SerializeField] private float minAngleBetweenSpears = 30f;
     [SerializeField] private float angleOffset = 0f;
 
-    // New fields to control parameters from this script
     [SerializeField] private float spearSpeed = 20f;
     [SerializeField] private float spearDamage = 15f;
     [SerializeField] private float spearLifeTime = 5f;
 
     
-    public void ThrowSpears()
+    public void ThrowSpears(int numSpears, bool randomDirections, float angleOffset)
     {
+        this.numberOfSpears = numSpears;
+        this.useRandomDirections = randomDirections;
+        this.angleOffset = angleOffset;
+
         List<float> spearAngles = new List<float>();
 
         if (useRandomDirections)
@@ -99,4 +102,6 @@ public class ThrowSpearsAbility : MonoBehaviour
         spearComponent.SetDamage(spearDamage);
         spearComponent.SetLifeTime(spearLifeTime);
     }
+
+
 }

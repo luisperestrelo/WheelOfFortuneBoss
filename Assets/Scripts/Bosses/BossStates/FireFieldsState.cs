@@ -3,10 +3,10 @@ using UnityEngine;
 public class FireFieldsState : BossState
 {
     private float stateDuration = 6f;
-    private float timeToChangeField = 2f; // Time before changing the field
-    private float changeFieldTimer = 0f; // Timer to track time elapsed
+    private float timeToChangeField = 2f; 
+    private float changeFieldTimer = 0f; 
     private GameObject[] fields;
-    private int currentFireFieldIndex = -1; // Index of the currently active field
+    private int currentFireFieldIndex = -1; 
 
     public FireFieldsState(BossStateMachine stateMachine, BossController bossController) : base(stateMachine, bossController)
     {
@@ -15,9 +15,7 @@ public class FireFieldsState : BossState
 
     public override void Enter()
     {
-        base.Enter(); // To reset the timer and call Debug.Log
-                      // Activate fire fields when entering the state
-                      // For example, activate fields 1, 3, and 5:
+        base.Enter(); 
 
         //bossController.ActivateFireFields(new int[] { 1, 3, 5 });
         //bossController.ChangeRandomFieldToFire();
@@ -29,16 +27,15 @@ public class FireFieldsState : BossState
              } */
 
         currentFireFieldIndex = bossController.ChangeRandomFieldToFire();
-        changeFieldTimer = 0f; // Reset the timer
+        changeFieldTimer = 0f; 
 
     }
 
     public override void Update()
     {
-        base.Update(); // To update the timer
+        base.Update(); 
 
         UpdateFireFieldTimer();
-        // Check if it's time to transition to the next state
         if (timer >= stateDuration)
         {
             stateMachine.ChangeState(new ShockwaveState(stateMachine, bossController));
@@ -60,8 +57,9 @@ public class FireFieldsState : BossState
             if (changeFieldTimer >= timeToChangeField)
             {
                 bossController.DeactivateFireFields();
-                currentFireFieldIndex = bossController.ChangeRandomFieldToFire(); // Change to a new random field
-                changeFieldTimer = 0f; // Reset the timer
+                currentFireFieldIndex = bossController.ChangeRandomFieldToFire(); // Change to a new random field. ATM it can change
+                // to the same field, but we can fix that later 
+                changeFieldTimer = 0f; 
             }
         }
     }

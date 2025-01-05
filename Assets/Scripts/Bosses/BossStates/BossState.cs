@@ -27,4 +27,9 @@ public class BossState
     {
         Debug.Log(bossController.name + " Exited state: " + this.GetType().Name);
     }
+
+    public float GetTimer()
+    {
+        return timer;
+    }
 } 

@@ -1,10 +1,11 @@
 using UnityEngine;
+using System.Collections;
 
 public class SpearAndShockwaveState : BossState
 {
     private ThrowSpearsAbility throwSpearsAbility;
     private ConcentricShockwavesAttack concentricShockwavesAttack;
-    private float stateDuration = 4f;
+    private float stateDuration = 10f;
 
     public SpearAndShockwaveState(BossStateMachine stateMachine, BossController bossController) : base(stateMachine, bossController)
     {
@@ -23,9 +24,8 @@ public class SpearAndShockwaveState : BossState
             return;
         }
 
-        // Example: Throw 4 spears and emit 1 shockwave
-        throwSpearsAbility.ThrowSpears();
-        concentricShockwavesAttack.StartConcentricShockwaves();
+        bossController.StartCoroutine(ThrowSpearSets());
+        concentricShockwavesAttack.StartConcentricShockwaves(1f, true);
     }
 
     public override void Update()
@@ -43,4 +43,19 @@ public class SpearAndShockwaveState : BossState
         base.Exit();
         bossController.StartFireSlashCoroutine();
     }
-} 
+
+
+    private IEnumerator ThrowSpearSets()
+    {
+        throwSpearsAbility.ThrowSpears(4, false, 0f);
+        yield return new WaitForSeconds(3f);
+
+        throwSpearsAbility.ThrowSpears(4, false, 45f);
+        yield return new WaitForSeconds(3f);
+
+        throwSpearsAbility.ThrowSpears(4, false, 90f);
+        yield return new WaitForSeconds(3f);    
+        }
+
+
+}

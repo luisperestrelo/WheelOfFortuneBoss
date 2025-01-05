@@ -33,7 +33,6 @@ public class ChasingGhost : MonoBehaviour
         }
     }
 
-    // Add setters for speed and damage
     public void SetSpeed(float newSpeed)
     {
         speed = newSpeed;

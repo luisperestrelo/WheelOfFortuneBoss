@@ -21,7 +21,8 @@ public class GhostSummonState : BossState
             return;
         }
 
-        // Example: Spawn 3 linear ghosts and 2 chasing ghosts
+        // Example: These work a bit differently, can define the amount of ghosts in the LinearGhostsAbility script 
+        //whereas for chasing ghosts it's just 1 per ability. All this can be refactored later
         spawnLinearGhostsAbility.SpawnGhosts();
         for (int i = 0; i < 5; i++)
         {
@@ -35,7 +36,7 @@ public class GhostSummonState : BossState
 
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(new SpearAndShockwaveState(stateMachine, bossController));
+            stateMachine.ChangeState(new ThrowSpearsState(stateMachine, bossController));
         }
     }
 

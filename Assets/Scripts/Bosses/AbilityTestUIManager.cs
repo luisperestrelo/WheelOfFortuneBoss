@@ -201,7 +201,7 @@ public class AbilityTestUIManager : MonoBehaviour
 
     public void OnThrowSpearsClicked()
     {
-        bossAbilityTester.throwSpearsAbility.ThrowSpears();
+        bossAbilityTester.throwSpearsAbility.ThrowSpears(4, true, 0f);
     }
 
     public void OnRandomExplosionsClicked()

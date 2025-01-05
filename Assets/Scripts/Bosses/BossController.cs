@@ -15,7 +15,8 @@ public class BossController : MonoBehaviour
     {
         stateMachine = new BossStateMachine();
 
-        // Define states
+        // States
+        // Right now the exit condition for all states it's just a timer, can change that later 
         IdleState idleState = new IdleState(stateMachine, this);
         FireFieldsState fireFieldsState = new FireFieldsState(stateMachine, this);
         ShockwaveState shockwaveState = new ShockwaveState(stateMachine, this);
@@ -23,8 +24,11 @@ public class BossController : MonoBehaviour
         SpearAndShockwaveState spearAndShockwaveState = new SpearAndShockwaveState(stateMachine, this);
         LaserSweepState laserSweepState = new LaserSweepState(stateMachine, this);
         MinionSummonState minionSummonState = new MinionSummonState(stateMachine, this);
+        ThrowSpearsState throwSpearsState = new ThrowSpearsState(stateMachine, this);
+        ExplosionsState explosionsState = new ExplosionsState(stateMachine, this);
+        RandomShockwaveAndAbilityState randomShockwaveAndAbilityState = new RandomShockwaveAndAbilityState(stateMachine, this);
 
-        // Start in the Idle state (which will immediately transition to the first real state)
+        
         stateMachine.Initialize(idleState);
         StartFireSlashCoroutine();
     }
@@ -111,5 +115,10 @@ public class BossController : MonoBehaviour
     public GameObject[] GetFields()
     {
         return fields;
+    }
+
+    public BossStateMachine GetStateMachine()
+    {
+        return stateMachine;
     }
 }

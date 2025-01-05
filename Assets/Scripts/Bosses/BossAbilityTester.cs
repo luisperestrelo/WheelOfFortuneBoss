@@ -61,7 +61,7 @@ public class BossAbilityTester : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            throwSpearsAbility.ThrowSpears();
+            throwSpearsAbility.ThrowSpears(4, true, 0f);
             
         }
 

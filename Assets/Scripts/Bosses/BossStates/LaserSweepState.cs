@@ -20,8 +20,8 @@ public class LaserSweepState : BossState
             return;
         }
 
-        // Example: Start a clockwise sweep for 5 seconds
-        circularSweepAttack.StartCircularSweep(0f, true, circularSweepAttack.GetDefaultLaserDuration(), circularSweepAttack.GetDefaultLaserRotationSpeed());
+        circularSweepAttack.StartCircularSweep(-30f, true, 5.2f, circularSweepAttack.GetDefaultLaserRotationSpeed());
+        circularSweepAttack.StartCircularSweep(30f, true, 5.2f, circularSweepAttack.GetDefaultLaserRotationSpeed());
     }
 
     public override void Update()
@@ -30,7 +30,7 @@ public class LaserSweepState : BossState
 
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(new MinionSummonState(stateMachine, bossController));
+            stateMachine.ChangeState(new ExplosionsState(stateMachine, bossController));
         }
     }
 
@@ -38,4 +38,4 @@ public class LaserSweepState : BossState
     {
         base.Exit();
     }
-} 
+}
