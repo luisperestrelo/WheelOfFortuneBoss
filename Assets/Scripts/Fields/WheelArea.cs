@@ -4,56 +4,20 @@ using UnityEngine;
 
 public class WheelArea : MonoBehaviour
 {
-
-    [SerializeField] protected bool _isPlayerInArea = false;
-    [SerializeField] protected Transform _player;
-    [SerializeField] protected PlayerCombat _playerCombat;
-    [SerializeField] protected ParticleSystem _onFireParticles;
-    [SerializeField] protected Health _playerHealth;
-
     protected bool _isOnFire = false;
-
-    protected virtual void Awake()
-    {
-        
-    }
+    [SerializeField] private ParticleSystem _onFireParticles;   
 
     protected virtual void Start()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
-        _playerCombat = _player.GetComponent<PlayerCombat>();
         _onFireParticles = GetComponentInChildren<ParticleSystem>();
-        _playerHealth = _player.GetComponent<Health>();
     }
 
-    protected virtual void Update()
+    /// <summary>
+    /// Called each frame the player is in this area.
+    /// </summary>
+    public virtual void OnUpdate(PlayerCombat player)
     {
-
-        if (_isPlayerInArea && _isOnFire)
-        {
-            _playerHealth.TakeDamage(20f * Time.deltaTime);
-        }
-
-    }
-
-    protected virtual void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _isPlayerInArea = true;
-            if (_isOnFire)
-            {
-
-            }
-        }
-    }
-
-    protected virtual void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            _isPlayerInArea = false;
-        }
+        if (_isOnFire) player.health.TakeDamage(20 * Time.deltaTime);
     }
 
     public void SetOnFire()

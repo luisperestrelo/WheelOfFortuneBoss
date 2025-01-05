@@ -12,75 +12,29 @@ public class ShieldArea : WheelArea
     private bool _isOnCooldown = false;
     private float _cooldownTimer = 0f;
 
-    protected override void Awake()
+    public override void OnUpdate(PlayerCombat player)
     {
-        base.Awake();
+        base.OnUpdate(player);
 
-        if (onCooldownTextObject != null)
+        if (!_isOnCooldown && !player.HasShield)
         {
-            onCooldownTextObject.SetActive(false);
+            player.ActivateShield(shieldPrefab, this);
+            StartCoroutine(CooldownRoutine());
+            StartCoroutine(ShieldTimerRoutine(player));
         }
+
     }
 
-    protected override void Update()
+    private IEnumerator CooldownRoutine()
     {
-        base.Update();
-
-        if (_isOnCooldown)
-        {
-            _cooldownTimer -= Time.deltaTime;
-            if (_cooldownTimer <= 0f)
-            {
-                _isOnCooldown = false;
-                if (onCooldownTextObject != null)
-                {
-                    onCooldownTextObject.SetActive(false);
-                }
-            }
-        }
-    }
-
-    protected override void OnTriggerEnter2D(Collider2D other)
-    {
-        base.OnTriggerEnter2D(other);
-
-        if (!other.CompareTag("Player")) return;
-
-        // If we're on cooldown, no new shield
-        if (_isOnCooldown)
-        {
-            return;
-        }
-
-        // Otherwise, give the player a shield
-        PlayerCombat playerCombat = other.GetComponent<PlayerCombat>();
-        if (playerCombat != null && !playerCombat.HasShield)
-        {
-            playerCombat.ActivateShield(shieldPrefab, this);
-        }
-
-        // Start cooldown immediately upon entering, could change in the future
-        // as of now player only gains shield on entering, so if the cooldown expires while he is inside the area, he will not get a shield 
         _isOnCooldown = true;
-        _cooldownTimer = cooldownDuration;
-
-        if (onCooldownTextObject != null)
-        {
-            onCooldownTextObject.SetActive(true);
-        }
+        yield return new WaitForSeconds(cooldownDuration);
+        _isOnCooldown = false;
     }
 
-    protected override void OnTriggerExit2D(Collider2D other)
+    private IEnumerator ShieldTimerRoutine(PlayerCombat player)
     {
-        base.OnTriggerExit2D(other);
-
-        if (!other.CompareTag("Player")) return;
-
-        // If the player leaves and still has this area’s shield, remove it
-        PlayerCombat playerCombat = other.GetComponent<PlayerCombat>();
-        if (playerCombat != null && playerCombat.HasShield)
-        {
-            playerCombat.RemoveShield();
-        }
+        yield return new WaitForSeconds(0.25f);
+        player.RemoveShield();
     }
 }

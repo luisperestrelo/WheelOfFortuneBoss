@@ -9,6 +9,9 @@ public class PlayerCombat : MonoBehaviour
         projectileSpeed = 20f;
     private Projectile projectilePrefab;
     [SerializeField] private Projectile _defaultProjectilePrefab;
+    [SerializeField] private LayerMask wheelLayerMask;
+
+    public Health health;
     
 
     private float currentDamage;
@@ -32,6 +35,18 @@ public class PlayerCombat : MonoBehaviour
         {
             ShootProjectile();
         }
+
+        GetWheelArea()?.OnUpdate(this);
+
+        //tacky and unperformant but it works for the prototype
+        if (projectilePrefab != _defaultProjectilePrefab && GetWheelArea() == null)
+            projectilePrefab = _defaultProjectilePrefab;
+    }
+
+    /// <returns>Whichever wheel area the player is currently on (null if none)</returns>
+    private WheelArea GetWheelArea()
+    {
+        return Physics2D.OverlapCircle(transform.position, 0.1f, wheelLayerMask)?.GetComponent<WheelArea>();
     }
 
     private IEnumerator ShootCooldownRoutine()

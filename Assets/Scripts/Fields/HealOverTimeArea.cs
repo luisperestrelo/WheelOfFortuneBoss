@@ -7,15 +7,11 @@ public class HealOverTimeArea : WheelArea
 
     [SerializeField] private float healPerSecond = 2f;
 
-
-    protected override void Update()
+    public override void OnUpdate(PlayerCombat player)
     {
-        base.Update();
+        base.OnUpdate(player);
         Debug.Log("Player is in area name: " + gameObject.name);
 
-        if (_isPlayerInArea && _playerHealth != null)
-        {
-            _playerHealth.Heal(healPerSecond * Time.deltaTime);
-        }
+        player.health.Heal(healPerSecond * Time.deltaTime);
     }
 }
