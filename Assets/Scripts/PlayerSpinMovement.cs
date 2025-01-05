@@ -22,20 +22,30 @@ public class PlayerSpinMovement : MonoBehaviour
     private float nextSlowTime = 0f;
 
     [SerializeField] private bool drawLine = true;
+    [SerializeField] private CircularPath circularPath;
     private float _currentAngle = 50f;
     private float _direction = 1f;
     private float _currentRotationSpeed;
 
     private LineRenderer _lineRenderer;
 
+
+
+
     private void Start()
     {
         _currentRotationSpeed = defaultRotationSpeed;
         _lineRenderer = GetComponent<LineRenderer>();
+        radius = circularPath.GetRadius();
     }
 
     private void Update()
     {
+
+        if (circularPath != null)
+        {
+            radius = circularPath.GetRadius();
+        }
 
 /*         if (Input.GetKeyDown(KeyCode.Space))
         {
