@@ -14,6 +14,7 @@ public class BossAbilityTester : MonoBehaviour
     public SpawnLinearGhostsAbility spawnLinearGhostsAbility;
     public SpawnChasingGhostAbility spawnChasingGhostAbility;
     public ThrowSpearsAbility throwSpearsAbility;
+    public RandomExplosionsAbility randomExplosionsAbility;
 
 
 
@@ -58,6 +59,11 @@ public class BossAbilityTester : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             throwSpearsAbility.ThrowSpears();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            randomExplosionsAbility.TriggerExplosions();
         }
     }
 

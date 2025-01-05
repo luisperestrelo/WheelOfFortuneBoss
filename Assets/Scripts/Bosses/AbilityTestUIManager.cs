@@ -56,6 +56,7 @@ public class AbilityTestUIManager : MonoBehaviour
 
     [Header("Other Abilities UI")]
     [SerializeField] private Button throwSpearsButton;
+    [SerializeField] private Button randomExplosionsButton;
 
     private void Start()
     {
@@ -89,6 +90,7 @@ public class AbilityTestUIManager : MonoBehaviour
 
         // Add listeners for Other Abilities UI
         throwSpearsButton.onClick.AddListener(OnThrowSpearsClicked);
+        randomExplosionsButton.onClick.AddListener(OnRandomExplosionsClicked);
 
         // Initialize UI element values
         UpdateStartAngleUI(0f);
@@ -198,6 +200,11 @@ public class AbilityTestUIManager : MonoBehaviour
     public void OnThrowSpearsClicked()
     {
         bossAbilityTester.throwSpearsAbility.ThrowSpears();
+    }
+
+    public void OnRandomExplosionsClicked()
+    {
+        bossAbilityTester.randomExplosionsAbility.TriggerExplosions();
     }
 
     // --- Slider/Toggle Change Handlers ---
