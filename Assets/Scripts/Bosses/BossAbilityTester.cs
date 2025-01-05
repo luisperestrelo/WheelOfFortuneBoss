@@ -15,6 +15,7 @@ public class BossAbilityTester : MonoBehaviour
     public SpawnChasingGhostAbility spawnChasingGhostAbility;
     public ThrowSpearsAbility throwSpearsAbility;
     public RandomExplosionsAbility randomExplosionsAbility;
+    public SpawnRangedMinionsAbility spawnRangedMinionsAbility;
 
 
 
@@ -64,6 +65,11 @@ public class BossAbilityTester : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             randomExplosionsAbility.TriggerExplosions();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            spawnRangedMinionsAbility.SpawnMinions();
         }
     }
 

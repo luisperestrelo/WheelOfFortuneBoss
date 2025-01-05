@@ -57,6 +57,7 @@ public class AbilityTestUIManager : MonoBehaviour
     [Header("Other Abilities UI")]
     [SerializeField] private Button throwSpearsButton;
     [SerializeField] private Button randomExplosionsButton;
+    [SerializeField] private Button spawnRangedMinionsButton;
 
     private void Start()
     {
@@ -91,6 +92,7 @@ public class AbilityTestUIManager : MonoBehaviour
         // Add listeners for Other Abilities UI
         throwSpearsButton.onClick.AddListener(OnThrowSpearsClicked);
         randomExplosionsButton.onClick.AddListener(OnRandomExplosionsClicked);
+        spawnRangedMinionsButton.onClick.AddListener(OnSpawnRangedMinionsClicked);
 
         // Initialize UI element values
         UpdateStartAngleUI(0f);
@@ -205,6 +207,11 @@ public class AbilityTestUIManager : MonoBehaviour
     public void OnRandomExplosionsClicked()
     {
         bossAbilityTester.randomExplosionsAbility.TriggerExplosions();
+    }
+
+    public void OnSpawnRangedMinionsClicked()
+    {
+        bossAbilityTester.spawnRangedMinionsAbility.SpawnMinions();
     }
 
     // --- Slider/Toggle Change Handlers ---

@@ -11,7 +11,7 @@ public class CircularPath : MonoBehaviour
 
 
     // Optional: Draw the path in the editor
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, radius);
