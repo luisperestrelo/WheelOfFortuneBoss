@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[CreateAssetMenu(menuName = "Areas/Heal Area")]
 public class HealOverTimeArea : WheelEffect
 {
 

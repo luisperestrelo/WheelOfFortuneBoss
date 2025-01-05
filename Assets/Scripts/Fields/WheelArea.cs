@@ -27,7 +27,7 @@ public class WheelArea : MonoBehaviour, IPointerClickHandler
     public void SetEffect(WheelEffect effect)
     {
         _iconRend.sprite = effect.icon;
-        this.effect = effect;
+        this.effect = Instantiate(effect);
     }
 
     /// <summary>

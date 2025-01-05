@@ -15,7 +15,10 @@ public class FireDamageArea : WheelEffect
     {
         Debug.Log("projectile is now fireball");
         base.OnUpdate(player);
-        player.SetProjectileType(_fireballPrefab);
-        
+    }
+
+    public override Projectile DecorateProjectile(Projectile projectile)
+    {
+        return _fireballPrefab;
     }
 }

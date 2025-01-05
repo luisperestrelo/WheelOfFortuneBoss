@@ -78,9 +78,9 @@ public class PlayerCombat : MonoBehaviour
     {
         Projectile preprojectile;
         if (GetWheelArea() != null && GetWheelArea().effect != null)
-            preprojectile = GetWheelArea().effect.DecorateProjectile(projectilePrefab);
+            preprojectile = GetWheelArea().effect.DecorateProjectile(_defaultProjectilePrefab);
         else
-            preprojectile = projectilePrefab;
+            preprojectile = _defaultProjectilePrefab;
 
         Projectile projectile = Instantiate(preprojectile, transform.position, Quaternion.identity);
         projectile.SetDamage(currentDamage);
@@ -110,6 +110,14 @@ public class PlayerCombat : MonoBehaviour
         HasShield = true;
         _currentShieldArea = source;
         _activeShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity, transform);
+        StartCoroutine(ShieldTimerRoutine(source));
+    }
+
+    private IEnumerator ShieldTimerRoutine(ShieldArea source)
+    {
+        yield return new WaitForSeconds(0.25f);
+        if (_currentShieldArea == source)
+            RemoveShield();
     }
 
     public void RemoveShield()
