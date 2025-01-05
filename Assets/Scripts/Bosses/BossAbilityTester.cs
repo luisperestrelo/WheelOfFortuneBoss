@@ -10,6 +10,9 @@ public class BossAbilityTester : MonoBehaviour
     public GameObject purpleSlashPrefab;
     public Transform player;
     public CircularSweepAttack circularSweepAttack;
+    public SpawnRadialGhostsAbility spawnRadialGhostsAbility;
+    public SpawnLinearGhostsAbility spawnLinearGhostsAbility;
+    public SpawnChasingGhostAbility spawnChasingGhostAbility;
 
 
 
@@ -34,6 +37,21 @@ public class BossAbilityTester : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             circularSweepAttack.StartCircularSweep(0f, false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            spawnRadialGhostsAbility.SpawnGhosts();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            spawnLinearGhostsAbility.SpawnGhosts();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            spawnChasingGhostAbility.SpawnGhost();
         }
     }
 

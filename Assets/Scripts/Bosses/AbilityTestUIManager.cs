@@ -49,6 +49,10 @@ public class AbilityTestUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI shockwaveStartRadiusValueLabel;
     [SerializeField] private Toggle shockwaveExpandOutwardToggle;
 
+    [Header("Ghost Abilities UI")]
+    [SerializeField] private Button spawnRadialGhostsButton;
+    [SerializeField] private Button spawnLinearGhostsButton;
+    [SerializeField] private Button spawnChasingGhostButton;
 
     private void Start()
     {
@@ -74,6 +78,11 @@ public class AbilityTestUIManager : MonoBehaviour
         gapSizeSlider.onValueChanged.AddListener(OnGapSizeChanged);
         shockwaveStartRadiusSlider.onValueChanged.AddListener(OnShockwaveStartRadiusChanged);
         shockwaveExpandOutwardToggle.onValueChanged.AddListener(OnShockwaveExpandOutwardChanged);
+
+        // Add listeners for Ghost Abilities UI
+        spawnRadialGhostsButton.onClick.AddListener(OnSpawnRadialGhostsClicked);
+        spawnLinearGhostsButton.onClick.AddListener(OnSpawnLinearGhostsClicked);
+        spawnChasingGhostButton.onClick.AddListener(OnSpawnChasingGhostClicked);
 
         // Initialize UI element values
         UpdateStartAngleUI(0f);
@@ -163,6 +172,21 @@ public class AbilityTestUIManager : MonoBehaviour
         }
 
         concentricShockwavesAttack.StartConcentricShockwaves();
+    }
+
+    public void OnSpawnRadialGhostsClicked()
+    {
+        bossAbilityTester.spawnRadialGhostsAbility.SpawnGhosts();
+    }
+
+    public void OnSpawnLinearGhostsClicked()
+    {
+        bossAbilityTester.spawnLinearGhostsAbility.SpawnGhosts();
+    }
+
+    public void OnSpawnChasingGhostClicked()
+    {
+        bossAbilityTester.spawnChasingGhostAbility.SpawnGhost();
     }
 
     // --- Slider/Toggle Change Handlers ---
@@ -316,7 +340,7 @@ public class AbilityTestUIManager : MonoBehaviour
 
     private void UpdateNumberOfGapsUI(int value)
     {
-        numberOfGapsValueLabel.text = "Number of Gaps: " + value.ToString();
+        numberOfGapsValueLabel.text = "# of Gaps: " + value.ToString();
     }
 
     private void UpdateGapSizeUI(int value)
