@@ -13,7 +13,7 @@ public abstract class WheelEffect : ScriptableObject
 
     public virtual void OnEnterField(PlayerCombat player) { }
     public virtual void OnExitField(PlayerCombat player) { }
-    public virtual void OnUpdate(PlayerCombat player) { }
+    public virtual void OnUpdate(PlayerCombat player) { Debug.Log("doin"); }
 
     /// <summary>
     /// Adds any effect to a given projectile.

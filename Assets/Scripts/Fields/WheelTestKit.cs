@@ -8,13 +8,10 @@ using UnityEngine;
 public class WheelTestKit : MonoBehaviour
 {
     [SerializeField]
-    private WheelArea testSeg;
-
-    [SerializeField]
     private WheelBuilder builder;
 
-    public void AddArea(WheelArea prefab)
+    public void AddEffect(WheelEffect effect)
     {
-        builder.StartCoroutine(builder.PlaceAreaRoutine(prefab));
+        builder.StartCoroutine(builder.SetAreaRoutine(effect));
     }
 }

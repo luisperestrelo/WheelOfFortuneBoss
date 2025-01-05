@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoubleDamageArea : WheelArea
+public class DoubleDamageArea : WheelEffect
 {
     [SerializeField] private float _damageMultiplier = 2f;
     [SerializeField] private float _duration = 5f;

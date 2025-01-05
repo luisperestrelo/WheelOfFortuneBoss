@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShieldArea : WheelArea
+public class ShieldArea : WheelEffect
 {
     [Header("Shield Area Settings")]
     [SerializeField] private GameObject shieldPrefab;         
@@ -19,8 +19,8 @@ public class ShieldArea : WheelArea
         if (!_isOnCooldown && !player.HasShield)
         {
             player.ActivateShield(shieldPrefab, this);
-            StartCoroutine(CooldownRoutine());
-            StartCoroutine(ShieldTimerRoutine(player));
+            player.StartCoroutine(CooldownRoutine());
+            player.StartCoroutine(ShieldTimerRoutine(player));
         }
 
     }

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireDamageArea : WheelArea
+[CreateAssetMenu(menuName = "Areas/Fireball Area")]
+public class FireDamageArea : WheelEffect
 {
     [SerializeField] private float _attackRate = 0.5f;
 
@@ -12,7 +13,9 @@ public class FireDamageArea : WheelArea
 
     public override void OnUpdate(PlayerCombat player)
     {
+        Debug.Log("projectile is now fireball");
         base.OnUpdate(player);
         player.SetProjectileType(_fireballPrefab);
+        
     }
 }

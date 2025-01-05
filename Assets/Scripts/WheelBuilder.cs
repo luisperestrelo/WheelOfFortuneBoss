@@ -8,6 +8,8 @@ using UnityEngine;
 public class WheelBuilder : MonoBehaviour
 {
     public static WheelBuilder instance;
+    public static WheelEffect effectBeingPlaced;
+
     private void Start()
     {
         if (instance == null)
@@ -19,25 +21,14 @@ public class WheelBuilder : MonoBehaviour
     [SerializeField]
     private int _radius = 5;
     /// <summary>
-    /// Instantiates a new segment that follows the cursor, then waits for the player to click before locking in that segment.
+    /// Waits for any wheel area to be clicked on, then sets that area's effect to the given area effect.
     /// </summary>
-    public IEnumerator PlaceAreaRoutine(WheelArea areaPrefab)
+    public IEnumerator SetAreaRoutine(WheelEffect areaEffect)
     {
-        bool isPlacing = true;
-
-        WheelArea area = Instantiate(areaPrefab, transform.position, Quaternion.identity, parent: transform);
-
-        while(isPlacing)
+        effectBeingPlaced = areaEffect;
+        while(effectBeingPlaced != null)
         {
             yield return null;
-            Vector2 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 towardCursor = (cursorPos - (Vector2)transform.position).normalized;
-            Debug.Log(towardCursor);
-            area.transform.position = (Vector2) transform.position + (towardCursor * _radius);
-            area.transform.up = -(transform.position - area.transform.position).normalized;
-
-            if (Input.GetMouseButtonDown(0))
-                isPlacing = false;
         }
     }
 }

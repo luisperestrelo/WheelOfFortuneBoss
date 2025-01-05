@@ -35,12 +35,8 @@ public class PlayerCombat : MonoBehaviour
         {
             ShootProjectile();
         }
-
-        GetWheelArea()?.OnUpdate(this);
-
-        //tacky and unperformant but it works for the prototype
-        if (projectilePrefab != _defaultProjectilePrefab && GetWheelArea() == null)
-            projectilePrefab = _defaultProjectilePrefab;
+        if (GetWheelArea() != null)
+            GetWheelArea().OnUpdate(this);
     }
 
     /// <returns>Whichever wheel area the player is currently on (null if none)</returns>
@@ -80,7 +76,13 @@ public class PlayerCombat : MonoBehaviour
 
     public void ShootProjectile()
     {
-        Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        Projectile preprojectile;
+        if (GetWheelArea() != null && GetWheelArea().effect != null)
+            preprojectile = GetWheelArea().effect.DecorateProjectile(projectilePrefab);
+        else
+            preprojectile = projectilePrefab;
+
+        Projectile projectile = Instantiate(preprojectile, transform.position, Quaternion.identity);
         projectile.SetDamage(currentDamage);
 
         Vector2 towardMouse = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
