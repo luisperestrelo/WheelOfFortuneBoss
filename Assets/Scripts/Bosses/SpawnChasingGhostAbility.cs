@@ -4,7 +4,7 @@ public class SpawnChasingGhostAbility : MonoBehaviour
 {
     [SerializeField] private GameObject chasingGhostPrefab;
     [SerializeField] private Transform player;
-    [SerializeField] private Transform[] spawnPoints; // Where the ghost will spawn
+    [SerializeField] private Transform[] spawnPoints; // Where the ghost can spawn
 
     public void SpawnGhost()
     {

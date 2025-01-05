@@ -8,7 +8,7 @@ public class RandomExplosionsAbility : MonoBehaviour
     [SerializeField] private float telegraphDuration = 1f;
     [SerializeField] private float minDistanceFromBoss = 2f;
     [SerializeField] private float maxDistanceFromBoss = 5f;
-    [SerializeField] private float explosionRadius = 1.5f;
+    [SerializeField] private float explosionRadius = 1.5f; // not being used as the explosion and telegraph are already prepared to fit 
 
     public void TriggerExplosions()
     {

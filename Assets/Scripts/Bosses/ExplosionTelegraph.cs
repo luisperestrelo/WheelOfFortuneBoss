@@ -27,7 +27,7 @@ public class ExplosionTelegraph : MonoBehaviour
     }
 
 
-    ///uhh
+    ///Unlike the Spear, this one doesnt fade out
 
 /*     private void Start()
     {

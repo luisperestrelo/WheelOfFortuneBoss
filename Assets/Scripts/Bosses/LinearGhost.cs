@@ -19,7 +19,7 @@ public class LinearGhost : MonoBehaviour
 
     private void Update()
     {
-        // Move towards the player
+        // The direction is where the player was when the ghost was created
         transform.position += direction * speed * Time.deltaTime;
     }
 

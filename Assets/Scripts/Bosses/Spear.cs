@@ -13,7 +13,7 @@ public class Spear : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(Vector3.up * speed * Time.deltaTime); // Move the spear forward
+        transform.Translate(Vector3.up * speed * Time.deltaTime); 
     }
 
     private void OnTriggerEnter2D(Collider2D other)

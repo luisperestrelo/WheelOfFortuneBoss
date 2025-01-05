@@ -84,7 +84,6 @@ public class ThrowSpearsAbility : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // Instantiate the spear
         GameObject spear = Instantiate(spearPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
         spear.transform.localScale = new Vector3(spearWidth, spearLength, 1f);
     }

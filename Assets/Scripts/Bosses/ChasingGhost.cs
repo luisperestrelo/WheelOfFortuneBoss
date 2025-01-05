@@ -13,7 +13,7 @@ public class ChasingGhost : MonoBehaviour
 
     private void Update()
     {
-        if (player == null) return; // Safety check
+        if (player == null) return; 
 
         // Continuously track and move towards the player
         Vector3 direction = (player.position - transform.position).normalized;
