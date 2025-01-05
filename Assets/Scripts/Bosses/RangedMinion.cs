@@ -42,4 +42,21 @@ public class RangedMinion : MonoBehaviour
             proj.SetVelocity(projectile.transform.up * projectileSpeed);
         }
     }
+
+    public void SetProjectileSpeed(float newProjectileSpeed)
+    {
+        projectileSpeed = newProjectileSpeed;
+    }
+
+    public void SetShootingCooldown(float newShootingCooldown)
+    {
+        shootingCooldown = newShootingCooldown;
+        // Adjust nextShootTime to prevent immediate shooting after changing cooldown
+        nextShootTime = Time.time + shootingCooldown;
+    }
+
+    public void SetDamage(float newDamage)
+    {
+        damage = newDamage;
+    }
 } 

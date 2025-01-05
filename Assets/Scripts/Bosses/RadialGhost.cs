@@ -55,4 +55,14 @@ public class RadialGhost : MonoBehaviour
             // Them taking damage is handled in whatever script damages them.
         }
     }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public void SetDamage(float newDamage)
+    {
+        damage = newDamage;
+    }
 } 

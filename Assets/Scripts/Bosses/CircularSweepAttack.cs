@@ -9,18 +9,19 @@ public class CircularSweepAttack : MonoBehaviour
     [SerializeField] private float defaultLaserRotationSpeed = 100f;
     [SerializeField] private float telegraphDuration = 1f;
 
+    // New fields to control parameters from this script
+    [Header("Parameters to be set when calling StartCircularSweep")]
+    [SerializeField] private float laserDuration = 5f;
+    [SerializeField] private float laserRotationSpeed = 100f;
+
     private List<GameObject> _activeLasers = new List<GameObject>();
 
     public void StartCircularSweep(float startAngle = 0f, bool isClockwise = true, float duration = -1f, float speed = -1f)
     {
-        if (duration == -1f)
-        {
-            duration = defaultLaserDuration;
-        }
-        if (speed == -1f)
-        {
-            speed = defaultLaserRotationSpeed;
-        }
+        // Use the instance parameters if they are set, otherwise use defaults
+        duration = (duration == -1f) ? laserDuration : duration;
+        speed = (speed == -1f) ? laserRotationSpeed : speed;
+
         StartCoroutine(CircularSweepRoutine(startAngle, isClockwise, duration, speed));
     }
 
@@ -102,6 +103,17 @@ public class CircularSweepAttack : MonoBehaviour
         }
     }
 
+    //Setters for the new parameters
+    public void SetLaserDuration(float duration)
+    {
+        laserDuration = duration;
+    }
+
+    public void SetLaserRotationSpeed(float speed)
+    {
+        laserRotationSpeed = speed;
+    }
+
     public float GetDefaultLaserDuration()
     {
         return defaultLaserDuration;
@@ -110,5 +122,10 @@ public class CircularSweepAttack : MonoBehaviour
     public float GetDefaultLaserRotationSpeed()
     {
         return defaultLaserRotationSpeed;
+    }
+
+    public float GetTelegraphDuration()
+    {
+        return telegraphDuration;
     }
 } 

@@ -10,6 +10,9 @@ public class RandomExplosionsAbility : MonoBehaviour
     [SerializeField] private float maxDistanceFromBoss = 5f;
     [SerializeField] private float explosionRadius = 1.5f; // not being used as the explosion and telegraph are already prepared to fit 
 
+    [SerializeField] private float explosionDamage = 20f;
+    [SerializeField] private float explosionLifeTime = 0.3f;
+
     public void TriggerExplosions()
     {
         for (int i = 0; i < numberOfExplosions; i++)
@@ -46,6 +49,11 @@ public class RandomExplosionsAbility : MonoBehaviour
         GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
         //explosion.transform.localScale = Vector3.one * explosionRadius * 2f; // Scale explosion
         //theyre already prepared to fit    
+
+        // Set parameters on the explosion
+        Explosion explosionComponent = explosion.GetComponent<Explosion>();
+        explosionComponent.SetDamage(explosionDamage);
+        explosionComponent.SetLifeTime(explosionLifeTime);
     }
 
     //draw gizmos

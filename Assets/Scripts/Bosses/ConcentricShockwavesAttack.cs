@@ -35,6 +35,7 @@ public class ConcentricShockwavesAttack : MonoBehaviour
             shockwaveScript.SetShockwaveDamage(shockwaveDamage);
             shockwaveScript.SetStartRadius(startRadius);
             shockwaveScript.SetExpandOutward(expandOutward);
+            shockwaveScript.SetShockwaveLifetime(shockwaveLifetime);
 
             if (useRandomGaps)
             {

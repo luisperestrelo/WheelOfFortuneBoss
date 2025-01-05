@@ -28,4 +28,22 @@ public class Spear : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    // Add setters for speed, damage, and lifetime
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public void SetDamage(float newDamage)
+    {
+        damage = newDamage;
+    }
+
+    public void SetLifeTime(float newLifeTime)
+    {
+        lifeTime = newLifeTime;
+        // Update the Destroy call to use the new lifetime
+        Destroy(gameObject, lifeTime);
+    }
 }

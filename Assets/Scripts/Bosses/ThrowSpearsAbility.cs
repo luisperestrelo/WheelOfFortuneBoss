@@ -15,6 +15,11 @@ public class ThrowSpearsAbility : MonoBehaviour
     [SerializeField] private float minAngleBetweenSpears = 30f;
     [SerializeField] private float angleOffset = 0f;
 
+    // New fields to control parameters from this script
+    [SerializeField] private float spearSpeed = 20f;
+    [SerializeField] private float spearDamage = 15f;
+    [SerializeField] private float spearLifeTime = 5f;
+
     
     public void ThrowSpears()
     {
@@ -87,5 +92,11 @@ public class ThrowSpearsAbility : MonoBehaviour
 
         GameObject spear = Instantiate(spearPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
         spear.transform.localScale = new Vector3(spearWidth, spearLength, 1f);
+
+        // Set parameters on the spear
+        Spear spearComponent = spear.GetComponent<Spear>();
+        spearComponent.SetSpeed(spearSpeed);
+        spearComponent.SetDamage(spearDamage);
+        spearComponent.SetLifeTime(spearLifeTime);
     }
 }

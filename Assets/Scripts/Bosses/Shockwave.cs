@@ -93,4 +93,9 @@ public class Shockwave : MonoBehaviour
     {
         expandOutward = expand;
     }
+
+    public void SetShockwaveLifetime(float lifetime)
+    {
+        this.lifetime = lifetime;
+    }
 }

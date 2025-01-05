@@ -35,4 +35,20 @@ public class LinearGhost : MonoBehaviour
             }
         }
     }
+
+    public void SetSpeed(float newSpeed)
+    {
+        speed = newSpeed;
+    }
+
+    public void SetDamage(float newDamage)
+    {
+        damage = newDamage;
+    }
+
+    public void SetLifeTime(float newLifeTime)
+    {
+        lifeTime = newLifeTime;
+        Destroy(gameObject, lifeTime);
+    }
 }

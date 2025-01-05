@@ -16,6 +16,7 @@ public class BossAbilityTester : MonoBehaviour
     public ThrowSpearsAbility throwSpearsAbility;
     public RandomExplosionsAbility randomExplosionsAbility;
     public SpawnRangedMinionsAbility spawnRangedMinionsAbility;
+    public ConcentricShockwavesAttack concentricShockwavesAttack;
 
 
 
@@ -34,13 +35,14 @@ public class BossAbilityTester : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.J))
         {
+
             circularSweepAttack.StartCircularSweep();
         }
 
-        if (Input.GetKeyDown(KeyCode.J))
+/*         if (Input.GetKeyDown(KeyCode.J))
         {
             circularSweepAttack.StartCircularSweep(0f, false);
-        }
+        } */
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -60,6 +62,7 @@ public class BossAbilityTester : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             throwSpearsAbility.ThrowSpears();
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha5))
@@ -71,6 +74,12 @@ public class BossAbilityTester : MonoBehaviour
         {
             spawnRangedMinionsAbility.SpawnMinions();
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            concentricShockwavesAttack.StartConcentricShockwaves();
+        }
+        
     }
 
     public void ChangeRandomFieldToFire()

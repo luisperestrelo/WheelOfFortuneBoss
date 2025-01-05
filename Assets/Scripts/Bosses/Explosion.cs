@@ -21,5 +21,16 @@ public class Explosion : MonoBehaviour
             }
         }
     }
-    
+
+    public void SetDamage(float newDamage)
+    {
+        damage = newDamage;
+    }
+
+    public void SetLifeTime(float newLifeTime)
+    {
+        lifeTime = newLifeTime;
+        // Update the Destroy call to use the new lifetime
+        Destroy(gameObject, lifeTime);
+    }
 } 

@@ -6,6 +6,11 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private int numberOfMinionsToSpawn = 3;
 
+    // New fields to control parameters from this script
+    [SerializeField] private float minionProjectileSpeed = 10f;
+    [SerializeField] private float minionShootingCooldown = 1f;
+    [SerializeField] private float minionDamage = 5f;
+
     public void SpawnMinions()
     {
         if (spawnPoints.Length == 0)
@@ -22,7 +27,13 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
 
         for (int i = 0; i < numToSpawn; i++)
         {
-            Instantiate(rangedMinionPrefab, spawnPoints[i].position, Quaternion.identity);
+            GameObject minion = Instantiate(rangedMinionPrefab, spawnPoints[i].position, Quaternion.identity);
+
+            // Set parameters on the ranged minion
+            RangedMinion rangedMinion = minion.GetComponent<RangedMinion>();
+            rangedMinion.SetProjectileSpeed(minionProjectileSpeed);
+            rangedMinion.SetShootingCooldown(minionShootingCooldown);
+            rangedMinion.SetDamage(minionDamage);
         }
     }
 
