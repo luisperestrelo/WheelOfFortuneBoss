@@ -54,6 +54,9 @@ public class AbilityTestUIManager : MonoBehaviour
     [SerializeField] private Button spawnLinearGhostsButton;
     [SerializeField] private Button spawnChasingGhostButton;
 
+    [Header("Other Abilities UI")]
+    [SerializeField] private Button throwSpearsButton;
+
     private void Start()
     {
         // Add listeners to buttons and sliders
@@ -83,6 +86,9 @@ public class AbilityTestUIManager : MonoBehaviour
         spawnRadialGhostsButton.onClick.AddListener(OnSpawnRadialGhostsClicked);
         spawnLinearGhostsButton.onClick.AddListener(OnSpawnLinearGhostsClicked);
         spawnChasingGhostButton.onClick.AddListener(OnSpawnChasingGhostClicked);
+
+        // Add listeners for Other Abilities UI
+        throwSpearsButton.onClick.AddListener(OnThrowSpearsClicked);
 
         // Initialize UI element values
         UpdateStartAngleUI(0f);
@@ -187,6 +193,11 @@ public class AbilityTestUIManager : MonoBehaviour
     public void OnSpawnChasingGhostClicked()
     {
         bossAbilityTester.spawnChasingGhostAbility.SpawnGhost();
+    }
+
+    public void OnThrowSpearsClicked()
+    {
+        bossAbilityTester.throwSpearsAbility.ThrowSpears();
     }
 
     // --- Slider/Toggle Change Handlers ---

@@ -13,6 +13,7 @@ public class BossAbilityTester : MonoBehaviour
     public SpawnRadialGhostsAbility spawnRadialGhostsAbility;
     public SpawnLinearGhostsAbility spawnLinearGhostsAbility;
     public SpawnChasingGhostAbility spawnChasingGhostAbility;
+    public ThrowSpearsAbility throwSpearsAbility;
 
 
 
@@ -52,6 +53,11 @@ public class BossAbilityTester : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             spawnChasingGhostAbility.SpawnGhost();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            throwSpearsAbility.ThrowSpears();
         }
     }
 
