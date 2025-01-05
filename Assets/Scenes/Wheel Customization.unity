@@ -759,7 +759,7 @@ MonoBehaviour:
         m_MethodName: AddEffect
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: fca726e48bac56840b01ce197fa7d245, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 86c133b8a1af9d249a592502ab896303, type: 2}
           m_ObjectArgumentAssemblyTypeName: WheelEffect, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
