@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerSpinMovement : MonoBehaviour
 {
     [SerializeField] private Transform anchorPoint;
-    [SerializeField] private float defaultRotationSpeed = 180f; // degrees per second
+    //[SerializeField] private float defaultRotationSpeed = 180f; // degrees per second
     [SerializeField] private float radius = 5f;
 
     [Header("Speed Boost Settings")]
@@ -23,40 +23,119 @@ public class PlayerSpinMovement : MonoBehaviour
 
     [SerializeField] private bool drawLine = true;
     [SerializeField] private CircularPath circularPath;
+
+    [Header("Movement Settings")]
+    [SerializeField] private float maxRotationSpeed = 180f; // degrees per second (replaces defaultRotationSpeed)
+    [SerializeField] private float accelerationRate = 1080f; // degrees per second squared (high value for quick acceleration)
+    [SerializeField] private float decelerationRate = 720f; // degrees per second squared (for noticeable deceleration on direction change)
+
+    [Header("Movement Scheme")]
+    [SerializeField] private IMovementScheme currentMovementScheme;
+    [SerializeField] private MovementSchemeType movementSchemeType;
+
+    private enum MovementSchemeType
+    {
+        TapToChangeDirection,
+        AccelerationBased,
+        HoldToMove,
+        TwoInputSpaceAndBoost,
+        TwoInputSpaceAndBoostAccel,
+        TwoInputSpaceAndSlow,
+        TwoInputSpaceAndSlowAccel,
+        TwoInputSpaceAndDash
+    }
+
     private float _currentAngle = 50f;
+    public float CurrentAngle
+    {
+        get { return _currentAngle; }
+        set { _currentAngle = value; }
+    }
+
     private float _direction = 1f;
+    public float Direction
+    {
+        get { return _direction; }
+        set { _direction = value; }
+    }
+
     private float _currentRotationSpeed;
+    public float CurrentRotationSpeed
+    {
+        get { return _currentRotationSpeed; }
+        set { _currentRotationSpeed = value; }
+    }
+
+    public float MaxRotationSpeed
+    {
+        get { return maxRotationSpeed; }
+    }
+
+    public float AccelerationRate
+    {
+        get { return accelerationRate; }
+    }
+
+    public float DecelerationRate
+    {
+        get { return decelerationRate; }
+    }
 
     private LineRenderer _lineRenderer;
 
-
-
-
     private void Start()
     {
-        _currentRotationSpeed = defaultRotationSpeed;
         _lineRenderer = GetComponent<LineRenderer>();
         radius = circularPath.GetRadius();
+
+        InitializeMovementScheme();
+    }
+
+    private void InitializeMovementScheme()
+    {
+        switch (movementSchemeType)
+        {
+            case MovementSchemeType.TapToChangeDirection:
+                currentMovementScheme = new TapToChangeDirection();
+                break;
+            case MovementSchemeType.AccelerationBased:
+                currentMovementScheme = new AccelerationBasedMovement();
+                break;
+            case MovementSchemeType.HoldToMove:
+                currentMovementScheme = new HoldToMove();
+                break;
+            case MovementSchemeType.TwoInputSpaceAndBoost:
+                currentMovementScheme = new TwoInputSpaceAndBoost();
+                break;
+            case MovementSchemeType.TwoInputSpaceAndBoostAccel:
+                currentMovementScheme = new TwoInputSpaceAndBoostAccel();
+                break;
+            case MovementSchemeType.TwoInputSpaceAndSlow:
+                currentMovementScheme = new TwoInputSpaceAndSlow();
+                break;
+            case MovementSchemeType.TwoInputSpaceAndSlowAccel:
+                currentMovementScheme = new TwoInputSpaceAndSlowAccel();
+                break;
+            case MovementSchemeType.TwoInputSpaceAndDash:
+                currentMovementScheme = new TwoInputSpaceAndDash();
+                break;
+            default:
+                Debug.LogError("Invalid movement scheme type selected.");
+                break;
+        }
+
+        currentMovementScheme.Initialize(this);
     }
 
     private void Update()
     {
-
         if (circularPath != null)
         {
             radius = circularPath.GetRadius();
         }
 
-/*         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _direction *= -1f;
-        } */
-
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            _direction *= -1f;
-        }
-
+         currentMovementScheme.UpdateMovement();
+/*
         if (Input.GetKeyDown(KeyCode.W) && Time.time > nextBoostTime)
         {
             StartCoroutine(SpeedBoostRoutine());
@@ -64,12 +143,9 @@ public class PlayerSpinMovement : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.S) && Time.time > nextSlowTime)
         {
             StartCoroutine(SpeedSlowRoutine());
-        }
+        } */
 
         DrawLine();
-
-        _currentAngle += _direction * _currentRotationSpeed * Time.deltaTime;
-        _currentAngle %= 360f;
 
         if (anchorPoint == null)
         {
@@ -82,7 +158,7 @@ public class PlayerSpinMovement : MonoBehaviour
         transform.position = new Vector3(x, y, transform.position.z);
     }
 
-    private IEnumerator SpeedBoostRoutine()
+/*     private IEnumerator SpeedBoostRoutine()
     {
         float oldSpeed = _currentRotationSpeed; // might be useful in a later version
         _currentRotationSpeed = boostAmount;
@@ -92,7 +168,7 @@ public class PlayerSpinMovement : MonoBehaviour
         yield return new WaitForSeconds(boostDuration);
 
         //_currentRotationSpeed = oldSpeed;
-        _currentRotationSpeed = defaultRotationSpeed;
+        _currentRotationSpeed = maxRotationSpeed;
     }
 
     private IEnumerator SpeedSlowRoutine()
@@ -105,8 +181,8 @@ public class PlayerSpinMovement : MonoBehaviour
         yield return new WaitForSeconds(slowDuration);
 
         //_currentRotationSpeed = oldSpeed;
-        _currentRotationSpeed = defaultRotationSpeed;
-    }
+        _currentRotationSpeed = maxRotationSpeed;
+    } */
 
     // TODO: this is a very lazy implementation, but the idea would be to use this for attacks that are aimed at "in front" of the player
     public Vector3 GetFuturePosition(float time)
@@ -142,6 +218,5 @@ public class PlayerSpinMovement : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, anchorPoint.position);
     }
-
 
 }
