@@ -19384,9 +19384,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linearGhostPrefab: {fileID: 7784057848593606913, guid: 2c7110bca291ccb4b95c6e6355067490, type: 3}
   player: {fileID: 801274555}
-  numberOfGhosts: 15
-  spawnInterval: 1
-  ghostSpeed: 1.5
+  numberOfGhosts: 5
+  spawnInterval: 0.5
+  ghostSpeed: 2.5
   ghostDamage: 10
   ghostLifeTime: 10
 --- !u!114 &695954785
@@ -32772,7 +32772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: radius
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: drawLine
@@ -32791,8 +32791,12 @@ PrefabInstance:
       value: 960
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
-      propertyPath: movementSchemeType
+      propertyPath: usesAcceleration
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: movementSchemeType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: defaultRotationSpeed

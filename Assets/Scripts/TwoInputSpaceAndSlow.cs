@@ -22,11 +22,25 @@ public class TwoInputSpaceAndSlow : IMovementScheme
         // Handle input for slowing down
         if (Input.GetKey(KeyCode.W) || Input.GetMouseButton(1)) // Right-click
         {
-            _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed * 0.5f; // Instant slow
+            if (_player.UsesAcceleration)
+            {
+                _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed * 0.5f, _player.DecelerationRate * Time.deltaTime);
+            }
+            else
+            {
+                _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed * 0.5f; // Instant slow
+            }
         }
         else
         {
-            _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed; // Instant return to normal speed
+            if (_player.UsesAcceleration)
+            {
+                _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed, _player.AccelerationRate * Time.deltaTime);
+            }
+            else
+            {
+                _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed; // Instant return to normal speed
+            }
         }
 
         _player.CurrentAngle += _player.CurrentRotationSpeed * Time.deltaTime;

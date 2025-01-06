@@ -28,12 +28,26 @@ public class TwoInputSpaceAndToggleMove : IMovementScheme
         if (_isMoving)
         {
             // Accelerate to normal speed
-            _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed, _player.AccelerationRate * Time.deltaTime);
+            if (_player.UsesAcceleration)
+            {
+                _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed, _player.AccelerationRate * Time.deltaTime);
+            }
+            else
+            {
+                _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed;
+            }
         }
         else
         {
             // Decelerate to a stop
-            _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, 0f, _player.DecelerationRate * Time.deltaTime);
+            if (_player.UsesAcceleration)
+            {
+                _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, 0f, _player.DecelerationRate * Time.deltaTime);
+            }
+            else
+            {
+                _player.CurrentRotationSpeed = 0f;
+            }
         }
 
         _player.CurrentAngle += _player.CurrentRotationSpeed * Time.deltaTime;

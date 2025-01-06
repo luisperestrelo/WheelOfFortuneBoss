@@ -7,19 +7,9 @@ public class PlayerSpinMovement : MonoBehaviour
 {
     [SerializeField] private Transform anchorPoint;
     //[SerializeField] private float defaultRotationSpeed = 180f; // degrees per second
+    [Header("Don't use this to change radius, use PlayerPath GameObject")]
     [SerializeField] private float radius = 5f;
 
-    [Header("Speed Boost Settings")]
-    [SerializeField] private float boostAmount = 300f;
-    [SerializeField] private float boostDuration = 1f;
-    [SerializeField] private float boostCooldown = 3f;
-    private float nextBoostTime = 0f;
-
-    [Header("Speed Slow Settings")]
-    [SerializeField] private float slowAmount = 60f;
-    [SerializeField] private float slowDuration = 1f;
-    [SerializeField] private float slowCooldown = 3f;
-    private float nextSlowTime = 0f;
 
     [SerializeField] private bool drawLine = true;
     [SerializeField] private CircularPath circularPath;
@@ -27,7 +17,14 @@ public class PlayerSpinMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float maxRotationSpeed = 180f; // degrees per second (replaces defaultRotationSpeed)
     [SerializeField] private float accelerationRate = 1080f; // degrees per second squared (high value for quick acceleration)
+    [Tooltip("NOT USED IN MOST SCHEMES, MOST SCHEMES USE THE SAME ACCELERATION VALUE. This is the rate at which the player will decelerate when changing direction.")]
     [SerializeField] private float decelerationRate = 720f; // degrees per second squared (for noticeable deceleration on direction change)
+    [SerializeField] private bool usesAcceleration = true; // Add this flag
+
+    public bool UsesAcceleration
+    {
+        get { return usesAcceleration; }
+    }
 
     [Header("Movement Scheme")]
     [SerializeField] private IMovementScheme currentMovementScheme;
@@ -36,19 +33,15 @@ public class PlayerSpinMovement : MonoBehaviour
     private enum MovementSchemeType
     {
         TapToChangeDirection,
-        AccelerationBased,
         HoldToMove,
+        HoldToMoveAndDash,
         TwoInputSpaceAndBoost,
-        TwoInputSpaceAndBoostAccel,
         TwoInputSpaceAndSlow,
-        TwoInputSpaceAndSlowAccel,
         TwoInputSpaceAndDash,
-        TwoInputSpaceAndDashAccel,
         TwoInputSpaceAndStop,
         TwoInputSpaceAndMove,
         TwoInputSpaceAndToggleMove,
-        HoldToMoveNoAccel,
-        HoldToMoveAndDash
+        DifferentAccelerationandDecelerationvalues
     }
 
     private float _currentAngle = 50f;
@@ -104,8 +97,8 @@ public class PlayerSpinMovement : MonoBehaviour
             case MovementSchemeType.TapToChangeDirection:
                 currentMovementScheme = new TapToChangeDirection();
                 break;
-            case MovementSchemeType.AccelerationBased:
-                currentMovementScheme = new AccelerationBasedMovement();
+            case MovementSchemeType.DifferentAccelerationandDecelerationvalues:
+                currentMovementScheme = new DifferentAccelerationandDecelerationvalues();
                 break;
             case MovementSchemeType.HoldToMove:
                 currentMovementScheme = new HoldToMove();
@@ -113,20 +106,11 @@ public class PlayerSpinMovement : MonoBehaviour
             case MovementSchemeType.TwoInputSpaceAndBoost:
                 currentMovementScheme = new TwoInputSpaceAndBoost();
                 break;
-            case MovementSchemeType.TwoInputSpaceAndBoostAccel:
-                currentMovementScheme = new TwoInputSpaceAndBoostAccel();
-                break;
             case MovementSchemeType.TwoInputSpaceAndSlow:
                 currentMovementScheme = new TwoInputSpaceAndSlow();
                 break;
-            case MovementSchemeType.TwoInputSpaceAndSlowAccel:
-                currentMovementScheme = new TwoInputSpaceAndSlowAccel();
-                break;
             case MovementSchemeType.TwoInputSpaceAndDash:
                 currentMovementScheme = new TwoInputSpaceAndDash();
-                break;
-            case MovementSchemeType.TwoInputSpaceAndDashAccel:
-                currentMovementScheme = new TwoInputSpaceAndDashAccel();
                 break;
             case MovementSchemeType.TwoInputSpaceAndStop:
                 currentMovementScheme = new TwoInputSpaceAndStop();
@@ -137,9 +121,6 @@ public class PlayerSpinMovement : MonoBehaviour
             case MovementSchemeType.TwoInputSpaceAndToggleMove:
                 currentMovementScheme = new TwoInputSpaceAndToggleMove();
                 break;
-            case MovementSchemeType.HoldToMoveNoAccel:
-                currentMovementScheme = new HoldToMoveNoAccel();
-                break;
             case MovementSchemeType.HoldToMoveAndDash:
                 currentMovementScheme = new HoldToMoveAndDash();
                 break;
@@ -147,7 +128,6 @@ public class PlayerSpinMovement : MonoBehaviour
                 Debug.LogError("Invalid movement scheme type selected.");
                 break;
         }
-        
 
         currentMovementScheme.Initialize(this);
     }
@@ -159,16 +139,16 @@ public class PlayerSpinMovement : MonoBehaviour
             radius = circularPath.GetRadius();
         }
 
-         currentMovementScheme.UpdateMovement();
-/*
-        if (Input.GetKeyDown(KeyCode.W) && Time.time > nextBoostTime)
-        {
-            StartCoroutine(SpeedBoostRoutine());
-        }
-        else if (Input.GetKeyDown(KeyCode.S) && Time.time > nextSlowTime)
-        {
-            StartCoroutine(SpeedSlowRoutine());
-        } */
+        currentMovementScheme.UpdateMovement();
+        /*
+               if (Input.GetKeyDown(KeyCode.W) && Time.time > nextBoostTime)
+               {
+                   StartCoroutine(SpeedBoostRoutine());
+               }
+               else if (Input.GetKeyDown(KeyCode.S) && Time.time > nextSlowTime)
+               {
+                   StartCoroutine(SpeedSlowRoutine());
+               } */
 
         DrawLine();
 
@@ -183,31 +163,31 @@ public class PlayerSpinMovement : MonoBehaviour
         transform.position = new Vector3(x, y, transform.position.z);
     }
 
-/*     private IEnumerator SpeedBoostRoutine()
-    {
-        float oldSpeed = _currentRotationSpeed; // might be useful in a later version
-        _currentRotationSpeed = boostAmount;
+    /*     private IEnumerator SpeedBoostRoutine()
+        {
+            float oldSpeed = _currentRotationSpeed; // might be useful in a later version
+            _currentRotationSpeed = boostAmount;
 
-        nextBoostTime = Time.time + boostCooldown;
+            nextBoostTime = Time.time + boostCooldown;
 
-        yield return new WaitForSeconds(boostDuration);
+            yield return new WaitForSeconds(boostDuration);
 
-        //_currentRotationSpeed = oldSpeed;
-        _currentRotationSpeed = maxRotationSpeed;
-    }
+            //_currentRotationSpeed = oldSpeed;
+            _currentRotationSpeed = maxRotationSpeed;
+        }
 
-    private IEnumerator SpeedSlowRoutine()
-    {
-        float oldSpeed = _currentRotationSpeed;
-        _currentRotationSpeed = slowAmount;
+        private IEnumerator SpeedSlowRoutine()
+        {
+            float oldSpeed = _currentRotationSpeed;
+            _currentRotationSpeed = slowAmount;
 
-        nextSlowTime = Time.time + slowCooldown;
+            nextSlowTime = Time.time + slowCooldown;
 
-        yield return new WaitForSeconds(slowDuration);
+            yield return new WaitForSeconds(slowDuration);
 
-        //_currentRotationSpeed = oldSpeed;
-        _currentRotationSpeed = maxRotationSpeed;
-    } */
+            //_currentRotationSpeed = oldSpeed;
+            _currentRotationSpeed = maxRotationSpeed;
+        } */
 
     // TODO: this is a very lazy implementation, but the idea would be to use this for attacks that are aimed at "in front" of the player
     public Vector3 GetFuturePosition(float time)

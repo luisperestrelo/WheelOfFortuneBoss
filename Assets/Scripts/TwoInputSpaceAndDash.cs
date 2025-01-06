@@ -41,7 +41,23 @@ public class TwoInputSpaceAndDash : IMovementScheme
         // Handle movement when not dashing
         if (!_isDashing)
         {
-            _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed;
+            if (_player.UsesAcceleration)
+            {
+                // Accelerate or decelerate based on input
+                float targetSpeed = _player.Direction * _player.MaxRotationSpeed;
+                _player.CurrentRotationSpeed = Mathf.MoveTowards(
+                    _player.CurrentRotationSpeed,
+                    targetSpeed,
+                    Mathf.Abs(_player.CurrentRotationSpeed) < Mathf.Abs(targetSpeed)
+                        ? _player.AccelerationRate * Time.deltaTime
+                        : _player.DecelerationRate * Time.deltaTime
+                );
+            }
+            else
+            {
+                // No acceleration, directly set the speed
+                _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed;
+            }
         }
 
         _player.CurrentAngle += _player.CurrentRotationSpeed * Time.deltaTime;
@@ -59,6 +75,6 @@ public class TwoInputSpaceAndDash : IMovementScheme
     private void Dash()
     {
         _dashStartAngle = _player.CurrentAngle;
-        _player.CurrentRotationSpeed = _player.Direction * _dashDistance /_dashDuration; // Adjust dash speed here 
+        _player.CurrentRotationSpeed = _player.Direction * _dashDistance / _dashDuration; //adjust dash speed here
     }
 } 
