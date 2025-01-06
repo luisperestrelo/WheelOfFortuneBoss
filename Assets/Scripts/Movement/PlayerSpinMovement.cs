@@ -41,7 +41,8 @@ public class PlayerSpinMovement : MonoBehaviour
         TwoInputSpaceAndMove, // Space to change Direction, W/M2 to move
         TwoInputSpaceAndToggleMove, // Space to change Direction, W/M2 to toggle move
         DifferentAccelerationandDecelerationvalues, // Kinda ignore this one, but its same as TapToChangeDirection basically
-        HoldToMoveWithDashBoostAndSlow // E and Q to move, W/M2/Space to dash, F to boost, G to slow    
+        HoldToMoveWithDashBoostAndSlow, // E and Q to move, W/M2/Space to dash, F to boost, G to slow    
+        TapToChangeFireToSlow //Space to change direction, shoot to slow.
     }
 
     private float _currentAngle = 50f;
@@ -126,6 +127,9 @@ public class PlayerSpinMovement : MonoBehaviour
                 break;
             case MovementSchemeType.HoldToMoveWithDashBoostAndSlow:
                 currentMovementScheme = new HoldToMoveWithDashBoostAndSlow();
+                break;
+            case MovementSchemeType.TapToChangeFireToSlow:
+                currentMovementScheme = new TapToChangeFireToSlow();
                 break;
             default:
                 Debug.LogError("Invalid movement scheme type selected.");

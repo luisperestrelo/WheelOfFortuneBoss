@@ -32787,8 +32787,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 365336123}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: accelerationRate
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: decelerationRate
-      value: 960
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: maxRotationSpeed
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: usesAcceleration
@@ -32796,7 +32804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: movementSchemeType
-      value: 0
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: defaultRotationSpeed
