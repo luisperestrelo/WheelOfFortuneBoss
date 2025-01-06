@@ -12269,7 +12269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6984403fb9b0243468596adab813acb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 10
+  radius: 14
 --- !u!4 &365336124
 Transform:
   m_ObjectHideFlags: 0
@@ -32796,7 +32796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: movementSchemeType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: defaultRotationSpeed
