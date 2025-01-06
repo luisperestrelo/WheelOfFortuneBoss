@@ -11,16 +11,13 @@ public class TwoInputSpaceAndMove : IMovementScheme
 
     public void UpdateMovement()
     {
-        // Handle input for changing direction
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _player.Direction *= -1f;
         }
 
-        // Handle input for moving
-        if (Input.GetKey(KeyCode.W) || Input.GetMouseButton(1)) // Right-click
+        if (Input.GetKey(KeyCode.W) || Input.GetMouseButton(1)) 
         {
-            // Accelerate to normal speed
             if (_player.UsesAcceleration)
             {
                 _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed, _player.AccelerationRate * Time.deltaTime);
@@ -32,7 +29,6 @@ public class TwoInputSpaceAndMove : IMovementScheme
         }
         else
         {
-            // Decelerate to a stop
             if (_player.UsesAcceleration)
             {
                 _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, 0f, _player.DecelerationRate * Time.deltaTime);

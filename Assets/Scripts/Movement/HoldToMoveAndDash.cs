@@ -4,10 +4,10 @@ public class HoldToMoveAndDash : IMovementScheme
 {
     private PlayerSpinMovement _player;
     private bool _isDashing;
-    private float _dashCooldown = 1f; // Adjust as needed
+    private float _dashCooldown = 1f; 
     private float _dashCooldownTimer;
-    private float _dashDistance = 90f; // Degrees to dash
-    private float _dashDuration = 0.2f; // Duration of the dash in seconds
+    private float _dashDistance = 90f; //bigger distance and lower duration means faster dash
+    private float _dashDuration = 0.1f; 
 
     public void Initialize(PlayerSpinMovement player)
     {
@@ -15,10 +15,12 @@ public class HoldToMoveAndDash : IMovementScheme
         _isDashing = false;
         _dashCooldownTimer = 0f;
     }
+    
 
     public void UpdateMovement()
     {
         // Handle dash input and cooldown
+        //messy asf but we were using W and M2 in the other schemes... But in this one Space makes more sense for dash, so I kept all 3
         if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.W)) && !_isDashing && _dashCooldownTimer <= 0f)
         {
             _isDashing = true;
@@ -26,7 +28,6 @@ public class HoldToMoveAndDash : IMovementScheme
             Dash();
         }
 
-        // Update dash cooldown timer
         if (_dashCooldownTimer > 0f)
         {
             _dashCooldownTimer -= Time.deltaTime;
@@ -35,7 +36,6 @@ public class HoldToMoveAndDash : IMovementScheme
         // Handle movement when not dashing
         if (!_isDashing)
         {
-            // Handle input
             if (Input.GetKey(KeyCode.E))
             {
                 _player.Direction = -1f; // Counter-clockwise
@@ -68,7 +68,7 @@ public class HoldToMoveAndDash : IMovementScheme
                     _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, 0f, _player.DecelerationRate * Time.deltaTime);
                 }
                 else
-                {
+                { // instantly stop
                     _player.CurrentRotationSpeed = 0f;
                 }
             }

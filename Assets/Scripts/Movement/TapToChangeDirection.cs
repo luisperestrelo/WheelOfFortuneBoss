@@ -11,7 +11,6 @@ public class TapToChangeDirection : IMovementScheme
 
     public void UpdateMovement()
     {
-        // Handle input
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _player.Direction *= -1f;

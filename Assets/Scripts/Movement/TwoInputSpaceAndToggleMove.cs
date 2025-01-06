@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class HoldToMove : IMovementScheme
+public class TwoInputSpaceAndToggleMove : IMovementScheme
 {
     private PlayerSpinMovement _player;
+    private bool _isMoving = false;
 
     public void Initialize(PlayerSpinMovement player)
     {
@@ -11,22 +12,18 @@ public class HoldToMove : IMovementScheme
 
     public void UpdateMovement()
     {
-        // Handle input
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            _player.Direction = -1f; // Counter-clockwise
-            if (_player.UsesAcceleration)
-            {
-                _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed, _player.AccelerationRate * Time.deltaTime);
-            }
-            else
-            {
-                _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed;
-            }
+            _player.Direction *= -1f;
         }
-        else if (Input.GetKey(KeyCode.Q))
+
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetMouseButtonDown(1)) 
         {
-            _player.Direction = 1f; // Clockwise
+            _isMoving = !_isMoving;
+        }
+
+        if (_isMoving)
+        {
             if (_player.UsesAcceleration)
             {
                 _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed, _player.AccelerationRate * Time.deltaTime);
@@ -38,7 +35,6 @@ public class HoldToMove : IMovementScheme
         }
         else
         {
-            // No input, decelerate to a stop
             if (_player.UsesAcceleration)
             {
                 _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, 0f, _player.DecelerationRate * Time.deltaTime);
@@ -52,4 +48,4 @@ public class HoldToMove : IMovementScheme
         _player.CurrentAngle += _player.CurrentRotationSpeed * Time.deltaTime;
         _player.CurrentAngle %= 360f;
     }
-} 
+}

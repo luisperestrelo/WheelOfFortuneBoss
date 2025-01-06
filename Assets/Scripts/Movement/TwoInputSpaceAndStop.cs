@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class TwoInputSpaceAndSlow : IMovementScheme
+//Hold to Stop
+public class TwoInputSpaceAndStop : IMovementScheme
 {
     private PlayerSpinMovement _player;
 
@@ -13,22 +12,20 @@ public class TwoInputSpaceAndSlow : IMovementScheme
 
     public void UpdateMovement()
     {
-        // Handle input for changing direction
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _player.Direction *= -1f;
         }
 
-        // Handle input for slowing down
-        if (Input.GetKey(KeyCode.W) || Input.GetMouseButton(1)) // Right-click
+        if (Input.GetKey(KeyCode.W) || Input.GetMouseButton(1)) 
         {
             if (_player.UsesAcceleration)
             {
-                _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed * 0.5f, _player.DecelerationRate * Time.deltaTime);
+                _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, 0f, _player.DecelerationRate * Time.deltaTime);
             }
             else
             {
-                _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed * 0.5f; // Instant slow
+                _player.CurrentRotationSpeed = 0f;
             }
         }
         else
@@ -39,7 +36,7 @@ public class TwoInputSpaceAndSlow : IMovementScheme
             }
             else
             {
-                _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed; // Instant return to normal speed
+                _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed;
             }
         }
 

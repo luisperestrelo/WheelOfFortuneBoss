@@ -19405,7 +19405,7 @@ MonoBehaviour:
   path: {fileID: 365336123}
   player: {fileID: 801274555}
   numberOfGhosts: 2
-  ghostSpeed: 65
+  ghostSpeed: 35
   ghostDamage: 10
 --- !u!114 &695954786
 MonoBehaviour:
@@ -19508,9 +19508,9 @@ MonoBehaviour:
   - {fileID: 1461454344}
   - {fileID: 448205263}
   - {fileID: 1202703074}
-  numberOfMinionsToSpawn: 5
-  minionProjectileSpeed: 10
-  minionShootingCooldown: 2
+  numberOfMinionsToSpawn: 3
+  minionProjectileSpeed: 7
+  minionShootingCooldown: 2.5
   minionDamage: 5
 --- !u!50 &695954790
 Rigidbody2D:

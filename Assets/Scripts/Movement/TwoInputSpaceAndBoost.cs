@@ -11,14 +11,13 @@ public class TwoInputSpaceAndBoost : IMovementScheme
 
     public void UpdateMovement()
     {
-        // Handle input for changing direction
         if (Input.GetKeyDown(KeyCode.Space))
         {
             _player.Direction *= -1f;
         }
 
         // Handle input for speed boost
-        if (Input.GetKey(KeyCode.W) || Input.GetMouseButton(1)) // Right-click
+        if (Input.GetKey(KeyCode.W) || Input.GetMouseButton(1)) 
         {
             if (_player.UsesAcceleration)
             {

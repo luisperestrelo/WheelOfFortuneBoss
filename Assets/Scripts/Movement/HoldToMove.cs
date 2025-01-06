@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class TwoInputSpaceAndToggleMove : IMovementScheme
+public class HoldToMove : IMovementScheme
 {
     private PlayerSpinMovement _player;
-    private bool _isMoving = false;
 
     public void Initialize(PlayerSpinMovement player)
     {
@@ -12,22 +11,21 @@ public class TwoInputSpaceAndToggleMove : IMovementScheme
 
     public void UpdateMovement()
     {
-        // Handle input for changing direction
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKey(KeyCode.E))
         {
-            _player.Direction *= -1f;
+            _player.Direction = -1f; // Counter-clockwise
+            if (_player.UsesAcceleration)
+            {
+                _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed, _player.AccelerationRate * Time.deltaTime);
+            }
+            else
+            {
+                _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed;
+            }
         }
-
-        // Handle input for toggling movement
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetMouseButtonDown(1)) // Right-click
+        else if (Input.GetKey(KeyCode.Q))
         {
-            _isMoving = !_isMoving;
-        }
-
-        // Move or stop based on _isMoving flag
-        if (_isMoving)
-        {
-            // Accelerate to normal speed
+            _player.Direction = 1f; // Clockwise
             if (_player.UsesAcceleration)
             {
                 _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed, _player.AccelerationRate * Time.deltaTime);
@@ -39,13 +37,13 @@ public class TwoInputSpaceAndToggleMove : IMovementScheme
         }
         else
         {
-            // Decelerate to a stop
+            // No input, decelerate to a stop
             if (_player.UsesAcceleration)
             {
                 _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, 0f, _player.DecelerationRate * Time.deltaTime);
             }
             else
-            {
+            { // instantly stop
                 _player.CurrentRotationSpeed = 0f;
             }
         }
@@ -53,4 +51,4 @@ public class TwoInputSpaceAndToggleMove : IMovementScheme
         _player.CurrentAngle += _player.CurrentRotationSpeed * Time.deltaTime;
         _player.CurrentAngle %= 360f;
     }
-}
+} 

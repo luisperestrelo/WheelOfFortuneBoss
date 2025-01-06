@@ -24,7 +24,7 @@ public class GhostSummonState : BossState
         // Example: These work a bit differently, can define the amount of ghosts in the LinearGhostsAbility script 
         //whereas for chasing ghosts it's just 1 per ability. All this can be refactored later
         spawnLinearGhostsAbility.SpawnGhosts();
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 3; i++)
         {
             spawnChasingGhostAbility.SpawnGhost();
         }

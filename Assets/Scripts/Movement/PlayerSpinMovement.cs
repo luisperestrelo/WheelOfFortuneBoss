@@ -15,12 +15,11 @@ public class PlayerSpinMovement : MonoBehaviour
     [SerializeField] private CircularPath circularPath;
 
     [Header("Movement Settings")]
-    [SerializeField] private float maxRotationSpeed = 180f; // degrees per second (replaces defaultRotationSpeed)
+    [SerializeField] private float maxRotationSpeed = 180f; // degrees per second 
     [SerializeField] private float accelerationRate = 1080f; // degrees per second squared (high value for quick acceleration)
     [Tooltip("NOT USED IN MOST SCHEMES, MOST SCHEMES USE THE SAME ACCELERATION VALUE. This is the rate at which the player will decelerate when changing direction.")]
-    [SerializeField] private float decelerationRate = 720f; // degrees per second squared (for noticeable deceleration on direction change)
-    [SerializeField] private bool usesAcceleration = true; // Add this flag
-
+    [SerializeField] private float decelerationRate = 720f; // didnt do much with this, but was testing different speeds for accelerating and decelerating  
+    [SerializeField] private bool usesAcceleration = true; 
     public bool UsesAcceleration
     {
         get { return usesAcceleration; }
@@ -32,16 +31,17 @@ public class PlayerSpinMovement : MonoBehaviour
 
     private enum MovementSchemeType
     {
-        TapToChangeDirection,
-        HoldToMove,
-        HoldToMoveAndDash,
-        TwoInputSpaceAndBoost,
-        TwoInputSpaceAndSlow,
-        TwoInputSpaceAndDash,
-        TwoInputSpaceAndStop,
-        TwoInputSpaceAndMove,
-        TwoInputSpaceAndToggleMove,
-        DifferentAccelerationandDecelerationvalues
+        TapToChangeDirection, // Space to change direction
+        HoldToMove, // E and Q to move
+        HoldToMoveAndDash, // E and Q to move, W/M2/Space to dash
+        TwoInputSpaceAndBoost, // Space to change Direction, W/M2 to boost
+        TwoInputSpaceAndSlow, // Space to change Direction, W/M2 to slow
+        TwoInputSpaceAndDash, // Space to change Direction, W/M2 to dash
+        TwoInputSpaceAndStop, // Space to change Direction, W/M2 to stop
+        TwoInputSpaceAndMove, // Space to change Direction, W/M2 to move
+        TwoInputSpaceAndToggleMove, // Space to change Direction, W/M2 to toggle move
+        DifferentAccelerationandDecelerationvalues, // Kinda ignore this one, but its same as TapToChangeDirection basically
+        HoldToMoveWithDashBoostAndSlow // E and Q to move, W/M2/Space to dash, F to boost, G to slow    
     }
 
     private float _currentAngle = 50f;
@@ -123,6 +123,9 @@ public class PlayerSpinMovement : MonoBehaviour
                 break;
             case MovementSchemeType.HoldToMoveAndDash:
                 currentMovementScheme = new HoldToMoveAndDash();
+                break;
+            case MovementSchemeType.HoldToMoveWithDashBoostAndSlow:
+                currentMovementScheme = new HoldToMoveWithDashBoostAndSlow();
                 break;
             default:
                 Debug.LogError("Invalid movement scheme type selected.");

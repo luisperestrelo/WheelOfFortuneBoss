@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class TwoInputSpaceAndDashAccel : IMovementScheme
+public class TwoInputSpaceAndDash : IMovementScheme
 {
     private PlayerSpinMovement _player;
     private bool _isDashing;
-    private float _dashCooldown = 1f; // Adjust as needed
+    private float _dashCooldown = 1f; 
     private float _dashCooldownTimer;
-    private float _dashDistance = 120f; // Degrees to dash
-    private float _dashDuration = 0.2f; // Duration of the dash in seconds
+    private float _dashDistance = 90f; 
+    private float _dashDuration = 0.1f; 
 
     public void Initialize(PlayerSpinMovement player)
     {
@@ -41,15 +41,23 @@ public class TwoInputSpaceAndDashAccel : IMovementScheme
         // Handle movement when not dashing
         if (!_isDashing)
         {
-            float targetSpeed = _player.Direction * _player.MaxRotationSpeed;
-
-            _player.CurrentRotationSpeed = Mathf.MoveTowards(
-            _player.CurrentRotationSpeed,
-            targetSpeed,
-            Mathf.Abs(_player.CurrentRotationSpeed) < Mathf.Abs(targetSpeed)
-                ? _player.AccelerationRate * Time.deltaTime
-                : _player.DecelerationRate * Time.deltaTime
-            );
+            if (_player.UsesAcceleration)
+            {
+                // Accelerate or decelerate based on input
+                float targetSpeed = _player.Direction * _player.MaxRotationSpeed;
+                _player.CurrentRotationSpeed = Mathf.MoveTowards(
+                    _player.CurrentRotationSpeed,
+                    targetSpeed,
+                    Mathf.Abs(_player.CurrentRotationSpeed) < Mathf.Abs(targetSpeed)
+                        ? _player.AccelerationRate * Time.deltaTime
+                        : _player.DecelerationRate * Time.deltaTime
+                );
+            }
+            else
+            {
+                // No acceleration, directly set the speed
+                _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed;
+            }
         }
 
         _player.CurrentAngle += _player.CurrentRotationSpeed * Time.deltaTime;
@@ -67,6 +75,6 @@ public class TwoInputSpaceAndDashAccel : IMovementScheme
     private void Dash()
     {
         _dashStartAngle = _player.CurrentAngle;
-        _player.CurrentRotationSpeed = _player.Direction * _dashDistance / _dashDuration;
+        _player.CurrentRotationSpeed = _player.Direction * _dashDistance / _dashDuration; //adjust dash speed here
     }
-}
+} 
