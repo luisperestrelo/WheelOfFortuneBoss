@@ -42,7 +42,13 @@ public class PlayerSpinMovement : MonoBehaviour
         TwoInputSpaceAndBoostAccel,
         TwoInputSpaceAndSlow,
         TwoInputSpaceAndSlowAccel,
-        TwoInputSpaceAndDash
+        TwoInputSpaceAndDash,
+        TwoInputSpaceAndDashAccel,
+        TwoInputSpaceAndStop,
+        TwoInputSpaceAndMove,
+        TwoInputSpaceAndToggleMove,
+        HoldToMoveNoAccel,
+        HoldToMoveAndDash
     }
 
     private float _currentAngle = 50f;
@@ -119,10 +125,29 @@ public class PlayerSpinMovement : MonoBehaviour
             case MovementSchemeType.TwoInputSpaceAndDash:
                 currentMovementScheme = new TwoInputSpaceAndDash();
                 break;
+            case MovementSchemeType.TwoInputSpaceAndDashAccel:
+                currentMovementScheme = new TwoInputSpaceAndDashAccel();
+                break;
+            case MovementSchemeType.TwoInputSpaceAndStop:
+                currentMovementScheme = new TwoInputSpaceAndStop();
+                break;
+            case MovementSchemeType.TwoInputSpaceAndMove:
+                currentMovementScheme = new TwoInputSpaceAndMove();
+                break;
+            case MovementSchemeType.TwoInputSpaceAndToggleMove:
+                currentMovementScheme = new TwoInputSpaceAndToggleMove();
+                break;
+            case MovementSchemeType.HoldToMoveNoAccel:
+                currentMovementScheme = new HoldToMoveNoAccel();
+                break;
+            case MovementSchemeType.HoldToMoveAndDash:
+                currentMovementScheme = new HoldToMoveAndDash();
+                break;
             default:
                 Debug.LogError("Invalid movement scheme type selected.");
                 break;
         }
+        
 
         currentMovementScheme.Initialize(this);
     }
