@@ -4,24 +4,28 @@ using UnityEngine.Events;
 public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
-    private float currentHealth;
+    [SerializeField] private float currentHealth; // tbh, should be private but I like being able to see it in the inspector without going Debug mode
+    
+    private PlayerCombat pc;
 
     public UnityEvent<float, float> OnHealthChanged;
 
     public UnityEvent OnDie;
 
+    protected virtual void Awake()
+    {
+        pc = GetComponent<PlayerCombat>();
+    }
+
     protected virtual void Start()
     {
         currentHealth = maxHealth;
-
-
-
         OnHealthChanged.Invoke(currentHealth, maxHealth);
     }
 
+    // should be in PlayerHealth but I am keeping it here in case we add shields for enemies
     public virtual void TakeDamage(float damageAmount)
     {
-        PlayerCombat pc = GetComponent<PlayerCombat>();
         if (pc != null && pc.HasShield)
         {
             pc.RemoveShield();
@@ -52,6 +56,8 @@ public class Health : MonoBehaviour
     protected virtual void Die()
     {
         OnDie.Invoke();
+
+        //TODO: SFX/VFX etc.
 
         Debug.Log(gameObject.name + " died!");
         Destroy(gameObject);

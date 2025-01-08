@@ -14,6 +14,7 @@ public class LightningBlast : MonoBehaviour
         playerCombat = FindObjectOfType<PlayerCombat>();
     }
 
+    // Could do this with animation triggers later, if we want
     private void OnTriggerEnter2D(Collider2D other)
     {
         StartCoroutine(DelayedDamage(other, 0.1f));

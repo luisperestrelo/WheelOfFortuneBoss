@@ -1,16 +1,13 @@
 using UnityEngine;
 
 /// <summary>
-///   The CircularPath class is used to define a circular path for an object to follow.
-///   ie the player moves along this Path
-///   Right now the player doesn't actually use this, but it's good for other objects to access the center and radius of the path
+///   The CircularPath class defines the Player's circular path.
+///   Other mechanics (such as boss abilities) can use this to target the player.   
 /// </summary>
 public class CircularPath : MonoBehaviour
 {
     [SerializeField] private float radius = 5f;
 
-
-    // Optional: Draw the path in the editor
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

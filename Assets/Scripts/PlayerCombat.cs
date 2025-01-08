@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private float defaultDamage = 10f,
-        shootCooldown = 0.2f,
-        projectileSpeed = 20f;
-    private Projectile projectilePrefab;
+    [SerializeField] private float defaultDamage = 10f;
+    [SerializeField] private float shootCooldown = 0.2f;
+    [SerializeField] private float projectileSpeed = 20f;
     [SerializeField] private Projectile _defaultProjectilePrefab;
-
     [SerializeField] private float globalDamageMultiplier = 1f; // we need a better solution later
-    
+
+    private Projectile projectilePrefab;
 
 
 
@@ -60,10 +59,8 @@ public class PlayerCombat : MonoBehaviour
     {
         currentDamage = defaultDamage;
         currentDamage *= multiplier;       // Apply multiplier
-        Debug.Log("Damage set to: " + currentDamage + " for " + duration + " seconds");
-        yield return new WaitForSeconds(duration);  
-        currentDamage = defaultDamage;     
-        Debug.Log("Damage reset to: " + currentDamage);
+        yield return new WaitForSeconds(duration);
+        currentDamage = defaultDamage;
         damageCoroutine = null;
     }
 
@@ -89,7 +86,7 @@ public class PlayerCombat : MonoBehaviour
 
         StartCoroutine(ShootCooldownRoutine());
     }
-    
+
     /// <summary>
     /// Changes what type of projectile the player is currently firing.
     /// </summary>

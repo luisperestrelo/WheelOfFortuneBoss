@@ -4,9 +4,13 @@ public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField] private float lifeTime = 5f;
     private float damage;
+    private Rigidbody2D rb;
+    private PlayerHealth playerHealth;
 
-    private void Start()
+    private void Awake()
     {
+        rb = GetComponent<Rigidbody2D>();
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         Destroy(gameObject, lifeTime);
     }
 
@@ -17,14 +21,13 @@ public class EnemyProjectile : MonoBehaviour
 
     public void SetVelocity(Vector2 velocity)
     {
-        GetComponent<Rigidbody2D>().velocity = velocity;
+        rb.velocity = velocity;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Health playerHealth = other.GetComponent<Health>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);

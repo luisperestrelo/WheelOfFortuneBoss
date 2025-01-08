@@ -19273,6 +19273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10000
+  currentHealth: 0
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -19460,7 +19461,7 @@ MonoBehaviour:
   useRandomDirections: 0
   minAngleBetweenSpears: 30
   angleOffset: 0
-  spearSpeed: 30
+  spearSpeed: 50
   spearDamage: 15
   spearLifeTime: 5
 --- !u!114 &695954788
@@ -26009,6 +26010,7 @@ MonoBehaviour:
   maxCharge: 100
   chargeSlider: {fileID: 1893892673}
   volumeReducSpeed: 1
+  strikeSfx: {fileID: 0}
   powerfulAttackPrefab: {fileID: 4763052239744130470, guid: b3c142f161bab9b4fb1563639b1dd1cc, type: 3}
   spawnPointOfAttack: {fileID: 695954775}
 --- !u!82 &907405460
@@ -29701,6 +29703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10000
+  currentHealth: 0
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
