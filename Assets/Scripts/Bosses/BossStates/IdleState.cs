@@ -27,6 +27,6 @@ public class IdleState : BossState
     private IEnumerator TransitionToNextState()
     {
         yield return new WaitForSeconds(stateDuration);
-        stateMachine.ChangeState(stateMachine.fireFieldsState);
+        stateMachine.RequestStateChange(stateMachine.fireFieldsState);
     }
 } 

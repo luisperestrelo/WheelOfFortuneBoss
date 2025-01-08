@@ -6,10 +6,18 @@ public class BossController : MonoBehaviour
     [SerializeField] private FireSlashAbility fireSlashAbility;
     [SerializeField] private float timeBetweenSlashes = 2f;
     [SerializeField] private GameObject[] fields;
+    [SerializeField] private Health health;
 
     private BossStateMachine stateMachine;
 
     private Coroutine fireSlashCoroutine;
+
+    private bool hasTriggeredIncapacitatedStateThisCycle = false;
+
+    private void Awake()
+    {
+        health = GetComponent<Health>();
+    }
 
     private void Start()
     {
@@ -20,8 +28,26 @@ public class BossController : MonoBehaviour
 
     private void Update()
     {
-        stateMachine.currentState.Update();
+        stateMachine.Update();
+        CheckForIncapacitatedState();
     }
+
+    private void CheckForIncapacitatedState()
+    {
+        if (health.GetCurrentHealth() <= health.GetMaxHealth() * 0.5f && 
+            stateMachine.currentState != stateMachine.incapacitatedState && 
+            !hasTriggeredIncapacitatedStateThisCycle)
+        {
+          
+            BossState nextState = stateMachine.currentState; 
+            Debug.Log(nextState + " is the next state");
+            stateMachine.TriggerIncapacitatedState(nextState, 5f);
+
+            hasTriggeredIncapacitatedStateThisCycle = true; 
+        }
+    }
+
+
 
     public void ChangeState(BossState newState)
     {
@@ -106,5 +132,21 @@ public class BossController : MonoBehaviour
     public BossStateMachine GetStateMachine()
     {
         return stateMachine;
+    }
+
+    public void TriggerIncapacitatedState(BossState nextState, float duration)
+    {
+   
+  /*       if (powerUpSpawner != null)
+        {
+            powerUpSpawner.SpawnPowerUp(new Vector3(0, 0, 0)); 
+        } */
+
+        stateMachine.TriggerIncapacitatedState(nextState, duration);
+    }
+
+    public void ResetIncapacitatedStateTriggerFlag()
+    {
+        hasTriggeredIncapacitatedStateThisCycle = false;
     }
 }

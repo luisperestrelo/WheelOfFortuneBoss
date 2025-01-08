@@ -17,8 +17,12 @@ public class BossStateMachine
     public ThrowSpearsState throwSpearsState;
     public ExplosionsState explosionsState;
     public RandomShockwaveAndAbilityState randomShockwaveAndAbilityState;
+    public IncapacitatedState incapacitatedState;
 
     private BossController bossController;
+    private BossState nextStateAfterIncapacitated;
+    private float remainingStateTime;
+    private Queue<BossState> stateTransitionQueue = new Queue<BossState>();
 
     public BossStateMachine(BossController bossController)
     {
@@ -35,6 +39,7 @@ public class BossStateMachine
         throwSpearsState = new ThrowSpearsState(this, bossController);
         explosionsState = new ExplosionsState(this, bossController);
         randomShockwaveAndAbilityState = new RandomShockwaveAndAbilityState(this, bossController);
+        incapacitatedState = new IncapacitatedState(this, bossController, 5f);
     }
 
     public void Initialize(BossState _startState)
@@ -48,5 +53,49 @@ public class BossStateMachine
         currentState.Exit();
         currentState = _newState;
         currentState.Enter();
+    }
+
+    public void TriggerIncapacitatedState(BossState nextState, float duration)
+    {
+        nextStateAfterIncapacitated = nextState;
+        remainingStateTime = nextState.GetTimer();
+        incapacitatedState.SetDuration(duration);
+
+        // Request the state change instead of directly changing it
+        RequestStateChange(incapacitatedState);
+    }
+
+    public void TransitionToNextStateAfterIncapacitated()
+    {
+        ResumeState(nextStateAfterIncapacitated, remainingStateTime);
+    }
+
+    public void ResumeState(BossState state, float time)
+    {
+        currentState.Exit();
+        currentState = state;
+
+        currentState.ResumeState(time);
+    }
+
+    public void Update()
+    {
+        ProcessStateTransitionQueue();
+        currentState.Update();
+    }
+
+    private void ProcessStateTransitionQueue()
+    {
+        if (stateTransitionQueue.Count > 0)
+        {
+            BossState nextState = stateTransitionQueue.Dequeue();
+            ChangeState(nextState);
+        }
+    }
+
+    //In most cases, we want to request a state change instead of directly changing it so that we don't have race conditions
+    public void RequestStateChange(BossState newState)
+    {
+        stateTransitionQueue.Enqueue(newState);
     }
 } 

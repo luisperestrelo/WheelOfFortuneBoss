@@ -30,7 +30,7 @@ public class ThrowSpearsState : BossState
 
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(stateMachine.minionSummonState); // Or any other state
+            stateMachine.RequestStateChange(stateMachine.minionSummonState); // Changed to RequestStateChange
         }
     }
 

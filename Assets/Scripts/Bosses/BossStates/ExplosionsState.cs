@@ -44,7 +44,7 @@ public class ExplosionsState : BossState
 
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(stateMachine.randomShockwaveAndAbilityState);
+            stateMachine.RequestStateChange(stateMachine.randomShockwaveAndAbilityState);
         }
     }
 

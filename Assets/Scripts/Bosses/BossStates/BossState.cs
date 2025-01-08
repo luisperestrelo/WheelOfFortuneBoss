@@ -32,4 +32,10 @@ public class BossState
     {
         return timer;
     }
+
+    public virtual void ResumeState(float time)
+    {
+        timer = time;
+        Debug.Log(bossController.name + " Resumed state: " + this.GetType().Name + " at time: " + time);
+    }
 } 

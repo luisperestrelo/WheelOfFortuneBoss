@@ -17,7 +17,7 @@ public class FireDamageArea : WheelArea
         base.Update();
         if (_isPlayerInArea)
         {
-            Debug.Log("Player is in area name: " + gameObject.name);
+            //Debug.Log("Player is in area name: " + gameObject.name);
             if (Time.time >= _nextAttackTime)
             {
                 _playerCombat.SetProjectileType(_fireballPrefab);

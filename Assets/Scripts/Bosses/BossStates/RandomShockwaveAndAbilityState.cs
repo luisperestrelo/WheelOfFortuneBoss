@@ -40,7 +40,7 @@ public class RandomShockwaveAndAbilityState : BossState
 
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(stateMachine.idleState);
+            stateMachine.RequestStateChange(stateMachine.idleState);
         }
     }
 

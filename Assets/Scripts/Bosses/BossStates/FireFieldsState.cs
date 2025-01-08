@@ -38,7 +38,7 @@ public class FireFieldsState : BossState
         UpdateFireFieldTimer();
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(stateMachine.shockwaveState);
+            stateMachine.RequestStateChange(stateMachine.shockwaveState);
         }
     }
 

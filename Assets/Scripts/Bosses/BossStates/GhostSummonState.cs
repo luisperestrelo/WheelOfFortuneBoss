@@ -36,7 +36,7 @@ public class GhostSummonState : BossState
 
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(stateMachine.throwSpearsState);
+            stateMachine.RequestStateChange(stateMachine.throwSpearsState);
         }
     }
 
