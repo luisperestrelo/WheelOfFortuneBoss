@@ -9,8 +9,10 @@ public class ChargeableWheelArea : WheelArea
     [SerializeField] private bool resetOnExit = true;
     [SerializeField] private float maxCharge = 100f;
 
-    [Header("Visual Feedback")]
+    [Header("Feedback")]
     [SerializeField] private Slider chargeSlider;
+    [SerializeField] private float volumeReducSpeed = 1;
+    [SerializeField] private AudioClip strikeSfx;
 
     [Header("Powerful Attack")]
     [SerializeField] private GameObject powerfulAttackPrefab; 
@@ -19,9 +21,12 @@ public class ChargeableWheelArea : WheelArea
     private float currentCharge = 0f;
     private bool isCharging = false;
 
+    private AudioSource audioSource;
+
     protected override void Start()
     {
         base.Start();
+        audioSource = GetComponent<AudioSource>();
         if (chargeSlider != null)
         {
             chargeSlider.maxValue = maxCharge;
@@ -51,6 +56,8 @@ public class ChargeableWheelArea : WheelArea
     private void ChargeUp()
     {
         currentCharge += chargeUpSpeed * Time.deltaTime;
+        audioSource.pitch = Mathf.Lerp(0, 3, currentCharge / maxCharge);
+        audioSource.volume = 1;
         if (currentCharge >= maxCharge)
         {
             currentCharge = maxCharge;
@@ -61,6 +68,8 @@ public class ChargeableWheelArea : WheelArea
     private void Decay()
     {
         currentCharge -= decaySpeed * Time.deltaTime;
+        audioSource.pitch = Mathf.Lerp(0, 3, currentCharge / maxCharge);
+        audioSource.volume = Mathf.Lerp(audioSource.volume, 0, Time.deltaTime * volumeReducSpeed);
         if (currentCharge < 0f)
         {
             currentCharge = 0f;
@@ -73,6 +82,7 @@ public class ChargeableWheelArea : WheelArea
         if (powerfulAttackPrefab != null)
         {
             Instantiate(powerfulAttackPrefab, spawnPointOfAttack.position + new Vector3(0, 4.5f, 0), Quaternion.identity);
+            //audioSource.PlayOneShot(strikeSfx);
         }
 
         currentCharge = 0f;
