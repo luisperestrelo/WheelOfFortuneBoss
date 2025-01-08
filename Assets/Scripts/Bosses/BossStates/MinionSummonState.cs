@@ -33,7 +33,7 @@ public class MinionSummonState : BossState
 
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(new SpearAndShockwaveState(stateMachine, bossController));
+            stateMachine.ChangeState(stateMachine.spearAndShockwaveState);
         }
     }
 

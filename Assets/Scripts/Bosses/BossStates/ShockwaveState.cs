@@ -30,7 +30,7 @@ public class ShockwaveState : BossState
 
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(new GhostSummonState(stateMachine, bossController));
+            stateMachine.ChangeState(stateMachine.ghostSummonState);
         }
     }
 

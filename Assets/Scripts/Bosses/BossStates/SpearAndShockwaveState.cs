@@ -34,7 +34,7 @@ public class SpearAndShockwaveState : BossState
 
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(new LaserSweepState(stateMachine, bossController));
+            stateMachine.ChangeState(stateMachine.laserSweepState);
         }
     }
 

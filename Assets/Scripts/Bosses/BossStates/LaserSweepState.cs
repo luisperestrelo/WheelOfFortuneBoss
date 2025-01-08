@@ -30,7 +30,7 @@ public class LaserSweepState : BossState
 
         if (timer >= stateDuration)
         {
-            stateMachine.ChangeState(new ExplosionsState(stateMachine, bossController));
+            stateMachine.ChangeState(stateMachine.explosionsState);
         }
     }
 

@@ -13,23 +13,8 @@ public class BossController : MonoBehaviour
 
     private void Start()
     {
-        stateMachine = new BossStateMachine();
-
-        // States
-        // Right now the exit condition for all states it's just a timer, can change that later 
-        IdleState idleState = new IdleState(stateMachine, this);
-        FireFieldsState fireFieldsState = new FireFieldsState(stateMachine, this);
-        ShockwaveState shockwaveState = new ShockwaveState(stateMachine, this);
-        GhostSummonState ghostSummonState = new GhostSummonState(stateMachine, this);
-        SpearAndShockwaveState spearAndShockwaveState = new SpearAndShockwaveState(stateMachine, this);
-        LaserSweepState laserSweepState = new LaserSweepState(stateMachine, this);
-        MinionSummonState minionSummonState = new MinionSummonState(stateMachine, this);
-        ThrowSpearsState throwSpearsState = new ThrowSpearsState(stateMachine, this);
-        ExplosionsState explosionsState = new ExplosionsState(stateMachine, this);
-        RandomShockwaveAndAbilityState randomShockwaveAndAbilityState = new RandomShockwaveAndAbilityState(stateMachine, this);
-
-        
-        stateMachine.Initialize(idleState);
+        stateMachine = new BossStateMachine(this);
+        stateMachine.Initialize(stateMachine.idleState);
         StartFireSlashCoroutine();
     }
 
