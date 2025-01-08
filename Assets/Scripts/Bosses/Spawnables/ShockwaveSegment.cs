@@ -8,6 +8,12 @@ public class ShockwaveSegment : MonoBehaviour
     [SerializeField] private float lifetime = 30f;
     private Shockwave parentShockwave;
     private bool expandOutward;
+    private PlayerHealth playerHealth;
+    
+    private void Awake()
+    {
+        playerHealth = FindObjectOfType<PlayerHealth>();
+    }
 
     private void Update()
     {
@@ -38,7 +44,6 @@ public class ShockwaveSegment : MonoBehaviour
         {
             if (!parentShockwave.HasDealtDamage())
             {
-                Health playerHealth = other.GetComponent<Health>();
                 if (playerHealth != null)
                 {
                     playerHealth.TakeDamage(damage);

@@ -15,11 +15,20 @@ public class Shockwave : MonoBehaviour
 
     private bool hasDealtDamage = false; // Since each segment has its own damage, we need a flag to track if damage has been dealt 
 
-    private void Start()
+    // Constructor to initialize values
+    public void Initialize(int numberOfSegments, float shockwaveExpansionSpeed, float shockwaveDamage, float startRadius, bool expandOutward, float lifetime, List<int> gapSegments)
     {
+        this.numberOfSegments = numberOfSegments;
+        this.shockwaveExpansionSpeed = shockwaveExpansionSpeed;
+        this.shockwaveDamage = shockwaveDamage;
+        this.startRadius = startRadius;
+        this.expandOutward = expandOutward;
+        this.lifetime = lifetime;
+        this.gapSegments = gapSegments;
         GenerateSegments();
         Destroy(gameObject, lifetime);
     }
+
 
     private void GenerateSegments()
     {
@@ -35,7 +44,7 @@ public class Shockwave : MonoBehaviour
 
             Vector3 segmentPosition = direction * startRadius;
 
-            //
+            //TODO: use an object pool, or have a pre-existing inactive object that we just activate    
             GameObject segment = Instantiate(segmentPrefab, transform);
             segment.transform.localPosition = segmentPosition;
 
@@ -62,40 +71,5 @@ public class Shockwave : MonoBehaviour
     public void MarkAsDealtDamage()
     {
         hasDealtDamage = true;
-    }
-
-    public void SetNumberOfSegments(int numSegments)
-    {
-        numberOfSegments = numSegments;
-    }
-
-    public void SetGapSegments(List<int> gaps)
-    {
-        gapSegments = gaps;
-    }
-
-    public void SetShockwaveExpansionSpeed(float speed)
-    {
-        shockwaveExpansionSpeed = speed;
-    }
-
-    public void SetShockwaveDamage(float damage)
-    {
-        shockwaveDamage = damage;
-    }
-
-    public void SetStartRadius(float radius)
-    {
-        startRadius = radius;
-    }
-
-    public void SetExpandOutward(bool expand)
-    {
-        expandOutward = expand;
-    }
-
-    public void SetShockwaveLifetime(float lifetime)
-    {
-        this.lifetime = lifetime;
     }
 }

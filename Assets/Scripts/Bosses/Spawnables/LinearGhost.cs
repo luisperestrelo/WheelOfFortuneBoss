@@ -8,9 +8,13 @@ public class LinearGhost : MonoBehaviour
     private Transform player;
     private Vector3 direction;
 
-    public void Initialize(Transform player)
+    // Constructor to initialize values
+    public void Initialize(Transform player, float speed, float damage, float lifeTime)
     {
         this.player = player;
+        this.speed = speed;
+        this.damage = damage;
+        this.lifeTime = lifeTime;
         direction = (player.position - transform.position).normalized;
         Destroy(gameObject, lifeTime); // TODO: A lot of our abilities should destroy when they are "outside of the camera", rather
         // than managing these timers which will eventually be a pain to manage. eg if I suddenly make this little guy MUCH slower
@@ -34,21 +38,5 @@ public class LinearGhost : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-    }
-
-    public void SetSpeed(float newSpeed)
-    {
-        speed = newSpeed;
-    }
-
-    public void SetDamage(float newDamage)
-    {
-        damage = newDamage;
-    }
-
-    public void SetLifeTime(float newLifeTime)
-    {
-        lifeTime = newLifeTime;
-        Destroy(gameObject, lifeTime);
     }
 }

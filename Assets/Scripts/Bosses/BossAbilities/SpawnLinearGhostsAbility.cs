@@ -29,13 +29,7 @@ public class SpawnLinearGhostsAbility : MonoBehaviour
         {
             GameObject ghost = Instantiate(linearGhostPrefab, transform.position, Quaternion.identity);
             LinearGhost linearGhost = ghost.GetComponent<LinearGhost>();
-
-            // Set parameters on the linear ghost , i think it looks cleaner than initialize() but some refacor should be done
-            linearGhost.SetSpeed(ghostSpeed);
-            linearGhost.SetDamage(ghostDamage);
-            linearGhost.SetLifeTime(ghostLifeTime);
-
-            linearGhost.Initialize(player);
+            linearGhost.Initialize(player, ghostSpeed, ghostDamage, ghostLifeTime);
             yield return new WaitForSeconds(spawnInterval);
         }
     }
