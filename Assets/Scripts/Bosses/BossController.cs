@@ -7,6 +7,9 @@ public class BossController : MonoBehaviour
     [SerializeField] private float timeBetweenSlashes = 2f;
     [SerializeField] private GameObject[] fields;
     [SerializeField] private Health health;
+    [SerializeField] private GameObject upgradeOrb;
+    [SerializeField] private Transform player;
+    [SerializeField] private CircularPath playerPath;
 
     private BossStateMachine stateMachine;
 
@@ -29,21 +32,34 @@ public class BossController : MonoBehaviour
     private void Update()
     {
         stateMachine.Update();
-        CheckForIncapacitatedState();
+        IncapacitateBossAndSpawnOrb();
     }
 
-    private void CheckForIncapacitatedState()
+    private void IncapacitateBossAndSpawnOrb()
     {
-        if (health.GetCurrentHealth() <= health.GetMaxHealth() * 0.5f && 
-            stateMachine.currentState != stateMachine.incapacitatedState && 
+        if (health.GetCurrentHealth() <= health.GetMaxHealth() * 0.5f &&
+            stateMachine.currentState != stateMachine.incapacitatedState &&
             !hasTriggeredIncapacitatedStateThisCycle)
         {
-          
-            BossState nextState = stateMachine.currentState; 
+
+            BossState nextState = stateMachine.currentState;
             Debug.Log(nextState + " is the next state");
             stateMachine.TriggerIncapacitatedState(nextState, 5f);
 
-            hasTriggeredIncapacitatedStateThisCycle = true; 
+            Vector3 toPlayer = player.position - playerPath.GetCenter();
+            float currentAngle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
+            currentAngle += 180f; // Start 180 degrees away
+            Vector3 spawnPosition = new Vector3(0, 0, 0);
+
+            float x = playerPath.GetCenter().x + playerPath.GetRadius() * Mathf.Cos(currentAngle * Mathf.Deg2Rad);
+            float y = playerPath.GetCenter().y + playerPath.GetRadius() * Mathf.Sin(currentAngle * Mathf.Deg2Rad);
+            spawnPosition = new Vector3(x, y, transform.position.z);
+
+
+            Instantiate(upgradeOrb, spawnPosition, Quaternion.identity);
+
+
+            hasTriggeredIncapacitatedStateThisCycle = true;
         }
     }
 
@@ -98,8 +114,8 @@ public class BossController : MonoBehaviour
         }
     }
 
-// TODO: Not let it repeat field
-// TODO: Make it an actual ability like the others, but we can do that when we do the wheel refactor
+    // TODO: Not let it repeat field
+    // TODO: Make it an actual ability like the others, but we can do that when we do the wheel refactor
     public int ChangeRandomFieldToFire()
     {
         if (fields.Length == 0)
@@ -136,11 +152,11 @@ public class BossController : MonoBehaviour
 
     public void TriggerIncapacitatedState(BossState nextState, float duration)
     {
-   
-  /*       if (powerUpSpawner != null)
-        {
-            powerUpSpawner.SpawnPowerUp(new Vector3(0, 0, 0)); 
-        } */
+
+        /*       if (powerUpSpawner != null)
+              {
+                  powerUpSpawner.SpawnPowerUp(new Vector3(0, 0, 0)); 
+              } */
 
         stateMachine.TriggerIncapacitatedState(nextState, duration);
     }
