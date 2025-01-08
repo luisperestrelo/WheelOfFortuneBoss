@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private float defaultDamage = 10f;
@@ -10,10 +11,11 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private Projectile _defaultProjectilePrefab;
     [SerializeField] private float globalDamageMultiplier = 1f; // we need a better solution later
 
+    [SerializeField] private AudioClip shootSfx;
+
     private Projectile projectilePrefab;
 
-
-
+    private AudioSource shootAudioSource;
     private float currentDamage;
     private Coroutine damageCoroutine;
 
@@ -25,6 +27,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void Start()
     {
+        shootAudioSource = GetComponent<AudioSource>();
         projectilePrefab = _defaultProjectilePrefab;
         currentDamage = defaultDamage;
     }
@@ -68,6 +71,9 @@ public class PlayerCombat : MonoBehaviour
     {
         Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
         projectile.SetDamage(currentDamage);
+
+        shootAudioSource.PlayOneShot(shootSfx);
+        shootAudioSource.pitch = Random.Range(0.9f, 1.3f);
 
         //Cast a ray from the camera onto a plane (ground level).
         Plane plane = new(Vector3.forward, transform.position);

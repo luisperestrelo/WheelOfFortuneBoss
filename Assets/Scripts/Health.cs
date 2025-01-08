@@ -5,7 +5,13 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float currentHealth; // tbh, should be private but I like being able to see it in the inspector without going Debug mode
-    
+
+    [Tooltip("How much damage should be considered 'heavy damage' by the VFX and SFX")]
+    [SerializeField] private int hpHeavyDamageThreshold = 25;
+    [SerializeField] private AudioClip lightDamageSfx;
+    [SerializeField] private AudioClip heavyDamageSfx;
+    [SerializeField] private AudioClip parrySfx;
+
     private PlayerCombat pc;
 
     public UnityEvent<float, float> OnHealthChanged;
@@ -29,12 +35,18 @@ public class Health : MonoBehaviour
         if (pc != null && pc.HasShield)
         {
             pc.RemoveShield();
+            SFXPool.instance.PlaySound(parrySfx);
             return;
         }
 
         currentHealth -= damageAmount;
         OnHealthChanged.Invoke(currentHealth, maxHealth);
-        Debug.Log(gameObject.name + " took " + damageAmount + " damage! Current health: " + currentHealth);
+
+        //SFX
+        if (damageAmount < hpHeavyDamageThreshold)
+            SFXPool.instance.PlaySound(lightDamageSfx);
+        else
+            SFXPool.instance.PlaySound(heavyDamageSfx);
 
         if (currentHealth <= 0)
         {

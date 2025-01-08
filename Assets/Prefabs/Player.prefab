@@ -216,6 +216,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10000
   currentHealth: 0
+  hpHeavyDamageThreshold: 25
+  lightDamageSfx: {fileID: 8300000, guid: 15033526d6388234c927dc4a5103c461, type: 3}
+  heavyDamageSfx: {fileID: 8300000, guid: 15033526d6388234c927dc4a5103c461, type: 3}
+  parrySfx: {fileID: 8300000, guid: e3c50d1780bcaab49bcd831db321b16c, type: 3}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []

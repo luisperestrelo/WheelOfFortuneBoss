@@ -7,9 +7,13 @@ public abstract class Projectile : MonoBehaviour
     [SerializeField] private float _damage;
     protected Rigidbody2D rb;
 
+    [SerializeField] private AudioClip spawnSfx;
+    [SerializeField] private AudioClip hitSfx;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        SFXPool.instance.PlaySound(spawnSfx);
     }
 
     public virtual void SetDamage(float damage)
@@ -22,6 +26,7 @@ public abstract class Projectile : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<Health>().TakeDamage(_damage);
+            SFXPool.instance.PlaySound(hitSfx);
             Destroy(gameObject);
         }
     }
