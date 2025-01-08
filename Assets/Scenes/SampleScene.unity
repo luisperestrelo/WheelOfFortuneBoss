@@ -816,10 +816,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UpgradeMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 8837934811553398882, guid: 5aee488f00b0e3e42b9c4050ae6071fd, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
