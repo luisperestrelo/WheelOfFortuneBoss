@@ -2,21 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PurpleSlash : MonoBehaviour
+public class PurpleSlash : EnemyProjectile
 {
-    [SerializeField] private float _damage;
-
-    public void SetDamage(float damage)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
-        _damage = damage;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            other.GetComponent<Health>().TakeDamage(_damage);
-            Destroy(gameObject);
-        }
+        base.OnTriggerEnter2D(other);
     }
 }

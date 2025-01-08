@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    [SerializeField] private float lifeTime = 5f;
-    private float damage;
+    [SerializeField] protected float lifeTime = 5f;
+    protected float damage;
     private Rigidbody2D rb;
     private PlayerHealth playerHealth;
 
@@ -24,7 +24,7 @@ public class EnemyProjectile : MonoBehaviour
         rb.velocity = velocity;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
