@@ -19458,7 +19458,7 @@ MonoBehaviour:
   useRandomDirections: 0
   minAngleBetweenSpears: 30
   angleOffset: 0
-  spearSpeed: 20
+  spearSpeed: 30
   spearDamage: 15
   spearLifeTime: 5
 --- !u!114 &695954788
@@ -32787,8 +32787,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 365336123}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: accelerationRate
+      value: 2000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: decelerationRate
       value: 960
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: maxRotationSpeed
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: usesAcceleration
@@ -32796,7 +32804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: movementSchemeType
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: defaultRotationSpeed
