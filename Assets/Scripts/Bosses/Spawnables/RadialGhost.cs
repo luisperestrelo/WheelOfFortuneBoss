@@ -8,12 +8,21 @@ public class RadialGhost : MonoBehaviour
     private Transform player;
     private float currentAngle;
     private int direction; // 1 for clockwise, -1 for counter-clockwise
+    private PlayerHealth playerHealth;
 
-    public void Initialize(CircularPath path, Transform player, int direction)
+    private void Awake()
+    {
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+    }   
+
+    // Constructor to initialize values
+    public void Initialize(CircularPath path, Transform player, int direction, float speed, float damage)
     {
         this.path = path;
         this.player = player;
         this.direction = direction;
+        this.speed = speed;
+        this.damage = damage;
 
         // Calculate initial angle based on player's position and direction
         Vector3 toPlayer = player.position - path.GetCenter();
@@ -46,7 +55,6 @@ public class RadialGhost : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Health playerHealth = other.GetComponent<Health>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);
@@ -54,15 +62,5 @@ public class RadialGhost : MonoBehaviour
             }
             // Them taking damage is handled in whatever script damages them.
         }
-    }
-
-    public void SetSpeed(float newSpeed)
-    {
-        speed = newSpeed;
-    }
-
-    public void SetDamage(float newDamage)
-    {
-        damage = newDamage;
     }
 } 

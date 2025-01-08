@@ -1,9 +1,11 @@
 using UnityEngine;
 
+//TODO define this better
 public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField] protected float lifeTime = 5f;
     protected float damage;
+    protected float speed;
     private Rigidbody2D rb;
     private PlayerHealth playerHealth;
 
@@ -12,6 +14,11 @@ public class EnemyProjectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
         Destroy(gameObject, lifeTime);
+    }
+
+    protected virtual void Update()
+    {
+    
     }
 
     public void SetDamage(float damage)

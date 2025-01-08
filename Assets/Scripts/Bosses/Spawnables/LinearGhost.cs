@@ -6,12 +6,15 @@ public class LinearGhost : MonoBehaviour
     [SerializeField] private float damage = 10f;
     [SerializeField] private float lifeTime = 10f;
     private Transform player;
+    private PlayerHealth playerHealth;
     private Vector3 direction;
+
 
     // Constructor to initialize values
     public void Initialize(Transform player, float speed, float damage, float lifeTime)
     {
         this.player = player;
+        this.playerHealth = player.GetComponent<PlayerHealth>();
         this.speed = speed;
         this.damage = damage;
         this.lifeTime = lifeTime;
@@ -31,7 +34,6 @@ public class LinearGhost : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Health playerHealth = other.GetComponent<Health>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);

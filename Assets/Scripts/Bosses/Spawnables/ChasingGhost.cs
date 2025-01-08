@@ -6,20 +6,20 @@ public class ChasingGhost : MonoBehaviour
     [SerializeField] private float damage = 10f;
     private Transform player;
     private PlayerHealth playerHealth;
+    
 
-    private void Awake()
-    {
-        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
-    }
 
-    public void Initialize(Transform player)
+    public void Initialize(Transform player, float speed, float damage)
     {
         this.player = player;
+        this.playerHealth = player.GetComponent<PlayerHealth>();
+        this.speed = speed;
+        this.damage = damage;
     }
 
     private void Update()
     {
-        if (player == null) return; 
+        if (player == null) return;
 
         // Continuously track and move towards the player
         Vector3 direction = (player.position - transform.position).normalized;
@@ -30,7 +30,6 @@ public class ChasingGhost : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Health playerHealth = other.GetComponent<Health>(); 
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);
@@ -38,14 +37,4 @@ public class ChasingGhost : MonoBehaviour
             }
         }
     }
-
-    public void SetSpeed(float newSpeed)
-    {
-        speed = newSpeed;
-    }
-
-    public void SetDamage(float newDamage)
-    {
-        damage = newDamage;
-    }
-} 
+}

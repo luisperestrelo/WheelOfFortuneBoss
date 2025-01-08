@@ -4,9 +4,18 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] private float damage = 20f;
     [SerializeField] private float lifeTime = 0.3f; // Duration of the explosion visual
+    private PlayerHealth playerHealth;
 
-    private void Start()
+    private void Awake()
     {
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+    }
+
+    // Constructor to initialize values
+    public void Initialize(float damage, float lifeTime)
+    {
+        this.damage = damage;
+        this.lifeTime = lifeTime;
         Destroy(gameObject, lifeTime);
     }
 
@@ -14,23 +23,10 @@ public class Explosion : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Health playerHealth = other.GetComponent<Health>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);
             }
         }
-    }
-
-    public void SetDamage(float newDamage)
-    {
-        damage = newDamage;
-    }
-
-    public void SetLifeTime(float newLifeTime)
-    {
-        lifeTime = newLifeTime;
-        // Update the Destroy call to use the new lifetime
-        Destroy(gameObject, lifeTime);
     }
 } 

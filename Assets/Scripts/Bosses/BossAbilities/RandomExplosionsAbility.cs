@@ -45,15 +45,10 @@ public class RandomExplosionsAbility : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        // Instantiate the explosion
         GameObject explosion = Instantiate(explosionPrefab, position, Quaternion.identity);
-        //explosion.transform.localScale = Vector3.one * explosionRadius * 2f; // Scale explosion
-        //theyre already prepared to fit    
 
-        // Set parameters on the explosion
         Explosion explosionComponent = explosion.GetComponent<Explosion>();
-        explosionComponent.SetDamage(explosionDamage);
-        explosionComponent.SetLifeTime(explosionLifeTime);
+        explosionComponent.Initialize(explosionDamage, explosionLifeTime);
     }
 
     //draw gizmos

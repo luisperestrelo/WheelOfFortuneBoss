@@ -27,10 +27,6 @@ public class SpawnChasingGhostAbility : MonoBehaviour
         GameObject ghost = Instantiate(chasingGhostPrefab, spawnPoints[Random.Range(0, spawnPoints.Length)].position, Quaternion.identity);
         ChasingGhost chasingGhost = ghost.GetComponent<ChasingGhost>();
 
-        // Set parameters on the chasing ghost
-        chasingGhost.SetSpeed(ghostSpeed);
-        chasingGhost.SetDamage(ghostDamage);
-
-        chasingGhost.Initialize(player);
+        chasingGhost.Initialize(player, ghostSpeed, ghostDamage);
     }
 } 

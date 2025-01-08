@@ -24,17 +24,14 @@ public class SpawnRadialGhostsAbility : MonoBehaviour
             return;
         }
 
+        //atm only makes sense to spawn 1 or 2 ghosts, but can later make a coroutine or something to spawn with an interval
+
         for (int i = 0; i < numberOfGhosts; i++)
         {
             GameObject ghost = Instantiate(radialGhostPrefab, path.GetCenter(), Quaternion.identity);
             int direction = i % 2 == 0 ? 1 : -1; // Alternate directions
             RadialGhost radialGhost = ghost.GetComponent<RadialGhost>();
-
-            // Set parameters on the radial ghost
-            radialGhost.SetSpeed(ghostSpeed);
-            radialGhost.SetDamage(ghostDamage);
-
-            radialGhost.Initialize(path, player, direction);
+            radialGhost.Initialize(path, player, direction, ghostSpeed, ghostDamage);
         }
     }
 } 

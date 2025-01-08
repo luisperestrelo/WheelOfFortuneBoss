@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ThrowSpearsAbility : MonoBehaviour
 {
+
     [SerializeField] private GameObject spearPrefab;
     [SerializeField] private GameObject spearTelegraphPrefab;
     [SerializeField] private int numberOfSpears = 2;
@@ -15,6 +16,7 @@ public class ThrowSpearsAbility : MonoBehaviour
     [SerializeField] private float minAngleBetweenSpears = 30f;
     [SerializeField] private float angleOffset = 0f;
 
+    [Header("Spear Stats")]
     [SerializeField] private float spearSpeed = 20f;
     [SerializeField] private float spearDamage = 15f;
     [SerializeField] private float spearLifeTime = 5f;
@@ -42,7 +44,6 @@ public class ThrowSpearsAbility : MonoBehaviour
             Vector3 direction = Quaternion.Euler(0, 0, angle) * Vector3.up;
             Vector3 spawnPosition = transform.position + direction * spawnDistance;
 
-            // Instantiate the telegraph
             GameObject telegraph = Instantiate(spearTelegraphPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
 
             // Start a coroutine to throw the spear after the telegraph duration
@@ -96,11 +97,8 @@ public class ThrowSpearsAbility : MonoBehaviour
         GameObject spear = Instantiate(spearPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
         spear.transform.localScale = new Vector3(spearWidth, spearLength, 1f);
 
-        // Set parameters on the spear
         Spear spearComponent = spear.GetComponent<Spear>();
-        spearComponent.SetSpeed(spearSpeed);
-        spearComponent.SetDamage(spearDamage);
-        spearComponent.SetLifeTime(spearLifeTime);
+        spearComponent.Initialize(spearSpeed, spearDamage, spearLifeTime);
     }
 
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class SpawnLinearGhostsAbility : MonoBehaviour
 {
@@ -7,7 +8,6 @@ public class SpawnLinearGhostsAbility : MonoBehaviour
     [SerializeField] private int numberOfGhosts = 3;
     [SerializeField] private float spawnInterval = 0.5f;
 
-    // New fields to control parameters from this script
     [SerializeField] private float ghostSpeed = 5f;
     [SerializeField] private float ghostDamage = 10f;
     [SerializeField] private float ghostLifeTime = 10f;
@@ -23,7 +23,7 @@ public class SpawnLinearGhostsAbility : MonoBehaviour
         StartCoroutine(SpawnGhostsCoroutine());
     }
 
-    private System.Collections.IEnumerator SpawnGhostsCoroutine()
+    private IEnumerator SpawnGhostsCoroutine()
     {
         for (int i = 0; i < numberOfGhosts; i++)
         {

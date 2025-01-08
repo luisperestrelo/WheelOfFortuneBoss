@@ -1,49 +1,25 @@
 using UnityEngine;
 
-public class Spear : MonoBehaviour
+public class Spear : EnemyProjectile
 {
-    [SerializeField] private float speed = 20f;
-    [SerializeField] private float damage = 15f;
-    [SerializeField] private float lifeTime = 5f;
 
-    private void Start()
+    // Constructor to initialize values
+    public void Initialize(float speed, float damage, float lifeTime)
     {
+        this.speed = speed;
+        this.damage = damage;
+        this.lifeTime = lifeTime;
         Destroy(gameObject, lifeTime);
     }
 
-    private void Update()
+    protected override void Update()
     {
-        transform.Translate(Vector3.up * speed * Time.deltaTime); 
+        base.Update();
+        transform.Translate(Vector3.up * (speed * Time.deltaTime)); 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    protected override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
-        {
-            Health playerHealth = other.GetComponent<Health>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(damage);
-            }
-            Destroy(gameObject);
-        }
-    }
-
-    // Add setters for speed, damage, and lifetime
-    public void SetSpeed(float newSpeed)
-    {
-        speed = newSpeed;
-    }
-
-    public void SetDamage(float newDamage)
-    {
-        damage = newDamage;
-    }
-
-    public void SetLifeTime(float newLifeTime)
-    {
-        lifeTime = newLifeTime;
-        // Update the Destroy call to use the new lifetime
-        Destroy(gameObject, lifeTime);
+        base.OnTriggerEnter2D(other);
     }
 }

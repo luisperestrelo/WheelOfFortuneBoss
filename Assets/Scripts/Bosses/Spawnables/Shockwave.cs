@@ -47,8 +47,8 @@ public class Shockwave : MonoBehaviour
             //TODO: use an object pool, or have a pre-existing inactive object that we just activate    
             GameObject segment = Instantiate(segmentPrefab, transform);
             segment.transform.localPosition = segmentPosition;
-
             ShockwaveSegment segmentScript = segment.GetComponent<ShockwaveSegment>();
+
             if (segmentScript != null)
             {
                 Vector3 segmentDirection = expandOutward ? direction : -direction;

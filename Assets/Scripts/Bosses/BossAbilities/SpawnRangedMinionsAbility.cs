@@ -28,12 +28,8 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
         for (int i = 0; i < numToSpawn; i++)
         {
             GameObject minion = Instantiate(rangedMinionPrefab, spawnPoints[i].position, Quaternion.identity);
-
-            // Set parameters on the ranged minion
             RangedMinion rangedMinion = minion.GetComponent<RangedMinion>();
-            rangedMinion.SetProjectileSpeed(minionProjectileSpeed);
-            rangedMinion.SetShootingCooldown(minionShootingCooldown);
-            rangedMinion.SetDamage(minionDamage);
+            rangedMinion.Initialize(minionProjectileSpeed, minionShootingCooldown, minionDamage);
         }
     }
 

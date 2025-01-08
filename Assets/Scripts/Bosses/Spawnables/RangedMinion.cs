@@ -9,12 +9,22 @@ public class RangedMinion : MonoBehaviour
     [SerializeField] private Transform firePoint; 
     private Transform player;
     private float nextShootTime;
+    
 
-    private void Start()
+    private void Awake()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform; 
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    // Constructor to initialize values
+    public void Initialize(float projectileSpeed, float shootingCooldown, float damage)
+    {
+        this.projectileSpeed = projectileSpeed;
+        this.shootingCooldown = shootingCooldown;
+        this.damage = damage;
         nextShootTime = Time.time + shootingCooldown;
     }
+
 
     private void Update()
     {
@@ -32,6 +42,7 @@ public class RangedMinion : MonoBehaviour
         }
     }
 
+    //TODO also fix projectile logic to avoid Setters, but do that later
     private void Shoot()
     {
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
@@ -41,22 +52,5 @@ public class RangedMinion : MonoBehaviour
             proj.SetDamage(damage);
             proj.SetVelocity(projectile.transform.up * projectileSpeed);
         }
-    }
-
-    public void SetProjectileSpeed(float newProjectileSpeed)
-    {
-        projectileSpeed = newProjectileSpeed;
-    }
-
-    public void SetShootingCooldown(float newShootingCooldown)
-    {
-        shootingCooldown = newShootingCooldown;
-        // Adjust nextShootTime to prevent immediate shooting after changing cooldown
-        nextShootTime = Time.time + shootingCooldown;
-    }
-
-    public void SetDamage(float newDamage)
-    {
-        damage = newDamage;
     }
 } 

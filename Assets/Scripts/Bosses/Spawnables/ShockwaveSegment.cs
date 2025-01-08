@@ -12,7 +12,7 @@ public class ShockwaveSegment : MonoBehaviour
     
     private void Awake()
     {
-        playerHealth = FindObjectOfType<PlayerHealth>();
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
 
     private void Update()
