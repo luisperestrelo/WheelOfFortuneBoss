@@ -11,6 +11,10 @@ public class BossController : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private CircularPath playerPath;
 
+    [Header("Upgrade Orb Stuff")]
+    [SerializeField] private float bossHealthUpgradeInterval = 0.25f;
+    private int timesIncapacitated = 0;
+
     private BossStateMachine stateMachine;
 
     private Coroutine fireSlashCoroutine;
@@ -32,12 +36,14 @@ public class BossController : MonoBehaviour
     private void Update()
     {
         stateMachine.Update();
-        IncapacitateBossAndSpawnOrb();
+        CheckIfUpgradeThreshold();
     }
 
-    private void IncapacitateBossAndSpawnOrb()
+    private void CheckIfUpgradeThreshold()
     {
-        if (health.GetCurrentHealth() <= health.GetMaxHealth() * 0.5f &&
+        float currentThreshold = 1.0f - (bossHealthUpgradeInterval * (timesIncapacitated + 1));
+        
+        if (health.GetCurrentHealth() <= health.GetMaxHealth() * currentThreshold &&
             stateMachine.currentState != stateMachine.incapacitatedState &&
             !hasTriggeredIncapacitatedStateThisCycle)
         {
@@ -45,25 +51,27 @@ public class BossController : MonoBehaviour
             BossState nextState = stateMachine.currentState;
             Debug.Log(nextState + " is the next state");
             stateMachine.TriggerIncapacitatedState(nextState, 5f);
+            timesIncapacitated++;
 
-            Vector3 toPlayer = player.position - playerPath.GetCenter();
-            float currentAngle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
-            currentAngle += 180f; // Start 180 degrees away
-            Vector3 spawnPosition = new Vector3(0, 0, 0);
+            SpawnUpgradeOrb();
 
-            float x = playerPath.GetCenter().x + playerPath.GetRadius() * Mathf.Cos(currentAngle * Mathf.Deg2Rad);
-            float y = playerPath.GetCenter().y + playerPath.GetRadius() * Mathf.Sin(currentAngle * Mathf.Deg2Rad);
-            spawnPosition = new Vector3(x, y, transform.position.z);
-
-
-            Instantiate(upgradeOrb, spawnPosition, Quaternion.identity);
-
-
-            hasTriggeredIncapacitatedStateThisCycle = true;
+            // hasTriggeredIncapacitatedStateThisCycle = true; // Shouldn't be necessary since we're changing the health threshold now
+                                                               // but should keep an eye out
         }
     }
 
+    private void SpawnUpgradeOrb()
+    {
+        Vector3 toPlayer = player.position - playerPath.GetCenter();
+        float currentAngle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
+        currentAngle += 180f; 
 
+        float x = playerPath.GetCenter().x + playerPath.GetRadius() * Mathf.Cos(currentAngle * Mathf.Deg2Rad);
+        float y = playerPath.GetCenter().y + playerPath.GetRadius() * Mathf.Sin(currentAngle * Mathf.Deg2Rad);
+        Vector3 spawnPosition = new Vector3(x, y, transform.position.z);
+
+        Instantiate(upgradeOrb, spawnPosition, Quaternion.identity);
+    }
 
     public void ChangeState(BossState newState)
     {
