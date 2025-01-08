@@ -16,6 +16,8 @@ public class ThrowSpearsAbility : MonoBehaviour
     [SerializeField] private float minAngleBetweenSpears = 30f;
     [SerializeField] private float angleOffset = 0f;
 
+    [SerializeField] private AudioClip indicatorSfx;
+
     [Header("Spear Stats")]
     [SerializeField] private float spearSpeed = 20f;
     [SerializeField] private float spearDamage = 15f;
@@ -38,6 +40,8 @@ public class ThrowSpearsAbility : MonoBehaviour
         {
             spearAngles = GenerateEvenlySpacedSpearAngles(angleOffset);
         }
+
+        SFXPool.instance.PlaySound(indicatorSfx);
 
         foreach (float angle in spearAngles)
         {

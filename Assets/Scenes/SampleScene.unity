@@ -977,6 +977,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7166551282647893016, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7586169954359990532, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: playerSFX
       value: 
@@ -1390,6 +1394,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 112205993007890875, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
+      propertyPath: indicatorSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 121dd6d2096fd9240b63f1c88d32dddf, type: 3}
     - target: {fileID: 540871654658833567, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
       propertyPath: path
       value: 
