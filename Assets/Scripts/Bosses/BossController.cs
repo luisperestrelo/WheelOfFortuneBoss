@@ -73,6 +73,7 @@ public class BossController : MonoBehaviour
     }
 
 // TODO: Not let it repeat field
+// TODO: Make it an actual ability like the others, but we can do that when we do the wheel refactor
     public int ChangeRandomFieldToFire()
     {
         if (fields.Length == 0)

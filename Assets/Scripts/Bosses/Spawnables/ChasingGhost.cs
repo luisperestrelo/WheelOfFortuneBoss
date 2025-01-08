@@ -5,6 +5,12 @@ public class ChasingGhost : MonoBehaviour
     [SerializeField] private float speed = 3f;
     [SerializeField] private float damage = 10f;
     private Transform player;
+    private PlayerHealth playerHealth;
+
+    private void Awake()
+    {
+        playerHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
+    }
 
     public void Initialize(Transform player)
     {
@@ -17,14 +23,14 @@ public class ChasingGhost : MonoBehaviour
 
         // Continuously track and move towards the player
         Vector3 direction = (player.position - transform.position).normalized;
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position += direction * (speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            Health playerHealth = other.GetComponent<Health>();
+            Health playerHealth = other.GetComponent<Health>(); 
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(damage);
