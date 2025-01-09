@@ -126,6 +126,7 @@ public class BossController : MonoBehaviour
     // TODO: Make it an actual ability like the others, but we can do that when we do the wheel refactor
     public int ChangeRandomFieldToFire()
     {
+        return 0 ;
         if (fields.Length == 0)
             return 0;
 
@@ -142,6 +143,7 @@ public class BossController : MonoBehaviour
 
     public void DeactivateFireFields()
     {
+        return;
         foreach (GameObject field in fields)
         {
             field.GetComponent<WheelArea>().StopOnFire();
