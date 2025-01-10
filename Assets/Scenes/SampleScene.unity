@@ -1367,6 +1367,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: d7deb79675d05aa4f81870dab36e3ecf, type: 2}
     - target: {fileID: 2357789789725850331, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: baseDamageMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357789789725850331, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: globalDamageMultiplier
       value: 1
       objectReference: {fileID: 0}

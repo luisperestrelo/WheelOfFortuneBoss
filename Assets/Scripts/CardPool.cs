@@ -5,6 +5,7 @@ using System.Linq;
 public class CardPool : MonoBehaviour
 {
     public List<Card> allCards = new List<Card>();
+    public List<Card> availableCards = new List<Card>();
 
     [Header("Rarity Settings")]
     public int commonCopies = 4;
@@ -39,15 +40,25 @@ public class CardPool : MonoBehaviour
                 allCards.Add(card); // Add the card multiple times based on rarity
             }
         }
+
+        availableCards = new List<Card>(allCards);
     }
 
     public List<Card> GetRandomCards(int numCards)
     {
-        // Shuffle the allCards list (you can use a Fisher-Yates shuffle for better randomness)
-        List<Card> shuffledCards = allCards.OrderBy(x => Random.value).ToList();
+        // Shuffle the availableCards list (you can use a Fisher-Yates shuffle for better randomness)
+        List<Card> shuffledCards = availableCards.OrderBy(x => Random.value).ToList();
 
-        // Return the first numCards from the shuffled list
-        return shuffledCards.Take(numCards).ToList();
+        // Take the first numCards from the shuffled list
+        List<Card> selectedCards = shuffledCards.Take(numCards).ToList();
+
+        // Remove the selected cards from the availableCards list
+        foreach (Card card in selectedCards)
+        {
+            availableCards.Remove(card);
+        }
+
+        return selectedCards;
     }
 
     public void AddCardToPool(Card card)
@@ -59,18 +70,21 @@ public class CardPool : MonoBehaviour
                 for (int i = 0; i < commonCopies; i++)
                 {
                     allCards.Add(card);
+                    availableCards.Add(card);
                 }
                 break;
             case CardRarity.Rare:
                 for (int i = 0; i < rareCopies; i++)
                 {
                     allCards.Add(card);
+                    availableCards.Add(card);
                 }
                 break;
             case CardRarity.Epic:
                 for (int i = 0; i < epicCopies; i++)
                 {
                     allCards.Add(card);
+                    availableCards.Add(card);
                 }
                 break;
         }
@@ -80,6 +94,7 @@ public class CardPool : MonoBehaviour
     {
         // Remove all instances of the card from the pool
         allCards.RemoveAll(c => c == card);
+        availableCards.RemoveAll(c => c == card);
     }
 
     public List<Card> GetInitialCards()
@@ -87,13 +102,18 @@ public class CardPool : MonoBehaviour
         List<Card> initialCards = new List<Card>();
 
         // Ensure at least 3 FieldCards
-        List<FieldCard> fieldCards = allCards.OfType<FieldCard>().OrderBy(x => Random.value).Take(3).ToList();
+        List<FieldCard> fieldCards = availableCards.OfType<FieldCard>().OrderBy(x => Random.value).Take(3).ToList();
         initialCards.AddRange(fieldCards);
 
         // Add 2 other random cards
-        List<Card> otherCards = allCards.Except(fieldCards).OrderBy(x => Random.value).Take(2).ToList();
-        
+        List<Card> otherCards = availableCards.Except(fieldCards).OrderBy(x => Random.value).Take(2).ToList();
         initialCards.AddRange(otherCards);
+
+        // Remove the selected cards from the availableCards list
+        foreach (Card card in initialCards)
+        {
+            availableCards.Remove(card);
+        }
 
         return initialCards;
     }

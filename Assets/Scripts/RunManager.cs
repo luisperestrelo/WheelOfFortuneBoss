@@ -26,7 +26,7 @@ public class RunManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F1))
         {
-           OfferCardSelection();
+            OfferCardSelection();
         }
     }
 
