@@ -17,7 +17,7 @@ public class WheelManager : MonoBehaviour
     [SerializeField] private GameObject chargeIndicatorPrefab; // Assign the ChargeIndicator prefab here
     [SerializeField] private Canvas indicatorCanvas; // Assign the Canvas here
 
-    private void Start()
+    private void Awake()
     {
         InitializeWheel(FieldsToAddToWheel);
     }
@@ -40,6 +40,12 @@ public class WheelManager : MonoBehaviour
         // Update the wheel incrementally
         AddFieldToSegments(field, index);
         UpdateWheelVisuals();
+    }
+
+    public void AddFieldAtRandomIndex(Field field)
+    {
+        int randomIndex = Random.Range(0, FieldsToAddToWheel.Count);
+        AddField(field, randomIndex);
     }
 
     public void RemoveField(Field field)

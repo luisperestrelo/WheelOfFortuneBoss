@@ -29,7 +29,7 @@ public class DoubleDamageArea : WheelArea
         if (!_alreadyApplied)
         { //TODO: need to refactor this kind of stuff
             _playerCombat.SetDamageMultiplierForDuration(_damageMultiplier, _duration);
-            _playerCombat.SetGlobalDamageMultiplier(_damageMultiplier);
+            //_playerCombat.SetGlobalDamageMultiplier(_damageMultiplier);
             _alreadyApplied = true;
         }
     }
@@ -48,7 +48,7 @@ public class DoubleDamageArea : WheelArea
     {
         yield return new WaitForSeconds(_duration);
 
-        _playerCombat.SetGlobalDamageMultiplier(1f);
+        //_playerCombat.SetGlobalDamageMultiplier(1f);
 
 
     }

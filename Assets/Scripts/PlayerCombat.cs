@@ -9,6 +9,7 @@ public class PlayerCombat : MonoBehaviour
     public float projectileSpeed = 20f;
     [SerializeField] private BaseProjectile defaultProjectilePrefab;
     [SerializeField] private float globalDamageMultiplier = 1f;
+    [SerializeField] private float baseDamageMultiplier = 1f;
 
     [SerializeField] private AudioClip shootSfx;
 
@@ -30,7 +31,6 @@ public class PlayerCombat : MonoBehaviour
     {
         shootAudioSource = GetComponent<AudioSource>();
         projectilePrefab = defaultProjectilePrefab;
-        globalDamageMultiplier = 1f;
     }
 
     private void Update()
@@ -56,16 +56,22 @@ public class PlayerCombat : MonoBehaviour
         if (damageCoroutine != null)
         {
             StopCoroutine(damageCoroutine);
+            globalDamageMultiplier = baseDamageMultiplier;
         }
 
         damageCoroutine = StartCoroutine(DamageMultiplierCoroutine(multiplier, duration));
+    }
+
+    public void IncreaseDamageMultiplierForDuration(float multiplier, float duration) // this is multiplicative, not additive, I think?
+    {
+        SetDamageMultiplierForDuration(globalDamageMultiplier * multiplier, duration);
     }
 
     private IEnumerator DamageMultiplierCoroutine(float multiplier, float duration)
     {
         globalDamageMultiplier = multiplier;
         yield return new WaitForSeconds(duration);
-        globalDamageMultiplier = 1f;
+        globalDamageMultiplier = baseDamageMultiplier;
         damageCoroutine = null;
     }
 
@@ -96,8 +102,13 @@ public class PlayerCombat : MonoBehaviour
         return globalDamageMultiplier;
     }
 
-    public void SetGlobalDamageMultiplier(float multiplier)
+    public float GetBaseDamageMultiplier()
     {
-        globalDamageMultiplier = multiplier;
+        return baseDamageMultiplier;
+    }
+
+    public void UpdateBaseDamageMultiplier(float newBaseMultiplier)
+    {
+        baseDamageMultiplier = newBaseMultiplier;
     }
 }

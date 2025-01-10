@@ -79,6 +79,20 @@ public class Health : MonoBehaviour
         Debug.Log(gameObject.name + " died!");
         Destroy(gameObject);
     }
+    
+    public void SetMaxHealth(float newMaxHealth)
+    {
+        maxHealth = newMaxHealth;
+        currentHealth = maxHealth;
+        OnHealthChanged.Invoke(currentHealth, maxHealth);
+    }
+
+    public void IncreaseMaxHealth(float increaseAmount)
+    {
+        maxHealth += increaseAmount;
+        currentHealth += increaseAmount;
+        OnHealthChanged.Invoke(currentHealth, maxHealth);
+    }
 
     public float GetCurrentHealth()
     {

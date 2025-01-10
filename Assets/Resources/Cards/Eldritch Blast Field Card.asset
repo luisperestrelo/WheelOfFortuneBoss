@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8e8f83f0e9fa740b98eab6bc31ecc0, type: 3}
+  m_Name: Eldritch Blast Field Card
+  m_EditorClassIdentifier: 
+  cardName: Eldritch Blast Field Card
+  description: Eldritch Blast Field Card
+  rarity: 2
+  icon: {fileID: 21300000, guid: d79669ba1c33b524dbf0f3d4415e0716, type: 3}
+  field: {fileID: 11400000, guid: 6e9b93952ab57e04e9ba1b94692b07a8, type: 2}
