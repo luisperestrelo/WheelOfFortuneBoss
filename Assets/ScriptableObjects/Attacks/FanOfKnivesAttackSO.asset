@@ -9,13 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1852017a532151d46a1669590e0863a8, type: 3}
-  m_Name: LightningBlastSO
+  m_Script: {fileID: 11500000, guid: 106d3ef5b6e651c4b9d2916af395d780, type: 3}
+  m_Name: FanOfKnivesAttackSO
   m_EditorClassIdentifier: 
-  effectName: 
-  description: 
-  icon: {fileID: 0}
-  chargeTime: 3
-  damage: 50
-  blastPrefab: {fileID: 0}
-  blastCooldown: 0
+  BaseDamage: 1
+  FireRate: 0.5
+  knifePrefab: {fileID: 1876552664290551512, guid: 451ae27b9314cb14b918d1e0422834e5, type: 3}
+  numberOfKnives: 2
+  spreadAngle: 30

@@ -39,6 +39,9 @@ public class Health : MonoBehaviour
             return;
         }
 
+
+        Debug.Log( gameObject.name + " is Taking damage: " + damageAmount);
+
         currentHealth -= damageAmount;
         OnHealthChanged.Invoke(currentHealth, maxHealth);
 
@@ -52,6 +55,8 @@ public class Health : MonoBehaviour
         {
             Die();
         }
+
+        Debug.Log($"{gameObject.name} took {damageAmount} damage!");
     }
 
     public void Heal(float healAmount)

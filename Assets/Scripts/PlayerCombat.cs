@@ -5,18 +5,16 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class PlayerCombat : MonoBehaviour
 {
-    [SerializeField] private float defaultDamage = 10f;
     [SerializeField] private float shootCooldown = 0.2f;
-    [SerializeField] private float projectileSpeed = 20f;
-    [SerializeField] private Projectile _defaultProjectilePrefab;
-    [SerializeField] private float globalDamageMultiplier = 1f; // we need a better solution later
+    public float projectileSpeed = 20f;
+    [SerializeField] private BaseProjectile defaultProjectilePrefab;
+    [SerializeField] private float globalDamageMultiplier = 1f;
 
     [SerializeField] private AudioClip shootSfx;
 
-    private Projectile projectilePrefab;
+    private BaseProjectile projectilePrefab;
 
-    private AudioSource shootAudioSource;
-    private float currentDamage;
+    public AudioSource shootAudioSource;
     private Coroutine damageCoroutine;
 
     public bool HasShield { get; private set; }
@@ -25,25 +23,30 @@ public class PlayerCombat : MonoBehaviour
 
     private bool canShoot = true;
 
+    public BaseAttack CurrentAttack;
+    public BaseAttack DefaultAttack;
+
     private void Start()
     {
         shootAudioSource = GetComponent<AudioSource>();
-        projectilePrefab = _defaultProjectilePrefab;
-        currentDamage = defaultDamage;
+        projectilePrefab = defaultProjectilePrefab;
+        globalDamageMultiplier = 1f;
     }
 
     private void Update()
     {
         if (canShoot && Input.GetMouseButton(0))
         {
-            ShootProjectile();
+            if (CurrentAttack == null)
+                CurrentAttack = DefaultAttack;
+            CurrentAttack.PerformAttack(this);
         }
     }
 
-    private IEnumerator ShootCooldownRoutine()
+    public IEnumerator ShootCooldownRoutine(float cooldown)
     {
         canShoot = false;
-        yield return new WaitForSeconds(shootCooldown);
+        yield return new WaitForSeconds(cooldown);
         canShoot = true;
     }
 
@@ -60,57 +63,18 @@ public class PlayerCombat : MonoBehaviour
 
     private IEnumerator DamageMultiplierCoroutine(float multiplier, float duration)
     {
-        currentDamage = defaultDamage;
-        currentDamage *= multiplier;       // Apply multiplier
+        globalDamageMultiplier = multiplier;
         yield return new WaitForSeconds(duration);
-        currentDamage = defaultDamage;
+        globalDamageMultiplier = 1f;
         damageCoroutine = null;
-    }
-
-    public void ShootProjectile()
-    {
-        Projectile projectile = Instantiate(projectilePrefab, transform.position, Quaternion.identity);
-        projectile.SetDamage(currentDamage);
-
-        shootAudioSource.PlayOneShot(shootSfx);
-        shootAudioSource.pitch = Random.Range(0.9f, 1.3f);
-
-        //Cast a ray from the camera onto a plane (ground level).
-        Plane plane = new(Vector3.forward, transform.position);
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Vector3 hitPoint;
-
-        //Aim where the ray intersects with the plane.
-        float distance;
-        if (plane.Raycast(ray, out distance))
-        {
-            hitPoint = ray.GetPoint(distance);
-
-            Vector2 towardMouse = (hitPoint - transform.position).normalized;
-            projectile.SetVelocity(towardMouse * projectileSpeed);
-        }
-
-        StartCoroutine(ShootCooldownRoutine());
-    }
-
-    /// <summary>
-    /// Changes what type of projectile the player is currently firing.
-    /// </summary>
-    /// <param name="prefab">The new projecitle. Use null to reset to default.</param>
-    public void SetProjectileType(Projectile prefab)
-    {
-        if (prefab != null)
-            projectilePrefab = prefab;
-        else
-            projectilePrefab = _defaultProjectilePrefab;
     }
 
     public void ActivateShield(GameObject shieldPrefab, ShieldArea source)
     {
-        if (shieldPrefab == null) return;
 
         HasShield = true;
         _currentShieldArea = source;
+        if (shieldPrefab == null) return;
         _activeShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity, transform);
     }
 

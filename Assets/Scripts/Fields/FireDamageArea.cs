@@ -20,15 +20,15 @@ public class FireDamageArea : WheelArea
             //Debug.Log("Player is in area name: " + gameObject.name);
             if (Time.time >= _nextAttackTime)
             {
-                _playerCombat.SetProjectileType(_fireballPrefab);
+                //_playerCombat.SetProjectileType(_fireballPrefab);
                 _nextAttackTime = Time.time + _attackRate;
             }   
 
 
         }
-        else
+        else;
             //Obviously bad for when multiple zones are on the wheel but it works for the prototype
-            _playerCombat.SetProjectileType(null);
+            //_playerCombat.SetProjectileType(null);
     }
     
 }
