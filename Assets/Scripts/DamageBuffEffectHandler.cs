@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//TODO will be cleaner when we have a BuffManager script
 public class DamageBuffEffectHandler : FieldEffectHandler
 {
     private float damageMultiplier;
@@ -14,18 +15,20 @@ public class DamageBuffEffectHandler : FieldEffectHandler
 
     public override void OnEnter(Player player)
     {
-        Debug.Log("Entering Damage Buff Field, boosting damage by " + damageMultiplier + " for " + duration + " seconds ");
+        Debug.Log("Entering Damage Buff Field, boosting damage by " + damageMultiplier);
         player.GetComponent<PlayerCombat>().SetDamageMultiplierForDuration(damageMultiplier, duration);
     }
 
     public override void OnStay(Player player, float deltaTime)
     {
-        // Nothing needed here for a simple damage buff
+        player.GetComponent<PlayerCombat>().SetDamageMultiplierForDuration(damageMultiplier, duration);
+
     }
 
     public override void OnExit(Player player)
     {
-        Debug.Log("Exiting Damage Buff Field");
+        player.GetComponent<PlayerCombat>().SetDamageMultiplierForDuration(damageMultiplier, duration);
+        Debug.Log("Exiting Damage Buff Field, boosting damage by " + damageMultiplier + " for " + duration + " seconds ");
         // The damage multiplier is automatically reset after the duration in PlayerCombat
     }
-} 
+}

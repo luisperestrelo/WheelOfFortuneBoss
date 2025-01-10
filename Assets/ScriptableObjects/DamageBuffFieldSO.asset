@@ -21,4 +21,5 @@ MonoBehaviour:
   cooldown: 0
   visualEffect: {fileID: 0}
   audioEffect: {fileID: 0}
+  size: 2
   damageMultiplier: 2

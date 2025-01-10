@@ -167,22 +167,36 @@ public class WheelManager : MonoBehaviour
         CleanUpEffectHandlers();
 
         Segments.Clear();
-        float anglePerSegment = 360f / fields.Count;
-        for (int i = 0; i < fields.Count; i++)
+
+        // Calculate total relative size of all fields
+        float totalRelativeSize = 0;
+        foreach (Field f in fields)
         {
-            float startAngle = i * anglePerSegment;
-            float endAngle = (i + 1) * anglePerSegment;
-            WheelSegment segment = new WheelSegment(fields[i], startAngle, endAngle);
-            Segments.Add(segment);
+            totalRelativeSize += f.Size;
         }
 
+        // Calculate segment angles based on relative size
+        float currentAngle = 0;
+        for (int i = 0; i < fields.Count; i++)
+        {
+            float fieldRelativeSize = fields[i].Size;
+            float startAngle = currentAngle;
+            float angleSize = (fieldRelativeSize / totalRelativeSize) * 360f;
+            float endAngle = currentAngle + angleSize;
+
+            // Create segment
+            WheelSegment segment = new WheelSegment(fields[i], startAngle, endAngle);
+            Segments.Add(segment);
+
+            currentAngle = endAngle;
+        }
+
+        // Initialize EffectHandlers for each segment
         foreach (WheelSegment segment in Segments)
         {
             if (segment.EffectHandler != null)
             {
                 segment.EffectHandler.Initialize(segment.Field);
-
-                // Always call SetSegment on the EffectHandler
                 segment.EffectHandler.SetSegment(segment);
             }
         }
@@ -190,7 +204,7 @@ public class WheelManager : MonoBehaviour
         DrawWheelLines();
         CreateCooldownTexts();
         CreateFieldIcons();
-        CreateChargeIndicators(); // Call the new method
+        CreateChargeIndicators();
     }
 
     private void CleanUpVisuals()
@@ -397,25 +411,35 @@ public class WheelManager : MonoBehaviour
 
     private void AddFieldToSegments(Field field)
     {
-        // Calculate new segment angles
-        float anglePerSegment = 360f / (FieldsToAddToWheel.Count);
+        // Calculate total relative size of all fields
+        float totalRelativeSize = 0;
+        foreach (Field f in FieldsToAddToWheel)
+        {
+            totalRelativeSize += f.Size;
+        }
+
+        // Calculate segment angles based on relative size
+        float currentAngle = 0;
         for (int i = 0; i < FieldsToAddToWheel.Count; i++)
         {
-            float startAngle = i * anglePerSegment;
-            float endAngle = (i + 1) * anglePerSegment;
+            float fieldRelativeSize = FieldsToAddToWheel[i].Size;
+            float startAngle = currentAngle;
+            float angleSize = (fieldRelativeSize / totalRelativeSize) * 360f;
+            float endAngle = currentAngle + angleSize;
 
+            // Create or update segment
             if (i == FieldsToAddToWheel.Count - 1)
             {
-                // Create and add the new segment
                 WheelSegment segment = new WheelSegment(field, startAngle, endAngle);
                 Segments.Add(segment);
             }
             else
             {
-                // Update existing segments
                 Segments[i].StartAngle = startAngle;
                 Segments[i].EndAngle = endAngle;
             }
+
+            currentAngle = endAngle;
         }
 
         // Initialize the EffectHandler for the new segment
@@ -429,16 +453,25 @@ public class WheelManager : MonoBehaviour
 
     private void AddFieldToSegments(Field field, int index)
     {
-        // Calculate new segment angles
-        float anglePerSegment = 360f / FieldsToAddToWheel.Count;
+        // Calculate total relative size of all fields
+        float totalRelativeSize = 0;
+        foreach (Field f in FieldsToAddToWheel)
+        {
+            totalRelativeSize += f.Size;
+        }
+
+        // Calculate segment angles based on relative size
+        float currentAngle = 0;
         for (int i = 0; i < FieldsToAddToWheel.Count; i++)
         {
-            float startAngle = i * anglePerSegment;
-            float endAngle = (i + 1) * anglePerSegment;
+            float fieldRelativeSize = FieldsToAddToWheel[i].Size;
+            float startAngle = currentAngle;
+            float angleSize = (fieldRelativeSize / totalRelativeSize) * 360f;
+            float endAngle = currentAngle + angleSize;
 
+            // Create or update segment
             if (i == index)
             {
-                // Create and insert the new segment
                 WheelSegment segment = new WheelSegment(field, startAngle, endAngle);
                 Segments.Insert(index, segment);
             }
@@ -454,6 +487,8 @@ public class WheelManager : MonoBehaviour
                 Segments[i].StartAngle = startAngle;
                 Segments[i].EndAngle = endAngle;
             }
+
+            currentAngle = endAngle;
         }
 
         // Initialize the EffectHandler for the new segment
@@ -520,9 +555,10 @@ public class WheelManager : MonoBehaviour
 
     private void UpdateWheelVisuals()
     {
-        // Redraw lines, update cooldown texts, and field icons
+        // Remove old visual elements before creating new ones
         CleanUpVisuals();
 
+        // Redraw lines, update cooldown texts, and field icons
         DrawWheelLines();
         CreateCooldownTexts();
         CreateFieldIcons();
@@ -530,4 +566,4 @@ public class WheelManager : MonoBehaviour
     }
 
     // Add methods for bosses to modify the wheel here
-}
+} 

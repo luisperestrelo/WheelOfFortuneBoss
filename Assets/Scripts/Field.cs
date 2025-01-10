@@ -9,10 +9,12 @@ public enum FieldType
     Heal,
     VampiricSeeds,
     BossDebuff,
-    VoidBlast,
+    VoidBurst,
+    ChargedVoidBurst,
     EldritchBlast,
     FanOfKnives,
-    DamagePlayer
+    DamagePlayer,
+    DamagingField
     // Add other field types here
 }
 
@@ -46,6 +48,8 @@ public class Field : ScriptableObject
     public GameObject VisualEffect => visualEffect;
     [SerializeField] private AudioClip audioEffect;
     public AudioClip AudioEffect => audioEffect;
+    [SerializeField] private float size = 1f;
+    public float Size => size;
 
     // Add other data properties specific to the field type here
     // For example:

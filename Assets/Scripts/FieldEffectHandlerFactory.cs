@@ -42,6 +42,26 @@ public static class FieldEffectHandlerFactory
                 damagePlayerHandler.Initialize(fieldData);
                 damagePlayerHandler.name = "DamagePlayerEffectHandler";
                 return damagePlayerHandler;
+            case FieldType.EldritchBlast:
+                var eldritchBlastHandler = new GameObject().AddComponent<EldritchBlastEffectHandler>();
+                eldritchBlastHandler.Initialize(fieldData);
+                eldritchBlastHandler.name = "EldritchBlastEffectHandler";
+                return eldritchBlastHandler;
+            case FieldType.VoidBurst:
+                var voidBurstHandler = new GameObject().AddComponent<VoidBurstEffectHandler>();
+                voidBurstHandler.Initialize(fieldData);
+                voidBurstHandler.name = "VoidBurstEffectHandler";
+                return voidBurstHandler;
+            case FieldType.DamagingField:
+                var damagingFieldHandler = new GameObject().AddComponent<DamagingFieldEffectHandler>();
+                damagingFieldHandler.Initialize(fieldData);
+                damagingFieldHandler.name = "DamagingFieldEffectHandler";
+                return damagingFieldHandler;
+            case FieldType.ChargedVoidBurst:
+                var chargedVoidBurstHandler = new GameObject().AddComponent<ChargedVoidBurstEffectHandler>();
+                chargedVoidBurstHandler.Initialize(fieldData);
+                chargedVoidBurstHandler.name = "ChargedVoidBurstEffectHandler";
+                return chargedVoidBurstHandler;
 
             // Add cases for other field types here
             default:

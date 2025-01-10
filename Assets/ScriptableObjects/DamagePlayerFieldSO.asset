@@ -15,11 +15,12 @@ MonoBehaviour:
   fieldName: DamagePlayer
   description: Damages the player while he stays in this field
   icon: {fileID: 0}
-  fieldType: 10
+  fieldType: 11
   activationType: 1
   duration: 0
   cooldown: 0
   visualEffect: {fileID: 0}
   audioEffect: {fileID: 0}
+  size: 1
   damageAmount: 1
   damageInterval: 0.25
