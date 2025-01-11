@@ -715,7 +715,7 @@ RectTransform:
   m_GameObject: {fileID: 7560562144807881861}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2789815871709878512}
@@ -786,6 +786,7 @@ MonoBehaviour:
   descriptionText: {fileID: 9006374550543807434}
   rarityText: {fileID: 9046932028630907588}
   typeText: {fileID: 9174777052326696584}
+  sizeText: {fileID: 0}
 --- !u!114 &3958497871435932033
 MonoBehaviour:
   m_ObjectHideFlags: 0

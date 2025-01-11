@@ -50,6 +50,7 @@ public class MusicPlayer : MonoBehaviour
             instance = this;
 
         filter = GetComponent<AudioLowPassFilter>();
+        DontDestroyOnLoad(gameObject);
     }
 
     public void LoadProfile(SoundProfile profile)
