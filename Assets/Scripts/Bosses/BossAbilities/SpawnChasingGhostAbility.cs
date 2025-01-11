@@ -10,6 +10,11 @@ public class SpawnChasingGhostAbility : MonoBehaviour
     [SerializeField] private float ghostSpeed = 3f;
     [SerializeField] private float ghostDamage = 10f;
 
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     public void SpawnGhost()
     {
         if (player == null)

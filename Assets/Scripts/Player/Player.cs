@@ -7,6 +7,10 @@ public class Player : MonoBehaviour
 
     private WheelSegment currentSegment;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     private void Start()
     {
         //Get the WheelManager component from the same GameObject this is attached to,

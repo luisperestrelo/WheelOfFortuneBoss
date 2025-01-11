@@ -16,5 +16,6 @@ MonoBehaviour:
   description: Damage Upgrade Card
   rarity: 0
   icon: {fileID: 21300000, guid: f319a25a7ca229145bfef1becea37588, type: 3}
+  cardType: 1
   statType: 1
   statValue: 0.2

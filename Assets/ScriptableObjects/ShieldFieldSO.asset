@@ -22,4 +22,4 @@ MonoBehaviour:
   cooldown: 5
   visualEffect: {fileID: 0}
   audioEffect: {fileID: 0}
-  size: 0.5
+  size: 0.65

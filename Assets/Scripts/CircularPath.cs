@@ -8,6 +8,11 @@ public class CircularPath : MonoBehaviour
 {
     [SerializeField] private float radius = 5f;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;

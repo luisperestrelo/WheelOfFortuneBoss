@@ -15,11 +15,12 @@ public class WheelManager : MonoBehaviour
     public float LineWidth = 0.1f;
 
     [SerializeField] private GameObject chargeIndicatorPrefab; // Assign the ChargeIndicator prefab here
-    [SerializeField] private Canvas indicatorCanvas; // Assign the Canvas here
-
+    public Canvas indicatorCanvas; // fuck it we make it public 
+    
     private void Awake()
     {
         InitializeWheel(FieldsToAddToWheel);
+        DontDestroyOnLoad(gameObject);
     }
 
     public void AddField(Field field)
@@ -576,6 +577,12 @@ public class WheelManager : MonoBehaviour
         CreateCooldownTexts();
         CreateFieldIcons();
         CreateChargeIndicators();
+    }
+
+    public void InsertFieldAtBoundary(Field field, int boundaryIndex)
+    {
+        // Assuming boundaryIndex is the index of the segment *before* which the new field should be inserted:
+        AddField(field, boundaryIndex + 1); 
     }
 
     // Add methods for bosses to modify the wheel here

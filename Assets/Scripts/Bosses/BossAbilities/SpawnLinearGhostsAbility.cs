@@ -12,6 +12,11 @@ public class SpawnLinearGhostsAbility : MonoBehaviour
     [SerializeField] private float ghostDamage = 10f;
     [SerializeField] private float ghostLifeTime = 10f;
 
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     public void SpawnGhosts()
     {
         if (player == null)

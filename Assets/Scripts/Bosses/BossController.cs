@@ -28,6 +28,8 @@ public class BossController : MonoBehaviour
 
     private void Start()
     {
+        player = FindObjectOfType<Player>().transform;
+        playerPath = FindObjectOfType<CircularPath>();
         stateMachine = new BossStateMachine(this);
         stateMachine.Initialize(stateMachine.idleState);
         StartFireSlashCoroutine();

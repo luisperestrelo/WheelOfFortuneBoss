@@ -16,5 +16,6 @@ MonoBehaviour:
   description: Health Upgrade Card
   rarity: 0
   icon: {fileID: 21300000, guid: a45c64b129fe3d3448ce5c337edc9784, type: 3}
+  cardType: 1
   statType: 0
   statValue: 50

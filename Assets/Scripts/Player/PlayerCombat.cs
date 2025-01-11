@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float baseDamageMultiplier = 1f;
 
     [SerializeField] private AudioClip shootSfx;
+    [SerializeField] private GameObject shieldPrefab;
 
     private BaseProjectile projectilePrefab;
 
@@ -81,13 +82,13 @@ public class PlayerCombat : MonoBehaviour
         damageCoroutine = null;
     }
 
-    public void ActivateShield(GameObject shieldPrefab, ShieldArea source)
+    public void ActivateShield(GameObject shieldPrefab, ShieldArea source) // not using the parameters
     {
 
         HasShield = true;
         _currentShieldArea = source;
-        if (shieldPrefab == null) return;
-        _activeShield = Instantiate(shieldPrefab, transform.position, Quaternion.identity, transform);
+        //if (shieldPrefab == null) return;
+        _activeShield = Instantiate(this.shieldPrefab, transform.position, Quaternion.identity, transform);
     }
 
     public void RemoveShield()

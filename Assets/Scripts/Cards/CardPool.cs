@@ -12,6 +12,11 @@ public class CardPool : MonoBehaviour
     public int rareCopies = 2;
     public int epicCopies = 1;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void Initialize()
     {
         allCards.Clear(); // Clear the list before populating
@@ -97,7 +102,7 @@ public class CardPool : MonoBehaviour
         availableCards.RemoveAll(c => c == card);
     }
 
-    public List<Card> GetInitialCards()
+    public List<Card> GetInitialCards() // initialCards is different because we guarantee 3 field cards 
     {
         List<Card> initialCards = new List<Card>();
 

@@ -8,6 +8,7 @@ public class HealthText : MonoBehaviour
     private void Start()
     {
 
+        targetHealth = FindObjectOfType<PlayerHealth>();
 
         targetHealth.OnHealthChanged.AddListener(OnHealthChanged);
         targetHealth.OnDie.AddListener(OnDie);

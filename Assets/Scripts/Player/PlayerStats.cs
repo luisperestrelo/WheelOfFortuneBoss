@@ -4,10 +4,15 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public float BaseDamage { get; private set; } = 1f;
-    public float MaxHealth { get; private set; } = 100f;
+    // public float MaxHealth { get; private set; } = 100f;
+     public float MaxHealth = 100f;
 
     public Dictionary<Tags, float> CategoryUpgrades = new Dictionary<Tags, float>();
 
+    public void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
     public void Start()
     {
         // Initialize default values 

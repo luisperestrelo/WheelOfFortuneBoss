@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class CardManager : MonoBehaviour
 {
-   
-
     private PlayerStats playerStats;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
+        // Try to find PlayerStats, but it's okay if it's not there initially
         playerStats = FindObjectOfType<PlayerStats>();
     }
 
@@ -17,7 +21,7 @@ public class CardManager : MonoBehaviour
         if (card is FieldCard fieldCard)
         {
             // Add the field to the WheelManager
-            FindObjectOfType<WheelManager>().AddField(fieldCard.field);
+            RunManager.Instance.wheelManager.AddField(fieldCard.field);
         }
         else if (card is StatUpgradeCard statUpgradeCard)
         {
@@ -42,6 +46,4 @@ public class CardManager : MonoBehaviour
 
         //else if // thinking of adding cards that interact with the wheel like increasing the size of a field
     }
-
-
 } 
