@@ -28,6 +28,8 @@ public class BossController : MonoBehaviour
 
     private void Start()
     {
+        player = FindObjectOfType<Player>().transform;
+        playerPath = FindObjectOfType<CircularPath>();
         stateMachine = new BossStateMachine(this);
         stateMachine.Initialize(stateMachine.idleState);
         StartFireSlashCoroutine();
@@ -36,7 +38,16 @@ public class BossController : MonoBehaviour
     private void Update()
     {
         stateMachine.Update();
-        CheckIfUpgradeThreshold();
+        CheckIfDead(); // TODO: obviously this is just temproary
+        //CheckIfUpgradeThreshold(); TODO: Mid-fight upgrades
+    }
+
+    private void CheckIfDead()
+    {
+        if (health.GetCurrentHealth() <= 50) // just for testing
+        {
+            RunManager.Instance.EndFight();
+        }
     }
 
     private void CheckIfUpgradeThreshold()
@@ -126,6 +137,7 @@ public class BossController : MonoBehaviour
     // TODO: Make it an actual ability like the others, but we can do that when we do the wheel refactor
     public int ChangeRandomFieldToFire()
     {
+        return 0 ;
         if (fields.Length == 0)
             return 0;
 
@@ -142,6 +154,7 @@ public class BossController : MonoBehaviour
 
     public void DeactivateFireFields()
     {
+        return;
         foreach (GameObject field in fields)
         {
             field.GetComponent<WheelArea>().StopOnFire();
@@ -173,4 +186,10 @@ public class BossController : MonoBehaviour
     {
         hasTriggeredIncapacitatedStateThisCycle = false;
     }
+ 
+/*     public void OnOrbCollected() //we're doing it on the prefab of the orb
+    {
+        Time.timeScale = 0f; // Pause the game
+        RunManager.Instance.OfferMidFightCards();
+    } */
 }

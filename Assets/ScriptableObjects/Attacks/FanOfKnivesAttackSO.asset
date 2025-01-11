@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 106d3ef5b6e651c4b9d2916af395d780, type: 3}
+  m_Name: FanOfKnivesAttackSO
+  m_EditorClassIdentifier: 
+  BaseDamage: 4
+  FireRate: 0.2
+  shootSfx: {fileID: 0}
+  knifePrefab: {fileID: 1876552664290551512, guid: 451ae27b9314cb14b918d1e0422834e5, type: 3}
+  numberOfKnives: 3
+  spreadAngle: 30

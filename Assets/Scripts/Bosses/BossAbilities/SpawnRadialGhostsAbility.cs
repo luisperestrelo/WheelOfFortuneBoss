@@ -10,6 +10,12 @@ public class SpawnRadialGhostsAbility : MonoBehaviour
     [SerializeField] private float ghostSpeed = 2f;
     [SerializeField] private float ghostDamage = 10f;
 
+    private void Awake()
+    {
+        path = FindObjectOfType<CircularPath>();
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     public void SpawnGhosts()
     {
         if (path == null)

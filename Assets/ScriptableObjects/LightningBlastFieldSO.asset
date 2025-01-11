@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a0e1452caa0fef4f9ebd12d5814ac48, type: 3}
+  m_Name: LightningBlastFieldSO
+  m_EditorClassIdentifier: 
+  fieldName: Lightning Blast
+  description: Charges up, unleashing a devastating lightning blast when charged
+  icon: {fileID: 21300000, guid: 718d7c33ba3d82840affc11e66c3d0fa, type: 3}
+  fieldType: 2
+  tags: 06000000
+  activationType: 1
+  duration: 0
+  cooldown: 0
+  visualEffect: {fileID: 0}
+  audioEffect: {fileID: 0}
+  size: 1
+  resetsOnExit: 0
+  decayRate: 0.5
+  chargeTime: 3
+  lightningBlastPrefab: {fileID: 4763052239744130470, guid: b3c142f161bab9b4fb1563639b1dd1cc, type: 3}

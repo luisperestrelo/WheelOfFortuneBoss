@@ -39,6 +39,9 @@ public class Health : MonoBehaviour
             return;
         }
 
+
+        Debug.Log( gameObject.name + " is Taking damage: " + damageAmount);
+
         currentHealth -= damageAmount;
         OnHealthChanged.Invoke(currentHealth, maxHealth);
 
@@ -52,6 +55,8 @@ public class Health : MonoBehaviour
         {
             Die();
         }
+
+        Debug.Log($"{gameObject.name} took {damageAmount} damage!");
     }
 
     public void Heal(float healAmount)
@@ -73,6 +78,21 @@ public class Health : MonoBehaviour
 
         Debug.Log(gameObject.name + " died!");
         Destroy(gameObject);
+    }
+    
+    public void SetMaxHealth(float newMaxHealth)
+    {
+        float oldMaxHealth = maxHealth;
+        maxHealth = newMaxHealth;
+        currentHealth = currentHealth + (newMaxHealth - oldMaxHealth);
+        OnHealthChanged.Invoke(currentHealth, maxHealth);
+    }
+
+    public void IncreaseMaxHealth(float increaseAmount)
+    {
+        maxHealth += increaseAmount;
+        currentHealth += increaseAmount;
+        OnHealthChanged.Invoke(currentHealth, maxHealth);
     }
 
     public float GetCurrentHealth()

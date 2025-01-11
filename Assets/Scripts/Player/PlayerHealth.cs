@@ -7,6 +7,20 @@ public class PlayerHealth : Health
     [SerializeField] private PlayerFlashFX playerFlashFX;
     [SerializeField] private PlayerSFX playerSFX;
 
+    private PlayerStats playerStats;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        playerStats = GetComponent<PlayerStats>();
+    }
+
+    protected override void Start()
+    {
+        SetMaxHealth(playerStats.MaxHealth);
+        base.Start();
+    }
+
     public override void TakeDamage(float damageAmount)
     {
         base.TakeDamage(damageAmount);

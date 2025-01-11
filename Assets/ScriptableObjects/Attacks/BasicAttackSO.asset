@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec586a5e647fdda4e83d0281a2a2d94c, type: 3}
+  m_Name: BasicAttackSO
+  m_EditorClassIdentifier: 
+  BaseDamage: 5
+  FireRate: 0.2
+  shootSfx: {fileID: 8300000, guid: fe38d14a2a649204b9624eaf0e100419, type: 3}
+  projectilePrefab: {fileID: 1724768027327037643, guid: 2ef6cc520b77be042843d74b7a08998e, type: 3}
+  projectileSpeed: 20
