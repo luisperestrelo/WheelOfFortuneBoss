@@ -6,7 +6,10 @@ public class FireSlashAbility : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float slashSpeed = 20f;
 
-    
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     public void FireSlash()
     {
