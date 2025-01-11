@@ -28,8 +28,8 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField]
     private float musicVolume = 0.5f;
 
-    /// <summary>Set to true for one frame at the start of each measure.</summary>
-    private bool measureFlag = false;
+    [Tooltip("Set to true for one frame at the start of each measure.")]
+    public bool measureFlag = false;
 
     public enum MusicSection
     {
@@ -78,10 +78,10 @@ public class MusicPlayer : MonoBehaviour
     }
 
     /// <summary>
-    /// Crossfades into a new section of the music profile. Should be called only after loading a music profile.
+    /// Crossfades into a new section of the music profile. Should be called only after loading a music profile. <br />
     /// </summary>
     /// <param name="section">The section of the music to crossfade into.</param>
-    public IEnumerator StartSection(MusicSection section)
+    private IEnumerator StartSectionRoutine(MusicSection section)
     {
         yield return new WaitUntil(() => measureFlag == true);
         switch(section)
@@ -103,6 +103,15 @@ public class MusicPlayer : MonoBehaviour
                 Debug.LogWarning("Unknown music section loaded.");
                 break;
         }
+    }
+
+    /// <summary>
+    /// Crossfades into a new section of the music profile. Should be called only after loading a music profile.
+    /// </summary>
+    /// <param name="section">The section of the music to crossfade into.</param>
+    public void StartSection(MusicSection section)
+    {
+        StartCoroutine(StartSectionRoutine(section));
     }
 
     private IEnumerator MeasureFlagCycle()
