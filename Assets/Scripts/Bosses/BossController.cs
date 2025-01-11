@@ -36,7 +36,7 @@ public class BossController : MonoBehaviour
     private void Update()
     {
         stateMachine.Update();
-        CheckIfUpgradeThreshold();
+        //CheckIfUpgradeThreshold(); TODO: Mid-fight upgrades
     }
 
     private void CheckIfUpgradeThreshold()

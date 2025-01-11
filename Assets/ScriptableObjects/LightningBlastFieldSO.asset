@@ -16,11 +16,13 @@ MonoBehaviour:
   description: Charges up, unleashing a devastating lightning blast when charged
   icon: {fileID: 21300000, guid: 718d7c33ba3d82840affc11e66c3d0fa, type: 3}
   fieldType: 2
+  tags: 06000000
   activationType: 1
   duration: 0
   cooldown: 0
   visualEffect: {fileID: 0}
   audioEffect: {fileID: 0}
+  size: 1
   resetsOnExit: 0
   decayRate: 0.5
   chargeTime: 3

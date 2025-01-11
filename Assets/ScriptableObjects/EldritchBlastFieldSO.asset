@@ -17,6 +17,7 @@ MonoBehaviour:
     becomes a field of darkness, damaging you while you stand on it
   icon: {fileID: 21300000, guid: d79669ba1c33b524dbf0f3d4415e0716, type: 3}
   fieldType: 9
+  tags: 0500000006000000
   activationType: 0
   duration: 0
   cooldown: 3

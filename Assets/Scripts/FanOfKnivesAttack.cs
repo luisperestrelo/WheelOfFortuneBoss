@@ -9,7 +9,7 @@ public class FanOfKnivesAttack : BaseAttack
 
     public override void PerformAttack(PlayerCombat playerCombat)
     {
-        // 1. Calculate the direction towards the mouse
+        base.PerformAttack(playerCombat);
         Plane plane = new(Vector3.forward, playerCombat.transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 hitPoint;

@@ -16,6 +16,7 @@ MonoBehaviour:
   description: 
   icon: {fileID: 21300000, guid: e6032efd10f870f4c8dc49bd0ffa443b, type: 3}
   fieldType: 7
+  tags: 00000000
   activationType: 0
   duration: 0
   cooldown: 0

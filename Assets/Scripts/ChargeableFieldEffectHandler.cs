@@ -11,6 +11,7 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
     protected float decayRate;
     protected Image chargeIndicatorImage;
 
+
     public override void Initialize(Field fieldData)
     {
         base.Initialize(fieldData);
@@ -22,6 +23,10 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
         currentChargeTime = 0f;
         isCharging = false;
         isDecaying = false;
+
+
+
+
     }
 
     public override void OnEnter(Player player)
@@ -63,6 +68,10 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
 
     protected virtual void Update()
     {
+
+
+
+
         Debug.Log("current charge of " + name + " is " + currentChargeTime);
         if (isDecaying)
         {

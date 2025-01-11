@@ -4,10 +4,11 @@ using UnityEngine;
 public class VoidBurstAttack : BaseAttack
 {
     [SerializeField] private InstantDamageDealer voidBurstPrefab;
-    [SerializeField] private float voidBurstSpeed = 15f;
+    //[SerializeField] private float voidBurstSpeed = 15f; 
 
     public override void PerformAttack(PlayerCombat playerCombat)
     {
+        base.PerformAttack(playerCombat);
         InstantDamageDealer damageDealer = Instantiate(voidBurstPrefab, playerCombat.transform.position, Quaternion.identity);
 
         damageDealer.SetDamage(BaseDamage * playerCombat.GetGlobalDamageMultiplier());

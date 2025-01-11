@@ -16,6 +16,7 @@ MonoBehaviour:
   description: Damages the player while he stays in this field
   icon: {fileID: 0}
   fieldType: 11
+  tags: 
   activationType: 1
   duration: 0
   cooldown: 0

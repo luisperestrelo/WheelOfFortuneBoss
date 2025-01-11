@@ -5,15 +5,15 @@ public class BasicAttack : BaseAttack
 {
     [SerializeField] private BaseProjectile projectilePrefab;
     [SerializeField] private float projectileSpeed = 20f;
-    [SerializeField] private AudioClip shootSfx;
-
+  //  [SerializeField] private AudioClip shootSfx;
+//
     public override void PerformAttack(PlayerCombat playerCombat)
     {
+        base.PerformAttack(playerCombat);
         BaseProjectile projectile = Instantiate(projectilePrefab, playerCombat.transform.position, Quaternion.identity);
+        Debug.Log("BaseDamage: " + BaseDamage + " playerCombat.GetGlobalDamageMultiplier(): " + playerCombat.GetGlobalDamageMultiplier());
         projectile.SetDamage(BaseDamage * playerCombat.GetGlobalDamageMultiplier());
 
-        playerCombat.shootAudioSource.PlayOneShot(shootSfx);
-        playerCombat.shootAudioSource.pitch = Random.Range(0.9f, 1.3f);
 
         //Cast a ray from the camera onto a plane (ground level).
         Plane plane = new(Vector3.forward, playerCombat.transform.position);

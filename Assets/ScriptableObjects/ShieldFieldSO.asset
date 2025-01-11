@@ -16,6 +16,7 @@ MonoBehaviour:
   description: Grants a shield while remaining in field that absorbs one hit.
   icon: {fileID: 21300000, guid: f529ac7445c16ec4cb15899720a2897b, type: 3}
   fieldType: 3
+  tags: 0400000005000000
   activationType: 0
   duration: 0
   cooldown: 5

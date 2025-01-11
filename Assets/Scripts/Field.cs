@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum FieldType
@@ -27,6 +28,19 @@ public enum ActivationType
     Charged
 }
 
+//system similar to PoE for skill tags
+public enum Tags
+{
+    Attack,
+    Projectile,
+    Buff,
+    Heal,
+    Shield,
+    Cooldown,
+    Charged,
+
+}
+
 [CreateAssetMenu(fileName = "New Field", menuName = "Fields/New Field")]
 public class Field : ScriptableObject
 {
@@ -38,6 +52,8 @@ public class Field : ScriptableObject
     public Sprite Icon => icon;
     [SerializeField] private FieldType fieldType;
     public FieldType FieldType => fieldType;
+    [SerializeField] private List<Tags> tags;
+    public List<Tags> Tags => tags;
     [SerializeField] private ActivationType activationType;
     public ActivationType ActivationType => activationType;
     [SerializeField] private float duration;
@@ -50,6 +66,8 @@ public class Field : ScriptableObject
     public AudioClip AudioEffect => audioEffect;
     [SerializeField] private float size = 1f;
     public float Size => size;
+
+
 
     // Add other data properties specific to the field type here
     // For example:

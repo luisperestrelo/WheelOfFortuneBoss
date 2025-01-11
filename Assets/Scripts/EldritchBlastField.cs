@@ -13,5 +13,5 @@ public class EldritchBlastField : ChargeableField
     public DamagingField DamagingField => damagingField;
 
     [SerializeField] private float damagingFieldDuration; // Duration of the damaging field
-    public float DamagingFieldDuration => damagingFieldDuration;
+    public float DamagingFieldDuration => damagingFieldDuration; // TODO: Consider making this = Cooldown, so that Cooldown upgrades affect this
 } 

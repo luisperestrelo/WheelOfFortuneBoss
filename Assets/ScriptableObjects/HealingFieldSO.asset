@@ -16,11 +16,13 @@ MonoBehaviour:
   description: Charges up, healing you when charged
   icon: {fileID: 21300000, guid: 5da14d36cd37f6c4c833f8e055871fb7, type: 3}
   fieldType: 4
+  tags: 030000000500000006000000
   activationType: 1
   duration: 0
   cooldown: 4
   visualEffect: {fileID: 0}
   audioEffect: {fileID: 0}
+  size: 1
   resetsOnExit: 1
   decayRate: 0
   chargeTime: 2

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: ChargedVoidBurstFieldSO
   m_EditorClassIdentifier: 
   fieldName: 
-  description: 
+  description: 'DEV: Consider removing Charged Tag'
   icon: {fileID: 21300000, guid: e6032efd10f870f4c8dc49bd0ffa443b, type: 3}
   fieldType: 8
+  tags: 0000000006000000
   activationType: 1
   duration: 0
   cooldown: 0

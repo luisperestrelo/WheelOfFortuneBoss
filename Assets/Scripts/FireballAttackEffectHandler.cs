@@ -8,6 +8,7 @@ public class FireballAttackEffectHandler : FieldEffectHandler
     {
         base.Initialize(fieldData);
         fireballAttack = ((FireballField)fieldData).FireballAttack;
+
     }
 
     public override void OnEnter(Player player)

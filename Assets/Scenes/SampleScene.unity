@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allCards: []
+  availableCards: []
   commonCopies: 4
   rareCopies: 2
   epicCopies: 1
@@ -1341,6 +1342,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wheelManager: {fileID: 900709430}
   playerSpinMovement: {fileID: 0}
+--- !u!114 &1896026454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896026438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8fa46246c440724ea653889a4e5dcc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1946048747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5096653736954359182, guid: 7e6879189e3277449892772ec65d9145, type: 3}
@@ -1482,6 +1495,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5928400350805490060, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       insertIndex: 2
       addedObject: {fileID: 1896026446}
+    - targetCorrespondingSourceObject: {fileID: 5928400350805490060, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1896026454}
   m_SourcePrefab: {fileID: 100100000, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
 --- !u!1001 &2064273507
 PrefabInstance:

@@ -506,6 +506,13 @@ public class WheelManager : MonoBehaviour
         }
     }
 
+    private void ChangeSegmentSize(int index, float newSize)
+    {
+        //TODO 
+        // We can have upgrades that change the size of a field
+        
+    }
+
     private void RemoveFieldFromSegments(int index)
     {
         // Clean up the EffectHandler for the removed segment

@@ -4,6 +4,8 @@ public abstract class FieldEffectHandler : MonoBehaviour
 {
     public Field FieldData { get; private set; }
     protected WheelSegment Segment { get; private set; }
+    protected PlayerStats playerStats;
+    //protected SkillStats skillStats;
 
     public virtual void Initialize(Field fieldData)
     {

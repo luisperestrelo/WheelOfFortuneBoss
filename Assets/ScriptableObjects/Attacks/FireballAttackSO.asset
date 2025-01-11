@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a80e10fc1c953346af379d6fd93ead6, type: 3}
   m_Name: FireballAttackSO
   m_EditorClassIdentifier: 
-  BaseDamage: 10
-  FireRate: 0.5
+  BaseDamage: 15
+  FireRate: 0.3
+  shootSfx: {fileID: 0}
   fireballPrefab: {fileID: 5876940480036625350, guid: 288787dd99b123848b4225cf23d3af85, type: 3}
-  fireballSpeed: 5
+  fireballSpeed: 7

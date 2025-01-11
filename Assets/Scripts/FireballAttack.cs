@@ -8,6 +8,7 @@ public class FireballAttack : BaseAttack
 
     public override void PerformAttack(PlayerCombat playerCombat)
     {
+        base.PerformAttack(playerCombat);
         FireballProjectile projectile = Instantiate(fireballPrefab, playerCombat.transform.position, Quaternion.identity);
         projectile.SetDamage(BaseDamage * playerCombat.GetGlobalDamageMultiplier());
 

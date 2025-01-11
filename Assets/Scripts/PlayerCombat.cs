@@ -27,18 +27,24 @@ public class PlayerCombat : MonoBehaviour
     public BaseAttack CurrentAttack;
     public BaseAttack DefaultAttack;
 
+    private PlayerStats playerStats;
+
     private void Start()
     {
         shootAudioSource = GetComponent<AudioSource>();
         projectilePrefab = defaultProjectilePrefab;
+        playerStats = FindObjectOfType<PlayerStats>();
+        baseDamageMultiplier = playerStats.BaseDamage;
     }
 
     private void Update()
     {
+
         if (canShoot && Input.GetMouseButton(0))
         {
             if (CurrentAttack == null)
                 CurrentAttack = DefaultAttack;
+            //CurrentAttack.BaseDamage = playerStats.BaseDamage; // uses the skill's base damage
             CurrentAttack.PerformAttack(this);
         }
     }
@@ -110,5 +116,6 @@ public class PlayerCombat : MonoBehaviour
     public void UpdateBaseDamageMultiplier(float newBaseMultiplier)
     {
         baseDamageMultiplier = newBaseMultiplier;
+        globalDamageMultiplier = baseDamageMultiplier; //TODO: uhh
     }
 }
