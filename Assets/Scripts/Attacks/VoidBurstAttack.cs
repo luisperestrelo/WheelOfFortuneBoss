@@ -4,7 +4,7 @@ using UnityEngine;
 public class VoidBurstAttack : BaseAttack
 {
     [SerializeField] private InstantDamageDealer voidBurstPrefab;
-    //[SerializeField] private float voidBurstSpeed = 15f; 
+    //[SerializeField] private float voidBurstSpeed = 15f;  // not used since its not a projectile
 
     public override void PerformAttack(PlayerCombat playerCombat)
     {
@@ -16,12 +16,10 @@ public class VoidBurstAttack : BaseAttack
         //playerCombat.shootAudioSource.PlayOneShot(playerCombat.shootSfx); //TODO: Add void burst sfx
         //playerCombat.shootAudioSource.pitch = Random.Range(0.9f, 1.3f);
 
-        //Cast a ray from the camera onto a plane (ground level).
         Plane plane = new(Vector3.forward, playerCombat.transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 hitPoint;
 
-        //Aim where the ray intersects with the plane.
         float distance;
         if (plane.Raycast(ray, out distance))
         {

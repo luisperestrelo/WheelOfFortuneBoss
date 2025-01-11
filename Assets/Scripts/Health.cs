@@ -82,8 +82,9 @@ public class Health : MonoBehaviour
     
     public void SetMaxHealth(float newMaxHealth)
     {
+        float oldMaxHealth = maxHealth;
         maxHealth = newMaxHealth;
-        currentHealth = maxHealth;
+        currentHealth = currentHealth + (newMaxHealth - oldMaxHealth);
         OnHealthChanged.Invoke(currentHealth, maxHealth);
     }
 

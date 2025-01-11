@@ -16,7 +16,7 @@ public enum FieldType
     FanOfKnives,
     DamagePlayer,
     DamagingField
-    // Add other field types here
+   
 }
 
 public enum ActivationType
@@ -69,12 +69,6 @@ public class Field : ScriptableObject
 
 
 
-    // Add other data properties specific to the field type here
-    // For example:
-    // [SerializeField] private float damageMultiplier;
-    // public float DamageMultiplier => damageMultiplier;
-    // [SerializeField] private float healAmount;
-    // public float HealAmount => healAmount;
-    // [SerializeField] private float debuffStrength;
-    // public float DebuffStrength => debuffStrength;
+
+
 } 

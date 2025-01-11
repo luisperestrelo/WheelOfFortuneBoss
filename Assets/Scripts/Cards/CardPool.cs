@@ -19,9 +19,9 @@ public class CardPool : MonoBehaviour
 
     public void Initialize()
     {
-        allCards.Clear(); // Clear the list before populating
+        allCards.Clear();
 
-        // Load all Card ScriptableObjects from the "Cards" folder
+
         List<Card> loadedCards = Resources.LoadAll<Card>("Cards").ToList();
 
         foreach (Card card in loadedCards)
@@ -51,13 +51,14 @@ public class CardPool : MonoBehaviour
 
     public List<Card> GetRandomCards(int numCards)
     {
-        // Shuffle the availableCards list (you can use a Fisher-Yates shuffle for better randomness)
+        // Shuffle the availableCards list (todo: maybe a fisher yates shuffle for shits and giggles)
         List<Card> shuffledCards = availableCards.OrderBy(x => Random.value).ToList();
 
         // Take the first numCards from the shuffled list
         List<Card> selectedCards = shuffledCards.Take(numCards).ToList();
 
         // Remove the selected cards from the availableCards list
+        // need to rework this a bit
         foreach (Card card in selectedCards)
         {
             availableCards.Remove(card);
@@ -66,9 +67,23 @@ public class CardPool : MonoBehaviour
         return selectedCards;
     }
 
+    public List<Card> GetRandomWithoutRemovingFromPool(int numCards)
+    {
+        // Shuffle the availableCards list (todo: maybe a fisher yates shuffle for shits and giggles)
+        List<Card> shuffledCards = availableCards.OrderBy(x => Random.value).ToList();
+
+        // Take the first numCards from the shuffled list
+        List<Card> selectedCards = shuffledCards.Take(numCards).ToList();
+
+        // todo: need to rework this a bit, not being used.
+
+        return selectedCards;
+    }
+
+    //this would be for mid-run adding cards stuff if we do that. EG fireball upgrades specific to fireball get added after we unlock a fireball
+
     public void AddCardToPool(Card card)
     {
-        // Add the card to the pool based on its rarity
         switch (card.rarity)
         {
             case CardRarity.Common:
@@ -93,16 +108,17 @@ public class CardPool : MonoBehaviour
                 }
                 break;
         }
-    }
 
+    }
+    // Remove all instances of the card from the pool
     public void RemoveCardFromPool(Card card)
     {
-        // Remove all instances of the card from the pool
         allCards.RemoveAll(c => c == card);
         availableCards.RemoveAll(c => c == card);
     }
 
-    public List<Card> GetInitialCards() // initialCards is different because we guarantee 3 field cards 
+    // initial cards is different than other moments we get offered cards because we guarantee a minimum of 3 field cards
+    public List<Card> GetInitialCards() 
     {
         List<Card> initialCards = new List<Card>();
 
@@ -122,4 +138,4 @@ public class CardPool : MonoBehaviour
 
         return initialCards;
     }
-} 
+}

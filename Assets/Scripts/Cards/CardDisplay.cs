@@ -9,6 +9,7 @@ public class CardDisplay : MonoBehaviour
     public TextMeshProUGUI descriptionText;
     public TextMeshProUGUI rarityText;
     public TextMeshProUGUI typeText;
+    public TextMeshProUGUI sizeText;
 
     private void Start()
     {

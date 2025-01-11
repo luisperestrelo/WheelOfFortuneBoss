@@ -38,7 +38,16 @@ public class BossController : MonoBehaviour
     private void Update()
     {
         stateMachine.Update();
+        CheckIfDead(); // TODO: obviously this is just temproary
         //CheckIfUpgradeThreshold(); TODO: Mid-fight upgrades
+    }
+
+    private void CheckIfDead()
+    {
+        if (health.GetCurrentHealth() <= 50) // just for testing
+        {
+            RunManager.Instance.EndFight();
+        }
     }
 
     private void CheckIfUpgradeThreshold()
@@ -177,4 +186,10 @@ public class BossController : MonoBehaviour
     {
         hasTriggeredIncapacitatedStateThisCycle = false;
     }
+ 
+/*     public void OnOrbCollected() //we're doing it on the prefab of the orb
+    {
+        Time.timeScale = 0f; // Pause the game
+        RunManager.Instance.OfferMidFightCards();
+    } */
 }

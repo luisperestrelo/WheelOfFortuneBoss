@@ -19,7 +19,7 @@ public class ShieldEffectHandler : FieldEffectHandler
 
     public override void OnStay(Player player, float deltaTime)
     {
-        // Nothing needed here for a simple shield
+        //todo: we could make it so that if the field comes off cd while the player is in it, he could get the shield
     }
 
     public override void OnExit(Player player)

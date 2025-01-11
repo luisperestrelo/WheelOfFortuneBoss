@@ -21,23 +21,22 @@ public class EldritchBlastEffectHandler : ChargeableFieldEffectHandler
 
     protected override void OnChargeComplete(Player player)
     {
-        // Find the boss and instantiate the Eldritch Blast
+        //TODO: We just blast the boss directly for now, but i wanna change this
         BossController boss = FindObjectOfType<BossController>();
         if (boss != null)
         {
-            // Calculate the offset for the "Sprite" child object
+            // Calculate the offset for the "Sprite" child object, kinda disgusting gotta figure this out
             Vector3 offset = boss.transform.Find("Sprite").localPosition;
 
             // Instantiate the Eldritch Blast at the boss's position plus the offset
             GameObject blast = Instantiate(eldritchBlastPrefab, boss.transform.position + offset, Quaternion.identity);
 
-            // Assuming the Eldritch Blast prefab has a script to handle damage, set the damage value
-            // Example: blast.GetComponent<EldritchBlast>().SetDamage(damageAmount);
 
-            // Start the cooldown on the segment
+            // Since we replace it  completely, no point using cooldown. We could consider cooldown reduction stuff
+            // to affect the duration of the damaging field though.
             //Segment.StartCooldown();
 
-            // Replace the field with a damaging field temporarily
+            // Rplace the fuild with a temporary dmg field
             StartCoroutine(ReplaceWithDamagingField(damagingField, damagingFieldDuration));
         }
         else
@@ -52,10 +51,8 @@ public class EldritchBlastEffectHandler : ChargeableFieldEffectHandler
         WheelManager wheelManager = FindObjectOfType<WheelManager>();
         if (wheelManager != null)
         {
-            // Get the index of the current segment
             int segmentIndex = wheelManager.Segments.IndexOf(Segment);
 
-            // Replace the segment's field temporarily
             wheelManager.ReplaceFieldTemporarily(segmentIndex, damagingField, duration);
         }
         else
@@ -63,6 +60,6 @@ public class EldritchBlastEffectHandler : ChargeableFieldEffectHandler
             Debug.LogError("EldritchBlastEffectHandler::ReplaceWithDamagingField: Could not find WheelManager in the scene.");
         }
 
-        yield return null; // Add a yield return to complete the coroutine
+        yield return null; 
     }
 } 

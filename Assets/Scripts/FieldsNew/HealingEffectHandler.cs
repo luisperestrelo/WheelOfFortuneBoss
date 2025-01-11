@@ -28,7 +28,6 @@ public class HealingEffectHandler : ChargeableFieldEffectHandler
 
     protected override void OnChargeComplete(Player player)
     {
-        // Heal the player
         Health playerHealth = player.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
@@ -39,7 +38,6 @@ public class HealingEffectHandler : ChargeableFieldEffectHandler
             Debug.LogError("HealingEffectHandler::OnChargeComplete: Could not find Health component on Player.");
         }
 
-        // Start the cooldown on the segment
         if (Segment != null)
         {
             Segment.StartCooldown();

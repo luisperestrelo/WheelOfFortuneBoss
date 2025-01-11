@@ -72,7 +72,7 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
 
 
 
-        Debug.Log("current charge of " + name + " is " + currentChargeTime);
+        //Debug.Log("current charge of " + name + " is " + currentChargeTime);
         if (isDecaying)
         {
             currentChargeTime -= decayRate * Time.deltaTime;

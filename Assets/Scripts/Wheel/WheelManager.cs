@@ -9,14 +9,14 @@ public class WheelManager : MonoBehaviour
     [SerializeField] private CircularPath circularPath;
     public CircularPath CircularPath => circularPath;
 
-    public List<Field> FieldsToAddToWheel; // Assign your Field Scriptable Objects to this list in the Inspector
+    public List<Field> FieldsToAddToWheel; 
 
-    public Material LineMaterial; // Assign a material for the lines in the Inspector
+    public Material LineMaterial; 
     public float LineWidth = 0.1f;
 
-    [SerializeField] private GameObject chargeIndicatorPrefab; // Assign the ChargeIndicator prefab here
-    public Canvas indicatorCanvas; // fuck it we make it public 
-    
+    [SerializeField] private GameObject chargeIndicatorPrefab; 
+    public Canvas indicatorCanvas; // fuck it we make it public . i guess TODO: fix this
+
     private void Awake()
     {
         InitializeWheel(FieldsToAddToWheel);
@@ -25,20 +25,16 @@ public class WheelManager : MonoBehaviour
 
     public void AddField(Field field)
     {
-        // Add the new field to the list of fields
         FieldsToAddToWheel.Add(field);
 
-        // Update the wheel incrementally
         AddFieldToSegments(field);
         UpdateWheelVisuals();
     }
 
     public void AddField(Field field, int index)
     {
-        // Add the new field to the list of fields at the specified index
         FieldsToAddToWheel.Insert(index, field);
 
-        // Update the wheel incrementally
         AddFieldToSegments(field, index);
         UpdateWheelVisuals();
     }
@@ -104,7 +100,6 @@ public class WheelManager : MonoBehaviour
         FieldsToAddToWheel[index] = newField;
         UpdateWheelVisuals();
 
-        // Wait for the specified duration
         yield return new WaitForSeconds(duration);
 
         // Restore the original field
@@ -113,7 +108,6 @@ public class WheelManager : MonoBehaviour
 
     private void RestoreOriginalField(int index, Field originalField)
     {
-        // Replace the temporary field with the original field
         ReplaceFieldInSegments(index, originalField);
         FieldsToAddToWheel[index] = originalField;
         UpdateWheelVisuals();
@@ -191,7 +185,6 @@ public class WheelManager : MonoBehaviour
             float angleSize = (fieldRelativeSize / totalRelativeSize) * 360f;
             float endAngle = currentAngle + angleSize;
 
-            // Create segment
             WheelSegment segment = new WheelSegment(fields[i], startAngle, endAngle);
             Segments.Add(segment);
 
@@ -216,7 +209,6 @@ public class WheelManager : MonoBehaviour
 
     private void CleanUpVisuals()
     {
-        // Destroy existing line objects
         foreach (Transform child in transform)
         {
             if (child.name.StartsWith("SegmentLine_") || child.name.StartsWith("CooldownText_") || child.name.StartsWith("FieldIcon_"))
@@ -225,7 +217,7 @@ public class WheelManager : MonoBehaviour
             }
         }
 
-        // Destroy existing charge indicators (assuming they are children of the indicatorCanvas)
+
         if (indicatorCanvas != null)
         {
             foreach (Transform child in indicatorCanvas.transform)
@@ -249,9 +241,8 @@ public class WheelManager : MonoBehaviour
             Vector3 startPoint = center + Quaternion.Euler(0, 0, segment.StartAngle - 90) * Vector3.up * radius;
             Vector3 endPoint = center + Quaternion.Euler(0, 0, segment.EndAngle - 90) * Vector3.up * radius;
 
-            // Create a new GameObject for each line
             GameObject lineObject = new GameObject($"SegmentLine_{segment.StartAngle}");
-            lineObject.transform.SetParent(transform); // Set the parent to the WheelManager
+            lineObject.transform.SetParent(transform); 
 
             // Add a LineRenderer component to the new GameObject
             LineRenderer lineRenderer = lineObject.AddComponent<LineRenderer>();
@@ -263,7 +254,7 @@ public class WheelManager : MonoBehaviour
             lineRenderer.SetPosition(1, startPoint);
 
             GameObject lineObject2 = new GameObject($"SegmentLine_{segment.EndAngle}");
-            lineObject2.transform.SetParent(transform); // Set the parent to the WheelManager
+            lineObject2.transform.SetParent(transform); 
 
             LineRenderer lineRenderer2 = lineObject2.AddComponent<LineRenderer>();
             lineRenderer2.material = LineMaterial;
@@ -294,18 +285,16 @@ public class WheelManager : MonoBehaviour
             }
         }
 
-        return null; // Should ideally never happen if the wheel is set up correctly
+        return null; // Should never happen, since the whole wheel is used, player should always be in a segment
     }
 
     private void CreateCooldownTexts()
     {
         foreach (WheelSegment segment in Segments)
         {
-            // Create a new GameObject for the cooldown text
             GameObject textObject = new GameObject($"CooldownText_{segment.Field.FieldName}");
-            textObject.transform.SetParent(transform); // Set the parent to the WheelManager
+            textObject.transform.SetParent(transform); 
 
-            // Add a TextMesh component (or TextMeshPro if you're using that)
             TextMesh textMesh = textObject.AddComponent<TextMesh>();
             textMesh.text = ""; // Initially empty
             textMesh.anchor = TextAnchor.MiddleCenter;
@@ -313,14 +302,12 @@ public class WheelManager : MonoBehaviour
             textMesh.fontSize = 12;
             textMesh.color = Color.white;
 
-            // Position the text above the segment
             Vector3 center = CircularPath.GetCenter();
             float radius = CircularPath.GetRadius();
             float angle = (segment.StartAngle + segment.EndAngle) / 2f - 90;
             Vector3 textPosition = center + Quaternion.Euler(0, 0, angle) * Vector3.up * (radius + 0.5f); // Adjust 0.5f to position the text further out
             textObject.transform.position = textPosition;
 
-            // Store a reference to the text object in the segment
             segment.CooldownText = textMesh;
         }
     }
@@ -350,26 +337,24 @@ public class WheelManager : MonoBehaviour
         {
             if (segment.Field is ChargeableField)
             {
-                // Instantiate the ChargeIndicator prefab as a child of the Canvas
+                // Instantiate the ChargeIndicator prefab as a child of a Canvas used just for this
+                // Later we can use other ways to show the charge going up
                 GameObject indicator = Instantiate(chargeIndicatorPrefab, indicatorCanvas.transform);
 
                 // Set the position and rotation of the indicator to match the segment
                 float angle = (segment.StartAngle + segment.EndAngle) / 2f;
 
-                // Calculate the position in world space
+                // We're doing some magic here that I found on the internet it works out alright
                 Vector3 indicatorWorldPosition = CircularPath.GetCenter() + Quaternion.Euler(0, 0, angle - 90) * (CircularPath.GetRadius() * Vector3.up * 0.75f);
 
-                // Convert world space position to canvas space
-                // Use RectTransformUtility.WorldToScreenPoint to convert to screen space first
+
                 Vector2 screenPos = RectTransformUtility.WorldToScreenPoint(Camera.main, indicatorWorldPosition);
 
-                // Then convert screen space to canvas space
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(indicatorCanvas.transform as RectTransform, screenPos, indicatorCanvas.worldCamera, out Vector2 canvasPos);
 
                 indicator.transform.localPosition = canvasPos;
                 indicator.transform.localRotation = Quaternion.Euler(0, 0, angle);
 
-                // Set the indicator's Image component
                 Image indicatorImage = indicator.GetComponent<Image>();
                 if (indicatorImage != null)
                 {
@@ -389,7 +374,6 @@ public class WheelManager : MonoBehaviour
         {
             segment.UpdateCooldown(Time.deltaTime);
 
-            // Update the cooldown text
             if (segment.CooldownText != null)
             {
                 if (segment.IsOnCooldown)
@@ -406,7 +390,6 @@ public class WheelManager : MonoBehaviour
 
     private void CleanUpEffectHandlers()
     {
-        // Destroy existing effect handler game objects
         foreach (WheelSegment segment in Segments)
         {
             if (segment.EffectHandler != null)
@@ -458,6 +441,7 @@ public class WheelManager : MonoBehaviour
         }
     }
 
+    //override to choose position.
     private void AddFieldToSegments(Field field, int index)
     {
         // Calculate total relative size of all fields
@@ -572,7 +556,7 @@ public class WheelManager : MonoBehaviour
         // Remove old visual elements before creating new ones
         CleanUpVisuals();
 
-        // Redraw lines, update cooldown texts, and field icons
+        // Redraw lines, update cooldown texts, and field icons, probably more stuff later
         DrawWheelLines();
         CreateCooldownTexts();
         CreateFieldIcons();
@@ -581,9 +565,10 @@ public class WheelManager : MonoBehaviour
 
     public void InsertFieldAtBoundary(Field field, int boundaryIndex)
     {
-        // Assuming boundaryIndex is the index of the segment *before* which the new field should be inserted:
+        //This will be for later when we can customize wheel more
         AddField(field, boundaryIndex + 1); 
     }
 
-    // Add methods for bosses to modify the wheel here
+    
+
 } 

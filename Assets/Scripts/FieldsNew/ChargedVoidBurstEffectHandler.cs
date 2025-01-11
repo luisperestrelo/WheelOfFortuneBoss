@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
 {
@@ -49,7 +50,7 @@ public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
     private void ApplyCurse(Player player)
     {
         isCursed = true;
-        // You might want to add a visual indicator for the curse
+        //TODO visuals
         curseCoroutine = StartCoroutine(CurseDamageOverTime(player));
     }
 
@@ -65,7 +66,7 @@ public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
         curseCoroutine = StartCoroutine(CurseDamageOverTime(player));
     }
 
-    private System.Collections.IEnumerator CurseDamageOverTime(Player player)
+    private IEnumerator CurseDamageOverTime(Player player)
     {
         float timer = 0f;
         while (timer < curseDuration)
@@ -75,6 +76,6 @@ public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
             yield return new WaitForSeconds(curseDamageInterval);
         }
         isCursed = false;
-        curseCoroutine = null; // Reset the coroutine reference
+        curseCoroutine = null; 
     }
 } 

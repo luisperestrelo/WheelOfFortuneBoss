@@ -12,7 +12,7 @@ public class LightningBlastEffectHandler : ChargeableFieldEffectHandler
 
     protected override void OnChargeComplete(Player player)
     {
-        // Find the boss and instantiate the lightning blast
+        // Find the boss and instantiate the lightning blast, maybe change later
         BossController boss = FindObjectOfType<BossController>();
         Vector3 offset = boss.transform.Find("Sprite").localPosition;
 

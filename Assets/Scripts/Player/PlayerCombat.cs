@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
 public class PlayerCombat : MonoBehaviour
@@ -118,5 +119,26 @@ public class PlayerCombat : MonoBehaviour
     {
         baseDamageMultiplier = newBaseMultiplier;
         globalDamageMultiplier = baseDamageMultiplier; //TODO: uhh
+    }
+
+    //Maybe a ghetto solution but if we went into a new scene and canShoot was false from before, it wouldnt work
+    private void OnEnable()
+    {
+       
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        
+        canShoot = true;
+        Debug.Log("canShoot reset to true on scene load: " + scene.name);
     }
 }

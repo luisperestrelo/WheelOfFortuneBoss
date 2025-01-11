@@ -8,10 +8,14 @@ public class RunManager : MonoBehaviour
     public CardPool cardPool;
     public CardManager cardManager;
     public List<Card> currentRunCards = new List<Card>();
-    public WheelManager wheelManager; // Assign in Inspector
-    public string bossFightSceneName = "BossFightScene"; // Set the name of your boss fight scene
+    public WheelManager wheelManager; 
+    public string bossFightSceneName = "BossFightScene"; // right now we only have one but later we fix this
     public CardDisplay[] cardDisplays;
     public Player player;
+    public MidFightCardOfferUI midFightCardOfferUI; 
+    public string postBossSceneName = "PostBossCardSelectionScene"; 
+    private List<Card> offeredCards;
+    private bool first = true; // TODO: right now startrun is also used just to go next boss, this will be removed once fixed
 
     public static RunManager Instance { get; private set; }
 
@@ -32,7 +36,13 @@ public class RunManager : MonoBehaviour
     {
         // Reset player stats, clear current run cards, etc.
         currentRunCards.Clear();
-        cardPool.Initialize(); // Or re-initialize if you want a fresh pool each run
+            //cardPool.Initialize(); 
+
+        if (first) // TODO: right now startrun is also used just to go next boss, this will be removed once fixed
+        {
+            cardPool.Initialize(); 
+            first = false;
+        }
 
         // Initial card selection
         OfferInitialCards();
@@ -54,8 +64,7 @@ public class RunManager : MonoBehaviour
 
     public void OfferInitialCards()
     {
-        List<Card> initialCards = cardPool.GetInitialCards(); // Using the custom rule method
-        // Display these cards in the UI
+        List<Card> initialCards = cardPool.GetInitialCards(); // Initial cards have a special rule  
         for (int i = 0; i < initialCards.Count; i++)
         {
             cardDisplays[i].DisplayCard(initialCards[i]);
@@ -68,8 +77,8 @@ public class RunManager : MonoBehaviour
             currentRunCards.Add(card);
         }
 
-        // Close the card selection UI (if it was used)
-        Debug.Log("Applied initial cards (UI not implemented yet)");
+        
+        Debug.Log("Applied initial cards");
 
         foreach (Card card in currentRunCards)
         {
@@ -79,56 +88,88 @@ public class RunManager : MonoBehaviour
 
     public void OfferCardSelection()
     {
-        // Trigger the card selection UI (not implemented yet)
+        
         List<Card> cardsToOffer = cardPool.GetRandomCards(5);
 
-        // For now, just log the offered cards to the console
+       
         Debug.Log("Offered Cards:");
         foreach (Card card in cardsToOffer)
         {
             Debug.Log($"- {card.cardName} ({card.rarity})");
         }
 
-        // In the actual implementation, you would display the cards in the UI
-        // and call OnCardSelected when a card is clicked
+
     }
 
-    // This will be called when the player selects a card in the UI (UI not implemented yet)
     public void OnCardSelected(Card selectedCard)
     {
         cardManager.ApplyCard(selectedCard);
         currentRunCards.Add(selectedCard);
-        // Close the card selection UI
         Debug.Log($"Selected Card: {selectedCard.cardName}");
     }
 
     public void StartFight()
     {
-
-        EnableWheelAndPlayer();
+        EnableWheelAndPlayer(); // Enable when the fight starts. It is messy , but its fine for now
         SceneManager.LoadScene(bossFightSceneName);
-
     }
-
 
     public void EndFight()
     {
-        SceneManager.LoadScene("PostBossCardSelection");
+        DisableWheelAndPlayer(); // Disable when fight ends. Messy but works for now
+        SceneManager.LoadScene(postBossSceneName);
+
     }
 
     public void DisableWheelAndPlayer()
     {
-        // Disable Wheel components
-        wheelManager.gameObject.SetActive(false); // Or disable specific components
+        wheelManager.gameObject.SetActive(false); 
 
-        // Disable Player components
-        player.gameObject.SetActive(false); // Or disable specific components
+        player.gameObject.SetActive(false); 
     }
 
     public void EnableWheelAndPlayer()
     {
-        wheelManager.gameObject.SetActive(true); // Or disable specific components
-        player.gameObject.SetActive(true); // Or disable specific components
+        wheelManager.gameObject.SetActive(true); 
+        player.gameObject.SetActive(true); 
     }
 
+    public void OfferMidFightCards()
+    {
+        List<Card> cardsToOffer = cardPool.GetRandomCards(5);
+
+        midFightCardOfferUI.ShowCards(cardsToOffer);
+    }
+
+    public void OnMidFightCardSelected(Card selectedCard)
+    {
+        cardManager.ApplyCard(selectedCard);
+        currentRunCards.Add(selectedCard);
+
+        Time.timeScale = 1f;
+        midFightCardOfferUI.gameObject.SetActive(false);
+    }
+
+    public void AddCardsToCurrentRun(List<Card> cards)
+    {
+        foreach (Card card in cards)
+        {
+            cardManager.ApplyCard(card);
+            currentRunCards.Add(card);
+        }
+    }
+
+    public List<Card> GetOfferedCards()
+    {
+        if (offeredCards == null)
+        {
+            OfferPostFightCards();
+        }
+        return offeredCards;
+    }
+
+    public void OfferPostFightCards()
+    {
+        offeredCards = cardPool.GetRandomCards(5);
+    }
 }

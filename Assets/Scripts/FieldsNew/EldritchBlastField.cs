@@ -6,12 +6,12 @@ public class EldritchBlastField : ChargeableField
     /* [SerializeField] private float damageAmount;
     public float DamageAmount => damageAmount */ //handled in the prefab
 
-    [SerializeField] private GameObject eldritchBlastPrefab; // Prefab for the visual effect
+    [SerializeField] private GameObject eldritchBlastPrefab; 
     public GameObject EldritchBlastPrefab => eldritchBlastPrefab;
 
     [SerializeField] private DamagingField damagingField; // The field to replace with after the blast
     public DamagingField DamagingField => damagingField;
 
-    [SerializeField] private float damagingFieldDuration; // Duration of the damaging field
+    [SerializeField] private float damagingFieldDuration; 
     public float DamagingFieldDuration => damagingFieldDuration; // TODO: Consider making this = Cooldown, so that Cooldown upgrades affect this
 } 

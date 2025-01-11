@@ -24,7 +24,6 @@ public class BaseProjectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        // Handle collision with enemies or other objects
         if (collision.gameObject.TryGetComponent<Health>(out var health) && health.gameObject.tag != "Player")
         {
             health.TakeDamage(damage);

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//Not using, using the ChargedVoidBurstEffectHandler instead
 public class VoidBurstEffectHandler : FieldEffectHandler
 {
     private float damageAmount;
@@ -59,7 +60,6 @@ public class VoidBurstEffectHandler : FieldEffectHandler
     private void ApplyCurse(Player player)
     {
         isCursed = true;
-        // You might want to add a visual indicator for the curse
         curseCoroutine = StartCoroutine(CurseDamageOverTime(player));
     }
 
@@ -85,6 +85,6 @@ public class VoidBurstEffectHandler : FieldEffectHandler
             yield return new WaitForSeconds(curseDamageInterval);
         }
         isCursed = false;
-        curseCoroutine = null; // Reset the coroutine reference
+        curseCoroutine = null; 
     }
 }

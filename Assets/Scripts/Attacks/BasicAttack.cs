@@ -15,12 +15,10 @@ public class BasicAttack : BaseAttack
         projectile.SetDamage(BaseDamage * playerCombat.GetGlobalDamageMultiplier());
 
 
-        //Cast a ray from the camera onto a plane (ground level).
         Plane plane = new(Vector3.forward, playerCombat.transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 hitPoint;
 
-        //Aim where the ray intersects with the plane.
         float distance;
         if (plane.Raycast(ray, out distance))
         {

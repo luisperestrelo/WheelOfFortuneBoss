@@ -17,9 +17,9 @@ public class PlayerStats : MonoBehaviour
     {
         // Initialize default values 
         // Save/Load stuff probably goes here
+        //TODO: just a lot of todo stuff for player stats
     }
 
-    // Example methods for modifying stats:
     public void IncreaseBaseDamage(float amount)
     {
         BaseDamage += amount;
@@ -50,5 +50,4 @@ public class PlayerStats : MonoBehaviour
     }
 
 
-    // You can add more methods for other stats as needed
 } 

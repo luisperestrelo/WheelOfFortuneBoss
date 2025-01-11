@@ -63,7 +63,6 @@ public static class FieldEffectHandlerFactory
                 chargedVoidBurstHandler.name = "ChargedVoidBurstEffectHandler";
                 return chargedVoidBurstHandler;
 
-            // Add cases for other field types here
             default:
                 Debug.LogError("FieldEffectHandlerFactory::CreateEffectHandler: No handler found for field type " + fieldData.FieldType);
                 return null;

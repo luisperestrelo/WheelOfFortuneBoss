@@ -13,8 +13,7 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
-        //Get the WheelManager component from the same GameObject this is attached to,
-        //or find it in the scene if it's located elsewhere.
+
         if (wheelManager == null)
         {
             wheelManager = FindObjectOfType<WheelManager>();

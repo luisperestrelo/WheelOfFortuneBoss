@@ -11,7 +11,7 @@ public class UpgradeTrigger : MonoBehaviour
         UICanvas = GameObject.Find("UICanvas");
         upgradeMenu = UICanvas.transform.Find("UpgradeMenu").gameObject;
     }
-    
+
     private void Start()
     {
         //upgradeMenu = canvas.transform.Find("UpgradeMenu").gameObject;
@@ -21,9 +21,10 @@ public class UpgradeTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Time.timeScale = 0f; // Pause the game
             upgradeMenu.SetActive(true);
+            RunManager.Instance.OfferMidFightCards();
             Destroy(gameObject);
-            Time.timeScale = 0f;
         }
     }
 }

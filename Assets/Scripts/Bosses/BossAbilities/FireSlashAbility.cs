@@ -6,6 +6,8 @@ public class FireSlashAbility : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private float slashSpeed = 20f;
 
+    
+
     public void FireSlash()
     {
         if (player == null)
