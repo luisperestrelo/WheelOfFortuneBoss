@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 
@@ -13,14 +14,23 @@ public class PostBossCardSelectionUI : MonoBehaviour
 
     private void Start()
     {
-        
+        StartCoroutine(InitializeAfterDelay());
+    }
+
+    private IEnumerator InitializeAfterDelay()
+    {
+        yield return new WaitForSeconds(0.01f); 
+
+        // Ensure RunManager is initialized after the wait
+        if (RunManager.Instance == null)
+        {
+            Debug.LogError("RunManager instance is not initialized after waiting.");
+            yield break; // Stop the coroutine if RunManager is still null
+        }
+
         startFightButton.onClick.AddListener(OnStartFightButtonClicked);
-
-        // Button becomes interactable when player selects 3 cards
         startFightButton.interactable = false;
-
         offeredCards = RunManager.Instance.GetOfferedCards();
-
         ShowCards(offeredCards);
     }
 

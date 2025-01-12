@@ -39,7 +39,7 @@ public class BossController : MonoBehaviour
     {
         stateMachine.Update();
         CheckIfDead(); // TODO: obviously this is just temproary
-        //CheckIfUpgradeThreshold(); TODO: Mid-fight upgrades
+        CheckIfUpgradeThreshold();  //
     }
 
     private void CheckIfDead()
@@ -59,12 +59,12 @@ public class BossController : MonoBehaviour
             !hasTriggeredIncapacitatedStateThisCycle)
         {
 
-            BossState nextState = stateMachine.currentState;
+            SpawnUpgradeOrb();
+  /*           BossState nextState = stateMachine.currentState;
             Debug.Log(nextState + " is the next state");
-            stateMachine.TriggerIncapacitatedState(nextState, 5f);
+            stateMachine.TriggerIncapacitatedState(nextState, 5f); */
             timesIncapacitated++;
 
-            SpawnUpgradeOrb();
 
             // hasTriggeredIncapacitatedStateThisCycle = true; // Shouldn't be necessary since we're changing the health threshold now
                                                                // but should keep an eye out

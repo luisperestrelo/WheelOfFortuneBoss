@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
@@ -19,11 +20,15 @@ public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
         curseDamageAmount = chargedVoidBurstFieldData.CurseDamageAmount;
         curseDamageInterval = chargedVoidBurstFieldData.CurseDamageInterval;
         isCursed = false;
+
+
+
     }
 
     public override void OnEnter(Player player)
     {
         base.OnEnter(player);
+
         Debug.Log("Entering Charged Void Burst Field");
         player.GetComponent<PlayerCombat>().CurrentAttack = voidBurstAttack;
     }
@@ -44,6 +49,15 @@ public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
         else
         {
             RefreshCurse(player);
+        }
+    }
+
+    public override void SetChargeIndicatorImage(Image image)
+    {
+        base.SetChargeIndicatorImage(image);
+        if (chargeIndicatorImage != null)
+        {
+            chargeIndicatorImage.color = Color.red; // since charging up is bad, we want to make it red
         }
     }
 
@@ -76,6 +90,6 @@ public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
             yield return new WaitForSeconds(curseDamageInterval);
         }
         isCursed = false;
-        curseCoroutine = null; 
+        curseCoroutine = null;
     }
-} 
+}

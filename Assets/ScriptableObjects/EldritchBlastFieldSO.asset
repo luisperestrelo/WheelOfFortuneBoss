@@ -25,8 +25,8 @@ MonoBehaviour:
   audioEffect: {fileID: 0}
   size: 1
   resetsOnExit: 0
-  decayRate: 1
-  chargeTime: 5
+  decayRate: 1.5
+  chargeTime: 6
   eldritchBlastPrefab: {fileID: 8112109603093289206, guid: cb23b68cc25c4d84a835082440cbd421, type: 3}
   damagingField: {fileID: 11400000, guid: 41a021c22d75ff94387a5b9a5f3e7bd8, type: 2}
   damagingFieldDuration: 5

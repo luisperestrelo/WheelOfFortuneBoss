@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7a41eb6c8ef3a43a99a5e5eba8fae5, type: 3}
+  m_Name: FIght2
+  m_EditorClassIdentifier: 
+  ambienceLoop: {fileID: 0}
+  preFightLoop: {fileID: 8300000, guid: 565e30eb25e6e984587619868a3f1d66, type: 3}
+  preFightLoopStartTime: 1.41
+  preFightLoopEndTime: 24
+  fightLoop: {fileID: 8300000, guid: 3c396c7bf02b7fc45bd31cf17ff314c6, type: 3}
+  fightLoopStartTime: 0.71
+  fightLoopEndTime: 68.47
+  fightEnd: {fileID: 0}
+  bpm: 170

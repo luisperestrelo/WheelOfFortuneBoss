@@ -19,7 +19,7 @@ MonoBehaviour:
   tags: 0400000005000000
   activationType: 0
   duration: 0
-  cooldown: 5
+  cooldown: 7
   visualEffect: {fileID: 0}
   audioEffect: {fileID: 0}
-  size: 0.65
+  size: 0.55

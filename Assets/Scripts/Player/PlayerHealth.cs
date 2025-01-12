@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : Health
 {
@@ -30,6 +31,26 @@ public class PlayerHealth : Health
         //1/10 of the player's hp does nothing, 1/3 of the player's max hp is considered max intensity.
         if (damageAmount > (GetMaxHealth() / 10))
             MusicPlayer.instance.FilterMusic(Mathf.Max(1, damageAmount / (GetMaxHealth() * 3f)));
-        
-    }   
+
+    }
+
+    //Maybe a ghetto solution but it guarantees we start fight full health
+    private void OnEnable()
+    {
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+
+        SetCurrentHealth(GetMaxHealth());
+    }
 }
