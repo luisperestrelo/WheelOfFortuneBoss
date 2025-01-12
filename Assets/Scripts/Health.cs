@@ -104,4 +104,10 @@ public class Health : MonoBehaviour
     {
         return maxHealth;
     }
+
+    protected void SetCurrentHealth(float newHealth)
+    {
+        currentHealth = newHealth;
+        OnHealthChanged.Invoke(currentHealth, maxHealth);
+    }
 }
