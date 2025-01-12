@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bde72b7b32d89342a68196847293284, type: 3}
   m_Name: VoidBurstAttackSO
   m_EditorClassIdentifier: 
-  BaseDamage: 150
+  BaseDamage: 200
   FireRate: 1.3
   shootSfx: {fileID: 0}
   voidBurstPrefab: {fileID: 2322576854947643420, guid: 8d8fed749a3933847942d1f1a0337a1f, type: 3}

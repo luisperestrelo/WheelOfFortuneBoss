@@ -93,7 +93,7 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
 
     protected abstract void OnChargeComplete(Player player);
 
-    public void SetChargeIndicatorImage(Image image)
+    public virtual void SetChargeIndicatorImage(Image image)
     {
         chargeIndicatorImage = image;
         if (chargeIndicatorImage != null)

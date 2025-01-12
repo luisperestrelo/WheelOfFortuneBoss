@@ -1363,7 +1363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7997672442244037548, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 57.08
+      value: 46.7
       objectReference: {fileID: 0}
     - target: {fileID: 7997672442244037548, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2846,9 +2846,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 112205993007890875, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
+      propertyPath: spearDamage
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 112205993007890875, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
       propertyPath: indicatorSfx
       value: 
       objectReference: {fileID: 8300000, guid: 121dd6d2096fd9240b63f1c88d32dddf, type: 3}
+    - target: {fileID: 238295076128269612, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
+      propertyPath: shockwaveDamage
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 540871654658833567, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
       propertyPath: path
       value: 
@@ -2873,6 +2881,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 390becfca9a2cce4e8943772e20c6d67, type: 3}
+    - target: {fileID: 2351938888516016795, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
+      propertyPath: explosionDamage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2633056296777646708, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
       propertyPath: _player
       value: 
@@ -3027,7 +3039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5187145392800842677, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
       propertyPath: maxHealth
-      value: 3000
+      value: 7000
       objectReference: {fileID: 0}
     - target: {fileID: 5276315549751362947, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
       propertyPath: player
