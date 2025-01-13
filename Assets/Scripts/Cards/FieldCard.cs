@@ -4,4 +4,12 @@ using UnityEngine;
 public class FieldCard : Card
 {
     public Field field;
-} 
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        cardType = CardType.Field;
+    }
+}
+
+

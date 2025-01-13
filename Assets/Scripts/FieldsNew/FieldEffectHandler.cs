@@ -10,6 +10,7 @@ public abstract class FieldEffectHandler : MonoBehaviour
     public virtual void Initialize(Field fieldData)
     {
         FieldData = fieldData;
+        playerStats = FindObjectOfType<PlayerStats>();
     }
 
     public abstract void OnEnter(Player player);

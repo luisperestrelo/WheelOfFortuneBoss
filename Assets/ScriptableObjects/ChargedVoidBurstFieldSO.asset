@@ -28,5 +28,5 @@ MonoBehaviour:
   chargeTime: 5
   voidBurstAttack: {fileID: 11400000, guid: 2fbcba7501f2a224d99a0ac1e2245a8f, type: 2}
   curseDuration: 3
-  curseDamageAmount: 1
-  curseDamageInterval: 0.1
+  curseDamageAmount: 2
+  curseDamageInterval: 0.2

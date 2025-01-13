@@ -4,10 +4,10 @@ using UnityEngine;
 public class FanOfKnivesAttack : BaseAttack
 {
     [SerializeField] private KnifeProjectile knifePrefab;
-    [SerializeField] private int numberOfKnives = 3;
-    [SerializeField] private float spreadAngle = 30f;
+/*     [SerializeField] private int numberOfKnives = 3;
+    [SerializeField] private float spreadAngle = 30f; */
 
-    public override void PerformAttack(PlayerCombat playerCombat)
+    public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle)
     {
         base.PerformAttack(playerCombat);
         Plane plane = new(Vector3.forward, playerCombat.transform.position);
@@ -22,23 +22,59 @@ public class FanOfKnivesAttack : BaseAttack
             towardMouse = (hitPoint - playerCombat.transform.position).normalized;
         }
 
-        float mouseAngle = Mathf.Atan2(towardMouse.y, towardMouse.x) * Mathf.Rad2Deg;
+        // Clamp spreadAngle
+        spreadAngle = Mathf.Clamp(spreadAngle, 0f, 180f);
 
-        float angleStep = spreadAngle / (numberOfKnives - 1);
-        float startAngle = mouseAngle - spreadAngle / 2f;
-
-        for (int i = 0; i < numberOfKnives; i++)
+        if (projectileCount > 1)
         {
-            float currentAngle = startAngle + angleStep * i;
+            float mouseAngle = Mathf.Atan2(towardMouse.y, towardMouse.x) * Mathf.Rad2Deg;
+            float angleStep = spreadAngle / (projectileCount - 1);
+            float startAngle = mouseAngle - spreadAngle / 2f;
 
-            Quaternion rotation = Quaternion.Euler(0, 0, currentAngle);
-            Vector2 direction = rotation * Vector2.right;
+            for (int i = 0; i < projectileCount; i++)
+            {
+                float currentAngle = startAngle + angleStep * i;
+
+                Quaternion rotation = Quaternion.Euler(0, 0, currentAngle);
+                Vector2 direction = rotation * Vector2.right;
+
+                KnifeProjectile knife = Instantiate(knifePrefab, playerCombat.transform.position, Quaternion.identity);
+
+                // Get universal damage multiplier from PlayerCombat
+                float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
+
+                // Crit calculation
+                if (Random.value < playerStats.CritChance)
+                {
+                    damageMultiplier *= playerStats.CritMultiplier;
+                    Debug.Log("Knife CRIT!");
+                }
+
+                knife.SetDamage(BaseDamage * damageMultiplier);
+                knife.SetVelocity(direction * ProjectileSpeed);
+            }
+        }
+        else
+        {
+            // Handle cases where projectileCount is not greater than 1
+            Vector2 direction = towardMouse; // Default direction
 
             KnifeProjectile knife = Instantiate(knifePrefab, playerCombat.transform.position, Quaternion.identity);
-            knife.SetDamage(BaseDamage * playerCombat.GetGlobalDamageMultiplier());
-            knife.SetVelocity(direction * playerCombat.projectileSpeed);
+
+            // Get universal damage multiplier from PlayerCombat
+            float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
+
+            // Crit calculation
+            if (Random.value < playerStats.CritChance)
+            {
+                damageMultiplier *= playerStats.CritMultiplier;
+                Debug.Log("Knife CRIT!");
+            }
+
+            knife.SetDamage(BaseDamage * damageMultiplier);
+            knife.SetVelocity(direction * ProjectileSpeed);
         }
 
-        playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(FireRate));
+        playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(fireRate));
     }
 }

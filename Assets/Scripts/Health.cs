@@ -3,8 +3,8 @@ using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private float currentHealth; // tbh, should be private but I like being able to see it in the inspector without going Debug mode
+    [SerializeField] protected float maxHealth = 100f;
+    [SerializeField] protected float currentHealth; // tbh, should be private but I like being able to see it in the inspector without going Debug mode
 
     [Tooltip("How much damage should be considered 'heavy damage' by the VFX and SFX")]
     [SerializeField] private int hpHeavyDamageThreshold = 25;
@@ -59,7 +59,7 @@ public class Health : MonoBehaviour
         Debug.Log($"{gameObject.name} took {damageAmount} damage!");
     }
 
-    public void Heal(float healAmount)
+    public virtual void Heal(float healAmount)
     {
         currentHealth += healAmount;
         if (currentHealth > maxHealth)
