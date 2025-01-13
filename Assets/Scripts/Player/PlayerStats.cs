@@ -17,7 +17,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float positiveNegativeFieldsEffectivenessMultiplier = 1f;
     [SerializeField] private float projectileReplacingFieldsAdditionalProjectiles = 0f; // This is a whole number, not a percentage
     [SerializeField] private float lingeringBuffFieldsDurationMultiplier = 1f;
-    [SerializeField] private float fieldsCooldownReductionMultiplier = 1f;
+    [SerializeField] private float lingeringBuffFieldsEffectivenessMultiplier = 1f;
+    [SerializeField] private float fieldsCooldownMultiplier = 1f;
 
     public float MaxHealth { get { return maxHealth; } private set { maxHealth = value; } }
     public float HealthRegen { get { return healthRegen; } private set { healthRegen = value; } }
@@ -33,7 +34,8 @@ public class PlayerStats : MonoBehaviour
     public float PositiveNegativeFieldsEffectivenessMultiplier { get { return positiveNegativeFieldsEffectivenessMultiplier; } private set { positiveNegativeFieldsEffectivenessMultiplier = value; } }
     public float ProjectileReplacingFieldsAdditionalProjectiles { get { return projectileReplacingFieldsAdditionalProjectiles; } private set { projectileReplacingFieldsAdditionalProjectiles = value; } }
     public float LingeringBuffFieldsDurationMultiplier { get { return lingeringBuffFieldsDurationMultiplier; } private set { lingeringBuffFieldsDurationMultiplier = value; } }
-    public float FieldsCooldownReductionMultiplier { get { return fieldsCooldownReductionMultiplier; } private set { fieldsCooldownReductionMultiplier = value; } }
+    public float LingeringBuffFieldsEffectivenessMultiplier { get { return lingeringBuffFieldsEffectivenessMultiplier; } private set { lingeringBuffFieldsEffectivenessMultiplier = value; } }
+    public float FieldsCooldownMultiplier { get { return fieldsCooldownMultiplier; } private set { fieldsCooldownMultiplier = value; } }
 
     private void Awake()
     {
@@ -109,8 +111,13 @@ public class PlayerStats : MonoBehaviour
         LingeringBuffFieldsDurationMultiplier *= multiplier;
     }
 
-    public void MultiplyFieldsCooldownReduction(float multiplier)
+    public void MultiplyLingeringBuffFieldsEffectiveness(float multiplier)
     {
-        FieldsCooldownReductionMultiplier *= multiplier;
+        LingeringBuffFieldsEffectivenessMultiplier *= multiplier;
+    }   
+
+    public void MultiplyFieldsCooldownMultiplier(float multiplier)
+    {
+        FieldsCooldownMultiplier = Mathf.Clamp01(FieldsCooldownMultiplier * multiplier);
     }
 } 

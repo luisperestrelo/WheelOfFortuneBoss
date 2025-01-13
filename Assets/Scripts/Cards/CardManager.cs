@@ -23,57 +23,72 @@ public class CardManager : MonoBehaviour
         }
         else if (card is StatUpgradeCard statUpgradeCard)
         {
-            // Apply stat upgrade to the player
-            if (statUpgradeCard.statType == StatType.Health)
+            // Iterate through the lists of statTypes and statValues
+            for (int i = 0; i < statUpgradeCard.statTypes.Count; i++)
             {
-                playerStats.IncreaseMaxHealth(statUpgradeCard.statValue);
-            }
-            else if (statUpgradeCard.statType == StatType.GlobalDamageMultiplier)
-            {
-                playerStats.MultiplyBaseDamageMultiplier(1 + statUpgradeCard.statValue);
-            }
-            else if (statUpgradeCard.statType == StatType.BaseFireRateMultiplier)
-            {
-                playerStats.MultiplyBaseFireRateMultiplier(1 + statUpgradeCard.statValue);
-            }
-            else if (statUpgradeCard.statType == StatType.CritChance)
-            {
-                playerStats.SetCritChance(playerStats.CritChance + statUpgradeCard.statValue);
-            }
-            else if (statUpgradeCard.statType == StatType.CritMultiplier)
-            {
-                playerStats.SetCritMultiplier(playerStats.CritMultiplier + statUpgradeCard.statValue);
-            }
-            else if (statUpgradeCard.statType == StatType.HealthRegen)
-            {
-                playerStats.SetHealthRegen(playerStats.HealthRegen + statUpgradeCard.statValue);
-            }
-            // Field-related upgrades
-            else if (statUpgradeCard.statType == StatType.HealingFieldsStrength)
-            {
-                playerStats.MultiplyHealingFieldsStrength(1 + statUpgradeCard.statValue);
-            }
-            else if (statUpgradeCard.statType == StatType.ChargeUpFieldsSpeed)
-            {
-                playerStats.MultiplyChargeUpFieldsSpeed(1 + statUpgradeCard.statValue);
-            }
-            else if (statUpgradeCard.statType == StatType.DecayingChargeUpFieldsDecaySlowdown)
-            {
-                playerStats.MultiplyDecayingChargeUpFieldsDecaySlowdown(1 + statUpgradeCard.statValue);
-            }
-            else if (statUpgradeCard.statType == StatType.PositiveNegativeFieldsEffectiveness)
-            {
-                playerStats.MultiplyPositiveNegativeFieldsEffectiveness(1 + statUpgradeCard.statValue);
-            }
-/*             else if (statUpgradeCard.statType == StatType.ProjectileReplacingFieldsAdditionalProjectiles)
-            {
-                playerStats.AddProjectileToProjectileReplacingFields(statUpgradeCard.statValue); // Add (not multiply) projectiles
-            } */
-            else if (statUpgradeCard.statType == StatType.LingeringBuffFieldsDuration)
-            {
-                playerStats.MultiplyLingeringBuffFieldsDuration(1 + statUpgradeCard.statValue);
-            }
+                StatType statType = statUpgradeCard.statTypes[i];
+                float statValue = statUpgradeCard.statValues[i];
 
+                // Apply stat upgrade to the player based on statType and statValue
+                if (statType == StatType.Health)
+                {
+                    playerStats.IncreaseMaxHealth(statValue);
+                }
+                else if (statType == StatType.GlobalDamageMultiplier)
+                {
+                    playerStats.MultiplyBaseDamageMultiplier(1 + statValue);
+                }
+                else if (statType == StatType.BaseFireRateMultiplier)
+                {
+                    playerStats.MultiplyBaseFireRateMultiplier(1 + statValue);
+                }
+                else if (statType == StatType.CritChance)
+                {
+                    playerStats.SetCritChance(playerStats.CritChance + statValue);
+                }
+                else if (statType == StatType.CritMultiplier)
+                {
+                    playerStats.SetCritMultiplier(playerStats.CritMultiplier + statValue);
+                }
+                else if (statType == StatType.HealthRegen)
+                {
+                    playerStats.SetHealthRegen(playerStats.HealthRegen + statValue);
+                }
+                // Field-related upgrades
+                else if (statType == StatType.HealingFieldsStrength)
+                {
+                    playerStats.MultiplyHealingFieldsStrength(1 + statValue);
+                }
+                else if (statType == StatType.ChargeUpFieldsSpeed)
+                {
+                    playerStats.MultiplyChargeUpFieldsSpeed(1 + statValue);
+                }
+                else if (statType == StatType.DecayingChargeUpFieldsDecaySlowdown)
+                {
+                    playerStats.MultiplyDecayingChargeUpFieldsDecaySlowdown(1 + statValue);
+                }
+                else if (statType == StatType.PositiveNegativeFieldsEffectiveness)
+                {
+                    playerStats.MultiplyPositiveNegativeFieldsEffectiveness(1 + statValue);
+                }
+                /*             else if (statType == StatType.ProjectileReplacingFieldsAdditionalProjectiles)
+                            {
+                                playerStats.AddProjectileToProjectileReplacingFields(statValue); // Add (not multiply) projectiles
+                            } */
+                else if (statType == StatType.LingeringBuffFieldsDuration)
+                {
+                    playerStats.MultiplyLingeringBuffFieldsDuration(1 + statValue);
+                }
+                else if (statType == StatType.LingeringBuffFieldsEffectiveness)
+                {
+                    playerStats.MultiplyLingeringBuffFieldsEffectiveness(1 + statValue);
+                }
+                else if (statType == StatType.FieldsCooldownReduction)
+                {
+                    playerStats.MultiplyFieldsCooldownMultiplier(1 - statValue);
+                }
+                
+            }
         }
         else if (card is FieldCategoryUpgradeCard fieldCategoryUpgradeCard)
         {

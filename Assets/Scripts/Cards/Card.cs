@@ -16,7 +16,9 @@ public enum StatType
     DecayingChargeUpFieldsDecaySlowdown,
     PositiveNegativeFieldsEffectiveness,
     LingeringBuffFieldsDuration,
+    LingeringBuffFieldsEffectiveness,
     FieldsCooldownReduction,
+
     //ProjectileReplacingFieldsAdditionalProjectiles, //do this later, when we rework projectiles
 }
 public enum CardType { Field, StatUpgrade, FieldCategoryUpgrade, FieldSpecificUpgrade, WheelUpgrade }
@@ -35,4 +37,12 @@ public abstract class Card : ScriptableObject
     public CardRarity rarity;
     public Sprite icon;
     public CardType cardType;
+
+    public virtual void OnValidate()
+    {
+    }
+
+    public virtual void OnEnable()
+    {
+    }
 }

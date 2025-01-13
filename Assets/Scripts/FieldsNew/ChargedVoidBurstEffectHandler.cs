@@ -118,7 +118,7 @@ public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler // Thi
         float timer = 0f;
         while (timer < curseDuration)
         {
-            player.GetComponent<PlayerHealth>().TakeDamage(curseDamageAmount);
+            player.GetComponent<PlayerHealth>().TakeDamage(curseDamageAmount * playerStats.PositiveNegativeFieldsEffectivenessMultiplier);
             timer += curseDamageInterval;
             yield return new WaitForSeconds(curseDamageInterval);
         }

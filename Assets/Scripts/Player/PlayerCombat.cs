@@ -52,7 +52,7 @@ public class PlayerCombat : MonoBehaviour
 
             // Calculate fire rate with temporary buff
             float fireRate = CurrentAttack.FireRate * playerStats.BaseFireRateMultiplier * temporaryFireRateMultiplier;
-            CurrentAttack.PerformAttack(this, fireRate);
+            CurrentAttack.PerformAttack(this, fireRate, playerStats);
         }
     }
 

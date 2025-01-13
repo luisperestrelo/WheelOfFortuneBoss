@@ -36,8 +36,8 @@ public class WheelSegment
         if (Field.Cooldown > 0)
         {
             IsOnCooldown = true;
-            // Apply the field cooldown reduction multiplier
-            cooldownTimer = Field.Cooldown * (1 - playerStats.FieldsCooldownReductionMultiplier);
+            // Apply the field cooldown multiplier
+            cooldownTimer = Field.Cooldown * playerStats.FieldsCooldownMultiplier;
         }
     }
 

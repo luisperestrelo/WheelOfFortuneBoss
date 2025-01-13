@@ -6,7 +6,7 @@ public class FireballAttack : BaseAttack
     [SerializeField] private FireballProjectile fireballPrefab;
     [SerializeField] private float fireballSpeed = 15f;
 
-    public override void PerformAttack(PlayerCombat playerCombat, float fireRate)
+    public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats)
     {
         base.PerformAttack(playerCombat);
         FireballProjectile projectile = Instantiate(fireballPrefab, playerCombat.transform.position, Quaternion.identity);
@@ -15,9 +15,9 @@ public class FireballAttack : BaseAttack
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
         // Crit calculation
-        if (Random.value < playerCombat.GetComponent<PlayerStats>().CritChance)
+        if (Random.value < playerStats.CritChance)
         {
-            damageMultiplier *= playerCombat.GetComponent<PlayerStats>().CritMultiplier;
+            damageMultiplier *= playerStats.CritMultiplier;
             Debug.Log("Fireball CRIT!");
         }
 
