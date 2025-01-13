@@ -480,9 +480,25 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4393281162349524268, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7560562144807881861, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
       propertyPath: m_Name
       value: CardDisplay (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006374550543807434, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046932028630907588, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174777052326696584, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -735,9 +751,25 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 4393281162349524268, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7560562144807881861, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
       propertyPath: m_Name
       value: CardDisplay (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006374550543807434, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046932028630907588, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174777052326696584, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1097,9 +1129,25 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2806847}
+    - target: {fileID: 4393281162349524268, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7560562144807881861, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
       propertyPath: m_Name
       value: CardDisplay (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006374550543807434, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046932028630907588, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174777052326696584, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1226,9 +1274,25 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4393281162349524268, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7560562144807881861, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
       propertyPath: m_Name
       value: CardDisplay (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006374550543807434, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046932028630907588, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174777052326696584, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1355,9 +1419,25 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4393281162349524268, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7560562144807881861, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
       propertyPath: m_Name
       value: CardDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006374550543807434, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046932028630907588, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174777052326696584, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

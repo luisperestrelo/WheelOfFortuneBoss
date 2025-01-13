@@ -14,6 +14,7 @@ public class WheelManager : MonoBehaviour
     public Material LineMaterial; 
     public float LineWidth = 0.1f;
 
+
     [SerializeField] private GameObject chargeIndicatorPrefab; 
     public Canvas indicatorCanvas; // fuck it we make it public . i guess TODO: fix this
 

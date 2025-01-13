@@ -9,7 +9,7 @@ public class PostBossCardSelectionUI : MonoBehaviour
     public CardDisplay[] cardDisplays; 
     public Button startFightButton;
     private List<Card> offeredCards;
-    private List<Card> selectedCards = new List<Card>();
+    private List<int> selectedCards = new List<int>();
     public Color highlightColor = new Color(1f, 1f, 1f, 0.5f);
 
     private void Start()
@@ -55,23 +55,24 @@ public class PostBossCardSelectionUI : MonoBehaviour
 //TODO: Buggy
     public void OnCardClicked(int cardIndex)
     {
-        Card clickedCard = offeredCards[cardIndex];
-
-        if (selectedCards.Contains(clickedCard))
+        // Check if the clicked card's index is already in the selectedCards list
+        if (selectedCards.Contains(cardIndex))
         {
-            // Deselect the card
-            selectedCards.Remove(clickedCard);
+            // Deselect the card by removing its index
+            selectedCards.Remove(cardIndex);
             cardDisplays[cardIndex].transform.Find("BorderImage").GetComponent<Image>().color = Color.clear;
         }
         else if (selectedCards.Count < 3)
         {
-            // Select the card
-            selectedCards.Add(clickedCard);
+            // Select the card by adding its index
+            selectedCards.Add(cardIndex);
             cardDisplays[cardIndex].transform.Find("BorderImage").GetComponent<Image>().color = highlightColor;
         }
 
         // Enable "Start Fight" button only if 3 cards are selected
         startFightButton.interactable = selectedCards.Count == 3;
+
+        Debug.Log("Selected cards: " + selectedCards.Count);
     }
 
     public void OnStartFightButtonClicked()
@@ -79,8 +80,16 @@ public class PostBossCardSelectionUI : MonoBehaviour
         if (selectedCards.Count == 3)
         {
             RunManager.Instance.EnableWheelAndPlayer(); // gotta re-enable it here so we can apply the cards
+
+            // Convert selected indices to a list of Card objects
+            List<Card> cardsToAdd = new List<Card>();
+            foreach (int index in selectedCards)
+            {
+                cardsToAdd.Add(offeredCards[index]);
+            }
+
             // Add the selected cards to the player's current run cards
-            RunManager.Instance.AddCardsToCurrentRun(selectedCards);
+            RunManager.Instance.AddCardsToCurrentRun(cardsToAdd);
 
             foreach (CardDisplay cardDisplay in cardDisplays)
             {
