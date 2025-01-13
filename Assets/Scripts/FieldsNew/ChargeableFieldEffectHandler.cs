@@ -12,6 +12,7 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
     protected Image chargeIndicatorImage;
 
 
+
     public override void Initialize(Field fieldData)
     {
         base.Initialize(fieldData);
@@ -39,7 +40,8 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
     {
         if (isCharging)
         {
-            currentChargeTime += deltaTime;
+            // Apply the charge-up field speed multiplier
+            currentChargeTime += deltaTime * playerStats.ChargeUpFieldsSpeedMultiplier;
             if (currentChargeTime >= chargeTime)
             {
                 OnChargeComplete(player);
@@ -68,14 +70,10 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
 
     protected virtual void Update()
     {
-
-
-
-
-        //Debug.Log("current charge of " + name + " is " + currentChargeTime);
         if (isDecaying)
         {
-            currentChargeTime -= decayRate * Time.deltaTime;
+            // Apply the decaying charge-up field decay slowdown multiplier
+            currentChargeTime -= decayRate * Time.deltaTime * playerStats.DecayingChargeUpFieldsDecaySlowdownMultiplier;
             currentChargeTime = Mathf.Clamp(currentChargeTime, 0f, chargeTime);
 
             if (currentChargeTime == 0)

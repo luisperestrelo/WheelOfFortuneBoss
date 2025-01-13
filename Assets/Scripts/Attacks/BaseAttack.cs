@@ -8,7 +8,7 @@ public abstract class BaseAttack : ScriptableObject
     //public abstract void PerformAttack(PlayerCombat playerCombat);
 
     //TODO: @Josh this is where I put the sounds for attacks
-    public virtual void PerformAttack(PlayerCombat playerCombat)
+    public virtual void PerformAttack(PlayerCombat playerCombat, float fireRate = 1)
     {
         if (shootSfx != null)
         {

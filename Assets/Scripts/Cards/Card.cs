@@ -1,9 +1,26 @@
 using UnityEngine;
 
 public enum CardRarity { Common, Rare, Epic }
-public enum StatType { Health, GlobalDamageMultiplier }
+public enum StatType
+{
+    Health,
+    GlobalDamageMultiplier,
+    BaseFireRateMultiplier,
+    CritChance,
+    CritMultiplier,
+    HealthRegen,
+
+    // Field-related stats  
+    HealingFieldsStrength,
+    ChargeUpFieldsSpeed,
+    DecayingChargeUpFieldsDecaySlowdown,
+    PositiveNegativeFieldsEffectiveness,
+    LingeringBuffFieldsDuration,
+    FieldsCooldownReduction,
+    //ProjectileReplacingFieldsAdditionalProjectiles, //do this later, when we rework projectiles
+}
 public enum CardType { Field, StatUpgrade, FieldCategoryUpgrade, FieldSpecificUpgrade, WheelUpgrade }
- // maybe wheleupgrade would be stuff like "choose a field, and increase its size"
+// maybe wheleupgrade would be stuff like "choose a field, and increase its size"
 
 
 
@@ -18,4 +35,4 @@ public abstract class Card : ScriptableObject
     public CardRarity rarity;
     public Sprite icon;
     public CardType cardType;
-} 
+}
