@@ -6,15 +6,24 @@ public class VoidBurstAttack : BaseAttack
     [SerializeField] private InstantDamageDealer voidBurstPrefab;
     //[SerializeField] private float voidBurstSpeed = 15f;  // not used since its not a projectile
 
-    public override void PerformAttack(PlayerCombat playerCombat)
+    public override void PerformAttack(PlayerCombat playerCombat, float fireRate)
     {
         base.PerformAttack(playerCombat);
         InstantDamageDealer damageDealer = Instantiate(voidBurstPrefab, playerCombat.transform.position, Quaternion.identity);
 
-        damageDealer.SetDamage(BaseDamage * playerCombat.GetGlobalDamageMultiplier());
+        // Get universal damage multiplier from PlayerCombat
+        float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
+        // Crit calculation
+        if (Random.value < playerCombat.GetComponent<PlayerStats>().CritChance)
+        {
+            damageMultiplier *= playerCombat.GetComponent<PlayerStats>().CritMultiplier;
+            Debug.Log("Void Burst CRIT!");
+        }
         //playerCombat.shootAudioSource.PlayOneShot(playerCombat.shootSfx); //TODO: Add void burst sfx
         //playerCombat.shootAudioSource.pitch = Random.Range(0.9f, 1.3f);
+
+        damageDealer.SetDamage(BaseDamage * damageMultiplier);
 
         Plane plane = new(Vector3.forward, playerCombat.transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -32,6 +41,6 @@ public class VoidBurstAttack : BaseAttack
             damageDealer.transform.position = playerCombat.transform.position + (Vector3)towardMouse * 6.2f;
         }
 
-        playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(FireRate));
+        playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(fireRate));
     }
 }

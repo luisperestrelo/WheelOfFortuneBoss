@@ -7,7 +7,7 @@ public class FanOfKnivesAttack : BaseAttack
     [SerializeField] private int numberOfKnives = 3;
     [SerializeField] private float spreadAngle = 30f;
 
-    public override void PerformAttack(PlayerCombat playerCombat)
+    public override void PerformAttack(PlayerCombat playerCombat, float fireRate)
     {
         base.PerformAttack(playerCombat);
         Plane plane = new(Vector3.forward, playerCombat.transform.position);
@@ -35,10 +35,21 @@ public class FanOfKnivesAttack : BaseAttack
             Vector2 direction = rotation * Vector2.right;
 
             KnifeProjectile knife = Instantiate(knifePrefab, playerCombat.transform.position, Quaternion.identity);
-            knife.SetDamage(BaseDamage * playerCombat.GetGlobalDamageMultiplier());
+
+            // Get universal damage multiplier from PlayerCombat
+            float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
+
+            // Crit calculation
+            if (Random.value < playerCombat.GetComponent<PlayerStats>().CritChance)
+            {
+                damageMultiplier *= playerCombat.GetComponent<PlayerStats>().CritMultiplier;
+                Debug.Log("Knife CRIT!");
+            }
+
+            knife.SetDamage(BaseDamage * damageMultiplier);
             knife.SetVelocity(direction * playerCombat.projectileSpeed);
         }
 
-        playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(FireRate));
+        playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(fireRate));
     }
 }

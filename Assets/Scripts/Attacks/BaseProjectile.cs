@@ -29,6 +29,5 @@ public class BaseProjectile : MonoBehaviour
             health.TakeDamage(damage);
             Destroy(gameObject);
         }
-
     }
 }

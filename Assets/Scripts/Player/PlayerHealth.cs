@@ -19,6 +19,7 @@ public class PlayerHealth : Health
     protected override void Start()
     {
         SetMaxHealth(playerStats.MaxHealth);
+        SetCurrentHealth(playerStats.MaxHealth);
         base.Start();
     }
 
@@ -38,20 +39,46 @@ public class PlayerHealth : Health
     //Maybe a ghetto solution but it guarantees we start fight full health
     private void OnEnable()
     {
-
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-
         SetCurrentHealth(GetMaxHealth());
+    }
+
+    private void Update()
+    {
+        // Handle health regeneration in Update
+        if (playerStats.HealthRegen > 0)
+        {
+            Regenerate(playerStats.HealthRegen * Time.deltaTime);
+        }
+    }
+
+    // Separate method for healing
+    public override void Heal(float healAmount)
+    {
+        base.Heal(healAmount);
+    }
+
+    // New method for health regeneration (separate from healing)
+    private void Regenerate(float regenAmount)
+    {
+
+        if (currentHealth < maxHealth)
+        {
+            currentHealth += regenAmount;
+            if (currentHealth > maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+            OnHealthChanged.Invoke(GetCurrentHealth(), GetMaxHealth());
+        }
     }
 }

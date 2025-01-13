@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e358d9f65cfe91347b9c8c31e00a6608, type: 3}
+  m_Name: Health Regen Card
+  m_EditorClassIdentifier: 
+  cardName: Health Regen
+  description: Ipsis lorum
+  rarity: 1
+  icon: {fileID: 21300000, guid: 6974eb10e0b1e78409b9793ba9d42aeb, type: 3}
+  cardType: 1
+  statType: 5
+  statValue: 0.2

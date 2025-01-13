@@ -12,7 +12,6 @@ public class CardManager : MonoBehaviour
 
     private void Start()
     {
-        // Try to find PlayerStats, but it's okay if it's not there initially
         playerStats = FindObjectOfType<PlayerStats>();
     }
 
@@ -20,7 +19,6 @@ public class CardManager : MonoBehaviour
     {
         if (card is FieldCard fieldCard)
         {
-            // Add the field to the WheelManager
             RunManager.Instance.wheelManager.AddField(fieldCard.field);
         }
         else if (card is StatUpgradeCard statUpgradeCard)
@@ -32,8 +30,50 @@ public class CardManager : MonoBehaviour
             }
             else if (statUpgradeCard.statType == StatType.GlobalDamageMultiplier)
             {
-                playerStats.MultiplyBaseDamage(1 + statUpgradeCard.statValue);
+                playerStats.MultiplyBaseDamageMultiplier(1 + statUpgradeCard.statValue);
             }
+            else if (statUpgradeCard.statType == StatType.BaseFireRateMultiplier)
+            {
+                playerStats.MultiplyBaseFireRateMultiplier(1 + statUpgradeCard.statValue);
+            }
+            else if (statUpgradeCard.statType == StatType.CritChance)
+            {
+                playerStats.SetCritChance(playerStats.CritChance + statUpgradeCard.statValue);
+            }
+            else if (statUpgradeCard.statType == StatType.CritMultiplier)
+            {
+                playerStats.SetCritMultiplier(playerStats.CritMultiplier + statUpgradeCard.statValue);
+            }
+            else if (statUpgradeCard.statType == StatType.HealthRegen)
+            {
+                playerStats.SetHealthRegen(playerStats.HealthRegen + statUpgradeCard.statValue);
+            }
+            // Field-related upgrades
+            else if (statUpgradeCard.statType == StatType.HealingFieldsStrength)
+            {
+                playerStats.MultiplyHealingFieldsStrength(1 + statUpgradeCard.statValue);
+            }
+            else if (statUpgradeCard.statType == StatType.ChargeUpFieldsSpeed)
+            {
+                playerStats.MultiplyChargeUpFieldsSpeed(1 + statUpgradeCard.statValue);
+            }
+            else if (statUpgradeCard.statType == StatType.DecayingChargeUpFieldsDecaySlowdown)
+            {
+                playerStats.MultiplyDecayingChargeUpFieldsDecaySlowdown(1 + statUpgradeCard.statValue);
+            }
+            else if (statUpgradeCard.statType == StatType.PositiveNegativeFieldsEffectiveness)
+            {
+                playerStats.MultiplyPositiveNegativeFieldsEffectiveness(1 + statUpgradeCard.statValue);
+            }
+/*             else if (statUpgradeCard.statType == StatType.ProjectileReplacingFieldsAdditionalProjectiles)
+            {
+                playerStats.AddProjectileToProjectileReplacingFields(statUpgradeCard.statValue); // Add (not multiply) projectiles
+            } */
+            else if (statUpgradeCard.statType == StatType.LingeringBuffFieldsDuration)
+            {
+                playerStats.MultiplyLingeringBuffFieldsDuration(1 + statUpgradeCard.statValue);
+            }
+
         }
         else if (card is FieldCategoryUpgradeCard fieldCategoryUpgradeCard)
         {
@@ -46,4 +86,4 @@ public class CardManager : MonoBehaviour
 
         //else if // thinking of adding cards that interact with the wheel like increasing the size of a field
     }
-} 
+}

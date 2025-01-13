@@ -5,15 +5,23 @@ public class BasicAttack : BaseAttack
 {
     [SerializeField] private BaseProjectile projectilePrefab;
     [SerializeField] private float projectileSpeed = 20f;
-  //  [SerializeField] private AudioClip shootSfx;
-//
-    public override void PerformAttack(PlayerCombat playerCombat)
+
+    public override void PerformAttack(PlayerCombat playerCombat, float fireRate)
     {
         base.PerformAttack(playerCombat);
         BaseProjectile projectile = Instantiate(projectilePrefab, playerCombat.transform.position, Quaternion.identity);
-        Debug.Log("BaseDamage: " + BaseDamage + " playerCombat.GetGlobalDamageMultiplier(): " + playerCombat.GetGlobalDamageMultiplier());
-        projectile.SetDamage(BaseDamage * playerCombat.GetGlobalDamageMultiplier());
 
+        // Get combined damage multiplier from PlayerCombat
+        float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
+
+        // Crit calculation
+        if (Random.value < playerCombat.GetComponent<PlayerStats>().CritChance)
+        {
+            damageMultiplier *= playerCombat.GetComponent<PlayerStats>().CritMultiplier;
+            Debug.Log("Basic Attack CRIT!");
+        }
+
+        projectile.SetDamage(BaseDamage * damageMultiplier);
 
         Plane plane = new(Vector3.forward, playerCombat.transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -28,6 +36,6 @@ public class BasicAttack : BaseAttack
             projectile.SetVelocity(towardMouse * projectileSpeed);
         }
 
-        playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(FireRate));
+        playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(fireRate));
     }
 } 

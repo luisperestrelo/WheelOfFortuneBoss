@@ -6,11 +6,13 @@ public class LightningBlast : MonoBehaviour
 {
     [SerializeField] private float damage;
     [SerializeField] private float lifetime = 1f;
-    [SerializeField] private PlayerCombat playerCombat;
+    private PlayerStats playerStats;
+    private PlayerCombat playerCombat;
 
     private void Start()
     {
         Destroy(gameObject, lifetime);
+        playerStats = FindObjectOfType<PlayerStats>();
         playerCombat = FindObjectOfType<PlayerCombat>();
     }
 
@@ -29,10 +31,22 @@ public class LightningBlast : MonoBehaviour
             Health enemyHealth = other.GetComponent<Health>();
             if (enemyHealth != null)
             {
-                enemyHealth.TakeDamage(damage * playerCombat.GetGlobalDamageMultiplier());
+                // Calculate damage with crits:
+                float finalDamage = damage;
+
+                // Apply universal damage multiplier from PlayerCombat
+                finalDamage *= playerCombat.GetUniversalDamageMultiplier();
+
+                // Crit calculation
+                if (Random.value < playerStats.CritChance)
+                {
+                    finalDamage *= playerStats.CritMultiplier;
+                    Debug.Log("Lightning Blast CRIT!"); // You can add a visual effect here
+                }
+
+                enemyHealth.TakeDamage(finalDamage);
             }
         }
     }
-
 }
 
