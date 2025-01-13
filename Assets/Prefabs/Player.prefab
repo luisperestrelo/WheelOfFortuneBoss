@@ -100,7 +100,6 @@ GameObject:
   - component: {fileID: 8830945086055876768}
   - component: {fileID: 2817258711870161044}
   - component: {fileID: 6724869266207916452}
-  - component: {fileID: 2041412881549139989}
   - component: {fileID: 9140755374635846707}
   - component: {fileID: 7166551282647893016}
   m_Layer: 0
@@ -227,7 +226,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   playerFlashFX: {fileID: 9140755374635846707}
-  playerSFX: {fileID: 2041412881549139989}
+  playerSFX: {fileID: 0}
 --- !u!114 &2357789789725850331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,11 +239,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef5ff73ec00de0644bb6995edf71824d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultDamage: 3
   shootCooldown: 0.25
   projectileSpeed: 50
-  _defaultProjectilePrefab: {fileID: 7063593429769460141, guid: c02e798c96ea8124fbeb072a11a9b68e, type: 3}
+  defaultProjectilePrefab: {fileID: 0}
   globalDamageMultiplier: 1
+  baseDamageMultiplier: 1
+  shootSfx: {fileID: 0}
+  shieldPrefab: {fileID: 0}
+  shootAudioSource: {fileID: 0}
+  CurrentAttack: {fileID: 0}
+  DefaultAttack: {fileID: 0}
 --- !u!120 &8830945086055876768
 LineRenderer:
   serializedVersion: 2
@@ -411,20 +415,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &2041412881549139989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5928400350805490060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e242e2a2870e0154d823a6921b3777a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSource: {fileID: 7166551282647893016}
-  takeDamageClip: {fileID: 8300000, guid: bc99df4b51a199b4480ed4c9336d5251, type: 3}
 --- !u!114 &9140755374635846707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -449,7 +439,7 @@ AudioSource:
   m_GameObject: {fileID: 5928400350805490060}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 5826447492811807976, guid: 6ad2b2cae9639ea489e06085fa43cb8f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.1
