@@ -119,7 +119,7 @@ public class MusicPlayer : MonoBehaviour
         while (loadedProfile != null)
         {
             StartCoroutine(SetMeasureFlag());
-            yield return new WaitForSeconds((60f / loadedProfile.bpm) * 4f);
+            yield return new WaitForSecondsRealtime((60f / loadedProfile.bpm) * 4f);
         }
     }
 
@@ -128,7 +128,7 @@ public class MusicPlayer : MonoBehaviour
     {
         measureFlag = true;
         Debug.Log(measureFlag);
-        yield return null;
+        yield return new WaitForSecondsRealtime(0);
         measureFlag = false;
     }
 
@@ -145,7 +145,7 @@ public class MusicPlayer : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
             source.volume = Mathf.Lerp(originalVolume, targetVolume * musicVolume, timeElapsed / time);
-            yield return null;
+            yield return new WaitForSecondsRealtime(0); ;
         }
     }
 
@@ -171,8 +171,8 @@ public class MusicPlayer : MonoBehaviour
     {
         float cutoffAtMaxIntensity = 1000;
         const float time = 0.2f;
-        StartCoroutine(MoveLowPassToFreqRoutine(Mathf.Lerp(0, cutoffAtMaxIntensity, intensity), time));
-        StartCoroutine(MoveHighPassToFreqRoutine(Mathf.Lerp(22000, cutoffAtMaxIntensity, intensity), time));
+        StartCoroutine(MoveLowPassToFreqRoutine(Mathf.Lerp(22000, cutoffAtMaxIntensity, intensity), time));
+        StartCoroutine(MoveHighPassToFreqRoutine(Mathf.Lerp(0, cutoffAtMaxIntensity, intensity), time));
     }
 
     //Low Pass and High Pass filters share no parent class, so we can't just pass in which filter we want.
@@ -203,9 +203,9 @@ public class MusicPlayer : MonoBehaviour
         float timeElapsed = 0;
         while (timeElapsed < time)
         {
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
             lpFilter.cutoffFrequency = Mathf.Lerp(startFreq, freq, timeElapsed / time);
-            yield return null;
+            yield return new WaitForSecondsRealtime(0);
         }
     }
     private IEnumerator MoveHighPassToFreqRoutine(float freq, float time)
@@ -214,9 +214,9 @@ public class MusicPlayer : MonoBehaviour
         float timeElapsed = 0;
         while (timeElapsed < time)
         {
-            timeElapsed += Time.deltaTime;
+            timeElapsed += Time.unscaledDeltaTime;
             hpFilter.cutoffFrequency = Mathf.Lerp(startFreq, freq, timeElapsed / time);
-            yield return null;
+            yield return new WaitForSecondsRealtime(0);
         }
     }
     #endregion
