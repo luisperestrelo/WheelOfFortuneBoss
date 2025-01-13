@@ -11,6 +11,7 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
     protected float decayRate;
     protected Image chargeIndicatorImage;
 
+    public float ChargePercent => currentChargeTime / chargeTime;
 
     public override void Initialize(Field fieldData)
     {
