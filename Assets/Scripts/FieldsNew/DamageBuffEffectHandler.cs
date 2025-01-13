@@ -16,14 +16,14 @@ public class DamageBuffEffectHandler : FieldEffectHandler
     public override void OnEnter(Player player)
     {
         PlayerCombat playerCombat = player.GetComponent<PlayerCombat>();
-        Debug.Log("Entering Damage Buff Field, boosting damage by " + damageMultiplier);
 
         // Apply the positive-negative field effectiveness multiplier to the damage multiplier
-        float finalMultiplier = damageMultiplier * playerStats.PositiveNegativeFieldsEffectivenessMultiplier; //TODO change to buff fields
+        float finalMultiplier = damageMultiplier * playerStats.LingeringBuffFieldsEffectivenessMultiplier; //TODO change to buff fields
 
         // Apply the lingering buff duration multiplier from PlayerStats
         float finalDuration = duration * playerStats.LingeringBuffFieldsDurationMultiplier;
 
+        Debug.Log("Entering Damage Buff Field, boosting damage by " + finalMultiplier + " for " + finalDuration + " seconds");
         playerCombat.SetDamageMultiplierForDuration(finalMultiplier, finalDuration);
     }
 
@@ -32,7 +32,7 @@ public class DamageBuffEffectHandler : FieldEffectHandler
         PlayerCombat playerCombat = player.GetComponent<PlayerCombat>();
 
         // Apply the positive-negative field effectiveness multiplier to the damage multiplier
-        float finalMultiplier = damageMultiplier * playerStats.PositiveNegativeFieldsEffectivenessMultiplier;
+        float finalMultiplier = damageMultiplier * playerStats.LingeringBuffFieldsEffectivenessMultiplier;
 
         // Apply the lingering buff duration multiplier from PlayerStats
         float finalDuration = duration * playerStats.LingeringBuffFieldsDurationMultiplier;
@@ -45,7 +45,7 @@ public class DamageBuffEffectHandler : FieldEffectHandler
         PlayerCombat playerCombat = player.GetComponent<PlayerCombat>();
 
         // Apply the positive-negative field effectiveness multiplier to the damage multiplier
-        float finalMultiplier = damageMultiplier * playerStats.PositiveNegativeFieldsEffectivenessMultiplier;
+        float finalMultiplier = damageMultiplier * playerStats.LingeringBuffFieldsEffectivenessMultiplier;
 
         // Apply the lingering buff duration multiplier from PlayerStats
         float finalDuration = duration * playerStats.LingeringBuffFieldsDurationMultiplier;

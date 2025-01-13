@@ -6,18 +6,18 @@ public class VoidBurstAttack : BaseAttack
     [SerializeField] private InstantDamageDealer voidBurstPrefab;
     //[SerializeField] private float voidBurstSpeed = 15f;  // not used since its not a projectile
 
-    public override void PerformAttack(PlayerCombat playerCombat, float fireRate)
+    public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats)
     {
         base.PerformAttack(playerCombat);
         InstantDamageDealer damageDealer = Instantiate(voidBurstPrefab, playerCombat.transform.position, Quaternion.identity);
 
         // Get universal damage multiplier from PlayerCombat
-        float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
+        float damageMultiplier = playerCombat.GetUniversalDamageMultiplier() * playerStats.PositiveNegativeFieldsEffectivenessMultiplier;
 
         // Crit calculation
-        if (Random.value < playerCombat.GetComponent<PlayerStats>().CritChance)
+        if (Random.value < playerStats.CritChance)
         {
-            damageMultiplier *= playerCombat.GetComponent<PlayerStats>().CritMultiplier;
+            damageMultiplier *= playerStats.CritMultiplier;
             Debug.Log("Void Burst CRIT!");
         }
         //playerCombat.shootAudioSource.PlayOneShot(playerCombat.shootSfx); //TODO: Add void burst sfx
