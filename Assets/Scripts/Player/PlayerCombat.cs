@@ -14,6 +14,7 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] private AudioClip shootSfx;
     [SerializeField] private GameObject shieldPrefab;
+    [SerializeField] private Animator playerAnimator;
 
     private BaseProjectile projectilePrefab;
 
@@ -47,6 +48,7 @@ public class PlayerCombat : MonoBehaviour
             if (CurrentAttack == null)
                 CurrentAttack = DefaultAttack;
             //CurrentAttack.BaseDamage = playerStats.BaseDamage; // uses the skill's base damage
+            playerAnimator.SetTrigger("Attack");
             CurrentAttack.PerformAttack(this);
         }
     }
