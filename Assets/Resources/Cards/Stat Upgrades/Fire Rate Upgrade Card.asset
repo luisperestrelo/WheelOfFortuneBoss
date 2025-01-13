@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e358d9f65cfe91347b9c8c31e00a6608, type: 3}
   m_Name: Fire Rate Upgrade Card
   m_EditorClassIdentifier: 
-  cardName: 
+  cardName: Attack Speed
   description: Gain 10% attack speed
   rarity: 0
   icon: {fileID: 21300000, guid: cfd988c6ed27b154684dd9f574b6eeb9, type: 3}

@@ -392,9 +392,10 @@ MonoBehaviour:
   chargeUpFieldsSpeedMultiplier: 1
   decayingChargeUpFieldsDecaySlowdownMultiplier: 1
   positiveNegativeFieldsEffectivenessMultiplier: 1
-  projectileReplacingFieldsAdditionalProjectiles: 0
+  additionalProjectilesForAttacks: 0
   lingeringBuffFieldsDurationMultiplier: 1
-  fieldsCooldownReductionMultiplier: 0
+  lingeringBuffFieldsEffectivenessMultiplier: 1
+  fieldsCooldownMultiplier: 1
 --- !u!114 &71604784
 MonoBehaviour:
   m_ObjectHideFlags: 0
