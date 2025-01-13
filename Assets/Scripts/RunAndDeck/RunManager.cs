@@ -138,7 +138,7 @@ public class RunManager : MonoBehaviour
     public void OfferMidFightCards()
     {
         List<Card> cardsToOffer = cardPool.GetRandomCards(5);
-
+        MusicPlayer.instance.SetFilterIntensity(0.6f);
         midFightCardOfferUI.ShowCards(cardsToOffer);
     }
 
@@ -146,6 +146,7 @@ public class RunManager : MonoBehaviour
     {
         cardManager.ApplyCard(selectedCard);
         currentRunCards.Add(selectedCard);
+        MusicPlayer.instance.SetFilterIntensity(0f);
 
         Time.timeScale = 1f;
         midFightCardOfferUI.gameObject.SetActive(false);
