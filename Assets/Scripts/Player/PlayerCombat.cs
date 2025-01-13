@@ -48,7 +48,7 @@ public class PlayerCombat : MonoBehaviour
             if (CurrentAttack == null)
                 CurrentAttack = DefaultAttack;
             //CurrentAttack.BaseDamage = playerStats.BaseDamage; // uses the skill's base damage
-            playerAnimator.SetTrigger("Attack");
+            //playerAnimator.SetTrigger("Attack");
             CurrentAttack.PerformAttack(this);
         }
     }
