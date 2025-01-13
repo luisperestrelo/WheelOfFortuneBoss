@@ -9,10 +9,8 @@ public class FireballAttack : BaseAttack
     {
         base.PerformAttack(playerCombat);
 
-        // Get universal damage multiplier from PlayerCombat
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
-        // Crit calculation
         if (Random.value < playerStats.CritChance)
         {
             damageMultiplier *= playerStats.CritMultiplier;
@@ -33,21 +31,17 @@ public class FireballAttack : BaseAttack
 
             Vector2 towardMouse = (hitPoint - playerCombat.transform.position).normalized;
 
-            // Clamp spreadAngle
             spreadAngle = Mathf.Clamp(spreadAngle, 0f, 180f);
 
             if (projectileCount > 1)
             {
-                // Calculate the starting angle for the fan
                 float mouseAngle = Mathf.Atan2(towardMouse.y, towardMouse.x) * Mathf.Rad2Deg;
                 float startAngle = mouseAngle - spreadAngle / 2f;
 
                 for (int i = 0; i < projectileCount; i++)
                 {
-                    // Calculate the angle for each projectile
                     float currentAngle = startAngle + spreadAngle / (projectileCount - 1) * i;
 
-                    // Convert the angle back to a direction vector
                     Quaternion rotation = Quaternion.Euler(0, 0, currentAngle);
                     Vector2 direction = rotation * Vector2.right;
 

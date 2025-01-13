@@ -31,17 +31,15 @@ public class LightningBlast : MonoBehaviour
             Health enemyHealth = other.GetComponent<Health>();
             if (enemyHealth != null)
             {
-                // Calculate damage with crits:
                 float finalDamage = damage;
 
-                // Apply universal damage multiplier from PlayerCombat
                 finalDamage *= playerCombat.GetUniversalDamageMultiplier();
 
-                // Crit calculation
                 if (Random.value < playerStats.CritChance)
                 {
                     finalDamage *= playerStats.CritMultiplier;
-                    Debug.Log("Lightning Blast CRIT!"); // You can add a visual effect here
+                    Debug.Log("Lightning Blast CRIT!"); 
+                    //TODO: Would be cool to have something to add more "oomph" to crits but maybe too much?
                 }
 
                 enemyHealth.TakeDamage(finalDamage);

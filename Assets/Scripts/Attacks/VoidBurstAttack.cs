@@ -11,10 +11,8 @@ public class VoidBurstAttack : BaseAttack
         base.PerformAttack(playerCombat);
         InstantDamageDealer damageDealer = Instantiate(voidBurstPrefab, playerCombat.transform.position, Quaternion.identity);
 
-        // Get universal damage multiplier from PlayerCombat
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier() * playerStats.PositiveNegativeFieldsEffectivenessMultiplier;
 
-        // Crit calculation
         if (Random.value < playerStats.CritChance)
         {
             damageMultiplier *= playerStats.CritMultiplier;
@@ -35,7 +33,6 @@ public class VoidBurstAttack : BaseAttack
             hitPoint = ray.GetPoint(distance);
 
             Vector2 towardMouse = (hitPoint - playerCombat.transform.position).normalized;
-            //rotate the damage dealer to face the mouse
             damageDealer.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(towardMouse.y, towardMouse.x) * Mathf.Rad2Deg);
             damageDealer.transform.Rotate(0, 0, 90);
             damageDealer.transform.position = playerCombat.transform.position + (Vector3)towardMouse * 6.2f;

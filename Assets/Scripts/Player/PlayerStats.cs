@@ -42,12 +42,10 @@ public class PlayerStats : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Example modification methods:
     public void IncreaseMaxHealth(float amount)
     {
         MaxHealth += amount;
 
-        // Update PlayerHealth's values directly
         PlayerHealth playerHealth = GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
@@ -80,7 +78,7 @@ public class PlayerStats : MonoBehaviour
         CritMultiplier = newCritMultiplier;
     }
 
-    // Field-related modification methods (add more as needed)
+    // Field-related modification methods 
     public void MultiplyHealingFieldsStrength(float multiplier)
     {
         HealingFieldsStrengthMultiplier *= multiplier;

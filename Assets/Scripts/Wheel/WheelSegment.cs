@@ -30,13 +30,11 @@ public class WheelSegment
 
     public void StartCooldown()
     {
-        // Get the PlayerStats component
         PlayerStats playerStats = Object.FindObjectOfType<PlayerStats>();
 
         if (Field.Cooldown > 0)
         {
             IsOnCooldown = true;
-            // Apply the field cooldown multiplier
             cooldownTimer = Field.Cooldown * playerStats.FieldsCooldownMultiplier;
         }
     }
