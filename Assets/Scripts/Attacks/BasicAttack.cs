@@ -10,10 +10,8 @@ public class BasicAttack : BaseAttack
     {
         base.PerformAttack(playerCombat);
 
-        // Get combined damage multiplier from PlayerCombat
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
-        // Crit calculation
         if (Random.value < playerStats.CritChance)
         {
             damageMultiplier *= playerStats.CritMultiplier;
@@ -30,21 +28,17 @@ public class BasicAttack : BaseAttack
             hitPoint = ray.GetPoint(distance);
             Vector2 towardMouse = (hitPoint - playerCombat.transform.position).normalized;
 
-            // Clamp spreadAngle
             spreadAngle = Mathf.Clamp(spreadAngle, 0f, 180f);
 
             if (projectileCount > 1)
             {
-                // Calculate the starting angle for the fan
                 float mouseAngle = Mathf.Atan2(towardMouse.y, towardMouse.x) * Mathf.Rad2Deg;
                 float startAngle = mouseAngle - spreadAngle / 2f;
 
                 for (int i = 0; i < projectileCount; i++)
                 {
-                    // Calculate the angle for each projectile
                     float currentAngle = startAngle + spreadAngle / (projectileCount - 1) * i;
 
-                    // Convert the angle back to a direction vector
                     Quaternion rotation = Quaternion.Euler(0, 0, currentAngle);
                     Vector2 direction = rotation * Vector2.right;
 
@@ -55,8 +49,7 @@ public class BasicAttack : BaseAttack
             }
             else
             {
-                // Handle cases where projectileCount is not greater than 1
-                Vector2 direction = towardMouse; // Default direction
+                Vector2 direction = towardMouse; 
 
                 BaseProjectile projectile = Instantiate(projectilePrefab, playerCombat.transform.position, Quaternion.identity);
                 projectile.SetDamage(BaseDamage * damageMultiplier);

@@ -23,13 +23,12 @@ public class CardManager : MonoBehaviour
         }
         else if (card is StatUpgradeCard statUpgradeCard)
         {
-            // Iterate through the lists of statTypes and statValues
+            // Iterate through the lists of statTypes and statValues. These are always a pair. Some cards can affect multiple stats
             for (int i = 0; i < statUpgradeCard.statTypes.Count; i++)
             {
                 StatType statType = statUpgradeCard.statTypes[i];
                 float statValue = statUpgradeCard.statValues[i];
 
-                // Apply stat upgrade to the player based on statType and statValue
                 if (statType == StatType.Health)
                 {
                     playerStats.IncreaseMaxHealth(statValue);

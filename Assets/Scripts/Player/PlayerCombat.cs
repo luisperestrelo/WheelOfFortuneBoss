@@ -53,10 +53,8 @@ public class PlayerCombat : MonoBehaviour
             // Calculate fire rate with temporary buff
             float fireRate = CurrentAttack.FireRate * playerStats.BaseFireRateMultiplier * temporaryFireRateMultiplier;
             
-            // Calculate the total number of projectiles with fanning
             int totalProjectiles = CalculateTotalProjectiles(CurrentAttack, shouldFanOut: true);
 
-            // Pass spread angle to PerformAttack (you can adjust the value as needed)
             CurrentAttack.PerformAttack(this, fireRate, playerStats, totalProjectiles);
         }
     }
@@ -90,7 +88,7 @@ public class PlayerCombat : MonoBehaviour
         damageCoroutine = null;
     }
 
-    // New method for temporary fire rate buffs
+    // temporary fire rate buffs
     public void SetFireRateMultiplierForDuration(float multiplier, float duration)
     {
         if (fireRateCoroutine != null)
@@ -150,7 +148,6 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("canShoot reset to true on scene load: " + scene.name);
     }
 
-    // Renamed this method to apply to all damage sources
     public float GetUniversalDamageMultiplier()
     {
         return playerStats.BaseDamageMultiplier * temporaryDamageMultiplier;
@@ -158,7 +155,6 @@ public class PlayerCombat : MonoBehaviour
 
     private int CalculateTotalProjectiles(BaseAttack attack, bool shouldFanOut = false)
     {
-        // Base number of projectiles + additional projectiles from upgrades
         return attack.ProjectileCount + Mathf.FloorToInt(playerStats.AdditionalProjectilesForAttacks);
     }
 }

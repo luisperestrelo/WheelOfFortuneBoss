@@ -22,7 +22,6 @@ public class FanOfKnivesAttack : BaseAttack
             towardMouse = (hitPoint - playerCombat.transform.position).normalized;
         }
 
-        // Clamp spreadAngle
         spreadAngle = Mathf.Clamp(spreadAngle, 0f, 180f);
 
         if (projectileCount > 1)
@@ -40,10 +39,8 @@ public class FanOfKnivesAttack : BaseAttack
 
                 KnifeProjectile knife = Instantiate(knifePrefab, playerCombat.transform.position, Quaternion.identity);
 
-                // Get universal damage multiplier from PlayerCombat
                 float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
-                // Crit calculation
                 if (Random.value < playerStats.CritChance)
                 {
                     damageMultiplier *= playerStats.CritMultiplier;
@@ -61,10 +58,8 @@ public class FanOfKnivesAttack : BaseAttack
 
             KnifeProjectile knife = Instantiate(knifePrefab, playerCombat.transform.position, Quaternion.identity);
 
-            // Get universal damage multiplier from PlayerCombat
             float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
-            // Crit calculation
             if (Random.value < playerStats.CritChance)
             {
                 damageMultiplier *= playerStats.CritMultiplier;
