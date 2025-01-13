@@ -31,7 +31,7 @@ public class HealingEffectHandler : ChargeableFieldEffectHandler
         Health playerHealth = player.GetComponent<PlayerHealth>();
         if (playerHealth != null)
         {
-            playerHealth.Heal(healAmount);
+            playerHealth.Heal(healAmount * playerStats.HealingFieldsStrengthMultiplier);
         }
         else
         {

@@ -308,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 1362018983}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: movementSchemeType
-      value: 1
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7994807050095536896, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: m_LocalScale.x
@@ -382,7 +382,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fa46246c440724ea653889a4e5dcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  maxHealth: 100
+  healthRegen: 0
+  baseDamageMultiplier: 1
+  baseFireRateMultiplier: 1
+  critChance: 0.05
+  critMultiplier: 2
+  healingFieldsStrengthMultiplier: 1
+  chargeUpFieldsSpeedMultiplier: 1
+  decayingChargeUpFieldsDecaySlowdownMultiplier: 1
+  positiveNegativeFieldsEffectivenessMultiplier: 1
+  additionalProjectilesForAttacks: 0
+  lingeringBuffFieldsDurationMultiplier: 1
+  lingeringBuffFieldsEffectivenessMultiplier: 1
+  fieldsCooldownMultiplier: 1
 --- !u!114 &71604784
 MonoBehaviour:
   m_ObjectHideFlags: 0

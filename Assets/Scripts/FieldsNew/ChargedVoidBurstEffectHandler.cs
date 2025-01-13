@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
-public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
+public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler // This is different maybe dont inherit idk
 {
     private BaseAttack voidBurstAttack;
     private float curseDuration;
@@ -25,6 +25,20 @@ public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
 
     }
 
+    public override void OnStay(Player player, float deltaTime)
+    {
+        if (isCharging)
+        {
+            // Apply the charge-up field speed multiplier
+            currentChargeTime += deltaTime; //we override so it doesnt get the player stats for charge multi
+            if (currentChargeTime >= chargeTime)
+            {
+                OnChargeComplete(player);
+                currentChargeTime = 0f;
+            }
+        }
+    }
+
     public override void OnEnter(Player player)
     {
         base.OnEnter(player);
@@ -38,6 +52,25 @@ public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
         base.OnExit(player);
         Debug.Log("Exiting Charged Void Burst Field");
         player.GetComponent<PlayerCombat>().CurrentAttack = null; // Reset to default attack
+    }
+
+    protected override void Update()
+    {
+        if (isDecaying)
+        {
+            // Apply the decaying charge-up field decay slowdown multiplier
+            currentChargeTime -= decayRate * Time.deltaTime; // we override so it doesnt get the player stats for decay multi
+            currentChargeTime = Mathf.Clamp(currentChargeTime, 0f, chargeTime);
+
+            if (currentChargeTime == 0)
+            {
+                isDecaying = false;
+            }
+        }
+        if (chargeIndicatorImage != null)
+        {
+            chargeIndicatorImage.fillAmount = currentChargeTime / chargeTime;
+        }
     }
 
     protected override void OnChargeComplete(Player player)
@@ -85,7 +118,7 @@ public class ChargedVoidBurstEffectHandler : ChargeableFieldEffectHandler
         float timer = 0f;
         while (timer < curseDuration)
         {
-            player.GetComponent<PlayerHealth>().TakeDamage(curseDamageAmount);
+            player.GetComponent<PlayerHealth>().TakeDamage(curseDamageAmount * playerStats.PositiveNegativeFieldsEffectivenessMultiplier);
             timer += curseDamageInterval;
             yield return new WaitForSeconds(curseDamageInterval);
         }

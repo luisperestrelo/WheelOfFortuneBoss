@@ -9,8 +9,6 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float shootCooldown = 0.2f;
     public float projectileSpeed = 20f;
     [SerializeField] private BaseProjectile defaultProjectilePrefab;
-    [SerializeField] private float globalDamageMultiplier = 1f;
-    [SerializeField] private float baseDamageMultiplier = 1f;
 
     [SerializeField] private AudioClip shootSfx;
     [SerializeField] private GameObject shieldPrefab;
@@ -20,6 +18,7 @@ public class PlayerCombat : MonoBehaviour
 
     public AudioSource shootAudioSource;
     private Coroutine damageCoroutine;
+    private Coroutine fireRateCoroutine;
 
     public bool HasShield { get; private set; }
     private GameObject _activeShield;
@@ -32,24 +31,33 @@ public class PlayerCombat : MonoBehaviour
 
     private PlayerStats playerStats;
 
+    // Temporary multipliers for buffs
+    private float temporaryDamageMultiplier = 1f;
+    private float temporaryFireRateMultiplier = 1f;
+
     private void Start()
     {
         shootAudioSource = GetComponent<AudioSource>();
         projectilePrefab = defaultProjectilePrefab;
         playerStats = FindObjectOfType<PlayerStats>();
-        baseDamageMultiplier = playerStats.BaseDamage;
     }
 
     private void Update()
     {
-
         if (canShoot && Input.GetMouseButton(0))
         {
             if (CurrentAttack == null)
                 CurrentAttack = DefaultAttack;
-            //CurrentAttack.BaseDamage = playerStats.BaseDamage; // uses the skill's base damage
             playerAnimator.SetTrigger("Attack");
-            CurrentAttack.PerformAttack(this);
+
+            // Calculate fire rate with temporary buff
+            float fireRate = CurrentAttack.FireRate * playerStats.BaseFireRateMultiplier * temporaryFireRateMultiplier;
+            
+            // Calculate the total number of projectiles with fanning
+            int totalProjectiles = CalculateTotalProjectiles(CurrentAttack, shouldFanOut: true);
+
+            // Pass spread angle to PerformAttack (you can adjust the value as needed)
+            CurrentAttack.PerformAttack(this, fireRate, playerStats, totalProjectiles);
         }
     }
 
@@ -62,32 +70,51 @@ public class PlayerCombat : MonoBehaviour
 
     public void SetDamageMultiplierForDuration(float multiplier, float duration)
     {
-        // If there's already a damage-coroutine running, stop it so durations don't overlap unpredictably.
         if (damageCoroutine != null)
         {
             StopCoroutine(damageCoroutine);
-            globalDamageMultiplier = baseDamageMultiplier;
         }
-
         damageCoroutine = StartCoroutine(DamageMultiplierCoroutine(multiplier, duration));
     }
 
-    public void IncreaseDamageMultiplierForDuration(float multiplier, float duration) // this is multiplicative, not additive, I think?
+    public void IncreaseDamageMultiplierForDuration(float multiplier, float duration)
     {
-        SetDamageMultiplierForDuration(globalDamageMultiplier * multiplier, duration);
+        SetDamageMultiplierForDuration(temporaryDamageMultiplier * multiplier, duration);
     }
 
     private IEnumerator DamageMultiplierCoroutine(float multiplier, float duration)
     {
-        globalDamageMultiplier = multiplier;
+        temporaryDamageMultiplier = multiplier;
         yield return new WaitForSeconds(duration);
-        globalDamageMultiplier = baseDamageMultiplier;
+        temporaryDamageMultiplier = 1f;
         damageCoroutine = null;
     }
 
-    public void ActivateShield(GameObject shieldPrefab, ShieldArea source) // not using the parameters
+    // New method for temporary fire rate buffs
+    public void SetFireRateMultiplierForDuration(float multiplier, float duration)
     {
+        if (fireRateCoroutine != null)
+        {
+            StopCoroutine(fireRateCoroutine);
+        }
+        fireRateCoroutine = StartCoroutine(FireRateMultiplierCoroutine(multiplier, duration));
+    }
 
+    public void IncreaseFireRateMultiplierForDuration(float multiplier, float duration)
+    {
+        SetFireRateMultiplierForDuration(temporaryFireRateMultiplier * multiplier, duration);
+    }
+
+    private IEnumerator FireRateMultiplierCoroutine(float multiplier, float duration)
+    {
+        temporaryFireRateMultiplier = multiplier;
+        yield return new WaitForSeconds(duration);
+        temporaryFireRateMultiplier = 1f;
+        fireRateCoroutine = null;
+    }
+
+    public void ActivateShield(GameObject shieldPrefab, ShieldArea source)
+    {
         HasShield = true;
         _currentShieldArea = source;
         //if (shieldPrefab == null) return;
@@ -107,40 +134,31 @@ public class PlayerCombat : MonoBehaviour
         _currentShieldArea = null;
     }
 
-    public float GetGlobalDamageMultiplier()
-    {
-        return globalDamageMultiplier;
-    }
-
-    public float GetBaseDamageMultiplier()
-    {
-        return baseDamageMultiplier;
-    }
-
-    public void UpdateBaseDamageMultiplier(float newBaseMultiplier)
-    {
-        baseDamageMultiplier = newBaseMultiplier;
-        globalDamageMultiplier = baseDamageMultiplier; //TODO: uhh
-    }
-
-    //Maybe a ghetto solution but if we went into a new scene and canShoot was false from before, it wouldnt work
     private void OnEnable()
     {
-       
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-        
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        
         canShoot = true;
         Debug.Log("canShoot reset to true on scene load: " + scene.name);
+    }
+
+    // Renamed this method to apply to all damage sources
+    public float GetUniversalDamageMultiplier()
+    {
+        return playerStats.BaseDamageMultiplier * temporaryDamageMultiplier;
+    }
+
+    private int CalculateTotalProjectiles(BaseAttack attack, bool shouldFanOut = false)
+    {
+        // Base number of projectiles + additional projectiles from upgrades
+        return attack.ProjectileCount + Mathf.FloorToInt(playerStats.AdditionalProjectilesForAttacks);
     }
 }
