@@ -50,7 +50,6 @@ public class MusicPlayer : MonoBehaviour
         } else
             instance = this;
 
-        lpFilter = GetComponent<AudioLowPassFilter>();
         DontDestroyOnLoad(gameObject);
     }
 

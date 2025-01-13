@@ -687,6 +687,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &429032241 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7626453082289106440, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
+  m_PrefabInstance: {fileID: 1396469092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!169 &429032242 stripped
+AudioLowPassFilter:
+  m_CorrespondingSourceObject: {fileID: 8644015709860308193, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
+  m_PrefabInstance: {fileID: 1396469092}
+  m_PrefabAsset: {fileID: 0}
+--- !u!165 &429032249
+AudioHighPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429032241}
+  m_Enabled: 1
+  m_CutoffFrequency: 10
+  m_HighpassResonanceQ: 1
 --- !u!1001 &530819701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1319,6 +1339,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Music Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7626453082289106446, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
+      propertyPath: hpFilter
+      value: 
+      objectReference: {fileID: 429032249}
+    - target: {fileID: 7626453082289106446, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
+      propertyPath: lpFilter
+      value: 
+      objectReference: {fileID: 429032242}
     - target: {fileID: 7626453082289106447, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.217442
@@ -1362,7 +1390,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7626453082289106440, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 429032249}
   m_SourcePrefab: {fileID: 100100000, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
 --- !u!114 &1419352231 stripped
 MonoBehaviour:
