@@ -13,7 +13,8 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField]
     private AnimationCurve freqRecoveryCurve;
 
-    private AudioLowPassFilter filter;
+    [SerializeField] private AudioLowPassFilter lpFilter;
+    [SerializeField] private AudioHighPassFilter hpFilter;
 
     private int preFightLoopStartSamples;
     private int preFightLoopEndSamples;
@@ -49,7 +50,7 @@ public class MusicPlayer : MonoBehaviour
         } else
             instance = this;
 
-        filter = GetComponent<AudioLowPassFilter>();
+        lpFilter = GetComponent<AudioLowPassFilter>();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -149,8 +150,9 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
+    #region Filter
     /// <summary>
-    /// Applies a resonant low-pass filter to the music (for when the player takes damage)
+    /// Applies a resonant low-pass and high-pass filter to the music temporarily (for when the player takes damage)
     /// </summary>
     /// <param name="intensity">How intense the filter should be (0 does nothing, 1 is the max)</param>
     public void FilterMusic(float intensity)
@@ -158,27 +160,67 @@ public class MusicPlayer : MonoBehaviour
         const float maxFreq = 10000f;
         float freq = maxFreq - (intensity * maxFreq);
         float time = intensity * 2f;
-        StartCoroutine(FilterMusicRoutine(freq, time));
+        StartCoroutine(TempLowPassMusicRoutine(freq, time));
+        StartCoroutine(TempHighPassMusicRoutine(freq, time));
     }
 
-    private IEnumerator FilterMusicRoutine(float freq, float time)
+    /// <summary>
+    /// Sets the frequency cutoff of a low-pass and high-pass filter to a given intensity.
+    /// </summary>
+    /// <param name="intensity">How intense the filter should be (0 does nothing, 1 filters the music to nothing.</param>
+    public void SetFilterIntensity(float intensity)
     {
-        float timeElapsed = 0;
-        const float moveFreqDownTime = 0.1f;
-        while(timeElapsed < moveFreqDownTime)
-        {
-            timeElapsed += Time.deltaTime;
-            filter.cutoffFrequency = Mathf.Lerp(22000, freq, timeElapsed / moveFreqDownTime);
-        }
+        float cutoffAtMaxIntensity = 1000;
+        const float time = 0.2f;
+        StartCoroutine(MoveLowPassToFreqRoutine(Mathf.Lerp(0, cutoffAtMaxIntensity, intensity), time));
+        StartCoroutine(MoveHighPassToFreqRoutine(Mathf.Lerp(22000, cutoffAtMaxIntensity, intensity), time));
+    }
 
-        timeElapsed = 0;
-        while(timeElapsed < time)
+    //Low Pass and High Pass filters share no parent class, so we can't just pass in which filter we want.
+    //So now we have two methods that are basically identical controlled by two other methods that are basically identical.
+    //I am all ears for better solutions.
+
+    /// <summary>
+    /// Temporarily low-passes the music at a given frequency for a given amount of time.
+    /// </summary>
+    private IEnumerator TempLowPassMusicRoutine(float freq, float time)
+    {
+        yield return MoveLowPassToFreqRoutine(freq, 0.1f);
+        yield return MoveLowPassToFreqRoutine(22000, time-0.1f);
+    }
+
+    /// <summary>
+    /// Temporarily high-passes the music at a given frequency for a given amount of time.
+    /// </summary>
+    private IEnumerator TempHighPassMusicRoutine(float freq, float time)
+    {
+        yield return MoveHighPassToFreqRoutine(freq, 0.1f);
+        yield return MoveHighPassToFreqRoutine(0, time - 0.1f);
+    }
+
+    private IEnumerator MoveLowPassToFreqRoutine(float freq, float time)
+    {
+        float startFreq = lpFilter.cutoffFrequency;
+        float timeElapsed = 0;
+        while (timeElapsed < time)
         {
             timeElapsed += Time.deltaTime;
-            filter.cutoffFrequency = Mathf.Lerp(freq, 22000, freqRecoveryCurve.Evaluate(timeElapsed / time));
+            lpFilter.cutoffFrequency = Mathf.Lerp(startFreq, freq, timeElapsed / time);
             yield return null;
         }
     }
+    private IEnumerator MoveHighPassToFreqRoutine(float freq, float time)
+    {
+        float startFreq = hpFilter.cutoffFrequency;
+        float timeElapsed = 0;
+        while (timeElapsed < time)
+        {
+            timeElapsed += Time.deltaTime;
+            hpFilter.cutoffFrequency = Mathf.Lerp(startFreq, freq, timeElapsed / time);
+            yield return null;
+        }
+    }
+    #endregion
 
     private void Update()
     {
