@@ -22,6 +22,7 @@ public class SFXPool : MonoBehaviour
             Debug.LogWarning("Multiple SFXPool instances detected. Destroying " + this);
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
     }
     public enum MixGroup //For mixing, won't be used until the end of the audio production cycle.
     {
