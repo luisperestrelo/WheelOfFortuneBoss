@@ -6,7 +6,7 @@ public class VoidBurstAttack : BaseAttack
     [SerializeField] private InstantDamageDealer voidBurstPrefab;
     //[SerializeField] private float voidBurstSpeed = 15f;  // not used since its not a projectile
 
-    public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats)
+    public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle)
     {
         base.PerformAttack(playerCombat);
         InstantDamageDealer damageDealer = Instantiate(voidBurstPrefab, playerCombat.transform.position, Quaternion.identity);

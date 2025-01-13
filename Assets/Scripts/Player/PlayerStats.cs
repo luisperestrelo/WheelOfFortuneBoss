@@ -15,7 +15,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float chargeUpFieldsSpeedMultiplier = 1f;
     [SerializeField] private float decayingChargeUpFieldsDecaySlowdownMultiplier = 1f;
     [SerializeField] private float positiveNegativeFieldsEffectivenessMultiplier = 1f;
-    [SerializeField] private float projectileReplacingFieldsAdditionalProjectiles = 0f; // This is a whole number, not a percentage
+    [SerializeField] private float additionalProjectilesForAttacks = 0f; // This is a whole number, not a percentage
     [SerializeField] private float lingeringBuffFieldsDurationMultiplier = 1f;
     [SerializeField] private float lingeringBuffFieldsEffectivenessMultiplier = 1f;
     [SerializeField] private float fieldsCooldownMultiplier = 1f;
@@ -32,7 +32,7 @@ public class PlayerStats : MonoBehaviour
     public float ChargeUpFieldsSpeedMultiplier { get { return chargeUpFieldsSpeedMultiplier; } private set { chargeUpFieldsSpeedMultiplier = value; } }
     public float DecayingChargeUpFieldsDecaySlowdownMultiplier { get { return decayingChargeUpFieldsDecaySlowdownMultiplier; } private set { decayingChargeUpFieldsDecaySlowdownMultiplier = value; } }
     public float PositiveNegativeFieldsEffectivenessMultiplier { get { return positiveNegativeFieldsEffectivenessMultiplier; } private set { positiveNegativeFieldsEffectivenessMultiplier = value; } }
-    public float ProjectileReplacingFieldsAdditionalProjectiles { get { return projectileReplacingFieldsAdditionalProjectiles; } private set { projectileReplacingFieldsAdditionalProjectiles = value; } }
+    public float AdditionalProjectilesForAttacks { get { return additionalProjectilesForAttacks; } private set { additionalProjectilesForAttacks = value; } }
     public float LingeringBuffFieldsDurationMultiplier { get { return lingeringBuffFieldsDurationMultiplier; } private set { lingeringBuffFieldsDurationMultiplier = value; } }
     public float LingeringBuffFieldsEffectivenessMultiplier { get { return lingeringBuffFieldsEffectivenessMultiplier; } private set { lingeringBuffFieldsEffectivenessMultiplier = value; } }
     public float FieldsCooldownMultiplier { get { return fieldsCooldownMultiplier; } private set { fieldsCooldownMultiplier = value; } }
@@ -101,9 +101,9 @@ public class PlayerStats : MonoBehaviour
         PositiveNegativeFieldsEffectivenessMultiplier *= multiplier;
     }
 
-    public void AddProjectileToProjectileReplacingFields(float amount)
+    public void AddProjectileToAdditionalProjectilesForAttacks(float amount)
     {
-        ProjectileReplacingFieldsAdditionalProjectiles += amount;
+        AdditionalProjectilesForAttacks += amount;
     }
 
     public void MultiplyLingeringBuffFieldsDuration(float multiplier)
