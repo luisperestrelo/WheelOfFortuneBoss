@@ -79,6 +79,7 @@ public class PostBossCardSelectionUI : MonoBehaviour
     {
         if (selectedCards.Count == 3)
         {
+            Debug.Log("Starting fight with " + selectedCards.Count + " cards");
             RunManager.Instance.EnableWheelAndPlayer(); // gotta re-enable it here so we can apply the cards
 
             // Convert selected indices to a list of Card objects
@@ -86,6 +87,7 @@ public class PostBossCardSelectionUI : MonoBehaviour
             foreach (int index in selectedCards)
             {
                 cardsToAdd.Add(offeredCards[index]);
+                Debug.Log("Adding card: " + offeredCards[index].name);
             }
 
             // Add the selected cards to the player's current run cards
