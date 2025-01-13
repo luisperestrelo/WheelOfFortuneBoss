@@ -18,8 +18,8 @@ public enum StatType
     LingeringBuffFieldsDuration,
     LingeringBuffFieldsEffectiveness,
     FieldsCooldownReduction,
+    AdditionalProjectilesForAttacks,
 
-    //ProjectileReplacingFieldsAdditionalProjectiles, //do this later, when we rework projectiles
 }
 public enum CardType { Field, StatUpgrade, FieldCategoryUpgrade, FieldSpecificUpgrade, WheelUpgrade }
 // maybe wheleupgrade would be stuff like "choose a field, and increase its size"

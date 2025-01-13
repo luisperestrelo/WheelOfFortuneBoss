@@ -71,10 +71,10 @@ public class CardManager : MonoBehaviour
                 {
                     playerStats.MultiplyPositiveNegativeFieldsEffectiveness(1 + statValue);
                 }
-                /*             else if (statType == StatType.ProjectileReplacingFieldsAdditionalProjectiles)
-                            {
-                                playerStats.AddProjectileToProjectileReplacingFields(statValue); // Add (not multiply) projectiles
-                            } */
+                else if (statType == StatType.AdditionalProjectilesForAttacks)
+                {
+                    playerStats.AddProjectileToAdditionalProjectilesForAttacks(statValue);
+                }
                 else if (statType == StatType.LingeringBuffFieldsDuration)
                 {
                     playerStats.MultiplyLingeringBuffFieldsDuration(1 + statValue);
