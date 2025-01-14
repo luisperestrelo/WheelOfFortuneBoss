@@ -5,6 +5,12 @@ public class Player : MonoBehaviour
     [SerializeField] private WheelManager wheelManager;
     [SerializeField] private PlayerSpinMovement playerSpinMovement;
 
+    //Wheel SFX are handled by the player because the field effect SFX are a colossal pain to implement
+    [Header("SFX")]
+    [SerializeField] private AudioSource wheelStateChangeSource;
+    [SerializeField] private AudioClip enterFieldSfx;
+    [SerializeField] private AudioClip exitFieldSfx;
+
     private WheelSegment currentSegment;
 
     private void Awake()
@@ -36,6 +42,7 @@ public class Player : MonoBehaviour
             if (currentSegment != null)
             {
                 currentSegment.EffectHandler.OnExit(this);
+                wheelStateChangeSource.PlayOneShot(exitFieldSfx);
             }
 
             // Enter the new segment
@@ -44,6 +51,7 @@ public class Player : MonoBehaviour
             if (currentSegment != null)
             {
                 currentSegment.EffectHandler.OnEnter(this);
+                wheelStateChangeSource.PlayOneShot(enterFieldSfx);
             }
         }
 
