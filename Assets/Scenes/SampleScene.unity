@@ -209,7 +209,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
-  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -302,7 +301,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 30
+  field of view: 60
   orthographic: 1
   orthographic size: 10.8
   m_Depth: -1
@@ -329,30 +328,12 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 0, y: -25.36, z: -28.8}
+  m_LocalPosition: {x: -1.5, y: -25.9, z: -28.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
---- !u!114 &519420033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f32365050fcec50448d14b35c5450670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.5
-  followCursorStrength: 0.6
-  distanceForMaxFollowStrength: 5
-  zoomInStrength: 0.8
-  zoomSpeed: 0.5
-  anchor: {x: 0, y: -2.5, z: 0}
 --- !u!4 &598050826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8280618227007057592, guid: 55eb46ca8e628dd41926bbef1fc6037e, type: 3}
@@ -1725,20 +1706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fa46246c440724ea653889a4e5dcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  healthRegen: 0
-  baseDamageMultiplier: 1
-  baseFireRateMultiplier: 1
-  critChance: 0.05
-  critMultiplier: 2
-  healingFieldsStrengthMultiplier: 1
-  chargeUpFieldsSpeedMultiplier: 1
-  decayingChargeUpFieldsDecaySlowdownMultiplier: 1
-  positiveNegativeFieldsEffectivenessMultiplier: 1
-  additionalProjectilesForAttacks: 0
-  lingeringBuffFieldsDurationMultiplier: 1
-  lingeringBuffFieldsEffectivenessMultiplier: 1
-  fieldsCooldownMultiplier: 1
+  MaxHealth: 100
 --- !u!114 &1896026460 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7586169954359990532, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
@@ -2689,7 +2657,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!223 &2818714691645239103
 Canvas:
   m_ObjectHideFlags: 0
@@ -2829,11 +2797,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3676887714969270010, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.49
       objectReference: {fileID: 0}
     - target: {fileID: 3676887714969270010, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.58
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3676887714969270010, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
       propertyPath: m_LocalRotation.w
