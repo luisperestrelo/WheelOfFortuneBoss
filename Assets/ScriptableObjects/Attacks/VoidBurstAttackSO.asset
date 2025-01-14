@@ -16,5 +16,5 @@ MonoBehaviour:
   FireRate: 1.3
   ProjectileCount: 1
   ProjectileSpeed: 15
-  shootSfx: {fileID: 0}
+  shootSfx: {fileID: 8300000, guid: 0d500b1bfa86dfc4fbc513a7d772ba6c, type: 3}
   voidBurstPrefab: {fileID: 2322576854947643420, guid: 8d8fed749a3933847942d1f1a0337a1f, type: 3}

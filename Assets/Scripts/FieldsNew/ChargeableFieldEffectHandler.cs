@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
@@ -10,6 +11,8 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
     protected bool resetsOnExit;
     protected float decayRate;
     protected Image chargeIndicatorImage;
+
+    protected AudioSource chargeSource;
 
     public float ChargePercent => currentChargeTime / chargeTime;
 
@@ -26,7 +29,14 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
         isCharging = false;
         isDecaying = false;
 
-
+        if (chargeSource == null)
+        {
+            chargeSource = CreateAudioSource(true);
+            chargeSource.clip = Resources.Load("SE_Field_Charge") as AudioClip;
+            chargeSource.loop = true;
+            chargeSource.volume = 0;
+            chargeSource.Play();
+        }
 
 
     }
@@ -71,6 +81,7 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
 
     protected virtual void Update()
     {
+        UpdateChargeSource();
         if (isDecaying)
         {
             // Apply the decaying charge-up field decay slowdown multiplier
@@ -87,6 +98,16 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
             chargeIndicatorImage.fillAmount = currentChargeTime / chargeTime;
         }
     }
+
+    protected void UpdateChargeSource()
+    {
+        chargeSource.pitch = 1 + currentChargeTime / chargeTime;
+        if (isCharging)
+            chargeSource.volume = currentChargeTime / chargeTime;
+        else
+            chargeSource.volume = Mathf.MoveTowards(chargeSource.volume, 0, Time.deltaTime);
+    }
+
     //UI stuff
     public virtual void OnChargeUpdate(Player player, float chargePercent) { }
 
