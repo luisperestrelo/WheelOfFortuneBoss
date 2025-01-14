@@ -4,8 +4,8 @@ using UnityEngine;
 public class FanOfKnivesAttack : BaseAttack
 {
     [SerializeField] private KnifeProjectile knifePrefab;
-/*     [SerializeField] private int numberOfKnives = 3;
-    [SerializeField] private float spreadAngle = 30f; */
+/*     [SerializeField] private int numberOfKnives = 3; */
+    [SerializeField] private float spreadAngle = 30f; 
 
     public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle)
     {
@@ -16,6 +16,7 @@ public class FanOfKnivesAttack : BaseAttack
         float distance;
         Vector2 towardMouse = Vector2.right; // Default if raycast fails
 
+        spreadAngle = this.spreadAngle;
         if (plane.Raycast(ray, out distance))
         {
             hitPoint = ray.GetPoint(distance);
