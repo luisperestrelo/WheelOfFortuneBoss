@@ -21,7 +21,7 @@ MonoBehaviour:
   duration: 0
   cooldown: 0
   visualEffect: {fileID: 0}
-  audioEffect: {fileID: 0}
+  audioEffect: {fileID: 8300000, guid: b45e7124284cbab4db491e8a0f0f88f5, type: 3}
   size: 1
   resetsOnExit: 0
   decayRate: 0.15

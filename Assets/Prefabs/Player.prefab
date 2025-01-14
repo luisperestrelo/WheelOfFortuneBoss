@@ -219,6 +219,7 @@ MonoBehaviour:
   lightDamageSfx: {fileID: 8300000, guid: 15033526d6388234c927dc4a5103c461, type: 3}
   heavyDamageSfx: {fileID: 8300000, guid: 15033526d6388234c927dc4a5103c461, type: 3}
   parrySfx: {fileID: 8300000, guid: e3c50d1780bcaab49bcd831db321b16c, type: 3}
+  damageSource: {fileID: 7166551282647893016}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -242,10 +243,9 @@ MonoBehaviour:
   shootCooldown: 0.25
   projectileSpeed: 50
   defaultProjectilePrefab: {fileID: 0}
-  globalDamageMultiplier: 1
-  baseDamageMultiplier: 1
   shootSfx: {fileID: 0}
   shieldPrefab: {fileID: 0}
+  playerAnimator: {fileID: 0}
   shootAudioSource: {fileID: 0}
   CurrentAttack: {fileID: 0}
   DefaultAttack: {fileID: 0}
