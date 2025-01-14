@@ -2,18 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class LightningBlast : MonoBehaviour
 {
     [SerializeField] private float damage;
     [SerializeField] private float lifetime = 1f;
+    [SerializeField] private AudioClip strikeSfx;
     private PlayerStats playerStats;
     private PlayerCombat playerCombat;
+    private AudioSource audioSource;
 
     private void Start()
     {
         Destroy(gameObject, lifetime);
         playerStats = FindObjectOfType<PlayerStats>();
         playerCombat = FindObjectOfType<PlayerCombat>();
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(strikeSfx);
     }
 
     // Could do this with animation triggers later, if we want
