@@ -1706,7 +1706,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fa46246c440724ea653889a4e5dcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  maxHealth: 100
+  healthRegen: 0
+  baseDamageMultiplier: 1
+  baseFireRateMultiplier: 1
+  critChance: 0.05
+  critMultiplier: 2
+  healingFieldsStrengthMultiplier: 1
+  chargeUpFieldsSpeedMultiplier: 1
+  decayingChargeUpFieldsDecaySlowdownMultiplier: 1
+  positiveNegativeFieldsEffectivenessMultiplier: 1
+  additionalProjectilesForAttacks: 0
+  lingeringBuffFieldsDurationMultiplier: 1
+  lingeringBuffFieldsEffectivenessMultiplier: 1
+  fieldsCooldownMultiplier: 1
 --- !u!114 &1896026460 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7586169954359990532, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
@@ -2904,6 +2917,10 @@ PrefabInstance:
       value: 7000
       objectReference: {fileID: 0}
     - target: {fileID: 5187145392800842677, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
+      propertyPath: damageSource
+      value: 
+      objectReference: {fileID: 3829471847846136941}
+    - target: {fileID: 5187145392800842677, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
       propertyPath: heavyDamageSfx
       value: 
       objectReference: {fileID: 8300000, guid: 8602518a3e6e7c74bab30911fd517a5c, type: 3}
@@ -3007,6 +3024,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7084954769884783182, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -3705844123488182438, guid: 6ad2b2cae9639ea489e06085fa43cb8f, type: 2}
     - target: {fileID: 7171549137132098019, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
       propertyPath: _player
       value: 
@@ -3046,6 +3067,11 @@ PrefabInstance:
 --- !u!4 &3829471847846136940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3676887714969270010, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
+  m_PrefabInstance: {fileID: 3829471847846136939}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &3829471847846136941 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7084954769884783182, guid: ada3255ad988fce4ebb66449cc8f3c71, type: 3}
   m_PrefabInstance: {fileID: 3829471847846136939}
   m_PrefabAsset: {fileID: 0}
 --- !u!222 &4098649168174254790
