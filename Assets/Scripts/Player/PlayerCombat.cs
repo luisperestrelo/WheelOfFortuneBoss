@@ -10,7 +10,7 @@ public class PlayerCombat : MonoBehaviour
     public float projectileSpeed = 20f;
     [SerializeField] private BaseProjectile defaultProjectilePrefab;
 
-    [SerializeField] private AudioClip shootSfx;
+    [SerializeField] private AudioClip increasedDamageLayerSfx;
     [SerializeField] private GameObject shieldPrefab;
     [SerializeField] private Animator playerAnimator;
 
@@ -56,6 +56,8 @@ public class PlayerCombat : MonoBehaviour
             int totalProjectiles = CalculateTotalProjectiles(CurrentAttack, shouldFanOut: true);
 
             CurrentAttack.PerformAttack(this, fireRate, playerStats, totalProjectiles);
+            if (temporaryDamageMultiplier > 1)
+                shootAudioSource.PlayOneShot(increasedDamageLayerSfx);
         }
     }
 
@@ -152,7 +154,6 @@ public class PlayerCombat : MonoBehaviour
     {
         return playerStats.BaseDamageMultiplier * temporaryDamageMultiplier;
     }
-
     private int CalculateTotalProjectiles(BaseAttack attack, bool shouldFanOut = false)
     {
         return attack.ProjectileCount + Mathf.FloorToInt(playerStats.AdditionalProjectilesForAttacks);

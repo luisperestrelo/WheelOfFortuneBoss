@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(AudioSource))]
 public class Health : MonoBehaviour
 {
     [SerializeField] protected float maxHealth = 100f;
@@ -11,6 +12,7 @@ public class Health : MonoBehaviour
     [SerializeField] private AudioClip lightDamageSfx;
     [SerializeField] private AudioClip heavyDamageSfx;
     [SerializeField] private AudioClip parrySfx;
+    [SerializeField] private AudioSource damageSource;
 
     private PlayerCombat pc;
 
@@ -47,9 +49,9 @@ public class Health : MonoBehaviour
 
         //SFX
         if (damageAmount < hpHeavyDamageThreshold)
-            SFXPool.instance.PlaySound(lightDamageSfx);
+            damageSource.PlayOneShot(lightDamageSfx);
         else
-            SFXPool.instance.PlaySound(heavyDamageSfx);
+            damageSource.PlayOneShot(heavyDamageSfx);
 
         if (currentHealth <= 0)
         {
