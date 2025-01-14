@@ -15,6 +15,7 @@ public class WheelTestScript : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         playerPath = FindObjectOfType<CircularPath>();
+        wheelManager = FindObjectOfType<WheelManager>();
     }
 
     public void AddFieldToWheel()
