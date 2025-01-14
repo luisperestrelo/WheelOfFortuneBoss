@@ -964,7 +964,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1734474065633317517, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -100
+      value: -524
       objectReference: {fileID: 0}
     - target: {fileID: 1734474065633317517, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1428,6 +1428,19 @@ MonoBehaviour:
   commonCopies: 4
   rareCopies: 2
   epicCopies: 1
+  attackCards:
+  - {fileID: 11400000, guid: fe3d917d4d34dc84e854702c50fd2a2c, type: 2}
+  - {fileID: 11400000, guid: 7d93e97017a32f04fa24a4c3089b08e2, type: 2}
+  chargeCards:
+  - {fileID: 11400000, guid: 83113a183aaf7014e84ea1cecff32257, type: 2}
+  - {fileID: 11400000, guid: 735227fd76df71d48be57d4e2314adbb, type: 2}
+  statUpgradeCards:
+  - {fileID: 11400000, guid: 2cc6312ae37bc0b4c8ff788ba6b3f30a, type: 2}
+  - {fileID: 11400000, guid: ae65ebd678b835e4baf87182e6f1a037, type: 2}
+  - {fileID: 11400000, guid: 8b10d879d3186d14a8914c47a7c62c56, type: 2}
+  - {fileID: 11400000, guid: b658e56254b31f6478828219f62e32c7, type: 2}
+  - {fileID: 11400000, guid: 246fd43871d651442a32ccd805966fcc, type: 2}
+  - {fileID: 11400000, guid: 021eacc0266ee294cabecf8f2b6d50e1, type: 2}
 --- !u!4 &1287000252
 Transform:
   m_ObjectHideFlags: 0
@@ -1818,6 +1831,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardDisplay (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7560562144807881861, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1978,6 +1995,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardDisplay (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 7560562144807881861, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2069,11 +2090,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1734474065633317517, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 1734474065633317517, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -125
+      value: -124
       objectReference: {fileID: 0}
     - target: {fileID: 1734474065633317517, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
