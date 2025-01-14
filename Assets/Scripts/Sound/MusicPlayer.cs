@@ -149,34 +149,6 @@ public class MusicPlayer : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Lowers the volume of the music by a given amount for a given time. <br />
-    /// (Not true sidechaining, but close enough for our purposes.)
-    /// </summary>
-    public void SidechainMusic(float intensity, float time)
-    {
-        StopCoroutine(nameof(SidechainRoutine));
-        StartCoroutine(SidechainRoutine(intensity, time));
-    }
-
-    private IEnumerator SidechainRoutine(float intensity, float time)
-    {
-        float timeElapsed = 0;
-        while(timeElapsed < 0.1f)
-        {
-            timeElapsed += Time.unscaledDeltaTime;
-            fightSource.volume = Mathf.Lerp(1, 1 - intensity, timeElapsed / 0.1f);
-            yield return new WaitForSecondsRealtime(0);
-        }
-
-        while (timeElapsed < time+0.1f)
-        {
-            timeElapsed += Time.unscaledDeltaTime;
-            fightSource.volume = Mathf.Lerp(1 - intensity, 1, timeElapsed / time+0.1f);
-            yield return new WaitForSecondsRealtime(0);
-        }
-    }
-
     #region Filter
     /// <summary>
     /// Applies a resonant low-pass and high-pass filter to the music temporarily (for when the player takes damage)
