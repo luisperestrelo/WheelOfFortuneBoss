@@ -13,9 +13,7 @@ public abstract class FieldEffectHandler : MonoBehaviour
     {
         FieldData = fieldData;
         playerStats = FindObjectOfType<PlayerStats>();
-        audioSource = gameObject.AddComponent<AudioSource>();
-        AudioMixer mixer = Resources.Load("Master Mixer") as AudioMixer;
-        audioSource.outputAudioMixerGroup = mixer.FindMatchingGroups("Wheel")[0];
+        audioSource = CreateAudioSource(false);
     }
 
     public abstract void OnEnter(Player player);
@@ -24,5 +22,16 @@ public abstract class FieldEffectHandler : MonoBehaviour
     public virtual void SetSegment(WheelSegment segment)
     {
         Segment = segment;
+    }
+
+    protected AudioSource CreateAudioSource(bool isChargeSource)
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+        AudioMixer mixer = Resources.Load("Master Mixer") as AudioMixer;
+        if (isChargeSource)
+            source.outputAudioMixerGroup = mixer.FindMatchingGroups("Field Charge")[0];
+        else
+            source.outputAudioMixerGroup = mixer.FindMatchingGroups("Wheel")[0];
+        return source;
     }
 } 
