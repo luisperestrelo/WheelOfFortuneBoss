@@ -16,6 +16,7 @@ public class RunManager : MonoBehaviour
     public string postBossSceneName = "PostBossCardSelectionScene"; 
     private List<Card> offeredCards;
     private bool first = true; // TODO: right now startrun is also used just to go next boss, this will be removed once fixed
+    public UIWheel uiWheel; // Reference to the UIWheel
 
     public static RunManager Instance { get; private set; }
 
@@ -142,7 +143,7 @@ public class RunManager : MonoBehaviour
         midFightCardOfferUI.ShowCards(cardsToOffer);
     }
 
-    public void OnMidFightCardSelected(Card selectedCard)
+    public void OnMidFightStatCardSelected(Card selectedCard)
     {
         cardManager.ApplyCard(selectedCard);
         currentRunCards.Add(selectedCard);
@@ -150,6 +151,15 @@ public class RunManager : MonoBehaviour
 
         Time.timeScale = 1f;
         midFightCardOfferUI.gameObject.SetActive(false);
+    }
+
+    public void OnMidFightFieldCardSelected(Card selectedCard)
+    {
+        //applying card is handled in the ui wheel script
+        currentRunCards.Add(selectedCard);
+        MusicPlayer.instance.SetFilterIntensity(0f);
+
+        Time.timeScale = 1f;
     }
 
     public void AddCardsToCurrentRun(List<Card> cards)

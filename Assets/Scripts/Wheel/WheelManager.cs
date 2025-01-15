@@ -5,17 +5,17 @@ using System.Collections;
 
 public class WheelManager : MonoBehaviour
 {
-    public List<WheelSegment> Segments { get; private set; } = new List<WheelSegment>();
+    public List<WheelSegment> Segments { get;  set; } = new List<WheelSegment>();
     [SerializeField] private CircularPath circularPath;
     public CircularPath CircularPath => circularPath;
 
-    public List<Field> FieldsToAddToWheel; 
+    public List<Field> FieldsToAddToWheel;
 
-    public Material LineMaterial; 
+    public Material LineMaterial;
     public float LineWidth = 0.1f;
 
 
-    [SerializeField] private GameObject chargeIndicatorPrefab; 
+    [SerializeField] private GameObject chargeIndicatorPrefab;
     public Canvas indicatorCanvas; // fuck it we make it public . i guess TODO: fix this
 
     private void Awake()
@@ -168,6 +168,11 @@ public class WheelManager : MonoBehaviour
         CleanUpVisuals();
         CleanUpEffectHandlers();
 
+        // Clear existing segments
+        foreach (WheelSegment segment in Segments)
+        {
+            Destroy(segment.gameObject);
+        }
         Segments.Clear();
 
         // Calculate total relative size of all fields
@@ -186,7 +191,13 @@ public class WheelManager : MonoBehaviour
             float angleSize = (fieldRelativeSize / totalRelativeSize) * 360f;
             float endAngle = currentAngle + angleSize;
 
-            WheelSegment segment = new WheelSegment(fields[i], startAngle, endAngle);
+            // Create a new GameObject for the segment
+            GameObject segmentObject = new GameObject($"Segment_{fields[i].FieldName}");
+            segmentObject.transform.SetParent(transform);
+
+            // Add the WheelSegment component and initialize it
+            WheelSegment segment = segmentObject.AddComponent<WheelSegment>();
+            segment.Initialize(fields[i], startAngle, endAngle);
             Segments.Add(segment);
 
             currentAngle = endAngle;
@@ -210,14 +221,24 @@ public class WheelManager : MonoBehaviour
 
     private void CleanUpVisuals()
     {
+        // Destroy the old lines
         foreach (Transform child in transform)
         {
-            if (child.name.StartsWith("SegmentLine_") || child.name.StartsWith("CooldownText_") || child.name.StartsWith("FieldIcon_"))
+            if (child.name.StartsWith("SegmentLine_"))
+            {
+                Destroy(child.gameObject);
+            }
+
+            if (child.name.StartsWith("CooldownText_"))
+            {
+                Destroy(child.gameObject);
+            }
+
+            if (child.name.StartsWith("FieldIcon_")) //not needed anymore i think
             {
                 Destroy(child.gameObject);
             }
         }
-
 
         if (indicatorCanvas != null)
         {
@@ -235,15 +256,15 @@ public class WheelManager : MonoBehaviour
         Vector3 center = CircularPath.GetCenter();
         float radius = CircularPath.GetRadius();
 
-        foreach (WheelSegment segment in Segments)
+        // Draw lines only for the current segments
+        for (int i = 0; i < Segments.Count; i++)
         {
             // Calculate start and end points of the segment lines
             // Subtract 90 degrees to correct the offset
-            Vector3 startPoint = center + Quaternion.Euler(0, 0, segment.StartAngle - 90) * Vector3.up * radius;
-            Vector3 endPoint = center + Quaternion.Euler(0, 0, segment.EndAngle - 90) * Vector3.up * radius;
+            Vector3 startPoint = center + Quaternion.Euler(0, 0, Segments[i].StartAngle - 90) * Vector3.up * radius;
 
-            GameObject lineObject = new GameObject($"SegmentLine_{segment.StartAngle}");
-            lineObject.transform.SetParent(transform); 
+            GameObject lineObject = new GameObject($"SegmentLine_{Segments[i].StartAngle}");
+            lineObject.transform.SetParent(transform);
 
             // Add a LineRenderer component to the new GameObject
             LineRenderer lineRenderer = lineObject.AddComponent<LineRenderer>();
@@ -253,17 +274,6 @@ public class WheelManager : MonoBehaviour
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, center);
             lineRenderer.SetPosition(1, startPoint);
-
-            GameObject lineObject2 = new GameObject($"SegmentLine_{segment.EndAngle}");
-            lineObject2.transform.SetParent(transform); 
-
-            LineRenderer lineRenderer2 = lineObject2.AddComponent<LineRenderer>();
-            lineRenderer2.material = LineMaterial;
-            lineRenderer2.startWidth = LineWidth;
-            lineRenderer2.endWidth = LineWidth;
-            lineRenderer2.positionCount = 2;
-            lineRenderer2.SetPosition(0, center);
-            lineRenderer2.SetPosition(1, endPoint);
         }
     }
 
@@ -294,7 +304,7 @@ public class WheelManager : MonoBehaviour
         foreach (WheelSegment segment in Segments)
         {
             GameObject textObject = new GameObject($"CooldownText_{segment.Field.FieldName}");
-            textObject.transform.SetParent(transform); 
+            textObject.transform.SetParent(transform);
 
             TextMesh textMesh = textObject.AddComponent<TextMesh>();
             textMesh.text = ""; // Initially empty
@@ -317,16 +327,13 @@ public class WheelManager : MonoBehaviour
     {
         foreach (WheelSegment segment in Segments)
         {
-            GameObject fieldIcon = new GameObject($"FieldIcon_{segment.Field.FieldName}");
-            fieldIcon.transform.SetParent(transform);
-            fieldIcon.transform.localPosition = Vector3.zero;
-            fieldIcon.AddComponent<SpriteRenderer>().sprite = segment.Field.Icon;
-
+            // Set the segment's position and rotation instead of creating a separate icon
             Vector3 center = CircularPath.GetCenter();
             float radius = CircularPath.GetRadius();
             float angle = (segment.StartAngle + segment.EndAngle) / 2f - 90;
-            Vector3 iconPosition = center + Quaternion.Euler(0, 0, angle) * Vector3.up * (radius - 2.5f);
-            fieldIcon.transform.position = iconPosition;
+            Vector3 segmentPosition = center + Quaternion.Euler(0, 0, angle) * Vector3.up * (radius - 2.5f);
+            segment.transform.position = segmentPosition;
+            segment.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
 
@@ -418,10 +425,14 @@ public class WheelManager : MonoBehaviour
             float angleSize = (fieldRelativeSize / totalRelativeSize) * 360f;
             float endAngle = currentAngle + angleSize;
 
-            // Create or update segment
+            // Create OR  update segment
             if (i == FieldsToAddToWheel.Count - 1)
             {
-                WheelSegment segment = new WheelSegment(field, startAngle, endAngle);
+                GameObject segmentObject = new GameObject($"Segment_{field.FieldName}");
+                segmentObject.transform.SetParent(transform);
+
+                WheelSegment segment = segmentObject.AddComponent<WheelSegment>();
+                segment.Initialize(field, startAngle, endAngle);
                 Segments.Add(segment);
             }
             else
@@ -433,7 +444,6 @@ public class WheelManager : MonoBehaviour
             currentAngle = endAngle;
         }
 
-        // Initialize the EffectHandler for the new segment
         WheelSegment newSegment = Segments[Segments.Count - 1];
         if (newSegment.EffectHandler != null)
         {
@@ -461,10 +471,14 @@ public class WheelManager : MonoBehaviour
             float angleSize = (fieldRelativeSize / totalRelativeSize) * 360f;
             float endAngle = currentAngle + angleSize;
 
-            // Create or update segment
+            // Create OR  update segment
             if (i == index)
             {
-                WheelSegment segment = new WheelSegment(field, startAngle, endAngle);
+                GameObject segmentObject = new GameObject($"Segment_{field.FieldName}");
+                segmentObject.transform.SetParent(transform);
+
+                WheelSegment segment = segmentObject.AddComponent<WheelSegment>();
+                segment.Initialize(field, startAngle, endAngle);
                 Segments.Insert(index, segment);
             }
             else if (i > index)
@@ -483,7 +497,6 @@ public class WheelManager : MonoBehaviour
             currentAngle = endAngle;
         }
 
-        // Initialize the EffectHandler for the new segment
         WheelSegment newSegment = Segments[index];
         if (newSegment.EffectHandler != null)
         {
@@ -496,44 +509,70 @@ public class WheelManager : MonoBehaviour
     {
         //TODO 
         // We can have upgrades that change the size of a field
-        
+
     }
 
+    //TODO: this doesn't care about relative sizes of fields, we need to fix that, but not a problem yet
     private void RemoveFieldFromSegments(int index)
     {
+        Destroy(Segments[index].gameObject);
+
         // Clean up the EffectHandler for the removed segment
         if (Segments[index].EffectHandler != null)
         {
             Destroy(Segments[index].EffectHandler.gameObject);
         }
 
-        // Remove the segment
         Segments.RemoveAt(index);
 
         // Recalculate segment angles
-        float anglePerSegment = 360f / FieldsToAddToWheel.Count;
+        float anglePerSegment = 360f / Segments.Count;
         for (int i = 0; i < Segments.Count; i++)
         {
             Segments[i].StartAngle = i * anglePerSegment;
             Segments[i].EndAngle = (i + 1) * anglePerSegment;
+           // Segments[i].UpdateSegment(Segments[i].StartAngle, Segments[i].EndAngle);
         }
+
+        CleanUpVisuals();
+        DrawWheelLines();
     }
 
+    //Doesn't update sizes, this is more like to, "set a field on fire" and stuff like that
     private void ReplaceFieldInSegments(int index, Field newField)
     {
-        // Clean up the EffectHandler for the replaced segment
+        Segments[index].Initialize(newField, Segments[index].StartAngle, Segments[index].EndAngle);
+
         if (Segments[index].EffectHandler != null)
         {
             Destroy(Segments[index].EffectHandler.gameObject);
         }
 
-        // Replace the segment's field and reinitialize its EffectHandler
         Segments[index].Field = newField;
         Segments[index].EffectHandler = FieldEffectHandlerFactory.CreateEffectHandler(newField);
         if (Segments[index].EffectHandler != null)
         {
             Segments[index].EffectHandler.Initialize(newField);
             Segments[index].EffectHandler.SetSegment(Segments[index]);
+        }
+    }
+
+    public void ReplaceFieldAndUpdateSizes(int index, Field newField)
+    {
+        if (index >= 0 && index < FieldsToAddToWheel.Count)
+        {
+            FieldsToAddToWheel[index] = newField;
+
+            RemoveFieldFromSegments(index);
+
+            // Add the new field at the same index, which will recalculate sizes
+            AddFieldToSegments(newField, index);
+
+            UpdateWheelVisuals();
+        }
+        else
+        {
+            Debug.LogError("WheelManager::ReplaceFieldAndUpdateSizes: Index out of range.");
         }
     }
 
@@ -544,12 +583,26 @@ public class WheelManager : MonoBehaviour
         Segments[index1] = Segments[index2];
         Segments[index2] = temp;
 
-        // Update the start and end angles for the swapped segments
+        // Update the start and end angles, and positions for the swapped segments
         float anglePerSegment = 360f / Segments.Count;
         Segments[index1].StartAngle = index1 * anglePerSegment;
         Segments[index1].EndAngle = (index1 + 1) * anglePerSegment;
         Segments[index2].StartAngle = index2 * anglePerSegment;
         Segments[index2].EndAngle = (index2 + 1) * anglePerSegment;
+
+        UpdateSegmentPositions(index1);
+        UpdateSegmentPositions(index2);
+    }
+
+    private void UpdateSegmentPositions(int index)
+    {
+        WheelSegment segment = Segments[index];
+        Vector3 center = CircularPath.GetCenter();
+        float radius = CircularPath.GetRadius();
+        float angle = (segment.StartAngle + segment.EndAngle) / 2f - 90;
+        Vector3 segmentPosition = center + Quaternion.Euler(0, 0, angle) * Vector3.up * (radius - 2.5f);
+        segment.transform.position = segmentPosition;
+        segment.transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     private void UpdateWheelVisuals()
@@ -564,12 +617,8 @@ public class WheelManager : MonoBehaviour
         CreateChargeIndicators();
     }
 
-    public void InsertFieldAtBoundary(Field field, int boundaryIndex)
-    {
-        //This will be for later when we can customize wheel more
-        AddField(field, boundaryIndex + 1); 
-    }
 
-    
 
-} 
+
+
+}

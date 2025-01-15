@@ -12,6 +12,11 @@ public class CardPool : MonoBehaviour
     public int rareCopies = 2;
     public int epicCopies = 1;
 
+    [Header("Initial Card Selection")]
+    public List<Card> attackCards = new List<Card>();
+    public List<Card> chargeCards = new List<Card>();
+    public List<Card> statUpgradeCards = new List<Card>();
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -117,25 +122,45 @@ public class CardPool : MonoBehaviour
         availableCards.RemoveAll(c => c == card);
     }
 
-    // initial cards is different than other moments we get offered cards because we guarantee a minimum of 3 field cards
-    public List<Card> GetInitialCards() 
+    //initial cards have custom rules.
+    //current implementation: 1 attack card, 1 charge card, 1 stat upgrade card
+    //we could remove the stat upgrade card if we want to, but I think it's nice to show the player that they can upgrade their stats
+    //Not all cards are available for initial cards, they are cherry-picked and are "simple" cards
+    public List<Card> GetInitialCards()
     {
         List<Card> initialCards = new List<Card>();
 
-        // Ensure at least 3 FieldCards
-        List<FieldCard> fieldCards = availableCards.OfType<FieldCard>().OrderBy(x => Random.value).Take(3).ToList();
-        initialCards.AddRange(fieldCards);
-
-        // Add 2 other random cards
-        List<Card> otherCards = availableCards.Except(fieldCards).OrderBy(x => Random.value).Take(2).ToList();
-        initialCards.AddRange(otherCards);
-
-        // Remove the selected cards from the availableCards list
-        foreach (Card card in initialCards)
+        if (attackCards.Count > 0)
         {
-            availableCards.Remove(card);
+            Card attackCard = GetRandomCardFromList(attackCards, true);
+            initialCards.Add(attackCard);
+        }
+
+        if (chargeCards.Count > 0)
+        {
+            Card chargeCard = GetRandomCardFromList(chargeCards, true);
+            initialCards.Add(chargeCard);
+        }
+
+        if (statUpgradeCards.Count > 0)
+        {
+            Card statUpgradeCard = GetRandomCardFromList(statUpgradeCards, true);
+            initialCards.Add(statUpgradeCard);
         }
 
         return initialCards;
+    }
+
+   
+    private Card GetRandomCardFromList(List<Card> cardList, bool removeFromAvailable = false)
+    {
+        Card selectedCard = cardList.OrderBy(x => Random.value).First();
+
+        if (removeFromAvailable)
+        {
+            availableCards.Remove(selectedCard);
+        }
+
+        return selectedCard;
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fa988e142cac34580468f5566b4866, type: 3}
   m_Name: ChargedVoidBurstFieldSO
   m_EditorClassIdentifier: 
-  fieldName: 
+  fieldName: Void Burst
   description: 'DEV: Consider removing Charged Tag'
   icon: {fileID: 21300000, guid: e6032efd10f870f4c8dc49bd0ffa443b, type: 3}
   fieldType: 8

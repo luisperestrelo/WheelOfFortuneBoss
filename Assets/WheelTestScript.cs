@@ -10,11 +10,14 @@ public class WheelTestScript : MonoBehaviour
     [SerializeField] private GameObject upgradeOrbPrefab;
     [SerializeField] private Player player;
     [SerializeField] private CircularPath playerPath;
+    [SerializeField] private UIWheel uiWheel;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         playerPath = FindObjectOfType<CircularPath>();
+        wheelManager = FindObjectOfType<WheelManager>();
+        uiWheel = FindObjectOfType<UIWheel>();
     }
 
     public void AddFieldToWheel()
@@ -66,6 +69,11 @@ public class WheelTestScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.B))
         {
             SpawnUpgradeOrb();
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            uiWheel.Initialize(wheelManager, fieldToAdd, null, UIWheelMode.Replace);
         }
     }
 
