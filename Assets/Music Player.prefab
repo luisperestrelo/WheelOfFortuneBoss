@@ -156,7 +156,7 @@ GameObject:
   - component: {fileID: 7626453082289106445}
   - component: {fileID: 7177023397524549628}
   - component: {fileID: 8644015709860308193}
-  - component: {fileID: 2742651875393304200}
+  - component: {fileID: 7176874190034887751}
   m_Layer: 0
   m_Name: Music Player
   m_TagString: Untagged
@@ -231,7 +231,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   lpFilter: {fileID: 8644015709860308193}
-  hpFilter: {fileID: 2742651875393304200}
+  hpFilter: {fileID: 7176874190034887751}
   musicVolume: 1
   measureFlag: 0
 --- !u!82 &7626453082289106441
@@ -435,7 +435,7 @@ AudioSource:
   m_GameObject: {fileID: 7626453082289106440}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -3260727817996736784, guid: 6ad2b2cae9639ea489e06085fa43cb8f, type: 2}
+  OutputAudioMixerGroup: {fileID: -4100980341022994063, guid: 6ad2b2cae9639ea489e06085fa43cb8f, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -560,7 +560,7 @@ AudioLowPassFilter:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!165 &2742651875393304200
+--- !u!165 &7176874190034887751
 AudioHighPassFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
