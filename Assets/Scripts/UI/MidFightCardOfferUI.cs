@@ -10,10 +10,12 @@ public class MidFightCardOfferUI : MonoBehaviour
     private Card selectedCard;
     private int selectedIndex = -1;
 
-    public Color highlightColor = new Color(1f, 1f, 1f, 0.5f); // Set in inspector
+    public Color highlightColor = new Color(1f, 1f, 1f, 0.5f); 
+    public UIWheel uiWheel; 
+
     public void ShowCards(List<Card> cards)
     {
-        
+
 
         offeredCards = cards;
         selectedCard = null;
@@ -25,7 +27,6 @@ public class MidFightCardOfferUI : MonoBehaviour
                 cardDisplays[i].DisplayCard(cards[i]);
                 cardDisplays[i].gameObject.SetActive(true);
 
-
             }
             else
             {
@@ -35,8 +36,7 @@ public class MidFightCardOfferUI : MonoBehaviour
 
         confirmButton.interactable = false; // player can only confirm when he selects a card
 
-
-        gameObject.SetActive(true); // sets itself active 
+        gameObject.SetActive(true); 
     }
 
     public void OnCardClicked(int cardIndex)
@@ -61,16 +61,39 @@ public class MidFightCardOfferUI : MonoBehaviour
     {
         if (selectedCard != null)
         {
-            RunManager.Instance.OnMidFightCardSelected(selectedCard);
-
-            // Hide the UI
-            gameObject.SetActive(false);
-
-            // Reset the selected card's border
-            if (selectedIndex != -1)
+            if (selectedCard.cardType == CardType.Field)
             {
-                cardDisplays[selectedIndex].transform.Find("BorderImage").GetComponent<Image>().color = Color.clear;
-                selectedIndex = -1;
+                Debug.Log("Selected card is a Field card");
+                Field newField = ((FieldCard)selectedCard).field; 
+                if (RunManager.Instance.wheelManager.Segments.Count >= uiWheel.MaxSegments)
+                {
+                    uiWheel.Initialize(RunManager.Instance.wheelManager, newField, selectedCard, UIWheelMode.Replace);
+                }
+                else
+                {
+                    uiWheel.Initialize(RunManager.Instance.wheelManager, newField, selectedCard, UIWheelMode.Insert);
+                }
+                if (selectedIndex != -1)
+                {
+                    cardDisplays[selectedIndex].transform.Find("BorderImage").GetComponent<Image>().color = Color.clear;
+                    selectedIndex = -1;
+                }
+
+                uiWheel.gameObject.SetActive(true);
+                gameObject.SetActive(false); 
+            }
+            else
+            {
+                RunManager.Instance.OnMidFightStatCardSelected(selectedCard);
+                Debug.Log("Selected card is not a Field card");
+
+                gameObject.SetActive(false);
+
+                if (selectedIndex != -1)
+                {
+                    cardDisplays[selectedIndex].transform.Find("BorderImage").GetComponent<Image>().color = Color.clear;
+                    selectedIndex = -1;
+                }
             }
         }
     }

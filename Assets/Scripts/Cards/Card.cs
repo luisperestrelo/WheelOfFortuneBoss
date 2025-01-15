@@ -37,6 +37,8 @@ public abstract class Card : ScriptableObject
     public CardRarity rarity;
     public Sprite icon;
     public CardType cardType;
+    public bool isKissCurse = false; //cards that are "kiss curse" cards are cards that have an upside and a downside
+                                     // they should be especially highlighted in the card selection UI
 
     public virtual void OnValidate()
     {

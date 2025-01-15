@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     [SerializeField] private AudioClip lightDamageSfx;
     [SerializeField] private AudioClip heavyDamageSfx;
     [SerializeField] private AudioClip parrySfx;
+    [SerializeField] private AudioClip healSfx;
     [SerializeField] private AudioSource damageSource;
 
     private PlayerCombat pc;
@@ -69,6 +70,7 @@ public class Health : MonoBehaviour
             currentHealth = maxHealth;
         }
         OnHealthChanged.Invoke(currentHealth, maxHealth);
+        damageSource.PlayOneShot(healSfx);
         Debug.Log(gameObject.name + " healed " + healAmount + " health! Current health: " + currentHealth);
     }
 
