@@ -72,6 +72,12 @@ public class MusicPlayer : MonoBehaviour
         fightLoopEndSamples = (int)(profile.fightLoopEndTime * fightSource.clip.frequency);
         fightLoopLengthSamples = fightLoopEndSamples - fightLoopStartSamples;
 
+        if (ambienceSource.clip != profile.ambienceLoop)
+        {
+            ambienceSource.clip = profile.ambienceLoop;
+            ambienceSource.Play();
+        }
+
         //Reset the measure cycle to realign with the BPM of the new music profile
         StopCoroutine(MeasureFlagCycle());
         StartCoroutine(MeasureFlagCycle());
@@ -98,6 +104,11 @@ public class MusicPlayer : MonoBehaviour
                 StartCoroutine(FadeSourceVolumeRoutine(source: preFightSource, targetVolume: 0, time: loadedProfile.fightLoopStartTime));
                 StartCoroutine(FadeSourceVolumeRoutine(source: fightSource, targetVolume: 1, time: loadedProfile.fightLoopStartTime));
                 StartCoroutine(FadeSourceVolumeRoutine(source: ambienceSource, targetVolume: 0, time: loadedProfile.fightLoopStartTime));
+                break;
+            case MusicSection.ambience:
+                StartCoroutine(FadeSourceVolumeRoutine(source: preFightSource, targetVolume: 0, time: 3));
+                StartCoroutine(FadeSourceVolumeRoutine(source: fightSource, targetVolume: 0, time: 3));
+                StartCoroutine(FadeSourceVolumeRoutine(source: ambienceSource, targetVolume: 1, time: 3));
                 break;
             default:
                 Debug.LogWarning("Unknown music section loaded.");
