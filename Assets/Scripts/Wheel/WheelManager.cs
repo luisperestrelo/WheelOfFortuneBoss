@@ -425,14 +425,12 @@ public class WheelManager : MonoBehaviour
             float angleSize = (fieldRelativeSize / totalRelativeSize) * 360f;
             float endAngle = currentAngle + angleSize;
 
-            // Create or update segment
+            // Create OR  update segment
             if (i == FieldsToAddToWheel.Count - 1)
             {
-                // Create a new GameObject for the segment
                 GameObject segmentObject = new GameObject($"Segment_{field.FieldName}");
                 segmentObject.transform.SetParent(transform);
 
-                // Add the WheelSegment component and initialize it
                 WheelSegment segment = segmentObject.AddComponent<WheelSegment>();
                 segment.Initialize(field, startAngle, endAngle);
                 Segments.Add(segment);
@@ -446,7 +444,6 @@ public class WheelManager : MonoBehaviour
             currentAngle = endAngle;
         }
 
-        // Initialize the EffectHandler for the new segment
         WheelSegment newSegment = Segments[Segments.Count - 1];
         if (newSegment.EffectHandler != null)
         {
@@ -474,14 +471,12 @@ public class WheelManager : MonoBehaviour
             float angleSize = (fieldRelativeSize / totalRelativeSize) * 360f;
             float endAngle = currentAngle + angleSize;
 
-            // Create or update segment
+            // Create OR  update segment
             if (i == index)
             {
-                // Create a new GameObject for the segment
                 GameObject segmentObject = new GameObject($"Segment_{field.FieldName}");
                 segmentObject.transform.SetParent(transform);
 
-                // Add the WheelSegment component and initialize it
                 WheelSegment segment = segmentObject.AddComponent<WheelSegment>();
                 segment.Initialize(field, startAngle, endAngle);
                 Segments.Insert(index, segment);
@@ -502,7 +497,6 @@ public class WheelManager : MonoBehaviour
             currentAngle = endAngle;
         }
 
-        // Initialize the EffectHandler for the new segment
         WheelSegment newSegment = Segments[index];
         if (newSegment.EffectHandler != null)
         {
@@ -518,9 +512,9 @@ public class WheelManager : MonoBehaviour
 
     }
 
+    //TODO: this doesn't care about relative sizes of fields, we need to fix that, but not a problem yet
     private void RemoveFieldFromSegments(int index)
     {
-        // Destroy the segment's GameObject
         Destroy(Segments[index].gameObject);
 
         // Clean up the EffectHandler for the removed segment
@@ -529,7 +523,6 @@ public class WheelManager : MonoBehaviour
             Destroy(Segments[index].EffectHandler.gameObject);
         }
 
-        // Remove the segment
         Segments.RemoveAt(index);
 
         // Recalculate segment angles
@@ -541,29 +534,45 @@ public class WheelManager : MonoBehaviour
            // Segments[i].UpdateSegment(Segments[i].StartAngle, Segments[i].EndAngle);
         }
 
-        // Redraw lines after removing a segment
         CleanUpVisuals();
         DrawWheelLines();
     }
 
+    //Doesn't update sizes, this is more like to, "set a field on fire" and stuff like that
     private void ReplaceFieldInSegments(int index, Field newField)
     {
-        // Update the segment's field and reinitialize its components
         Segments[index].Initialize(newField, Segments[index].StartAngle, Segments[index].EndAngle);
 
-        // Clean up the EffectHandler for the replaced segment
         if (Segments[index].EffectHandler != null)
         {
             Destroy(Segments[index].EffectHandler.gameObject);
         }
 
-        // Replace the segment's field and reinitialize its EffectHandler
         Segments[index].Field = newField;
         Segments[index].EffectHandler = FieldEffectHandlerFactory.CreateEffectHandler(newField);
         if (Segments[index].EffectHandler != null)
         {
             Segments[index].EffectHandler.Initialize(newField);
             Segments[index].EffectHandler.SetSegment(Segments[index]);
+        }
+    }
+
+    public void ReplaceFieldAndUpdateSizes(int index, Field newField)
+    {
+        if (index >= 0 && index < FieldsToAddToWheel.Count)
+        {
+            FieldsToAddToWheel[index] = newField;
+
+            RemoveFieldFromSegments(index);
+
+            // Add the new field at the same index, which will recalculate sizes
+            AddFieldToSegments(newField, index);
+
+            UpdateWheelVisuals();
+        }
+        else
+        {
+            Debug.LogError("WheelManager::ReplaceFieldAndUpdateSizes: Index out of range.");
         }
     }
 
@@ -581,7 +590,6 @@ public class WheelManager : MonoBehaviour
         Segments[index2].StartAngle = index2 * anglePerSegment;
         Segments[index2].EndAngle = (index2 + 1) * anglePerSegment;
 
-        // Update positions
         UpdateSegmentPositions(index1);
         UpdateSegmentPositions(index2);
     }
@@ -609,11 +617,7 @@ public class WheelManager : MonoBehaviour
         CreateChargeIndicators();
     }
 
-    public void InsertFieldAtBoundary(Field field, int boundaryIndex)
-    {
-        //This will be for later when we can customize wheel more
-        AddField(field, boundaryIndex + 1);
-    }
+
 
 
 

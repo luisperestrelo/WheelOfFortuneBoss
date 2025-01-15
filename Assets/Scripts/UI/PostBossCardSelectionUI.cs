@@ -11,7 +11,6 @@ public class PostBossCardSelectionUI : MonoBehaviour
     private List<Card> offeredCards;
     private List<int> selectedCards = new List<int>();
     public Color highlightColor = new Color(1f, 1f, 1f, 0.5f);
-    public UIWheel uiWheel; // Assign this in the inspector
 
     private void Start()
     {
