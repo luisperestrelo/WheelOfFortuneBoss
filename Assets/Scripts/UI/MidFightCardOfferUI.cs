@@ -10,8 +10,8 @@ public class MidFightCardOfferUI : MonoBehaviour
     private Card selectedCard;
     private int selectedIndex = -1;
 
-    public Color highlightColor = new Color(1f, 1f, 1f, 0.5f); // Set in inspector
-    public UIWheel uiWheel; // Assign this in the inspector
+    public Color highlightColor = new Color(1f, 1f, 1f, 0.5f); 
+    public UIWheel uiWheel; 
 
     public void ShowCards(List<Card> cards)
     {
@@ -36,7 +36,7 @@ public class MidFightCardOfferUI : MonoBehaviour
 
         confirmButton.interactable = false; // player can only confirm when he selects a card
 
-        gameObject.SetActive(true); // sets itself active 
+        gameObject.SetActive(true); 
     }
 
     public void OnCardClicked(int cardIndex)
@@ -64,7 +64,7 @@ public class MidFightCardOfferUI : MonoBehaviour
             if (selectedCard.cardType == CardType.Field)
             {
                 Debug.Log("Selected card is a Field card");
-                Field newField = ((FieldCard)selectedCard).field; // Assuming you have a FieldCard subclass
+                Field newField = ((FieldCard)selectedCard).field; 
                 if (RunManager.Instance.wheelManager.Segments.Count >= uiWheel.MaxSegments)
                 {
                     uiWheel.Initialize(RunManager.Instance.wheelManager, newField, selectedCard, UIWheelMode.Replace);
@@ -80,17 +80,15 @@ public class MidFightCardOfferUI : MonoBehaviour
                 }
 
                 uiWheel.gameObject.SetActive(true);
-                gameObject.SetActive(false); // Hide the card selection UI
+                gameObject.SetActive(false); 
             }
             else
             {
                 RunManager.Instance.OnMidFightStatCardSelected(selectedCard);
                 Debug.Log("Selected card is not a Field card");
 
-                // Hide the UI
                 gameObject.SetActive(false);
 
-                // Reset the selected card's border
                 if (selectedIndex != -1)
                 {
                     cardDisplays[selectedIndex].transform.Find("BorderImage").GetComponent<Image>().color = Color.clear;
