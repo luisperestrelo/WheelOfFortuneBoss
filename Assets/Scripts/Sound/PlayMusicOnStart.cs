@@ -9,6 +9,6 @@ public class PlayMusicOnStart : MonoBehaviour
     private void Start()
     {
         MusicPlayer.instance.LoadProfile(profile);
-        MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.prefight);
+        MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.ambience);
     }
 }
