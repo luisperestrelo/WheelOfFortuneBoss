@@ -352,9 +352,6 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6951419767526598393, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1714072897}
-    - targetCorrespondingSourceObject: {fileID: 6951419767526598393, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 802008814}
     - targetCorrespondingSourceObject: {fileID: 6951419767526598393, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       insertIndex: -1
@@ -1085,26 +1082,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &429032241 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7626453082289106440, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
-  m_PrefabInstance: {fileID: 1396469092}
-  m_PrefabAsset: {fileID: 0}
---- !u!169 &429032242 stripped
-AudioLowPassFilter:
-  m_CorrespondingSourceObject: {fileID: 8644015709860308193, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
-  m_PrefabInstance: {fileID: 1396469092}
-  m_PrefabAsset: {fileID: 0}
---- !u!165 &429032249
-AudioHighPassFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 429032241}
-  m_Enabled: 1
-  m_CutoffFrequency: 10
-  m_HighpassResonanceQ: 1
 --- !u!1001 &530819701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6586,37 +6563,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7177023397524549628, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
-      propertyPath: profile
-      value: 
-      objectReference: {fileID: 11400000, guid: 2928a6ba4530f2e41b53d719210bed9d, type: 2}
     - target: {fileID: 7626453082289106440, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
       propertyPath: m_Name
       value: Music Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7626453082289106441, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -4100980341022994063, guid: 6ad2b2cae9639ea489e06085fa43cb8f, type: 2}
-    - target: {fileID: 7626453082289106444, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -4100980341022994063, guid: 6ad2b2cae9639ea489e06085fa43cb8f, type: 2}
-    - target: {fileID: 7626453082289106445, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -4100980341022994063, guid: 6ad2b2cae9639ea489e06085fa43cb8f, type: 2}
-    - target: {fileID: 7626453082289106446, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
-      propertyPath: hpFilter
-      value: 
-      objectReference: {fileID: 429032249}
-    - target: {fileID: 7626453082289106446, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
-      propertyPath: lpFilter
-      value: 
-      objectReference: {fileID: 429032242}
-    - target: {fileID: 7626453082289106446, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
-      propertyPath: musicVolume
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7626453082289106447, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6661,10 +6610,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7626453082289106440, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 429032249}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
 --- !u!1001 &1403383799
 PrefabInstance:
@@ -6990,53 +6936,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1714072896
-GameObject:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1714072897}
-  - component: {fileID: 1714072898}
-  m_Layer: 0
-  m_Name: NameContainer AudioSource 6dc71408-d43d-435d-b8a6-c4f2d8c68c4e
-  m_TagString: EditorOnly
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1714072897
-Transform:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714072896}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 71604794}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1714072898
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1714072896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 190d9e9918d0aaf48a103a2bb6995059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameOverride: Shoot Audio Source (Audio Source)
-  tooltipOverride: 
-  target: {fileID: 71604785}
 --- !u!1 &1834986458
 GameObject:
   m_ObjectHideFlags: 1
@@ -7608,6 +7507,7 @@ MonoBehaviour:
   player: {fileID: 71604784}
   midFightCardOfferUI: {fileID: 0}
   postBossSceneName: PostBossCardSelectionScene
+  uiWheel: {fileID: 0}
 --- !u!4 &2091675504
 Transform:
   m_ObjectHideFlags: 0
