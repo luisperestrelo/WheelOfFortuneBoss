@@ -81,23 +81,20 @@ public class PlayerSpinMovement : MonoBehaviour
         get { return decelerationRate; }
     }
 
+    public float Radius
+    {
+        get { return radius; }
+    }
+
     private LineRenderer _lineRenderer;
+
+    [Header("Wall Collision")]
+    [SerializeField] private bool enableWallCollisions = true;
 
     private void Start()
     {
         _lineRenderer = GetComponent<LineRenderer>();
         radius = circularPath.GetRadius();
-
-        // Add Rigidbody2D and CircleCollider2D components if they don't exist
-        if (!gameObject.TryGetComponent<Rigidbody2D>(out var rb))
-        {
-            rb = gameObject.AddComponent<Rigidbody2D>();
-            rb.bodyType = RigidbodyType2D.Kinematic;
-        }
-        if (!gameObject.TryGetComponent<CircleCollider2D>(out var collider))
-        {
-            collider = gameObject.AddComponent<CircleCollider2D>();
-        }
 
         InitializeMovementScheme();
     }
@@ -175,6 +172,12 @@ public class PlayerSpinMovement : MonoBehaviour
             return;
         }
 
+        // Wall collision check (after movement update)
+        if (enableWallCollisions)
+        {
+            CheckForWallCollisions();
+        }
+
         float x = anchorPoint.position.x + radius * Mathf.Cos(_currentAngle * Mathf.Deg2Rad);
         float y = anchorPoint.position.y + radius * Mathf.Sin(_currentAngle * Mathf.Deg2Rad);
 
@@ -242,19 +245,42 @@ public class PlayerSpinMovement : MonoBehaviour
         Gizmos.DrawLine(transform.position, anchorPoint.position);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void CheckForWallCollisions()
     {
-        // Reverse the player's direction upon collision
-        _direction *= -1f;
-
-        // Reset or adjust the current rotation speed based on the movement scheme
-        if (usesAcceleration)
+        Wall[] walls = FindObjectsOfType<Wall>();
+        foreach (Wall wall in walls)
         {
-            _currentRotationSpeed = 0;
+            if (IsAngleWithinRange(_currentAngle, wall.WallStartAngle, wall.WallEndAngle))
+            {
+                // Determine the closest edge of the wall and adjust the player's angle
+                float distanceToStart = Mathf.DeltaAngle(_currentAngle, wall.WallStartAngle);
+                float distanceToEnd = Mathf.DeltaAngle(_currentAngle, wall.WallEndAngle);
+
+                if (Mathf.Abs(distanceToStart) < Mathf.Abs(distanceToEnd))
+                {
+                    _currentAngle = wall.WallStartAngle;
+                }
+                else
+                {
+                    _currentAngle = wall.WallEndAngle;
+                }
+
+                // Stop the player's rotation upon collision
+                _currentRotationSpeed = 0f;
+            }
+        }
+    }
+
+    private bool IsAngleWithinRange(float angle, float start, float end)
+    {
+        // Handle cases where the wall spans the 0/360 boundary
+        if (start > end)
+        {
+            return angle >= start || angle <= end;
         }
         else
         {
-            _currentRotationSpeed = _direction * maxRotationSpeed;
+            return angle >= start && angle <= end;
         }
     }
 
