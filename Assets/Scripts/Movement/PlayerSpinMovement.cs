@@ -88,6 +88,17 @@ public class PlayerSpinMovement : MonoBehaviour
         _lineRenderer = GetComponent<LineRenderer>();
         radius = circularPath.GetRadius();
 
+        // Add Rigidbody2D and CircleCollider2D components if they don't exist
+        if (!gameObject.TryGetComponent<Rigidbody2D>(out var rb))
+        {
+            rb = gameObject.AddComponent<Rigidbody2D>();
+            rb.bodyType = RigidbodyType2D.Kinematic;
+        }
+        if (!gameObject.TryGetComponent<CircleCollider2D>(out var collider))
+        {
+            collider = gameObject.AddComponent<CircleCollider2D>();
+        }
+
         InitializeMovementScheme();
     }
 
@@ -169,7 +180,6 @@ public class PlayerSpinMovement : MonoBehaviour
 
         transform.position = new Vector3(x, y, transform.position.z);
     }
-    //
 
     /*     private IEnumerator SpeedBoostRoutine()
         {
@@ -230,6 +240,22 @@ public class PlayerSpinMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, anchorPoint.position);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        // Reverse the player's direction upon collision
+        _direction *= -1f;
+
+        // Reset or adjust the current rotation speed based on the movement scheme
+        if (usesAcceleration)
+        {
+            _currentRotationSpeed = 0;
+        }
+        else
+        {
+            _currentRotationSpeed = _direction * maxRotationSpeed;
+        }
     }
 
 }
