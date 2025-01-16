@@ -49,6 +49,6 @@ public class HoldToMove : IMovementScheme
         }
 
         _player.CurrentAngle += _player.CurrentRotationSpeed * Time.deltaTime;
-        _player.CurrentAngle %= 360f;
+        _player.CurrentAngle = (_player.CurrentAngle % 360f + 360f) % 360f; 
     }
 } 

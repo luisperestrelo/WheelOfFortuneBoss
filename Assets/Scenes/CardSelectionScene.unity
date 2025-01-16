@@ -352,7 +352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: movementSchemeType
-      value: 0
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: collisionLayer.m_Bits
