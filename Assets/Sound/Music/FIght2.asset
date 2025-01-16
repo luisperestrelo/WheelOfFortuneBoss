@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b7a41eb6c8ef3a43a99a5e5eba8fae5, type: 3}
-  m_Name: FIght2
+  m_Name: Fight2
   m_EditorClassIdentifier: 
-  ambienceLoop: {fileID: 0}
+  ambienceLoop: {fileID: 8300000, guid: c70d776695b758b43a63d3568096f88b, type: 3}
   preFightLoop: {fileID: 8300000, guid: 565e30eb25e6e984587619868a3f1d66, type: 3}
   preFightLoopStartTime: 1.41
   preFightLoopEndTime: 24

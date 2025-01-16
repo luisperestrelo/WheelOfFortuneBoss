@@ -29,8 +29,12 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField]
     private float musicVolume = 0.5f;
 
+    private Event onStartNewSection = new Event();
+
     [Tooltip("Set to true for one frame at the start of each measure.")]
     public bool measureFlag = false;
+
+    private bool fadeOverrideFlag = false;
 
     public enum MusicSection
     {
@@ -72,6 +76,12 @@ public class MusicPlayer : MonoBehaviour
         fightLoopEndSamples = (int)(profile.fightLoopEndTime * fightSource.clip.frequency);
         fightLoopLengthSamples = fightLoopEndSamples - fightLoopStartSamples;
 
+        if (ambienceSource.clip != profile.ambienceLoop)
+        {
+            ambienceSource.clip = profile.ambienceLoop;
+            ambienceSource.Play();
+        }
+
         //Reset the measure cycle to realign with the BPM of the new music profile
         StopCoroutine(MeasureFlagCycle());
         StartCoroutine(MeasureFlagCycle());
@@ -84,10 +94,10 @@ public class MusicPlayer : MonoBehaviour
     private IEnumerator StartSectionRoutine(MusicSection section)
     {
         yield return new WaitUntil(() => measureFlag == true);
+        yield return SetFadeOverrideFlag();
         switch(section)
         {
             case MusicSection.prefight:
-                Debug.Log("Playing pre fight");
                 preFightSource.Play();
                 StartCoroutine(FadeSourceVolumeRoutine(source: preFightSource, targetVolume: 1, time: 3));
                 StartCoroutine(FadeSourceVolumeRoutine(source: fightSource, targetVolume: 0, time: 1.5f));
@@ -98,6 +108,11 @@ public class MusicPlayer : MonoBehaviour
                 StartCoroutine(FadeSourceVolumeRoutine(source: preFightSource, targetVolume: 0, time: loadedProfile.fightLoopStartTime));
                 StartCoroutine(FadeSourceVolumeRoutine(source: fightSource, targetVolume: 1, time: loadedProfile.fightLoopStartTime));
                 StartCoroutine(FadeSourceVolumeRoutine(source: ambienceSource, targetVolume: 0, time: loadedProfile.fightLoopStartTime));
+                break;
+            case MusicSection.ambience:
+                StartCoroutine(FadeSourceVolumeRoutine(source: preFightSource, targetVolume: 0, time: 3));
+                StartCoroutine(FadeSourceVolumeRoutine(source: fightSource, targetVolume: 0, time: 3));
+                StartCoroutine(FadeSourceVolumeRoutine(source: ambienceSource, targetVolume: 1, time: 3));
                 break;
             default:
                 Debug.LogWarning("Unknown music section loaded.");
@@ -127,9 +142,15 @@ public class MusicPlayer : MonoBehaviour
     private IEnumerator SetMeasureFlag()
     {
         measureFlag = true;
-        Debug.Log(measureFlag);
         yield return new WaitForSecondsRealtime(0);
         measureFlag = false;
+    }
+
+    private IEnumerator SetFadeOverrideFlag()
+    {
+        fadeOverrideFlag = true;
+        yield return new WaitForSecondsRealtime(0);
+        fadeOverrideFlag = false;
     }
 
     /// <param name="source">The audio source to fade</param>
@@ -145,7 +166,11 @@ public class MusicPlayer : MonoBehaviour
         {
             timeElapsed += Time.deltaTime;
             source.volume = Mathf.Lerp(originalVolume, targetVolume * musicVolume, timeElapsed / time);
-            yield return new WaitForSecondsRealtime(0); ;
+
+            if (fadeOverrideFlag)
+                break;
+
+            yield return new WaitForSecondsRealtime(0);
         }
     }
 

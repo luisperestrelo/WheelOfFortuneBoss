@@ -120,7 +120,7 @@ public class RunManager : MonoBehaviour
     {
         DisableWheelAndPlayer(); // Disable when fight ends. Messy but works for now
         SceneManager.LoadScene(postBossSceneName);
-        MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.prefight); //This will instead load a new music profile once we have more than 1 boss.
+        MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.ambience); //This will instead load a new music profile once we have more than 1 boss.
     }
 
     public void DisableWheelAndPlayer()
