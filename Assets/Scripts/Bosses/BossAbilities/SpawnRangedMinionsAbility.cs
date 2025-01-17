@@ -11,6 +11,14 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
     [SerializeField] private float minionShootingCooldown = 1f;
     [SerializeField] private float minionDamage = 5f;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+            SpawnMinions();
+        }
+    }
+
     public void SpawnMinions()
     {
         if (spawnPoints.Length == 0)
