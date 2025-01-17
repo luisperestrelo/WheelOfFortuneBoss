@@ -38,7 +38,7 @@ public class Health : MonoBehaviour
         if (pc != null && pc.HasShield)
         {
             pc.RemoveShield();
-            SFXPool.instance.PlaySound(parrySfx);
+            damageSource.PlayOneShot(parrySfx);
             return;
         }
 
