@@ -24,6 +24,7 @@ public class TentacleSnap : MonoBehaviour
         {
             Debug.LogError("TentacleSnap: No Animator found on this object!");
         }
+        AbilityObjectManager.Instance.RegisterAbilityObject(transform.parent.gameObject);
     }
 
     public void Initialize(float damage, int numberOfSlams)
@@ -59,10 +60,10 @@ public class TentacleSnap : MonoBehaviour
 
     public void SlamFinished()
     {
-
         currentSlamCount++;
         if (currentSlamCount >= NumberOfSlams)
         {
+            AbilityObjectManager.Instance.UnregisterAbilityObject(transform.parent.gameObject);
             Destroy(transform.parent.gameObject);
         }
     }

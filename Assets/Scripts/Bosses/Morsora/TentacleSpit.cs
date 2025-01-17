@@ -16,6 +16,7 @@ public class TentacleSpitter : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        AbilityObjectManager.Instance.RegisterAbilityObject(transform.gameObject);
     }
 
 
@@ -55,6 +56,7 @@ public class TentacleSpitter : MonoBehaviour
 
     public void SelfDestroy()
     {
+        AbilityObjectManager.Instance.UnregisterAbilityObject(transform.gameObject);
         Destroy(gameObject);
     }
 }
