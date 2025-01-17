@@ -20,6 +20,7 @@ public class RangedMinion : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         source = GetComponent<AudioSource>();
+        source.pitch = Random.Range(0.85f, 1.15f);
     }
 
     // Constructor to initialize values
@@ -51,6 +52,7 @@ public class RangedMinion : MonoBehaviour
     //TODO also fix projectile logic to avoid Setters, but do that later
     private void Shoot()
     {
+        source.pitch = Random.Range(0.85f, 1.15f);
         source.PlayOneShot(shootSfx);
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         EnemyProjectile proj = projectile.GetComponent<EnemyProjectile>();
