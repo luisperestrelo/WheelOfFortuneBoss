@@ -6376,6 +6376,20 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0
+    functionName: PlaySFX
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 3717f7d751e43db40ad25b232996502f, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2
+    functionName: PlaySFX
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 167eeddebe981214bab57724ba08852f, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 3.4166667
     functionName: ScytheSlashLight
     data: 
