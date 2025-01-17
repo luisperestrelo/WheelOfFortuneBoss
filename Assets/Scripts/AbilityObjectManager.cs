@@ -7,13 +7,13 @@ public class AbilityObjectManager : MonoBehaviour
 
     public List<GameObject> activeAbilityObjects = new List<GameObject>(); // i wanna see it in the inspector
 
+    //singleton
     private void Awake()
     {
-        // Singleton pattern
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Optional: Keep the manager persistent across scenes
+            DontDestroyOnLoad(gameObject); // Optional: Use this for all bosses, persist in scene, we'll get there when we have more
         }
         else
         {

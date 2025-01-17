@@ -264,11 +264,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6951419767526598393, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.17
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6951419767526598393, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.96
+      value: 12.7
       objectReference: {fileID: 0}
     - target: {fileID: 6951419767526598393, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: m_LocalPosition.z
@@ -327,6 +327,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: wallCheck
+      value: 
+      objectReference: {fileID: 1218786519}
+    - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: anchorPoint
       value: 
       objectReference: {fileID: 1362018984}
@@ -351,8 +355,16 @@ PrefabInstance:
       value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: wallCheckDistance
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: movementSchemeType
-      value: 1
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: whatIsGround.m_Bits
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: collisionLayer.m_Bits
@@ -412,6 +424,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6951419767526598393, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1834986459}
+    - targetCorrespondingSourceObject: {fileID: 6951419767526598393, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1218786519}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5928400350805490060, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       insertIndex: 2
@@ -6472,6 +6487,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7454754741982818596, guid: 81608d7b2a5a8d44ebd641b21166c989, type: 3}
   m_PrefabInstance: {fileID: 1403383799}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1218786518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1218786519}
+  m_Layer: 6
+  m_Name: WallCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1218786519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1218786518}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.021, y: 0.042, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 71604794}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1287000250
 GameObject:
   m_ObjectHideFlags: 0
