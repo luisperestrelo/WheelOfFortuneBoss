@@ -23,4 +23,4 @@ MonoBehaviour:
   visualEffect: {fileID: 0}
   audioEffect: {fileID: 0}
   size: 1
-  damageMultiplier: 2
+  damageMultiplier: 1.5

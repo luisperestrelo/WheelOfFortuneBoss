@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealingFieldSO
   m_EditorClassIdentifier: 
   fieldName: Healing Field
-  description: Charges up, healing you when charged
+  description: When charged, you are healed a small amount.
   icon: {fileID: 21300000, guid: 5da14d36cd37f6c4c833f8e055871fb7, type: 3}
   fieldType: 4
   tags: 030000000500000006000000
