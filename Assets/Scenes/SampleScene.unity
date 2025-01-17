@@ -762,6 +762,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653cce671578f0a4fa485898b42a1a6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &703669237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 703669239}
+  - component: {fileID: 703669238}
+  m_Layer: 0
+  m_Name: AbilityObjectManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &703669238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703669237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8366225740f6c50459a83e2cf6f0e921, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeAbilityObjects: []
+--- !u!4 &703669239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703669237}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.2662127, y: 6.137156, z: 0.022371685}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &714874868 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1870558469219390475, guid: 55eb46ca8e628dd41926bbef1fc6037e, type: 3}
@@ -1993,7 +2038,7 @@ GameObject:
   - component: {fileID: 1535201546}
   m_Layer: 0
   m_Name: MorsoraTentacleCenter
-  m_TagString: Untagged
+  m_TagString: MorsoraTentacleCenter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2007,7 +2052,7 @@ Transform:
   m_GameObject: {fileID: 1535201545}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.34, z: 0}
+  m_LocalPosition: {x: 0, y: 2.47, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2072,85 +2117,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1622658517
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 19388237685113267, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_Name
-      value: Tentacle Block
-      objectReference: {fileID: 0}
-    - target: {fileID: 19388237685113267, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 19388237685113267, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_TagString
-      value: Wall
-      objectReference: {fileID: 0}
-    - target: {fileID: 1950826003503592283, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3966148307812120627, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 3966148307812120627, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.035894
-      objectReference: {fileID: 0}
-    - target: {fileID: 3966148307812120627, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3966148307812120627, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3966148307812120627, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3966148307812120627, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3966148307812120627, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3966148307812120627, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3966148307812120627, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3966148307812120627, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7139242145106452698, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 19388237685113267, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1809776191}
-    - targetCorrespondingSourceObject: {fileID: 19388237685113267, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1809776185}
-  m_SourcePrefab: {fileID: 100100000, guid: 3bc43dd236012d646b717378dd486492, type: 3}
 --- !u!1001 &1625189716
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2720,42 +2686,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ddedbac19511045a5aabacd649e542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1809776184 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 19388237685113267, guid: 3bc43dd236012d646b717378dd486492, type: 3}
-  m_PrefabInstance: {fileID: 1622658517}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1809776185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809776184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8313b3ce9e2bf0428038c2a573d64ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wallStartAngle: 170
-  wallEndAngle: 190
-  drawGizmo: 1
-  circularPath: {fileID: 0}
-  center: {x: 0, y: 0, z: 0}
-  radius: 0
---- !u!114 &1809776191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809776184}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcb0b7650cb5810428578c43d000bf0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
 --- !u!1 &1823584570
 GameObject:
   m_ObjectHideFlags: 0
@@ -3889,6 +3819,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5985786259771274645, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7084954768978618825}
+    - targetCorrespondingSourceObject: {fileID: 5985786259771274645, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7084954768978618831}
+    - targetCorrespondingSourceObject: {fileID: 5985786259771274645, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7084954768978618837}
+    - targetCorrespondingSourceObject: {fileID: 5985786259771274645, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7084954768978618838}
   m_SourcePrefab: {fileID: 100100000, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
 --- !u!1001 &1161031091889420633
 PrefabInstance:
@@ -4766,7 +4705,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tentacleSnapPrefab: {fileID: 1036103290362500274, guid: 00b3c7ea7e87af34d88835243c877ada, type: 3}
   tentacleCenter: {fileID: 1535201546}
-  spawnDistance: 2.5
+  spawnDistance: 2
   angleOffset: 180
   damage: 10
   player: {fileID: 0}
@@ -4785,13 +4724,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tentacleSpitterPrefab: {fileID: 751671436821535764, guid: fb703f283c69d2c4f953d50239a6bdbe, type: 3}
   tentacleCenter: {fileID: 1535201546}
-  spawnDistance: 3.2
+  spawnDistance: 2.5
   angleOffset: 180
   damage: 10
   projectileSpeed: 10
   shootingCooldown: 1
   testAngleStep: 15
   player: {fileID: 0}
+--- !u!114 &7084954768978618831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406729126994982973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40493c2ba1f11df469a9afa9627bb4e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fatTentaclePrefab: {fileID: 6606056961020118988, guid: 90e9c1b9ee6102448bf613183c833da7, type: 3}
+  tentacleCenter: {fileID: 1535201546}
+  spawnDistance: 0
+  angleOffset: 180
+  onContactDamage: 10
+  testAngleStep: 0
+--- !u!114 &7084954768978618837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406729126994982973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e2face832d2a0438f66546441a1d98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sweepCenter: {fileID: 1535201546}
+  angularVelocity: 45
+  sweepDuration: 2
+  angleOffset: 180
+--- !u!114 &7084954768978618838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3406729126994982973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fda66c163f939b4ebe44873aa9cf8ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnTentacleSnapAbility: {fileID: 0}
+  sweepFatTentaclesAbility: {fileID: 0}
 --- !u!222 &7247156640387115974
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5029,4 +5016,4 @@ SceneRoots:
   - {fileID: 1999484123}
   - {fileID: 1161031091889420633}
   - {fileID: 900709431}
-  - {fileID: 1622658517}
+  - {fileID: 703669239}

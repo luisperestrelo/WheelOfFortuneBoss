@@ -80,11 +80,7 @@ public class PlayerSpinMovement : MonoBehaviour
     {
         get { return decelerationRate; }
     }
-
-    public float Radius
-    {
-        get { return radius; }
-    }
+    
 
     private LineRenderer _lineRenderer;
 
