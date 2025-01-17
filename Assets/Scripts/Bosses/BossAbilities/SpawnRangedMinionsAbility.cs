@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SpawnRangedMinionsAbility : MonoBehaviour
@@ -5,6 +6,9 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
     [SerializeField] private GameObject rangedMinionPrefab;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private int numberOfMinionsToSpawn = 3;
+
+    [Tooltip("How long between minion spawns")]
+    [SerializeField] private float desyncTime;
 
     // New fields to control parameters from this script
     [SerializeField] private float minionProjectileSpeed = 10f;
@@ -35,10 +39,16 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
 
         for (int i = 0; i < numToSpawn; i++)
         {
-            GameObject minion = Instantiate(rangedMinionPrefab, spawnPoints[i].position, Quaternion.identity);
-            RangedMinion rangedMinion = minion.GetComponent<RangedMinion>();
-            rangedMinion.Initialize(minionProjectileSpeed, minionShootingCooldown, minionDamage);
+            StartCoroutine(SpawnMinionAfterDelay(i * desyncTime, i));
         }
+    }
+
+    private IEnumerator SpawnMinionAfterDelay(float time, int spawnPointIndex)
+    {
+        yield return new WaitForSeconds(time);
+        GameObject minion = Instantiate(rangedMinionPrefab, spawnPoints[spawnPointIndex].position, Quaternion.identity);
+        RangedMinion rangedMinion = minion.GetComponent<RangedMinion>();
+        rangedMinion.Initialize(minionProjectileSpeed, minionShootingCooldown, minionDamage);
     }
 
     // Fisher-Yates shuffle algorithm

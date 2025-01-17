@@ -25633,6 +25633,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   numberOfMinionsToSpawn: 3
+  desyncTime: 0.2
   minionProjectileSpeed: 10
   minionShootingCooldown: 1
   minionDamage: 5
