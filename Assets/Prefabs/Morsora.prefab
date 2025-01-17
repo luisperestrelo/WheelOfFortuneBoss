@@ -25591,6 +25591,7 @@ MonoBehaviour:
   angularVelocity: 45
   sweepDuration: 2
   angleOffset: 180
+  sweepSfx: {fileID: 8300000, guid: bb6acc70aaaa1834c928cabb36b75c6b, type: 3}
 --- !u!114 &5957109738381393552
 MonoBehaviour:
   m_ObjectHideFlags: 0
