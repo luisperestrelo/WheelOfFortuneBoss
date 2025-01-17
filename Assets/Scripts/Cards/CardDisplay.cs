@@ -25,7 +25,7 @@ public class CardDisplay : MonoBehaviour
         iconImage.sprite = card.icon;
         nameText.text = card.cardName;
         descriptionText.text = card.description;
-        typeText.text = "Card Type: " + card.cardType.ToString();
+        typeText.text = card.cardType.ToString() + " card";
 
         rarityText.text = card.rarity.ToString();
         if (card.rarity == CardRarity.Common)

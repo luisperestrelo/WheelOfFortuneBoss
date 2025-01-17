@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ShieldFieldSO
   m_EditorClassIdentifier: 
   fieldName: Shield
-  description: Grants a shield while remaining in field that absorbs one hit.
+  description: Upon entering this field, gain a shield for a short time that blocks
+    one instance of damage.
   icon: {fileID: 21300000, guid: f529ac7445c16ec4cb15899720a2897b, type: 3}
   fieldType: 3
   tags: 0400000005000000
