@@ -24,11 +24,13 @@ public class SwingScytheAbility : MonoBehaviour
     {
         if (isDarkSlash)
         {
-            Instantiate(darkSlashPrefab, darkSlashSpawnPoint.position, darkSlashSpawnPoint.rotation);
+            Instantiate(darkSlashPrefab, darkSlashSpawnPoint.position, Quaternion.identity);
         }
         else
         {
-            Instantiate(lightSlashPrefab, lightSlashSpawnPoint.position, lightSlashSpawnPoint.rotation);
+            GameObject lightSlash  = Instantiate(lightSlashPrefab, lightSlashSpawnPoint.position, Quaternion.identity);
+            lightSlash.transform.rotation = Quaternion.Euler(0, 0, 180);
+
         }
 
     }

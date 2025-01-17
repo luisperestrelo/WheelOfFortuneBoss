@@ -19,7 +19,7 @@ public class PlayerSpinMovement : MonoBehaviour
     [SerializeField] private float accelerationRate = 1080f; // degrees per second squared (high value for quick acceleration)
     [Tooltip("NOT USED IN MOST SCHEMES, MOST SCHEMES USE THE SAME ACCELERATION VALUE. This is the rate at which the player will decelerate when changing direction.")]
     [SerializeField] private float decelerationRate = 720f; // didnt do much with this, but was testing different speeds for accelerating and decelerating  
-    [SerializeField] private bool usesAcceleration = true; 
+    [SerializeField] private bool usesAcceleration = true;
     public bool UsesAcceleration
     {
         get { return usesAcceleration; }
@@ -28,6 +28,13 @@ public class PlayerSpinMovement : MonoBehaviour
     [Header("Movement Scheme")]
     [SerializeField] private IMovementScheme currentMovementScheme;
     [SerializeField] private MovementSchemeType movementSchemeType;
+
+    [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private float wallCheckDistance = .8f;
+
+
+    public bool isCollidingWithWall = false;
 
     private enum MovementSchemeType
     {
@@ -80,7 +87,7 @@ public class PlayerSpinMovement : MonoBehaviour
     {
         get { return decelerationRate; }
     }
-    
+
 
     private LineRenderer _lineRenderer;
 
@@ -150,16 +157,18 @@ public class PlayerSpinMovement : MonoBehaviour
             radius = circularPath.GetRadius();
         }
 
+        float previousAngle = _currentAngle;
+
+        // Update the movement scheme (handles input and direction changes)
         currentMovementScheme.UpdateMovement();
-        /*
-               if (Input.GetKeyDown(KeyCode.W) && Time.time > nextBoostTime)
-               {
-                   StartCoroutine(SpeedBoostRoutine());
-               }
-               else if (Input.GetKeyDown(KeyCode.S) && Time.time > nextSlowTime)
-               {
-                   StartCoroutine(SpeedSlowRoutine());
-               } */
+
+        if (IsThereAWallInFront())
+        {
+            // If a wall is detected, prevent movement by resetting the angle
+            // later we can draw a tangent from the wall to the circumference and set the angle to the angle of the tangent 
+            _currentAngle = previousAngle;
+            _currentRotationSpeed = 0f;
+        }
 
         DrawLine();
 
@@ -169,9 +178,14 @@ public class PlayerSpinMovement : MonoBehaviour
         }
 
         // Wall collision check (after movement update)
-        if (enableWallCollisions)
+        /*         if (enableWallCollisions)
+                {
+                    CheckForWallCollisions();
+                } */
+
+        if (IsThereAWallInFront())
         {
-            CheckForWallCollisions();
+            _currentAngle = previousAngle;
         }
 
         float x = anchorPoint.position.x + radius * Mathf.Cos(_currentAngle * Mathf.Deg2Rad);
@@ -214,7 +228,7 @@ public class PlayerSpinMovement : MonoBehaviour
         float y = anchorPoint.position.y + radius * Mathf.Sin(futureAngle * Mathf.Deg2Rad);
         return new Vector3(x, y, transform.position.z);
     }
-//
+    //
     //Draw line from player to anchor point using linerenderer
     private void DrawLine()
     {
@@ -239,8 +253,22 @@ public class PlayerSpinMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, anchorPoint.position);
+
+        // Calculate the movement direction based on the current angle, direction, and a 90-degree offset
+        float movementAngle = _currentAngle + 90f * _direction;
+        Vector2 movementDirection = new Vector2(Mathf.Cos(movementAngle * Mathf.Deg2Rad), Mathf.Sin(movementAngle * Mathf.Deg2Rad));
+
+        // Normalize the movement direction
+        movementDirection.Normalize();
+
+        // Calculate the endpoint of the line for wall checking
+        Vector2 wallCheckEnd = (Vector2)wallCheck.position + movementDirection * wallCheckDistance;
+
+        // Draw the line from the wallCheck position to the calculated endpoint
+        Gizmos.DrawLine(wallCheck.position, wallCheckEnd);
     }
 
+    //deprecateds
     private void CheckForWallCollisions()
     {
         Wall[] walls = FindObjectsOfType<Wall>();
@@ -261,11 +289,73 @@ public class PlayerSpinMovement : MonoBehaviour
                     _currentAngle = wall.WallEndAngle;
                 }
 
-                // Stop the player's rotation upon collision
                 _currentRotationSpeed = 0f;
             }
         }
     }
+    /* 
+        private bool isThereAWallInFront()
+        {
+            Wall[] walls = FindObjectsOfType<Wall>();
+            foreach (Wall wall in walls)
+            {
+                if (IsAngleWithinRange(_currentAngle, wall.WallStartAngle, wall.WallEndAngle))
+                {
+
+
+                    // Stop the player's rotation upon collision
+                    _currentRotationSpeed = 0f;
+
+                    return true;
+                }
+            }
+            return false;
+        } */
+
+    private bool IsThereAWallInFront()
+    {
+        // Calculate the movement direction based on the current angle, direction, and a 90-degree offset
+        float movementAngle = _currentAngle + 90f * _direction;
+        Vector2 movementDirection = new Vector2(Mathf.Cos(movementAngle * Mathf.Deg2Rad), Mathf.Sin(movementAngle * Mathf.Deg2Rad));
+
+        movementDirection.Normalize();
+
+        // Cast a ray in the direction of movement to check for walls
+        RaycastHit2D hit = Physics2D.Raycast(wallCheck.position, movementDirection, wallCheckDistance, whatIsGround);
+
+        //behaving werid, works sometimes, but we do it again OnDrawGizmos
+        Debug.DrawRay(wallCheck.position, movementDirection * wallCheckDistance, hit.collider != null ? Color.red : Color.green);
+
+        if (hit.collider != null)
+        {
+            return true; // Wall detected
+        }
+
+        return false; // No wall detected
+    }
+
+
+
+
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            isCollidingWithWall = true;
+            Debug.Log("Wall collision detected");
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            isCollidingWithWall = false;
+            Debug.Log("Wall collision exited");
+        }
+    }
+
 
     private bool IsAngleWithinRange(float angle, float start, float end)
     {
