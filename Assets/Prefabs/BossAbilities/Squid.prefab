@@ -465,6 +465,7 @@ MonoBehaviour:
   damage: 5
   projectilePrefab: {fileID: 1912627901953326240, guid: a33c1d2903433ac4192de2117a02b72a, type: 3}
   firePoint: {fileID: 3561927579055563211}
+  shootSfx: {fileID: 8300000, guid: 325bd79fddd0de049a8b599fe65e0682, type: 3}
 --- !u!82 &-7626683472843423486
 AudioSource:
   m_ObjectHideFlags: 0
@@ -474,10 +475,10 @@ AudioSource:
   m_GameObject: {fileID: 2057324329541433720}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3731360676041901316, guid: 6ad2b2cae9639ea489e06085fa43cb8f, type: 2}
+  m_audioClip: {fileID: 8300000, guid: e9abe8041a1ac5946955f1899461c9b8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -576,11 +577,11 @@ MonoBehaviour:
   maxHealth: 30
   currentHealth: 30
   hpHeavyDamageThreshold: 25
-  lightDamageSfx: {fileID: 0}
-  heavyDamageSfx: {fileID: 0}
+  lightDamageSfx: {fileID: 8300000, guid: 587c1108a21a8524c83353de20bf10e2, type: 3}
+  heavyDamageSfx: {fileID: 8300000, guid: 587c1108a21a8524c83353de20bf10e2, type: 3}
   parrySfx: {fileID: 0}
   healSfx: {fileID: 0}
-  damageSource: {fileID: 0}
+  damageSource: {fileID: -7626683472843423486}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
