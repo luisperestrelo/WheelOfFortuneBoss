@@ -26226,6 +26226,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3064095279411545262}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8310755952304086843}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
 --- !u!4 &110127484340553723 stripped
 Transform:
@@ -26354,6 +26357,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8310755952304086843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247314070049857432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2df241793cdb1b43bb0c11d9d4b0233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doRandomizePitch: 0
 --- !u!1001 &5700163183161014886
 PrefabInstance:
   m_ObjectHideFlags: 0
