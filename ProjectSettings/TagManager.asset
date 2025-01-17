@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - SegmentLine
+  - Obstacle
+  - Wall
+  - MorsoraTentacleCenter
   layers:
   - Default
   - TransparentFX
@@ -13,9 +16,9 @@ TagManager:
   - 
   - Water
   - UI
-  - No Post
-  - 
-  - 
+  - Player
+  - Obstacle
+  - Wall
   - 
   - 
   - 

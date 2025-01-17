@@ -119,3 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8e08abedd8046b488f589d331271bd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NumberOfSpits: 3
+  tentacleSpitPrefab: {fileID: 1912627901953326240, guid: a33c1d2903433ac4192de2117a02b72a, type: 3}
+  projectileSpeed: 10
+  shootingCooldown: 1

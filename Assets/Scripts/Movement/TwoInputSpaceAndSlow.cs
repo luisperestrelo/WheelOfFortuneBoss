@@ -40,8 +40,7 @@ public class TwoInputSpaceAndSlow : IMovementScheme
                 _player.CurrentRotationSpeed = _player.Direction * _player.MaxRotationSpeed; // Instant return to normal speed
             }
         }
-
         _player.CurrentAngle += _player.CurrentRotationSpeed * Time.deltaTime;
-        _player.CurrentAngle %= 360f;
+        _player.CurrentAngle = (_player.CurrentAngle % 360f + 360f) % 360f; 
     }
 }
