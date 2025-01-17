@@ -19,7 +19,7 @@ public class SweepFatTentaclesAbility : MonoBehaviour
     private void Start()
     {
         circularPath = FindObjectOfType<CircularPath>();
-        sweepCenter = circularPath.transform;
+        //sweepCenter = circularPath.transform;
     }
 
     public void StartSweep()

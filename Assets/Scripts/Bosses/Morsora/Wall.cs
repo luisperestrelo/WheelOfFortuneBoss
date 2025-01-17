@@ -26,8 +26,8 @@ public class Wall : MonoBehaviour
     private void Start()
     {
         circularPath = FindObjectOfType<CircularPath>();
-        //center = GameObject.FindGameObjectWithTag("MorsoraTentacleCenter").transform.position;
-        center = circularPath.transform.position;
+        center = GameObject.FindGameObjectWithTag("MorsoraTentacleCenter").transform.position;
+        //center = circularPath.transform.position;
 
     }
 
@@ -64,8 +64,8 @@ public class Wall : MonoBehaviour
         }
 
 
-        float radius = circularPath.GetRadius() + 15f;
-        //float radius = 15f;
+        //float radius = circularPath.GetRadius() + 15f;
+        float radius = 15f;
 
         Vector3 startPoint = center + new Vector3(
             Mathf.Cos(wallStartAngle * Mathf.Deg2Rad) * radius,
