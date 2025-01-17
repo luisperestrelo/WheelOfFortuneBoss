@@ -80,8 +80,12 @@ public class PlayerSpinMovement : MonoBehaviour
     {
         get { return decelerationRate; }
     }
+    
 
     private LineRenderer _lineRenderer;
+
+    [Header("Wall Collision")]
+    [SerializeField] private bool enableWallCollisions = true;
 
     private void Start()
     {
@@ -164,6 +168,12 @@ public class PlayerSpinMovement : MonoBehaviour
             return;
         }
 
+        // Wall collision check (after movement update)
+        if (enableWallCollisions)
+        {
+            CheckForWallCollisions();
+        }
+
         float x = anchorPoint.position.x + radius * Mathf.Cos(_currentAngle * Mathf.Deg2Rad);
         float y = anchorPoint.position.y + radius * Mathf.Sin(_currentAngle * Mathf.Deg2Rad);
 
@@ -229,6 +239,45 @@ public class PlayerSpinMovement : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, anchorPoint.position);
+    }
+
+    private void CheckForWallCollisions()
+    {
+        Wall[] walls = FindObjectsOfType<Wall>();
+        foreach (Wall wall in walls)
+        {
+            if (IsAngleWithinRange(_currentAngle, wall.WallStartAngle, wall.WallEndAngle))
+            {
+                // Determine the closest edge of the wall and adjust the player's angle
+                float distanceToStart = Mathf.DeltaAngle(_currentAngle, wall.WallStartAngle);
+                float distanceToEnd = Mathf.DeltaAngle(_currentAngle, wall.WallEndAngle);
+
+                if (Mathf.Abs(distanceToStart) < Mathf.Abs(distanceToEnd))
+                {
+                    _currentAngle = wall.WallStartAngle;
+                }
+                else
+                {
+                    _currentAngle = wall.WallEndAngle;
+                }
+
+                // Stop the player's rotation upon collision
+                _currentRotationSpeed = 0f;
+            }
+        }
+    }
+
+    private bool IsAngleWithinRange(float angle, float start, float end)
+    {
+        // Handle cases where the wall spans the 0/360 boundary
+        if (start > end)
+        {
+            return angle >= start || angle <= end;
+        }
+        else
+        {
+            return angle >= start && angle <= end;
+        }
     }
 
 }

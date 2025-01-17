@@ -4,10 +4,10 @@ public class HoldToMoveAndDash : IMovementScheme
 {
     private PlayerSpinMovement _player;
     private bool _isDashing;
-    private float _dashCooldown = 1f; 
+    private float _dashCooldown = 1f;
     private float _dashCooldownTimer;
     private float _dashDistance = 90f; //bigger distance and lower duration means faster dash
-    private float _dashDuration = 0.1f; 
+    private float _dashDuration = 0.1f;
 
     public void Initialize(PlayerSpinMovement player)
     {
@@ -15,7 +15,7 @@ public class HoldToMoveAndDash : IMovementScheme
         _isDashing = false;
         _dashCooldownTimer = 0f;
     }
-    
+
 
     public void UpdateMovement()
     {
@@ -75,8 +75,7 @@ public class HoldToMoveAndDash : IMovementScheme
         }
 
         _player.CurrentAngle += _player.CurrentRotationSpeed * Time.deltaTime;
-        _player.CurrentAngle %= 360f;
-
+        _player.CurrentAngle = (_player.CurrentAngle % 360f + 360f) % 360f;
         // Reset dashing state after dash is complete
         if (_isDashing && Mathf.Abs(_player.CurrentAngle - _dashStartAngle) >= _dashDistance)
         {
@@ -91,4 +90,4 @@ public class HoldToMoveAndDash : IMovementScheme
         _dashStartAngle = _player.CurrentAngle;
         _player.CurrentRotationSpeed = _player.Direction * _dashDistance / _dashDuration; // Adjust dash speed here 
     }
-} 
+}
