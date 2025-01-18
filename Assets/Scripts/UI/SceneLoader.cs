@@ -18,6 +18,7 @@ public class SceneLoader : MonoBehaviour
         if (Instance != null)
             Destroy(Instance.gameObject);
         Instance = this;
+        DontDestroyOnLoad(gameObject);
         Debug.Log("Switched Scene Loader to " + this);
     }
 
@@ -29,13 +30,12 @@ public class SceneLoader : MonoBehaviour
         async = SceneManager.LoadSceneAsync(sceneName);
         async.allowSceneActivation = false;
         sceneTransitionAnimator?.SetTrigger("Close Scene");
-        while (async.progress < 0.9f || timeElapsed < sceneTransitionAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length)
+        while (async.progress < 0.9f || timeElapsed < sceneTransitionAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length + 0.1f)
         {
             timeElapsed += Time.deltaTime;
             yield return null;
         }
         async.allowSceneActivation = true;
         sceneTransitionAnimator?.SetTrigger("Open Scene");
-        yield return null;
     }
 }
