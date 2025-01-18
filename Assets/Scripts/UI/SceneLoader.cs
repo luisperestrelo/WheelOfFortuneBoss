@@ -30,11 +30,12 @@ public class SceneLoader : MonoBehaviour
         async = SceneManager.LoadSceneAsync(sceneName);
         async.allowSceneActivation = false;
         sceneTransitionAnimator?.SetTrigger("Close Scene");
-        while (async.progress < 0.9f || timeElapsed < sceneTransitionAnimator.GetCurrentAnimatorClipInfo(0)[0].clip.length + 0.1f)
+        while (async.progress < 0.9f || timeElapsed <= 1)
         {
             timeElapsed += Time.deltaTime;
             yield return null;
         }
+        yield return new WaitForSeconds(0.1f);
         async.allowSceneActivation = true;
         sceneTransitionAnimator?.SetTrigger("Open Scene");
     }
