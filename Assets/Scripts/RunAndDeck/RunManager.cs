@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using System.Collections;
 
 public class RunManager : MonoBehaviour
 {
@@ -111,15 +112,24 @@ public class RunManager : MonoBehaviour
 
     public void StartFight()
     {
-        EnableWheelAndPlayer(); // Enable when the fight starts. It is messy , but its fine for now
+        StartCoroutine(StartFightRoutine());
+    }
+
+    private IEnumerator StartFightRoutine()
+    {
+        yield return SceneLoader.Instance.LoadScene(bossFightSceneName);
         MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.fight);
-        SceneManager.LoadScene(bossFightSceneName);
+        EnableWheelAndPlayer(); // Enable when the fight starts. It is messy , but its fine for now
     }
 
     public void EndFight()
     {
+        StartCoroutine(EndFightRoutine());
+    }
+    private IEnumerator EndFightRoutine()
+    {
+        yield return SceneLoader.Instance.LoadScene(postBossSceneName);
         DisableWheelAndPlayer(); // Disable when fight ends. Messy but works for now
-        SceneManager.LoadScene(postBossSceneName);
         MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.ambience); //This will instead load a new music profile once we have more than 1 boss.
     }
 
