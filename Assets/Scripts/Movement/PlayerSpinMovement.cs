@@ -247,6 +247,8 @@ public class PlayerSpinMovement : MonoBehaviour
 
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, anchorPoint.position);
+        var scaleX = Mathf.Lerp(0.8f, 1f, Mathf.PingPong(Time.time * 0.5f, 1));
+        _lineRenderer.textureScale = new Vector2(scaleX, 1); 
     }
 
     private void OnDrawGizmos()

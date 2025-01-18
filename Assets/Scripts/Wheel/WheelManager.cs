@@ -254,7 +254,7 @@ public class WheelManager : MonoBehaviour
         if (CircularPath == null) return;
 
         Vector3 center = CircularPath.GetCenter();
-        float radius = CircularPath.GetRadius();
+        float radius = CircularPath.GetRadius() + 1.2f;
 
         // Draw lines only for the current segments
         for (int i = 0; i < Segments.Count; i++)
@@ -274,6 +274,9 @@ public class WheelManager : MonoBehaviour
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, center);
             lineRenderer.SetPosition(1, startPoint);
+            lineRenderer.sortingLayerName = "Ground";
+            lineRenderer.sortingOrder = 3;
+            
         }
     }
 
