@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: EldritchBlastFieldSO
   m_EditorClassIdentifier: 
   fieldName: EldritchBlast
-  description: Blasts all enemies in the scene for massive damage. Then the field
-    becomes a field of darkness, damaging you while you stand on it
+  description: Deal massive damage to all enemies. Then, this field damages you while
+    you stand on it
   icon: {fileID: 21300000, guid: d79669ba1c33b524dbf0f3d4415e0716, type: 3}
   fieldType: 9
   tags: 0500000006000000
