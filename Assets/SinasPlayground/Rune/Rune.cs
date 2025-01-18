@@ -14,10 +14,31 @@ public class Rune : MonoBehaviour
     public float ChargeProgress
     {
         get => _chargeProgress;
-        set { 
-            _chargeProgress = value; 
-            chargeProgressBar.SetProgress(value); }
+        set
+        {
+            _chargeProgress = value;
+            chargeProgressBar.SetProgress(value);
+        }
     }
-    // Start is called before the first frame update
+
+
+    private float _cooldownProgress
+    ;
+    public float CooldownProgress
+    {
+        get { return _cooldownProgress; }
+        set
+        {
+            _cooldownProgress = value;
+            inactiveProgress.Progress = 1 - value;
+        }
+    }
+
+    public float ActiveProgress
+    {
+        get { return activeProgress.Progress; }
+        set { activeProgress.Progress = value; }
+    }
+
 
 }
