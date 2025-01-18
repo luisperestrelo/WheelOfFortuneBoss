@@ -510,6 +510,13 @@ MonoBehaviour:
   decelerationRate: 1500
   usesAcceleration: 1
   movementSchemeType: 11
+  whatIsGround:
+    serializedVersion: 2
+    m_Bits: 0
+  wallCheck: {fileID: 0}
+  wallCheckDistance: 0.8
+  isCollidingWithWall: 0
+  enableWallCollisions: 1
 --- !u!114 &7586169954359990532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,7 +770,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -796,7 +803,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.65
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -885,7 +892,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -918,7 +925,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.6
       inSlope: 0
       outSlope: 0
       tangentMode: 0

@@ -9,6 +9,8 @@ public class SweepFatTentaclesAbility : MonoBehaviour
     [SerializeField] private float sweepDuration = 2f;
     [SerializeField] private float angleOffset = 180f;
 
+    [SerializeField] private AudioClip sweepSfx;
+
     private bool isSweeping = false;
     private float elapsedTime = 0f;
     private List<GameObject> fatTentacles = new List<GameObject>();
@@ -28,11 +30,16 @@ public class SweepFatTentaclesAbility : MonoBehaviour
         elapsedTime = 0f;
         fatTentacles.Clear();
         initialAngles.Clear();
+        bool hasPlayedSfx = false;
 
         foreach (GameObject obj in AbilityObjectManager.Instance.GetActiveAbilityObjects())
         {
             if (obj.GetComponentInChildren<FatTentacle>() != null)
             {
+                //Only play the SFX if there is a tentacle that is moving, and only play one sfx.
+                if (!hasPlayedSfx)
+                    obj.GetComponentInChildren<SFXPlayer>().PlaySFX(sweepSfx);
+
                 fatTentacles.Add(obj);
                 Vector3 direction = obj.transform.position - sweepCenter.position;
                 float initialAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;

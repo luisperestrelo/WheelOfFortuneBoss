@@ -211,6 +211,20 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.16666667
+    functionName: PlaySFX
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: d74ebed62891c6a418477b892b2b4f93, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 2.4166667
+    functionName: PlaySFX
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: 2c8e4d06607a5a64989185254a7ab797, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 2.75
     functionName: Hit
     data: 

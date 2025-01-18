@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LightningBlastFieldSO
   m_EditorClassIdentifier: 
   fieldName: Lightning Blast
-  description: Charges up, unleashing a devastating lightning blast when charged
+  description: When charged, unleashes a devastating lightning blast.
   icon: {fileID: 21300000, guid: 718d7c33ba3d82840affc11e66c3d0fa, type: 3}
   fieldType: 2
   tags: 06000000

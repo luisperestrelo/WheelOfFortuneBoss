@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Damage Buff Field card
   m_EditorClassIdentifier: 
   cardName: Damage Buff
-  description: Ipsis lorum
+  description: For 2 seconds after entering this field, you deal 50% more damage.
   rarity: 1
   icon: {fileID: 21300000, guid: 0f98f8a1949590a41ae68af7a30b23e6, type: 3}
+  cardType: 0
+  isKissCurse: 0
   field: {fileID: 11400000, guid: 374610433da2a034d815f1e2a8b92068, type: 2}

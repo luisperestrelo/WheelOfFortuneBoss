@@ -1,12 +1,17 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class RangedMinion : MonoBehaviour
 {
     [SerializeField] private float projectileSpeed = 10f;
     [SerializeField] private float shootingCooldown = 1f;
     [SerializeField] private float damage = 5f;
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform firePoint; 
+    [SerializeField] private Transform firePoint;
+
+    [SerializeField] private AudioClip shootSfx;
+    private AudioSource source;
+
     private Transform player;
     private float nextShootTime;
     
@@ -14,6 +19,8 @@ public class RangedMinion : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        source = GetComponent<AudioSource>();
+        source.pitch = Random.Range(0.85f, 1.15f);
     }
 
     // Constructor to initialize values
@@ -45,6 +52,8 @@ public class RangedMinion : MonoBehaviour
     //TODO also fix projectile logic to avoid Setters, but do that later
     private void Shoot()
     {
+        source.pitch = Random.Range(0.85f, 1.15f);
+        source.PlayOneShot(shootSfx);
         GameObject projectile = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         EnemyProjectile proj = projectile.GetComponent<EnemyProjectile>();
         if (proj != null)
