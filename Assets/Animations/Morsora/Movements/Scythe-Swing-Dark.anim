@@ -6202,7 +6202,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 3.35
-    functionName: ScytheSlashDark
+    functionName: SwingDarkScythe
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
