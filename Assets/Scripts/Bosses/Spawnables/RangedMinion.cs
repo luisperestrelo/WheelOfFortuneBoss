@@ -8,13 +8,15 @@ public class RangedMinion : MonoBehaviour
     [SerializeField] private float damage = 5f;
     [SerializeField] private GameObject projectilePrefab;
     [SerializeField] private Transform firePoint;
+    [SerializeField] private SpriteRenderer visuals;
+    [SerializeField] private float maxRotationDegrees = 30;
 
     [SerializeField] private AudioClip shootSfx;
     private AudioSource source;
 
     private Transform player;
     private float nextShootTime;
-    
+
 
     private void Awake()
     {
@@ -32,21 +34,49 @@ public class RangedMinion : MonoBehaviour
         nextShootTime = Time.time + shootingCooldown;
     }
 
-
     private void Update()
     {
         if (player == null) return;
 
-        // Rotate to face the player
-        Vector3 directionToPlayer = player.position - transform.position;
-        float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f); // Assuming the minion's sprite is facing up
+        RotateTowardsPlayer();
 
         if (Time.time >= nextShootTime)
         {
             Shoot();
             nextShootTime = Time.time + shootingCooldown;
         }
+    }
+
+    private void RotateTowardsPlayer()
+    {
+        Vector3 direction = player.position - transform.position;
+        var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        firePoint.transform.rotation =
+            Quaternion.Euler(0f, 0f, angle - 90f); // Assuming the minion's sprite is facing up
+
+        // Some Minions might not have a dedicated visuals game object 
+        var transformToRotate = visuals ? visuals.transform : transform;
+
+        if (direction.x > 0)
+        {
+            angle = Mathf.Clamp(angle, -maxRotationDegrees, maxRotationDegrees);
+
+            var scale = transformToRotate.localScale;
+            if (scale.x < 0)
+                transformToRotate.localScale = new Vector3(Mathf.Abs(scale.x), scale.y, scale.z);
+        }
+        // flip X 
+        else
+        {
+            angle = Mathf.Atan2(direction.y, -direction.x) * Mathf.Rad2Deg;
+            angle = -Mathf.Clamp(angle, -30, 30);
+
+            var scale = transformToRotate.localScale;
+            if (scale.x > 0)
+                transformToRotate.localScale = new Vector3(-Mathf.Abs(scale.x), scale.y, scale.z);
+        }
+
+        transformToRotate.rotation = Quaternion.Euler(0, 0, angle);
     }
 
     //TODO also fix projectile logic to avoid Setters, but do that later
@@ -62,4 +92,4 @@ public class RangedMinion : MonoBehaviour
             proj.SetVelocity(projectile.transform.up * projectileSpeed);
         }
     }
-} 
+}
