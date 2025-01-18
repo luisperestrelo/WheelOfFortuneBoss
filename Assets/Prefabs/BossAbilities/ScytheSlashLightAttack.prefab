@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3226509561285781005}
   - component: {fileID: 4747484131999296815}
   - component: {fileID: 1377644247936039566}
+  - component: {fileID: 327232379569380115}
   m_Layer: 0
   m_Name: ScytheSlashLightAttack
   m_TagString: Untagged
@@ -136,7 +137,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.7529135}
@@ -150,5 +151,19 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 23.8, y: 9.399105}
+  m_Size: {x: 23.8, y: 8.24}
   m_EdgeRadius: 0
+--- !u!114 &327232379569380115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6503118944386814951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ef85b11f1133e147aae36498d22fbf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  lifetime: 1

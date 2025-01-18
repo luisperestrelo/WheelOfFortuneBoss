@@ -701,7 +701,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 00000000a318d953
+  m_ApplyToSortingLayers: 00000000a318d9536d76626e
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -3806,6 +3806,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1549437899210114616, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.49
+      objectReference: {fileID: 0}
     - target: {fileID: 2305880784575062884, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
       propertyPath: _player
       value: 
@@ -3941,6 +3945,10 @@ PrefabInstance:
     - target: {fileID: 7049915848689469648, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
       propertyPath: m_Name
       value: Morsora
+      objectReference: {fileID: 0}
+    - target: {fileID: 8508624367241683391, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

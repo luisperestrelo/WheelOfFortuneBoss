@@ -25905,13 +25905,13 @@ PrefabInstance:
       addedObject: {fileID: 471244247885277928}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6376446769112863490}
-    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 927514385244874588}
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3891429424114091761}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6716558719546383179}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
 --- !u!4 &2953974059166834161 stripped
 Transform:
@@ -25944,20 +25944,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6376446769112863490
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4050572341175960978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df1d3ef7b1a5ba74387f3a042bf9c747, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scytheDarkAnimator: {fileID: 0}
-  scytheLightAnimator: {fileID: 0}
 --- !u!82 &927514385244874588
 AudioSource:
   m_ObjectHideFlags: 0
@@ -26067,6 +26053,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doRandomizePitch: 0
+--- !u!114 &6716558719546383179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050572341175960978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f2561ab5eb7d640a65bcce68e1a93a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  darkSlashPrefab: {fileID: 3004725088580623296, guid: 657ba402a2f4fa8479562d815cdae74d, type: 3}
+  lightSlashPrefab: {fileID: 6503118944386814951, guid: 380417b190163e942bc3042696c89293, type: 3}
+  darkSlashSpawnPoint: {fileID: 1549437899210114616}
+  lightSlashSpawnPoint: {fileID: 8508624367241683391}
 --- !u!1001 &5969581705014678675
 PrefabInstance:
   m_ObjectHideFlags: 0
