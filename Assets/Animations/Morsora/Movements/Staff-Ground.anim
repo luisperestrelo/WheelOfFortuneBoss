@@ -3591,6 +3591,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 1.6333333
+    functionName: PlaySFX
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: b9fbad552c874964186ab45d1b931525, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 1.7833333
     functionName: EmitSingleShockwaveOutwards
     data: 
