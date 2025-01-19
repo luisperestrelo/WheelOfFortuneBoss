@@ -33,11 +33,15 @@ public class TentacleSpitter : MonoBehaviour
         if (currentSpitCount < NumberOfSpits)
         {
             GameObject tentacleSpit = Instantiate(tentacleSpitPrefab, transform.position, transform.rotation);
-            EnemyProjectile proj = tentacleSpit.GetComponent<EnemyProjectile>();
-            if (proj != null)
+            
+            if (tentacleSpit != null)
             {
-                proj.SetDamage(Damage);
-                proj.SetVelocity(-tentacleSpit.transform.right * projectileSpeed);
+                EnemyProjectile proj = tentacleSpit.GetComponent<EnemyProjectile>();
+                if (proj != null)
+                {
+                    proj.SetDamage(Damage);
+                    proj.SetVelocity(-tentacleSpit.transform.right * projectileSpeed);
+                }
             }
             currentSpitCount++;
 

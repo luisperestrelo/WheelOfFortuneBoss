@@ -18,6 +18,8 @@ public class MorsoraBossController : MonoBehaviour
     public SweepFatTentaclesAbility sweepFatTentaclesAbility;
     public SpawnTentacleSpitterAbility spawnTentacleSpitterAbility;
     public SpawnTentacleShield spawnTentacleShield;
+    public SpawnRangedMinionsAbility spawnRangedMinions;
+    public ThrowChakramAbility throwChakramAbility;
 
     public MorsoraIdleState idleState { get; private set; }
     public MorsoraLightScytheSwingState lightScytheSwingState { get; private set; }
@@ -37,10 +39,14 @@ public class MorsoraBossController : MonoBehaviour
 
     public int basicAttackCounter = 0;
     private int basicAttacksPerCycle = 5; // 1 more than how many basic attacks there are, cos we increment first   
+    private List<MorsoraBossState> availableSpecialAttacksPhase1;
+    private List<MorsoraBossState> availableSpecialAttacksPhase2;
     private List<MorsoraBossState> availableSpecialAttacks;
 
     private float chanceAdjustment = 0.2f;
 
+    public List<MorsoraBossState> basicAttackStatesPhase1;
+    public List<MorsoraBossState> basicAttackStatesPhase2;
     public List<MorsoraBossState> basicAttackStates;
     public Dictionary<MorsoraBossState, float> basicAttackProbabilities;
 
@@ -48,6 +54,8 @@ public class MorsoraBossController : MonoBehaviour
     [Range(0, 1)]
     [SerializeField] private List<float> upgradeOrbSpawnHealthThresholds = new List<float>();
     [SerializeField] private float bossPhase2HealthThreshold = 0.5f;
+    private bool isPhase2 = false;
+    public bool shouldTransitionToPhase2 { get; private set; } = false;
 
     [SerializeField] private GameObject upgradeOrb;
     [SerializeField] private Transform player;
@@ -62,6 +70,7 @@ public class MorsoraBossController : MonoBehaviour
         wheelManager = FindObjectOfType<WheelManager>();
 
         spawnTentacleShield = GetComponent<SpawnTentacleShield>();
+        spawnRangedMinions = GetComponent<SpawnRangedMinionsAbility>();
 
         stateMachine = new MorsoraBossStateMachine();
         idleState = new MorsoraIdleState(stateMachine, this, "Idle");
@@ -78,12 +87,21 @@ public class MorsoraBossController : MonoBehaviour
         tentacleShieldState = new MorsoraTentacleShieldState(stateMachine, this, "Idle", shieldBusterField);
 
         // Initialize basic attack states
-        basicAttackStates = new List<MorsoraBossState>
+        basicAttackStatesPhase1 = new List<MorsoraBossState>
         {
             lightScytheSwingState,
             darkScytheSwingState//,
             //throwChakramState
         };
+
+        basicAttackStatesPhase2 = new List<MorsoraBossState>
+        {
+            lightScytheSwingState,
+            darkScytheSwingState
+           
+        };
+
+        basicAttackStates = basicAttackStatesPhase1;
 
         health = GetComponent<BossHealth>();
     }
@@ -96,6 +114,8 @@ public class MorsoraBossController : MonoBehaviour
         sweepFatTentaclesAbility = GetComponent<SweepFatTentaclesAbility>();
         spawnTentacleSpitterAbility = GetComponent<SpawnTentacleSpitterAbility>();
 
+        throwChakramAbility = GetComponent<ThrowChakramAbility>();
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         playerPath = FindObjectOfType<CircularPath>();
 
@@ -104,23 +124,33 @@ public class MorsoraBossController : MonoBehaviour
         InitializeConstantAbility("SpawnTentacleSpitter", 10f);
 
         stateMachine.Initialize(idleState);
-        stateMachine.ChangeState(tentacleShieldState);
+        //stateMachine.ChangeState(tentacleShieldState);
         //stateMachine.Initialize(tentacleShieldState);
 
         // Initialize and start constant abilities
-
 
         //spawnTentacleSnapAbility.SpawnTentacleSpiral(0f, 0.2f, SpawnDirection.Clockwise);
         //spawnTentacleSnapAbility.SpawnCircleOfTentaclesWithGap(0f, 90f, 15f, 1);
         //stateMachine.ChangeState(scytheComboState);
 
-        InitializeSpecialAttacks();
+        InitializeSpecialAttacksPhase1();
+        InitializeSpecialAttacksPhase2();
+        availableSpecialAttacks = availableSpecialAttacksPhase1;
 
     }
     private void Update()
     {
         stateMachine.currentState.Update();
         CheckIfUpgradeThreshold();
+        CheckPhase2Transition();
+    }
+
+    private void CheckPhase2Transition()
+    {
+        if (!isPhase2 && health.GetCurrentHealth() <= health.GetMaxHealth() * bossPhase2HealthThreshold && !shouldTransitionToPhase2)
+        {
+            shouldTransitionToPhase2 = true;
+        }
     }
 
     private void CheckIfUpgradeThreshold()
@@ -151,10 +181,9 @@ public class MorsoraBossController : MonoBehaviour
         Instantiate(upgradeOrb, spawnPosition, Quaternion.identity);
     }
 
-
-    private void InitializeSpecialAttacks()
+    private void InitializeSpecialAttacksPhase1()
     {
-        availableSpecialAttacks = new List<MorsoraBossState>
+        availableSpecialAttacksPhase1 = new List<MorsoraBossState>
         {
             tentacleHellState,
             radialTentacleSlamState,
@@ -165,6 +194,17 @@ public class MorsoraBossController : MonoBehaviour
         };
     }
 
+    private void InitializeSpecialAttacksPhase2()
+    {
+        availableSpecialAttacksPhase2 = new List<MorsoraBossState>
+        {
+            tentacleHellState,
+            shockwaveWithTentaclesState,
+            tentacleSpiralState,
+            //scytheComboState // I would like this to be a sequence of Scythe Slashes but much faster
+                              // But need a way to indiciate that
+        };
+    }
 
     private void InitializeConstantAbility(string abilityName, float interval)
     {
@@ -187,6 +227,41 @@ public class MorsoraBossController : MonoBehaviour
                         break;
                     case "SpawnTentacleSpitter":
                         spawnTentacleSpitterAbility.SpawnTentacleSpitter(Random.Range(160, 380), 3); // dont spawn behind boss
+                        break;
+                    case "Phase2TentacleSnap":
+                        spawnTentacleSnapAbility.SpawnTentaclesRandomlyAroundPlayerWithDelay(7, 1, 30, 0.25f);
+                        break;
+                    case "Phase2TentacleSpitter":
+                        float randomAngle = Random.Range(160, 360);
+                        spawnTentacleSpitterAbility.SpawnTentacleSpitter(randomAngle, 3); // dont spawn behind boss
+
+                        // Calculate the mirrored angle
+                        float mirroredAngle = 360 - (randomAngle - 180);
+
+                        // Ensure a minimum distance of 15 degrees between the two angles
+                        if (Mathf.Abs(mirroredAngle - randomAngle) < 15f)
+                        {
+                            if (mirroredAngle > randomAngle)
+                            {
+                                mirroredAngle = randomAngle + 15f;
+                            }
+                            else
+                            {
+                                mirroredAngle = randomAngle - 15f;
+                            }
+                        }
+
+                        // Clamp the mirrored angle to stay within the allowed range
+                        mirroredAngle = Mathf.Clamp(mirroredAngle, 160, 360);
+
+                        spawnTentacleSpitterAbility.SpawnTentacleSpitter(mirroredAngle, 3);
+                        break;
+                    case "Phase2Chakram":
+                        throwChakramAbility.ThrowChakramAtPredictedPlayerPosition(0f);
+                        throwChakramAbility.ThrowChakramAtPredictedPlayerPosition(1f);
+                        break;
+                    default:
+                        Debug.LogError("Unknown constant ability: " + abilityName);
                         break;
                 }
             }
@@ -318,7 +393,16 @@ public class MorsoraBossController : MonoBehaviour
     {
         if (availableSpecialAttacks.Count == 0)
         {
-            InitializeSpecialAttacks(); // Reset special attacks
+            if (isPhase2)
+            {
+                InitializeSpecialAttacksPhase2(); // Reset special attacks for phase 2
+                availableSpecialAttacks = availableSpecialAttacksPhase2;
+            }
+            else
+            {
+                InitializeSpecialAttacksPhase1(); // Reset special attacks for phase 1
+                availableSpecialAttacks = availableSpecialAttacksPhase1;
+            }
         }
 
         int randomIndex = Random.Range(0, availableSpecialAttacks.Count);
@@ -339,5 +423,53 @@ public class MorsoraBossController : MonoBehaviour
     public void TentacleShieldChargeCompleted()
     {
         tentacleShieldState.IncrementChargeCount();
+    }
+
+    public void StartPhase2()
+    {
+        isPhase2 = true;
+        shouldTransitionToPhase2 = false;
+        SpawnUpgradeOrb();
+        basicAttackStates = basicAttackStatesPhase2;
+        availableSpecialAttacks = availableSpecialAttacksPhase2;
+        shouldTransitionToPhase2 = false;
+
+        basicAttackCounter = 0;
+
+        // Stop and clear existing constant abilities
+        StopAllConstantAbilities();
+        ClearConstantAbilities();
+
+        // Initialize and start new constant abilities for Phase 2
+        InitializeConstantAbilitiesPhase2();
+    }
+
+    private void InitializeConstantAbilitiesPhase2()
+    {
+        InitializeConstantAbility("Phase2TentacleSnap", 5f); 
+        InitializeConstantAbility("Phase2TentacleSpitter", 2f); 
+        InitializeConstantAbility("Phase2Chakram", 6f);
+    }
+
+    private void ClearConstantAbilities()
+    {
+        constantAbilityCoroutines.Clear();
+        constantAbilityEnabled.Clear();
+    }
+
+    private void StopAllConstantAbilities()
+    {
+        // Create a copy of the keys to avoid issues when modifying the dict 
+        List<string> abilityNames = new List<string>(constantAbilityCoroutines.Keys);
+
+        foreach (string abilityName in abilityNames)
+        {
+            if (constantAbilityCoroutines.ContainsKey(abilityName))
+            {
+                StopCoroutine(constantAbilityCoroutines[abilityName]);
+                SetConstantAbilityStatus(abilityName, false);
+                Debug.Log("Stopped coroutine for: " + abilityName); 
+            }
+        }
     }
 }
