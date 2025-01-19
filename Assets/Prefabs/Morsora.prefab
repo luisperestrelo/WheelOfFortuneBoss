@@ -25371,7 +25371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe3aca7726cc464181577e932e2665e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 10000
   currentHealth: 0
   hpHeavyDamageThreshold: 25
   lightDamageSfx: {fileID: 8300000, guid: 587c1108a21a8524c83353de20bf10e2, type: 3}
@@ -26079,6 +26079,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1662911475614576995}
+    - targetCorrespondingSourceObject: {fileID: -5847749602283110788, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7700121832115821650}
+    - targetCorrespondingSourceObject: {fileID: -5847749602283110788, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2710423195355627555}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
 --- !u!1 &1227749261185505875 stripped
 GameObject:
@@ -26426,6 +26432,11 @@ MonoBehaviour:
   playerMovement: {fileID: 0}
   leadTime: 1.5
   speed: 7.5
+--- !u!4 &4144705682167850237 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8766896516718264110, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
+  m_PrefabInstance: {fileID: 4598537828975928367}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5969581705014678675
 PrefabInstance:
   m_ObjectHideFlags: 0
