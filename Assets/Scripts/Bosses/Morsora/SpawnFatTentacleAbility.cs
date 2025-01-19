@@ -57,16 +57,22 @@ public class SpawnFatTentacleAbility : MonoBehaviour
         }
     }
 
+    // turns out, 180º degrees is not "the furthest away" from the player.
+    // You would think, if we go further than 180º, then it is closer to the player if he changes the direction
+    // but because there is acceleration in this game, changing direction doesnt actually get him there fater
+    // So "furthest away" from player would be more something like 225º, depending on speed
+    // by "furthest away" I mean, the angle that the player takes the longest ***time*** to reach from either direction
     public void SpawnFatTentacle180DegreesFromPlayer()
     {
-
-
         // Calculate the direction from the boss (tentacleCenter) to the player
         Vector3 toPlayer = player.transform.position - tentacleCenter.position;
+        PlayerSpinMovement playerSpinMovement = player.GetComponent<PlayerSpinMovement>();
 
         float currentAngle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
 
-        currentAngle += 180f;
+        // Adjust the angle based on the player's direction
+        float directionAdjustment = playerSpinMovement.Direction > 0 ? 180f : -180f;
+        currentAngle += directionAdjustment;
 
         Vector3 spawnDirection = new Vector3(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad), 0f);
 
@@ -90,7 +96,39 @@ public class SpawnFatTentacleAbility : MonoBehaviour
         }
     }
 
+    public void SpawnFatTentacleDegreesFromPlayer(float angle)
+    {
+        // Calculate the direction from the boss (tentacleCenter) to the player
+        Vector3 toPlayer = player.transform.position - tentacleCenter.position;
+        PlayerSpinMovement playerSpinMovement = player.GetComponent<PlayerSpinMovement>();
 
+        float currentAngle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
+
+        // Adjust the angle based on the player's direction and the input angle
+        float directionAdjustment = playerSpinMovement.Direction > 0 ?   angle : -angle;
+        currentAngle += directionAdjustment;
+
+        Vector3 spawnDirection = new Vector3(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad), 0f);
+
+        Vector3 spawnPosition = tentacleCenter.position + spawnDirection * spawnDistance;
+
+        GameObject fatTentacle = Instantiate(fatTentaclePrefab, spawnPosition, Quaternion.Euler(0, 0, currentAngle + angleOffset));
+
+        // Adjust flipping based on angle, only flips horizontally 
+        AdjustFlipping(fatTentacle, currentAngle);
+
+        FatTentacle fatTentacleComponent = fatTentacle.GetComponentInChildren<FatTentacle>();
+        if (fatTentacleComponent != null)
+        {
+            fatTentacleComponent.Initialize(onContactDamage);
+        }
+
+        Wall wall = fatTentacle.GetComponentInChildren<Wall>();
+        if (wall != null)
+        {
+            wall.Initialize(currentAngle - 20f, currentAngle + 20f);
+        }
+    }
 
     //quadrant stuff unneccesary, we are just doing horizontal flipping
     private void AdjustFlipping(GameObject tentacleRoot, float angle)

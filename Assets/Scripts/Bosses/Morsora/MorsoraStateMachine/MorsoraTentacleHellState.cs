@@ -27,7 +27,8 @@ public class MorsoraTentacleHellState : MorsoraBossState
         initialTimer = 0f;
         bossController.DisableAllConstantAbilities();
         //bossController.spawnFatTentacleAbility.SpawnFatTentacle(Random.Range(0f, 360f));
-        bossController.spawnFatTentacleAbility.SpawnFatTentacle180DegreesFromPlayer();
+        //bossController.spawnFatTentacleAbility.SpawnFatTentacle180DegreesFromPlayer();
+        bossController.spawnFatTentacleAbility.SpawnFatTentacleDegreesFromPlayer(225f);
 
     }
 
