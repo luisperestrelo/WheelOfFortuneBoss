@@ -28,9 +28,11 @@ public class BaseProjectile : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Health>(out var health) && health.gameObject.tag != "Player")
         {
-            Debug.Log("hit");
-            var hit = Instantiate(hitVfxPrefab, transform.position, Quaternion.identity);
-            hit.GetComponent<AutoLayerSort>()?.SetSortingLayer();
+            if (hitVfxPrefab)
+            {
+                var hit = Instantiate(hitVfxPrefab, transform.position, Quaternion.identity);
+                hit.GetComponent<LayerSort>()?.SortToBossLayer();
+            }
             health.TakeDamage(damage);
             Destroy(gameObject);
         }
