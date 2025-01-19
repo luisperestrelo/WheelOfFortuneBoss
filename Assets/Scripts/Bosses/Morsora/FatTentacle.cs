@@ -24,12 +24,12 @@ public class FatTentacle : MonoBehaviour
 
     private void Start()
     {
-        AbilityObjectManager.Instance.RegisterAbilityObject(transform.gameObject);
+        AbilityObjectManager.Instance.RegisterAbilityObject(transform.parent.gameObject);
     }
 
     
     private void OnDestroy()
     {
-        AbilityObjectManager.Instance.UnregisterAbilityObject(transform.gameObject);
+        AbilityObjectManager.Instance.UnregisterAbilityObject(transform.parent.gameObject);
     }
 }

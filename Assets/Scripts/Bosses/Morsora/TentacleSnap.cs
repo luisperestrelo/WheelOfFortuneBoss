@@ -11,7 +11,9 @@ public class TentacleSnap : MonoBehaviour
     private int currentSlamCount = 0;
     private Animator animator;
 
-    private void Start()
+    [SerializeField] private GameObject telegraphPrefab;
+
+    private void Awake()
     {
         // We're just using a collider to "set the hitbox". We could do it differently if we want.
         hitBox = GetComponent<BoxCollider2D>();
@@ -36,9 +38,9 @@ public class TentacleSnap : MonoBehaviour
 
     private void Hit()
     {
-        Collider2D[] hitColliders = new Collider2D[10]; 
+        Collider2D[] hitColliders = new Collider2D[10];
         ContactFilter2D filter = new ContactFilter2D();
-        filter.SetLayerMask(playerLayer); 
+        filter.SetLayerMask(playerLayer);
         Debug.Log("OverlapBox Center: " + ((Vector2)transform.position + hitBox.offset) + ", Size: " + hitBox.size);
         int numColliders = Physics2D.OverlapCollider(hitBox, filter, hitColliders);
 
@@ -52,10 +54,22 @@ public class TentacleSnap : MonoBehaviour
                 {
                     Debug.Log("TentacleSnap: Hit player");
                     playerHealth.TakeDamage(Damage);
-                    break; 
+                    break;
                 }
             }
         }
+    }
+
+    private void SpawnTelegraph(float fadeDuration = 1.5f)
+    {
+        float angle = transform.parent.rotation.eulerAngles.z;
+        Quaternion rotation = Quaternion.Euler(0, 0, angle + 90);
+        GameObject telegraph = Instantiate(telegraphPrefab, transform.parent.position, rotation);
+        telegraph.GetComponent<SpearTelegraph>().fadeDuration = fadeDuration;
+        telegraph.transform.parent = transform.parent;
+        telegraph.transform.localPosition = new Vector3(0, -0.25f, 0); // we love bandaids in this house
+        
+
     }
 
     public void SlamFinished()

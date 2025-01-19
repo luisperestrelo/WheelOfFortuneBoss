@@ -10207,7 +10207,7 @@ Transform:
   m_GameObject: {fileID: 2432528552270840304}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.5, z: 0}
+  m_LocalPosition: {x: 0, y: 7.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15236,7 +15236,7 @@ Transform:
   m_GameObject: {fileID: 4267303063450524596}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.79, z: 0}
+  m_LocalPosition: {x: 0, y: 1.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25264,18 +25264,21 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2787194071078884663}
+  - component: {fileID: 8489809754223633491}
   - component: {fileID: 6743735037320729315}
   - component: {fileID: 608571954432375331}
   - component: {fileID: 3869095841851448052}
-  - component: {fileID: 3436920792601618295}
   - component: {fileID: 8067951667134333179}
+  - component: {fileID: 5957109738381393552}
   - component: {fileID: 2068535191983629042}
   - component: {fileID: 8957217160656665894}
   - component: {fileID: 7473818126429284427}
   - component: {fileID: 7069625005685426964}
-  - component: {fileID: 5957109738381393552}
   - component: {fileID: 3778904716877885856}
   - component: {fileID: 330558516896535940}
+  - component: {fileID: 7233575668219198028}
+  - component: {fileID: 6974248992066422196}
+  - component: {fileID: 2016718473807299096}
   m_Layer: 0
   m_Name: Morsora
   m_TagString: Enemy
@@ -25306,9 +25309,10 @@ Transform:
   - {fileID: 5746515918980058321}
   - {fileID: 6179273767138577720}
   - {fileID: 8508624367241683391}
+  - {fileID: 748638119957019681}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6743735037320729315
+--- !u!114 &8489809754223633491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -25316,6 +25320,32 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7049915848689469648}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe3aca7726cc464181577e932e2665e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 500
+  currentHealth: 0
+  hpHeavyDamageThreshold: 25
+  lightDamageSfx: {fileID: 8300000, guid: 587c1108a21a8524c83353de20bf10e2, type: 3}
+  heavyDamageSfx: {fileID: 8300000, guid: 8602518a3e6e7c74bab30911fd517a5c, type: 3}
+  parrySfx: {fileID: 0}
+  healSfx: {fileID: 0}
+  damageSource: {fileID: 8067951667134333179}
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6743735037320729315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049915848689469648}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a280b1b913d7ef4592ec39bca5d76ae, type: 3}
   m_Name: 
@@ -25396,31 +25426,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3436920792601618295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7049915848689469648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffe9d38d9a79e2e4cbb03e469b0fb068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shockwavePrefab: {fileID: 2205298857084109402, guid: efb8d5b133f818e46aec175368126291, type: 3}
-  shockwaveInterval: 3
-  numberOfShockwaves: 3
-  shockwaveExpansionSpeed: 6
-  shockwaveLifetime: 30
-  shockwaveDamage: 15
-  numberOfSegments: 360
-  useRandomGaps: 1
-  numberOfGaps: 2
-  gapSize: 60
-  gapSegments: 0000000001000000
-  startRadius: 0
-  expandOutward: 1
 --- !u!82 &8067951667134333179
 AudioSource:
   m_ObjectHideFlags: 0
@@ -25517,6 +25522,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5957109738381393552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049915848689469648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fda66c163f939b4ebe44873aa9cf8ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossHealthUpgradeInterval: 0.1
+  spawnTentacleSnapAbility: {fileID: 0}
+  spawnFatTentacleAbility: {fileID: 0}
+  sweepFatTentaclesAbility: {fileID: 0}
+  spawnTentacleSpitterAbility: {fileID: 0}
+  spawnTentacleShield: {fileID: 0}
+  basicAttackCounter: 0
+  upgradeOrbSpawnHealthThresholds:
+  - 0.75
+  - 0.45
+  - 0.25
+  bossPhase2HealthThreshold: 0.5
+  upgradeOrb: {fileID: 4831472064132810505, guid: 4201f5fda37fd864b8f0f35c0af84c05, type: 3}
+  player: {fileID: 0}
+  playerPath: {fileID: 0}
+  shieldBusterField: {fileID: 11400000, guid: d9bbc7aa109f402418d79f0d19c2d494, type: 2}
 --- !u!114 &2068535191983629042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25530,6 +25563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tentacleSnapPrefab: {fileID: 1036103290362500274, guid: 00b3c7ea7e87af34d88835243c877ada, type: 3}
+  tentacleSnapSlowerPrefab: {fileID: 1036103290362500274, guid: b661bff77ebc103499dc718436142202, type: 3}
   tentacleCenter: {fileID: 6179273767138577720}
   spawnDistance: 2
   angleOffset: 180
@@ -25550,7 +25584,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tentacleSpitterPrefab: {fileID: 751671436821535764, guid: fb703f283c69d2c4f953d50239a6bdbe, type: 3}
   tentacleCenter: {fileID: 6179273767138577720}
-  spawnDistance: 2.5
+  spawnDistance: 3
   angleOffset: 180
   damage: 10
   projectileSpeed: 10
@@ -25592,20 +25626,6 @@ MonoBehaviour:
   sweepDuration: 2
   angleOffset: 180
   sweepSfx: {fileID: 8300000, guid: bb6acc70aaaa1834c928cabb36b75c6b, type: 3}
---- !u!114 &5957109738381393552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7049915848689469648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fda66c163f939b4ebe44873aa9cf8ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnTentacleSnapAbility: {fileID: 0}
-  sweepFatTentaclesAbility: {fileID: 0}
 --- !u!114 &3778904716877885856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25653,6 +25673,80 @@ MonoBehaviour:
   lightSlashPrefab: {fileID: 6503118944386814951, guid: 380417b190163e942bc3042696c89293, type: 3}
   darkSlashSpawnPoint: {fileID: 1549437899210114616}
   lightSlashSpawnPoint: {fileID: 8508624367241683391}
+--- !u!114 &7233575668219198028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049915848689469648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c308eeeccb003554a86c4a29a67e0ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chakramPrefab: {fileID: 6218950422717519890, guid: 752967d379d68da4ab69b1f87d17ad44, type: 3}
+  chakramSpawnPoint: {fileID: 748638119957019681}
+  playerMovement: {fileID: 0}
+  leadTime: 1
+  speed: 10
+--- !u!114 &6974248992066422196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049915848689469648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c436ab6aa48a20d478a2c8b38790f1ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2016718473807299096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049915848689469648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18dcb64f4096fa94eb528fa8a809cc47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tentacleShield: {fileID: 7158151065836571810, guid: f28f24b09f3e3de4198879d2662ca378, type: 3}
+  tentacles: []
+--- !u!1 &7331360546990643597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748638119957019681}
+  m_Layer: 0
+  m_Name: ChakramHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &748638119957019681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7331360546990643597}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.27, y: 6.05, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2787194071078884663}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7971268678594033731
 GameObject:
   m_ObjectHideFlags: 0
@@ -25762,7 +25856,7 @@ Transform:
   m_GameObject: {fileID: 8891469652267353705}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -6.78, z: 0}
+  m_LocalPosition: {x: 0, y: -8.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -25873,6 +25967,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5847749602283110788, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -4925444451676668415, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -25886,6 +25984,10 @@ PrefabInstance:
       value: -3.64
       objectReference: {fileID: 0}
     - target: {fileID: -2981606639763534472, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8718841463367564562, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -25912,6 +26014,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6716558719546383179}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1826632992102343041}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3981530296320769867}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5414246086242593837}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1662911475614576995}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: ce5d259c50d043047acf3e6dee3d32eb, type: 3}
 --- !u!4 &2953974059166834161 stripped
 Transform:
@@ -26069,6 +26183,82 @@ MonoBehaviour:
   lightSlashPrefab: {fileID: 6503118944386814951, guid: 380417b190163e942bc3042696c89293, type: 3}
   darkSlashSpawnPoint: {fileID: 1549437899210114616}
   lightSlashSpawnPoint: {fileID: 8508624367241683391}
+--- !u!114 &1826632992102343041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050572341175960978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ece5705e1434c448ae139a34511f975, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3981530296320769867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050572341175960978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe9d38d9a79e2e4cbb03e469b0fb068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shockwavePrefab: {fileID: 2205298857084109402, guid: efb8d5b133f818e46aec175368126291, type: 3}
+  shockwaveInterval: 3
+  numberOfShockwaves: 3
+  shockwaveExpansionSpeed: 6
+  shockwaveLifetime: 30
+  shockwaveDamage: 15
+  numberOfSegments: 360
+  useRandomGaps: 1
+  numberOfGaps: 2
+  gapSize: 60
+  gapSegments: 0000000001000000
+  startRadius: 0
+  expandOutward: 1
+  inwardsRadius: 20
+  shockwavesCenter: {x: 0, y: 0, z: 0}
+--- !u!114 &5414246086242593837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050572341175960978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f96040c5d1734c42a7d8b779848fc63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tentacleSnapPrefab: {fileID: 1036103290362500274, guid: 00b3c7ea7e87af34d88835243c877ada, type: 3}
+  tentacleSnapSlowerPrefab: {fileID: 1036103290362500274, guid: b661bff77ebc103499dc718436142202, type: 3}
+  tentacleCenter: {fileID: 6179273767138577720}
+  spawnDistance: 2
+  angleOffset: 180
+  damage: 10
+  player: {fileID: 0}
+  testAngleStep: 15
+--- !u!114 &1662911475614576995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4050572341175960978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c308eeeccb003554a86c4a29a67e0ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chakramPrefab: {fileID: 6218950422717519890, guid: 752967d379d68da4ab69b1f87d17ad44, type: 3}
+  chakramSpawnPoint: {fileID: 748638119957019681}
+  playerMovement: {fileID: 0}
+  leadTime: 1.5
+  speed: 7.5
 --- !u!1001 &5969581705014678675
 PrefabInstance:
   m_ObjectHideFlags: 0

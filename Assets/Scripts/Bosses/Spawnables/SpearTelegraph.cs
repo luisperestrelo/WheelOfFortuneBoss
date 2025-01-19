@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SpearTelegraph : MonoBehaviour
 {
-    [SerializeField] private float fadeDuration = 0.5f;
+    [SerializeField] public float fadeDuration = 0.5f;
 
     private SpriteRenderer spriteRenderer;
     private Color originalColor;

@@ -224,6 +224,7 @@ public class PlayerSpinMovement : MonoBehaviour
     public Vector3 GetFuturePosition(float time)
     {
         float futureAngle = _currentAngle + _direction * _currentRotationSpeed * time;
+        futureAngle = (futureAngle % 360f + 360f) % 360f;
         float x = anchorPoint.position.x + radius * Mathf.Cos(futureAngle * Mathf.Deg2Rad);
         float y = anchorPoint.position.y + radius * Mathf.Sin(futureAngle * Mathf.Deg2Rad);
         return new Vector3(x, y, transform.position.z);
@@ -248,7 +249,7 @@ public class PlayerSpinMovement : MonoBehaviour
         _lineRenderer.SetPosition(0, transform.position);
         _lineRenderer.SetPosition(1, anchorPoint.position);
         var scaleX = Mathf.Lerp(0.8f, 1f, Mathf.PingPong(Time.time * 0.5f, 1));
-        _lineRenderer.textureScale = new Vector2(scaleX, 1); 
+        _lineRenderer.textureScale = new Vector2(scaleX, 1);
     }
 
     private void OnDrawGizmos()
