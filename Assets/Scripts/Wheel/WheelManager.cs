@@ -40,10 +40,29 @@ public class WheelManager : MonoBehaviour
         UpdateWheelVisuals();
     }
 
-    public void AddFieldAtRandomIndex(Field field)
+    public int AddFieldAtRandomIndex(Field field) //returns the index of the field
     {
         int randomIndex = Random.Range(0, FieldsToAddToWheel.Count);
         AddField(field, randomIndex);
+        return randomIndex;
+    }
+
+    public int AddFieldAtRandomIndexExcept(Field field, int excludedIndex)
+    {
+        if (FieldsToAddToWheel.Count <= 1)
+        {
+            // If there's only one or zero fields, we can't exclude anything. Just a check that should never happen
+            return AddFieldAtRandomIndex(field);
+        }
+
+        int randomIndex;
+        do
+        {
+            randomIndex = Random.Range(0, FieldsToAddToWheel.Count);
+        } while (randomIndex == excludedIndex);
+
+        AddField(field, randomIndex);
+        return randomIndex;
     }
 
     public void RemoveField(Field field)

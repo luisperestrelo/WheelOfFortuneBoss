@@ -41,4 +41,15 @@ public class AbilityObjectManager : MonoBehaviour
     {
         return new List<GameObject>(activeAbilityObjects);
     }
+
+    public void DestroyAllFatTentacles()
+    {
+        foreach (GameObject obj in activeAbilityObjects)
+        {
+            if (obj.CompareTag("FatTentacle"))
+            {
+                Destroy(obj);
+            }
+        }
+    }
 } 

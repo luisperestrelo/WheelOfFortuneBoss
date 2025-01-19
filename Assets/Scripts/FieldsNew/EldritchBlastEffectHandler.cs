@@ -22,7 +22,7 @@ public class EldritchBlastEffectHandler : ChargeableFieldEffectHandler
     protected override void OnChargeComplete(Player player)
     {
         //TODO: We just blast the boss directly for now, but i wanna change this
-        BossController boss = FindObjectOfType<BossController>();
+        Boss boss = FindObjectOfType<Boss>();
         if (boss != null)
         {
             // Calculate the offset for the "Sprite" child object, kinda disgusting gotta figure this out

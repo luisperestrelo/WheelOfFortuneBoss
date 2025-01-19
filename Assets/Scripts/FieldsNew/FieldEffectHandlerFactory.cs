@@ -62,10 +62,12 @@ public static class FieldEffectHandlerFactory
                 chargedVoidBurstHandler.Initialize(fieldData);
                 chargedVoidBurstHandler.name = "ChargedVoidBurstEffectHandler";
                 return chargedVoidBurstHandler;
+            case FieldType.TentacleShieldBusterField:
+                return new GameObject("TentacleShieldBusterEffectHandler").AddComponent<TentacleShieldBusterEffectHandler>();
 
             default:
                 Debug.LogError("FieldEffectHandlerFactory::CreateEffectHandler: No handler found for field type " + fieldData.FieldType);
                 return null;
         }
-        }
+    }
 } 

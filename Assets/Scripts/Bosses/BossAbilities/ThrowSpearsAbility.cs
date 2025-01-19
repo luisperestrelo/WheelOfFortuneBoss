@@ -97,6 +97,7 @@ public class ThrowSpearsAbility : MonoBehaviour
     private IEnumerator ThrowSpearAfterDelay(Vector3 direction, float angle, float delay, Vector3 spawnPosition)
     {
         yield return new WaitForSeconds(delay);
+        Debug.Log("Throwing spear after delay of " + delay);
 
         GameObject spear = Instantiate(spearPrefab, spawnPosition, Quaternion.Euler(0, 0, angle));
         spear.transform.localScale = new Vector3(spearWidth, spearLength, 1f);
