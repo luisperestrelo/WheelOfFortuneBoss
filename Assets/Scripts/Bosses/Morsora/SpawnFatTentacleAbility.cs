@@ -11,14 +11,26 @@ public class SpawnFatTentacleAbility : MonoBehaviour
     [SerializeField] private float angleOffset = 0f;
     [SerializeField] private float onContactDamage = 10f;
     [SerializeField] private float testAngleStep = 200f;
-    
+
+    private GameObject player;
+
+    private void Start()
+    {
+        // Find the player's position
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+        {
+            Debug.LogError("Player not found!");
+            return;
+        }
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F5))
         {
             testAngleStep += 15f;
-            SpawnFatTentacle(200f);
+            SpawnFatTentacle180DegreesFromPlayer();
         }
     }
 
@@ -45,7 +57,40 @@ public class SpawnFatTentacleAbility : MonoBehaviour
         }
     }
 
- 
+    public void SpawnFatTentacle180DegreesFromPlayer()
+    {
+
+
+        // Calculate the direction from the boss (tentacleCenter) to the player
+        Vector3 toPlayer = player.transform.position - tentacleCenter.position;
+
+        float currentAngle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
+
+        currentAngle += 180f;
+
+        Vector3 spawnDirection = new Vector3(Mathf.Cos(currentAngle * Mathf.Deg2Rad), Mathf.Sin(currentAngle * Mathf.Deg2Rad), 0f);
+
+        Vector3 spawnPosition = tentacleCenter.position + spawnDirection * spawnDistance;
+
+        GameObject fatTentacle = Instantiate(fatTentaclePrefab, spawnPosition, Quaternion.Euler(0, 0, currentAngle + angleOffset));
+
+        // Adjust flipping based on angle, only flips horizontally 
+        AdjustFlipping(fatTentacle, currentAngle);
+
+        FatTentacle fatTentacleComponent = fatTentacle.GetComponentInChildren<FatTentacle>();
+        if (fatTentacleComponent != null)
+        {
+            fatTentacleComponent.Initialize(onContactDamage);
+        }
+
+        Wall wall = fatTentacle.GetComponentInChildren<Wall>();
+        if (wall != null)
+        {
+            wall.Initialize(currentAngle - 20f, currentAngle + 20f);
+        }
+    }
+
+
 
     //quadrant stuff unneccesary, we are just doing horizontal flipping
     private void AdjustFlipping(GameObject tentacleRoot, float angle)

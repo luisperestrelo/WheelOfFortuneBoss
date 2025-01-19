@@ -46,7 +46,9 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
     private IEnumerator SpawnMinionAfterDelay(float time, int spawnPointIndex)
     {
         yield return new WaitForSeconds(time);
-        GameObject minion = Instantiate(rangedMinionPrefab, spawnPoints[spawnPointIndex].position, Quaternion.identity);
+        Vector3 spawnPosition = spawnPoints[spawnPointIndex].position;
+        spawnPosition += Random.insideUnitSphere * 0.5f; // Add a small random offset
+        GameObject minion = Instantiate(rangedMinionPrefab, spawnPosition, Quaternion.identity);
         RangedMinion rangedMinion = minion.GetComponent<RangedMinion>();
         rangedMinion.Initialize(minionProjectileSpeed, minionShootingCooldown, minionDamage);
     }

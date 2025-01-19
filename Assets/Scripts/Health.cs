@@ -30,6 +30,7 @@ public class Health : MonoBehaviour
     {
         currentHealth = maxHealth;
         OnHealthChanged.Invoke(currentHealth, maxHealth);
+        Debug.Log(gameObject.name + " has " + currentHealth + " health!");
     }
 
     // should be in PlayerHealth but I am keeping it here in case we add shields for enemies
