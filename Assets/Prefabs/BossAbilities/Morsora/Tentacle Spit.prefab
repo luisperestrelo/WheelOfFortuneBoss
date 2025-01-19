@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NumberOfSpits: 3
-  tentacleSpitPrefab: {fileID: 1912627901953326240, guid: f918fcad2a6711640a935f7e33b62f63, type: 3}
+  tentacleSpitPrefab: {fileID: 1912627901953326240, guid: aa6410c02b78fba4db8a92a324d78d9c, type: 3}
   projectileSpeed: 10
   shootingCooldown: 1
 --- !u!82 &5138019756252572260
