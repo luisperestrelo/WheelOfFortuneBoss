@@ -226,6 +226,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 2.081
       objectReference: {fileID: 0}
+    - target: {fileID: 4558305748651535714, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: maxHealth
+      value: 20000
+      objectReference: {fileID: 0}
     - target: {fileID: 5173214315399182300, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -548,7 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8fa46246c440724ea653889a4e5dcc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 20000
   healthRegen: 0
   baseDamageMultiplier: 1
   baseFireRateMultiplier: 1

@@ -11,6 +11,14 @@ public class MorsoraTentacleShieldState : MorsoraBossState
     private int chargesCompleted = 0;
     private int currentFieldIndex;
 
+    private float minionSpawnInterval = 5f; // Initial time between minion spawns
+    private float minionSpawnTimer = 0f;
+    private float spawnRateIncreaseFactor = 0.02f; // Controls how quickly the spawn rate increases
+                                                // this is to prevent the player from abusing this phase
+                                                // however it might make it too hard for a "noob" player
+                                                // and it's probably not even needed to think of an edge-case like this
+                                                // but yeah, can just set to 0 if need.
+
     public MorsoraTentacleShieldState(MorsoraBossStateMachine stateMachine, MorsoraBossController bossController, string animBoolName, TentacleShieldBusterField shieldBusterField) : base(stateMachine, bossController, animBoolName)
     {
         wheelManager = bossController.wheelManager;
@@ -20,9 +28,6 @@ public class MorsoraTentacleShieldState : MorsoraBossState
         currentFieldIndex = -1;
     }
 
-
-
-
     public override void Enter()
     {
         base.Enter();
@@ -30,16 +35,37 @@ public class MorsoraTentacleShieldState : MorsoraBossState
         bossHealth.SetImmune(true);
         bossController.spawnTentacleShield.SpawnShield();
 
-
         chargesCompleted = 0;
 
         // Add the special field to the wheel
         AddFieldToWheel();
+
+        // Reset timers
+        minionSpawnTimer = 2f; // spawn first set after 3 seconds
+        timer = 0f;
     }
 
     public override void Update()
     {
         base.Update();
+
+        // Update timers
+        minionSpawnTimer += Time.deltaTime;
+
+        // Minion spawning logic
+        if (minionSpawnTimer >= minionSpawnInterval)
+        {
+            bossController.spawnRangedMinions.SpawnMinions();
+            minionSpawnTimer = 0f;
+
+            // Increase spawn rate (decrease interval)
+            minionSpawnInterval -= spawnRateIncreaseFactor * timer;
+
+            // Set a minimum spawn interval to prevent it from becoming too fast
+            minionSpawnInterval = Mathf.Max(minionSpawnInterval, 1.5f);
+
+            Debug.Log("Minion Spawn Interval: " + minionSpawnInterval);
+        }
     }
 
     public override void Exit()
@@ -66,7 +92,7 @@ public class MorsoraTentacleShieldState : MorsoraBossState
         {
             wheelManager.RemoveField(shieldBusterField);
         }
-        currentFieldIndex = -1; 
+        currentFieldIndex = -1;
     }
 
     public void IncrementChargeCount()
@@ -75,7 +101,8 @@ public class MorsoraTentacleShieldState : MorsoraBossState
         chargesCompleted++;
         if (chargesCompleted >= chargesNeededToBreakShield)
         {
-            // Shield break condition met
+            bossController.StartPhase2();
+
             stateMachine.ChangeState(bossController.idleState);
         }
         else

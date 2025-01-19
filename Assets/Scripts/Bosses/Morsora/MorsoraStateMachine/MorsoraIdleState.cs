@@ -14,7 +14,12 @@ public class MorsoraIdleState : MorsoraBossState
         bossController.IncrementBasicAttackCounter();
 
         Debug.Log("basic attack counter is " + bossController.basicAttackCounter);
-        
+
+        if (bossController.shouldTransitionToPhase2)
+        {
+            stateMachine.ChangeState(bossController.tentacleShieldState);
+            return; // Exit early
+        }
 
         if (bossController.basicAttackCounter == 0)
         {
