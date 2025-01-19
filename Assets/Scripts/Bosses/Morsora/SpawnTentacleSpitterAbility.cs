@@ -45,7 +45,7 @@ public class SpawnTentacleSpitterAbility : MonoBehaviour
         Vector3 spawnPosition = tentacleCenter.position + direction * spawnDistance;
 
         GameObject tentacleSpitter = Instantiate(tentacleSpitterPrefab, spawnPosition, Quaternion.Euler(0, 0, angle + angleOffset));
-
+        tentacleSpitter.GetComponent<LayerSort>()?.SortToBossLayer();
         // Adjust flipping based on angle, only flips horizontally 
         AdjustFlipping(tentacleSpitter, angle);
 
