@@ -9,6 +9,7 @@ TagManager:
   - Obstacle
   - Wall
   - MorsoraTentacleCenter
+  - FatTentacle
   layers:
   - Default
   - TransparentFX

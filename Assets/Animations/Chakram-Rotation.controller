@@ -8,7 +8,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Chrakram
-  m_Speed: -6.12
+  m_Speed: -2.25
   m_CycleOffset: 0
   m_Transitions: []
   m_StateMachineBehaviours: []

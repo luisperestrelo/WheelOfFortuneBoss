@@ -337,7 +337,7 @@ GameObject:
   - component: {fileID: 3202031009641803087}
   m_Layer: 0
   m_Name: Tentacle Block Root
-  m_TagString: Untagged
+  m_TagString: FatTentacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

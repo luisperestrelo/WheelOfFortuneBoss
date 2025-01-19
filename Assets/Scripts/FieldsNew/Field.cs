@@ -15,7 +15,8 @@ public enum FieldType
     EldritchBlast,
     FanOfKnives,
     DamagePlayer,
-    DamagingField
+    DamagingField,
+    TentacleShieldBusterField
    
 }
 
