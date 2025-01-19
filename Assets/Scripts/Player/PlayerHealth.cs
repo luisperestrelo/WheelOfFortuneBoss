@@ -7,6 +7,7 @@ public class PlayerHealth : Health
 {
     [SerializeField] private PlayerFlashFX playerFlashFX;
     [SerializeField] private PlayerSFX playerSFX;
+    [SerializeField] private Animator animator;
 
     private PlayerStats playerStats;
 
@@ -28,7 +29,7 @@ public class PlayerHealth : Health
         base.TakeDamage(damageAmount);
 
         playerFlashFX.PlayFlashFX();
-
+        animator.SetTrigger("GetHit");
         /* deprecated
         //1/10 of the player's hp does nothing, 1/3 of the player's max hp is considered max intensity.
         if (damageAmount > (GetMaxHealth() / 10))
