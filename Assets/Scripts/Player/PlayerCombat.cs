@@ -13,6 +13,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private AudioClip increasedDamageLayerSfx;
     [SerializeField] private GameObject shieldPrefab;
     [SerializeField] private Animator playerAnimator;
+    [SerializeField] private Transform visuals;
 
     private BaseProjectile projectilePrefab;
 
@@ -42,8 +43,28 @@ public class PlayerCombat : MonoBehaviour
         playerStats = FindObjectOfType<PlayerStats>();
     }
 
+
+    private void RotatePlayerTowardsMouse()
+    {
+        
+        Plane plane = new(Vector3.forward,  transform.position);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Vector3 hitPoint;
+        float distance;
+        
+        if (plane.Raycast(ray, out distance))
+        {
+            hitPoint = ray.GetPoint(distance);
+            Vector2 towardMouse = (hitPoint -  transform.position).normalized;
+            float mouseAngle = Mathf.Atan2(towardMouse.y, towardMouse.x) * Mathf.Rad2Deg;
+            visuals.rotation = Quaternion.Euler(0, 0, mouseAngle - 90f);
+        }
+    }
+    
     private void Update()
     {
+        RotatePlayerTowardsMouse();
+        
         if (canShoot && Input.GetMouseButton(0))
         {
             if (CurrentAttack == null)
