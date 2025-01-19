@@ -194,3 +194,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 5
+  hitVfxPrefab: {fileID: 2891204747330124268, guid: 7e3952a2b39bfdc41a058806e6506b73, type: 3}

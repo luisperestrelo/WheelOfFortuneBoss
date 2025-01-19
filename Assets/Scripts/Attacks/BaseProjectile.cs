@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BaseProjectile : MonoBehaviour
 {
     [SerializeField] protected float speed = 10f;
     [SerializeField] protected float damage = 10f;
+    [SerializeField] private ParticleSystem hitVfxPrefab;
 
     protected Vector2 velocity;
 
@@ -26,6 +28,11 @@ public class BaseProjectile : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<Health>(out var health) && health.gameObject.tag != "Player")
         {
+            if (hitVfxPrefab)
+            {
+                var hit = Instantiate(hitVfxPrefab, transform.position, Quaternion.identity);
+                hit.GetComponent<LayerSort>()?.SortToBossLayer();
+            }
             health.TakeDamage(damage);
             Destroy(gameObject);
         }

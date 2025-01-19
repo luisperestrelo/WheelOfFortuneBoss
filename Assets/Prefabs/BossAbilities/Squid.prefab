@@ -464,9 +464,10 @@ MonoBehaviour:
   projectileSpeed: 10
   shootingCooldown: 1
   damage: 5
-  projectilePrefab: {fileID: 1912627901953326240, guid: a33c1d2903433ac4192de2117a02b72a, type: 3}
+  projectilePrefab: {fileID: 1912627901953326240, guid: f918fcad2a6711640a935f7e33b62f63, type: 3}
   firePoint: {fileID: 3561927579055563211}
   visuals: {fileID: 1417070458103580895}
+  maxRotationDegrees: 30
   shootSfx: {fileID: 8300000, guid: 325bd79fddd0de049a8b599fe65e0682, type: 3}
 --- !u!82 &-7626683472843423486
 AudioSource:
