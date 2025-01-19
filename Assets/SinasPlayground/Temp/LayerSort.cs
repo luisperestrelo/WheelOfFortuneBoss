@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 [RequireComponent(typeof(SortingGroup))]
-public class AutoLayerSort : MonoBehaviour
+public class LayerSort : MonoBehaviour
 {
 
     private SortingGroup sortingGroup;
@@ -16,7 +16,7 @@ public class AutoLayerSort : MonoBehaviour
         sortingGroup = GetComponent<SortingGroup>();
     }
 
-    public void SetSortingLayer()
+    public void SortToBossLayer()
     {
         if (transform.position.y <= BOSS_THRESHOLD_X) 
         {

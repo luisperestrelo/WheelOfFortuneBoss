@@ -32,6 +32,7 @@ public class TentacleSpitter : MonoBehaviour
     {
         if (currentSpitCount < NumberOfSpits)
         {
+            
             GameObject tentacleSpit = Instantiate(tentacleSpitPrefab, transform.position, transform.rotation);
             
             if (tentacleSpit != null)
@@ -40,7 +41,11 @@ public class TentacleSpitter : MonoBehaviour
                 if (proj != null)
                 {
                     proj.SetDamage(Damage);
-                    proj.SetVelocity(-tentacleSpit.transform.right * projectileSpeed);
+                    var velocity = -tentacleSpit.transform.right * projectileSpeed;
+                    var v2 = velocity.normalized;
+                    float angle = Mathf.Atan2(v2.y, v2.x) * Mathf.Rad2Deg ;
+                    proj.transform.rotation = Quaternion.Euler(0, 0, angle - 90f);
+                    proj.SetVelocity(velocity);
                 }
             }
             currentSpitCount++;
