@@ -3806,6 +3806,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 608571954432375331, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
+      propertyPath: m_Size.x
+      value: 3.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 608571954432375331, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
+      propertyPath: m_Size.y
+      value: 5.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 608571954432375331, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 608571954432375331, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
+      propertyPath: m_Offset.y
+      value: 3.55
+      objectReference: {fileID: 0}
     - target: {fileID: 2305880784575062884, guid: 3f7f93eab879c7647a7027dce3d78f62, type: 3}
       propertyPath: _player
       value: 
@@ -4018,7 +4034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!223 &2818714691645239103
 Canvas:
   m_ObjectHideFlags: 0

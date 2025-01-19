@@ -226,6 +226,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 2.081
       objectReference: {fileID: 0}
+    - target: {fileID: 4558305748651535714, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: maxHealth
+      value: 20000
+      objectReference: {fileID: 0}
     - target: {fileID: 5173214315399182300, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -403,6 +407,10 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: maxRotationSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: usesAcceleration
       value: 1
       objectReference: {fileID: 0}
@@ -416,7 +424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: movementSchemeType
-      value: 11
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: whatIsGround.m_Bits
@@ -6704,9 +6712,7 @@ MonoBehaviour:
   commonCopies: 4
   rareCopies: 2
   epicCopies: 1
-  attackCards:
-  - {fileID: 11400000, guid: fe3d917d4d34dc84e854702c50fd2a2c, type: 2}
-  - {fileID: 11400000, guid: 7d93e97017a32f04fa24a4c3089b08e2, type: 2}
+  attackCards: []
   chargeCards:
   - {fileID: 11400000, guid: 83113a183aaf7014e84ea1cecff32257, type: 2}
   - {fileID: 11400000, guid: 735227fd76df71d48be57d4e2314adbb, type: 2}
@@ -6820,6 +6826,10 @@ PrefabInstance:
     - target: {fileID: 7626453082289106440, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
       propertyPath: m_Name
       value: Music Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7626453082289106444, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7626453082289106447, guid: bc0a86586ec0a8246ae0e9cfee518286, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7832,9 +7842,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2509280555881342176, guid: e18d1609061199547b6477dfaa68b9dd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7265725549763472470, guid: e18d1609061199547b6477dfaa68b9dd, type: 3}
       propertyPath: m_Name
       value: Scene Transition Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7265725549763472470, guid: e18d1609061199547b6477dfaa68b9dd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8284319096472293686, guid: e18d1609061199547b6477dfaa68b9dd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9200881262051131790, guid: e18d1609061199547b6477dfaa68b9dd, type: 3}
       propertyPath: m_Pivot.x

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BaseDamage: 5
   FireRate: 0.2
+  ProjectileCount: 1
+  ProjectileSpeed: 5
   shootSfx: {fileID: 8300000, guid: ce5daec325e49a940a14e7ac0340f9f3, type: 3}
   projectilePrefab: {fileID: 1724768027327037643, guid: 2ef6cc520b77be042843d74b7a08998e, type: 3}
-  projectileSpeed: 20

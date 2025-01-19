@@ -4,10 +4,13 @@ using UnityEngine;
 public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField] protected float lifeTime = 5f;
+    [SerializeField] private GameObject hitVfxPrefab;
+
     protected float damage = 5f;
     protected float speed;
     private Rigidbody2D rb;
     private PlayerHealth playerHealth;
+
 
     private void Awake()
     {
@@ -37,7 +40,14 @@ public class EnemyProjectile : MonoBehaviour
         {
             if (playerHealth != null)
             {
+                // Get the velocity direction
+                Vector2 velocity = rb.velocity.normalized;
+
+                // Calculate the angle based on velocity direction
+                float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg + 180f ;
+                
                 playerHealth.TakeDamage(damage);
+                var hit = Instantiate(hitVfxPrefab, transform.position, Quaternion.Euler(0, 0, angle));
             }
             Destroy(gameObject);
         }
