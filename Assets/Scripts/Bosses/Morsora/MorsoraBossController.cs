@@ -143,6 +143,11 @@ public class MorsoraBossController : MonoBehaviour
         stateMachine.currentState.Update();
         CheckIfUpgradeThreshold();
         CheckPhase2Transition();
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            stateMachine.ChangeState(tentacleHellState);
+        }
     }
 
     private void CheckPhase2Transition()
