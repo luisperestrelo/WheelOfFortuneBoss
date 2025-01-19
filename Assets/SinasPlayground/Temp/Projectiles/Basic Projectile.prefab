@@ -9709,7 +9709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3548be5d567083f4b870940f9d2c30e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.06
+  speed: 10
   damage: 10
   hitVfxPrefab: {fileID: 2891204747330124268, guid: 7e3952a2b39bfdc41a058806e6506b73, type: 3}
 --- !u!50 &4146138740920816048
