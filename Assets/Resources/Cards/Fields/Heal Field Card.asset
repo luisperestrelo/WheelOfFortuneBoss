@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: Heal Field Card
   m_EditorClassIdentifier: 
   cardName: Heal Field
-  description: When charged, you are healed a small amount.
+  description: When charged, you are healed a small amount. Has a long cooldown
   rarity: 1
   icon: {fileID: 21300000, guid: 5da14d36cd37f6c4c833f8e055871fb7, type: 3}
   cardType: 0
   isKissCurse: 0
+  downSideDescription: 
   field: {fileID: 11400000, guid: b9d45bcdbf1f61e449b1fadba7dda377, type: 2}
