@@ -49,8 +49,11 @@ public class Field : ScriptableObject
     public string FieldName => fieldName;
     [SerializeField] private string description;
     public string Description => description;
-    [SerializeField] private Sprite icon;
+    [SerializeField] private Sprite icon;    
+    [SerializeField] private Color color;
+
     public Sprite Icon => icon;
+    public Color Color => color;
     [SerializeField] private FieldType fieldType;
     public FieldType FieldType => fieldType;
     [SerializeField] private List<Tags> tags;
