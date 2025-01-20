@@ -34,13 +34,14 @@ public class Health : MonoBehaviour
     }
 
     // should be in PlayerHealth but I am keeping it here in case we add shields for enemies
-    public virtual void TakeDamage(float damageAmount)
+    /// <returns>Whether or not HP was lost</returns>
+    public virtual bool TakeDamage(float damageAmount)
     {
         if (pc != null && pc.HasShield)
         {
             pc.RemoveShield();
             damageSource.PlayOneShot(parrySfx);
-            return;
+            return false;
         }
 
 
@@ -61,6 +62,7 @@ public class Health : MonoBehaviour
         }
 
         Debug.Log($"{gameObject.name} took {damageAmount} damage!");
+        return true;
     }
 
     public virtual void Heal(float healAmount)
