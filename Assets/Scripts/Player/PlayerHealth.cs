@@ -45,7 +45,8 @@ public class PlayerHealth : Health
     {
         Time.timeScale = 0.1f;
         yield return new WaitForSecondsRealtime(0.1f);
-        Time.timeScale = 1;
+        if (Time.timeScale == 0.1f)
+            Time.timeScale = 1;
     }
 
     //Maybe a ghetto solution but it guarantees we start fight full health
