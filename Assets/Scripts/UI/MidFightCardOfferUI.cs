@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Collections;
 
 public class MidFightCardOfferUI : MonoBehaviour
 {
@@ -11,11 +12,18 @@ public class MidFightCardOfferUI : MonoBehaviour
     private int selectedIndex = -1;
 
     public Color highlightColor = new Color(1f, 1f, 1f, 0.5f); 
-    public UIWheel uiWheel; 
+    public UIWheel uiWheel;
+
+    private Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
 
     public void ShowCards(List<Card> cards)
     {
-
+        animator.SetBool("isOpen", true);
 
         offeredCards = cards;
         selectedCard = null;
@@ -78,16 +86,14 @@ public class MidFightCardOfferUI : MonoBehaviour
                     cardDisplays[selectedIndex].transform.Find("BorderImage").GetComponent<Image>().color = Color.clear;
                     selectedIndex = -1;
                 }
-
-                uiWheel.gameObject.SetActive(true);
-                gameObject.SetActive(false); 
+                StartCoroutine(DeactivateAfterDelay());
             }
             else
             {
                 RunManager.Instance.OnMidFightStatCardSelected(selectedCard);
                 Debug.Log("Selected card is not a Field card");
 
-                gameObject.SetActive(false);
+                StartCoroutine(DeactivateAfterDelay());
 
                 if (selectedIndex != -1)
                 {
@@ -96,6 +102,15 @@ public class MidFightCardOfferUI : MonoBehaviour
                 }
             }
         }
+    }
+
+    private IEnumerator DeactivateAfterDelay()
+    {
+        animator.SetBool("isOpen", false);
+        const float delay = 0.8f;
+        yield return new WaitForSeconds(delay);
+        //gameObject.SetActive(false);
+        uiWheel.gameObject.SetActive(false);
     }
 
     private void Start()

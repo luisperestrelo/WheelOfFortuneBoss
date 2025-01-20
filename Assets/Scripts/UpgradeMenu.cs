@@ -12,7 +12,7 @@ public class UpgradeMenu : MonoBehaviour
 
     public void OnChooseUpgradeClicked()
     {
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
         //Time.timeScale = 1f; // we unpause in runmanager
     }
 } 
