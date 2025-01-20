@@ -15,6 +15,7 @@ public class BossHealth : Health
     {
         if (isImmune)
         {
+            damageSource.PlayOneShot(parrySfx);
             return;
         }
         base.TakeDamage(damageAmount);
