@@ -16,11 +16,12 @@ MonoBehaviour:
   description: 
   icon: {fileID: 21300000, guid: bb60aa296d23f014a86af31aff6684af, type: 3}
   fieldType: 12
+  tags: 
   activationType: 1
   duration: 0
   cooldown: 0
   visualEffect: {fileID: 0}
   audioEffect: {fileID: 0}
   size: 1
-  damageAmount: 5
+  damageAmount: 1.5
   damageInterval: 0.2

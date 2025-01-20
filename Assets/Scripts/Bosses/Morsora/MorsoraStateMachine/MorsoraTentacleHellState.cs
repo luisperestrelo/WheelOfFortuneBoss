@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MorsoraTentacleHellState : MorsoraBossState
 {
-    private float stateDuration = 22f;  // Total duration of the state
+    private float stateDuration = 12f;  // Total duration of the state
     private float cardinalInterval = 1.5f;  
     private float randomInterval = .4f;   // Time between random tentacle spawns
     private float cardinalTimer = 0f;
@@ -27,7 +27,9 @@ public class MorsoraTentacleHellState : MorsoraBossState
         initialTimer = 0f;
         bossController.DisableAllConstantAbilities();
         //bossController.spawnFatTentacleAbility.SpawnFatTentacle(Random.Range(0f, 360f));
-        bossController.spawnFatTentacleAbility.SpawnFatTentacle180DegreesFromPlayer();
+        //bossController.spawnFatTentacleAbility.SpawnFatTentacle180DegreesFromPlayer();
+        float spawnedAngle = bossController.spawnFatTentacleAbility.SpawnFatTentacleDegreesFromPlayer(225f);
+        //bossController.spawnFatTentacleAbility.SpawnFatTentacle(spawnedAngle+180f); // (maybe a 2nd tentacle for p2)
 
     }
 

@@ -185,6 +185,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   damageCooldown: 1
-  stopDuration: 2.5
+  stopDuration: 1.25
   growthRate: 2
   maxScale: 1

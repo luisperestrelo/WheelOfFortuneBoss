@@ -17,4 +17,4 @@ MonoBehaviour:
   ProjectileCount: 1
   ProjectileSpeed: 20
   shootSfx: {fileID: 8300000, guid: ce5daec325e49a940a14e7ac0340f9f3, type: 3}
-  projectilePrefab: {fileID: 1724768027327037643, guid: 6c7835e87ef8d754a8bec904cb17350c, type: 3}
+  projectilePrefab: {fileID: 1724768027327037643, guid: 2ef6cc520b77be042843d74b7a08998e, type: 3}
