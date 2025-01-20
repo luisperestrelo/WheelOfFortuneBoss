@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Eldritch Blast Field Card
   description: Deal massive damage to all enemies.
   rarity: 2
-  icon: {fileID: 21300000, guid: d79669ba1c33b524dbf0f3d4415e0716, type: 3}
+  icon: {fileID: 21300000, guid: c443de6fea98a6c428efd20c0ee5f187, type: 3}
   cardType: 0
   isKissCurse: 1
   downSideDescription: Then, turns into Cursed Ground for a duration, damaging you

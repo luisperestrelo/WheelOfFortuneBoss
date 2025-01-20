@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldName: Fan of Knives
   description: While in this field, your projectile is replaced by three small knives.
-  icon: {fileID: 21300000, guid: ade23379e84bcb94c97f5d96726c91dc, type: 3}
+  icon: {fileID: 21300000, guid: f42740757abd2234e994a3ea736560e9, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   fieldType: 10
   tags: 0000000001000000
