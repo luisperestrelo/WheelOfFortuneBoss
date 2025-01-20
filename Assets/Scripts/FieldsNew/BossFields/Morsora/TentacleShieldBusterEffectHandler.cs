@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TentacleShieldBusterEffectHandler : ChargeableFieldEffectHandler
 {
@@ -10,7 +11,6 @@ public class TentacleShieldBusterEffectHandler : ChargeableFieldEffectHandler
         base.Initialize(fieldData); // we could remove this to avoid player stat scaling if we had any, and also to change sound maybe
 
 
-        // Find the boss controller
         bossController = FindObjectOfType<MorsoraBossController>();
     }
 
@@ -41,11 +41,15 @@ public class TentacleShieldBusterEffectHandler : ChargeableFieldEffectHandler
         {
             bossController.TentacleShieldChargeCompleted();
         }
-
-        // Remove the field immediately after it's charged
-        
     }
 
-    // Other methods remain the same, but ensure they don't use player stats
-    // ...
+    public override void SetChargeIndicatorImage(Image image)
+    {
+        base.SetChargeIndicatorImage(image);
+        if (chargeIndicatorImage != null)
+        {
+            chargeIndicatorImage.color = Color.green; // trying to make it green since its different from the other fields  
+        }
+    }
+
 }
