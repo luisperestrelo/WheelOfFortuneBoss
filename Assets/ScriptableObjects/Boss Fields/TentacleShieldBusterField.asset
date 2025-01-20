@@ -15,6 +15,7 @@ MonoBehaviour:
   fieldName: Tentacle Buster
   description: 
   icon: {fileID: 21300004, guid: c8260d15cb31d3d49a251f7cdb4d1777, type: 3}
+  color: {r: 1, g: 1, b: 1, a: 1}
   fieldType: 13
   tags: 06000000
   activationType: 1

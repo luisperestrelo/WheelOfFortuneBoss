@@ -15,6 +15,7 @@ MonoBehaviour:
   fieldName: DamagePlayer
   description: Damages the player while he stays in this field
   icon: {fileID: 0}
+  color: {r: 1, g: 1, b: 1, a: 1}
   fieldType: 11
   tags: 
   activationType: 1
