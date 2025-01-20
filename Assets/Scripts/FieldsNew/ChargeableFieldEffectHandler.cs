@@ -53,6 +53,9 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
         {
             // Apply the charge-up field speed multiplier
             currentChargeTime += deltaTime * playerStats.ChargeUpFieldsSpeedMultiplier;
+            Debug.Log("Current charge time: " + currentChargeTime);
+            Debug.Log("Charge time: " + chargeTime);
+            Debug.Log("Charge up fields speed multiplier: " + playerStats.ChargeUpFieldsSpeedMultiplier);
             if (currentChargeTime >= chargeTime)
             {
                 OnChargeComplete(player);

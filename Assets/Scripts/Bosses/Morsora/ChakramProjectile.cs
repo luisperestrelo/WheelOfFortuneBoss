@@ -9,6 +9,7 @@ public class ChakramProjectile : MonoBehaviour
     private float lastDamageTime = -Mathf.Infinity;
 
     public float stopDuration = 3f;
+    public float duration = 2.5f;
 
     private bool isStopped = false;
     private CircularPath circularPath;
@@ -27,6 +28,8 @@ public class ChakramProjectile : MonoBehaviour
         }
 
         transform.localScale = new Vector3(0.1f, 0.1f, transform.localScale.z);
+
+        Destroy(gameObject, duration);
     }
 
     private void Update()
@@ -35,7 +38,15 @@ public class ChakramProjectile : MonoBehaviour
         {
             if (HasReachedCircularPath())
             {
-                StartCoroutine(StopAndDestroy());
+                isStopped = true;
+                Rigidbody2D rb = GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    rb.velocity = Vector2.zero; // Stop the chakram
+                }
+
+                //StartCoroutine(StopAndDestroy());
+
             }
             else
             {

@@ -39,7 +39,7 @@ public class MorsoraBossController : MonoBehaviour
     private Dictionary<string, bool> constantAbilityEnabled = new Dictionary<string, bool>();
 
     public int basicAttackCounter = 0;
-    private int basicAttacksPerCycle = 5; // 1 more than how many basic attacks there are, cos we increment first   
+    private int basicAttacksPerCycle = 4; // 1 more than how many basic attacks there are, cos we increment first   
     private List<MorsoraBossState> availableSpecialAttacksPhase1;
     private List<MorsoraBossState> availableSpecialAttacksPhase2;
     private List<MorsoraBossState> availableSpecialAttacks;
