@@ -18,3 +18,4 @@ MonoBehaviour:
   ProjectileSpeed: 20
   shootSfx: {fileID: 8300000, guid: 6f110a629b5ac0947978e244188b42ee, type: 3}
   knifePrefab: {fileID: 1876552664290551512, guid: 451ae27b9314cb14b918d1e0422834e5, type: 3}
+  spreadAngle: 15

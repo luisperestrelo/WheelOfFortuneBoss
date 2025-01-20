@@ -5,7 +5,7 @@ public class FanOfKnivesAttack : BaseAttack
 {
     [SerializeField] private KnifeProjectile knifePrefab;
 /*     [SerializeField] private int numberOfKnives = 3; */
-    [SerializeField] private float spreadAngle = 30f; 
+    [SerializeField] private float spreadAngle = 15f; 
 
     public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle)
     {
