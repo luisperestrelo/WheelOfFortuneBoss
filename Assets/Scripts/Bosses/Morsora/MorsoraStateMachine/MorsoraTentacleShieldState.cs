@@ -7,7 +7,7 @@ public class MorsoraTentacleShieldState : MorsoraBossState
     private WheelManager wheelManager;
     private BossHealth bossHealth;
     private TentacleShieldBusterField shieldBusterField; // Assign this in the inspector or find it dynamically
-    private int chargesNeededToBreakShield = 2; // Set this to the desired number of charges
+    private int chargesNeededToBreakShield = 1; // Set this to the desired number of charges
     private int chargesCompleted = 0;
     private int currentFieldIndex;
 

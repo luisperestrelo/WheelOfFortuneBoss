@@ -324,6 +324,7 @@ public class PlayerSpinMovement : MonoBehaviour
         movementDirection.Normalize();
 
         // Cast a ray in the direction of movement to check for walls
+        
         RaycastHit2D hit = Physics2D.Raycast(wallCheck.position, movementDirection, wallCheckDistance, whatIsGround);
 
         //behaving werid, works sometimes, but we do it again OnDrawGizmos
