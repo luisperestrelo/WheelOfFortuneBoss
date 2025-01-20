@@ -25765,6 +25765,9 @@ MonoBehaviour:
   tentacles: []
   despawnDelay: 2
   spawnSpot: {fileID: 0}
+  destroySfx: {fileID: 8300000, guid: 69f6c68a06c81bf43a27249ad7a02136, type: 3}
+  spawnSfx: {fileID: 8300000, guid: 9ef97f821a894d1459413470becf185b, type: 3}
+  attackSource: {fileID: 927514385244874588}
 --- !u!1 &7331360546990643597
 GameObject:
   m_ObjectHideFlags: 0
