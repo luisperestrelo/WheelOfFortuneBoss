@@ -16,9 +16,14 @@ public class CameraMovement : MonoBehaviour
 
     private Vector3 originalPos;
     private Camera cam;
+    public static CameraMovement instance;
     private void Awake()
     {
         cam = GetComponent<Camera>();
+        if (instance != null)
+            Destroy(gameObject);
+        else 
+            instance = this;
     }
     private void Start()
     {
@@ -63,5 +68,23 @@ public class CameraMovement : MonoBehaviour
             target.Normalize();
 
         return target.normalized;
+    }
+
+    /// <param name="intensity">The maximum number of units the camera should move per frame.</param>
+    /// <param name="time">The number of seconds the camera should shake for.</param>
+    public void ShakeCamera(float intensity, float time)
+    {
+        StartCoroutine(ShakeCameraRoutine(intensity, time));
+    }
+
+    private IEnumerator ShakeCameraRoutine(float intensity, float time)
+    {
+        float timeElapsed = 0;
+        while(timeElapsed < time)
+        {
+            timeElapsed += Time.unscaledDeltaTime;
+            transform.Translate(Vector3.right * Random.Range(-intensity, intensity));
+            yield return new WaitForSecondsRealtime(0);
+        }
     }
 }

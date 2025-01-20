@@ -30,11 +30,20 @@ public class PlayerHealth : Health
 
         playerFlashFX.PlayFlashFX();
         animator.SetTrigger("GetHit");
+        StartCoroutine(HitpauseRoutine());
+        CameraMovement.instance.ShakeCamera(0.1f, 0.25f);
         /* deprecated
         //1/10 of the player's hp does nothing, 1/3 of the player's max hp is considered max intensity.
         if (damageAmount > (GetMaxHealth() / 10))
             MusicPlayer.instance.FilterMusic(Mathf.Max(1, damageAmount / (GetMaxHealth() * 3f))); */
 
+    }
+
+    private IEnumerator HitpauseRoutine()
+    {
+        Time.timeScale = 0.1f;
+        yield return new WaitForSecondsRealtime(0.1f);
+        Time.timeScale = 1;
     }
 
     //Maybe a ghetto solution but it guarantees we start fight full health
