@@ -5096,6 +5096,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Visuals
       objectReference: {fileID: 0}
+    - target: {fileID: 1185366374092486417, guid: cdabbb12799b61f4db96ebefaba0b41f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5200686009550405897, guid: cdabbb12799b61f4db96ebefaba0b41f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
