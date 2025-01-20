@@ -18,5 +18,5 @@ MonoBehaviour:
   rarity: 2
   icon: {fileID: 21300000, guid: d79669ba1c33b524dbf0f3d4415e0716, type: 3}
   cardType: 0
-  isKissCurse: 0
+  isKissCurse: 1
   field: {fileID: 11400000, guid: 6e9b93952ab57e04e9ba1b94692b07a8, type: 2}
