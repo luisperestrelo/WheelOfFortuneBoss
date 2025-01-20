@@ -106,10 +106,10 @@ MonoBehaviour:
   - title: Flare
     position:
       serializedVersion: 2
-      x: 1151
-      y: 2599
-      width: 796
-      height: 1818
+      x: 208
+      y: 2547
+      width: 906
+      height: 1819
     contents:
     - model: {fileID: 8926484042661614936}
       id: 0
@@ -215,10 +215,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 474
+    x: 208
     y: 198
-    width: 3505
-    height: 4253
+    width: 3773
+    height: 4267
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -351,8 +351,8 @@ VisualEffectResource:
       lightProbeUsage: 0
     m_CullingFlags: 3
     m_UpdateMode: 0
-    m_PreWarmDeltaTime: 0.05
-    m_PreWarmStepCount: 0
+    m_PreWarmDeltaTime: 0.23692307
+    m_PreWarmStepCount: 13
     m_InitialEventName: OnPlay
     m_InstancingMode: 0
     m_InstancingCapacity: 64
@@ -1656,7 +1656,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614611}
       inputSlot: {fileID: 8926484042661614982}
-    position: {x: 1226.6666, y: 3870}
+    position: {x: 393.3333, y: 3818.6667}
     expandedSlots: []
     expanded: 0
   - m_Id: 6
@@ -2111,7 +2111,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614623}
       inputSlot: {fileID: 8926484042661614962}
-    position: {x: 1312.6666, y: 3666.6667}
+    position: {x: 479.3333, y: 3615.3335}
     expandedSlots: []
     expanded: 0
   - m_Id: 6
@@ -2463,7 +2463,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614688}
       inputSlot: {fileID: 8926484042661615003}
-    position: {x: 1183.3333, y: 3076}
+    position: {x: 350, y: 3024.6667}
     expandedSlots: []
     expanded: 0
   - m_Id: 6
@@ -6975,7 +6975,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661614938}
-  m_UIPosition: {x: 1495, y: 2657}
+  m_UIPosition: {x: 661, y: 2605}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -7062,7 +7062,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 1
+      m_SerializableObject: 4.17
     m_Space: 2147483647
   m_Property:
     name: Rate
@@ -7120,7 +7120,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 1495, y: 3375}
+  m_UIPosition: {x: 661, y: 3323}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -7157,7 +7157,7 @@ MonoBehaviour:
   m_Children:
   - {fileID: 8926484042661614958}
   - {fileID: 8926484042661614999}
-  m_UIPosition: {x: 1497, y: 2961}
+  m_UIPosition: {x: 663, y: 2909}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7763,7 +7763,7 @@ MonoBehaviour:
   - {fileID: 8926484042661614975}
   - {fileID: 8926484042661614978}
   - {fileID: 8926484042661614993}
-  m_UIPosition: {x: 1495, y: 3531}
+  m_UIPosition: {x: 661, y: 3479}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7952,7 +7952,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 11.99
+      m_SerializableObject: 116.7
     m_Space: 2147483647
   m_Property:
     name: Size
@@ -8051,7 +8051,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":1.0,"y":1.0,"z":1.0}'
+      m_SerializableObject: '{"x":0.0,"y":0.9538297653198242,"z":1.0}'
     m_Space: 2147483647
   m_Property:
     name: Color
@@ -8059,8 +8059,7 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Vector3, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 0
-  m_LinkedSlots:
-  - {fileID: 8926484042661614988}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661614971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8405,7 +8404,7 @@ MonoBehaviour:
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 1177, y: 3943}
+  m_UIPosition: {x: 233, y: 3879}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -8664,8 +8663,7 @@ MonoBehaviour:
       m_SerializableType: UnityEngine.Vector4, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
   m_Direction: 1
-  m_LinkedSlots:
-  - {fileID: 8926484042661614970}
+  m_LinkedSlots: []
 --- !u!114 &8926484042661614989
 MonoBehaviour:
   m_ObjectHideFlags: 0
