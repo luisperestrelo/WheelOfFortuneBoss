@@ -24,19 +24,21 @@ public class PlayerHealth : Health
         base.Start();
     }
 
-    public override void TakeDamage(float damageAmount)
+    public override bool TakeDamage(float damageAmount)
     {
-        base.TakeDamage(damageAmount);
+        StartCoroutine(HitpauseRoutine());
+        if (!base.TakeDamage(damageAmount))
+            return false;
+        CameraMovement.instance.ShakeCamera(0.1f, 0.25f);
 
         playerFlashFX.PlayFlashFX();
         animator.SetTrigger("GetHit");
-        StartCoroutine(HitpauseRoutine());
-        CameraMovement.instance.ShakeCamera(0.1f, 0.25f);
+
         /* deprecated
         //1/10 of the player's hp does nothing, 1/3 of the player's max hp is considered max intensity.
         if (damageAmount > (GetMaxHealth() / 10))
             MusicPlayer.instance.FilterMusic(Mathf.Max(1, damageAmount / (GetMaxHealth() * 3f))); */
-
+        return true;
     }
 
     private IEnumerator HitpauseRoutine()
