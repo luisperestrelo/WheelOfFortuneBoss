@@ -34,6 +34,7 @@ public class WheelSegment : MonoBehaviour
             SegmentRenderer = gameObject.AddComponent<SpriteRenderer>();
         }
         SegmentRenderer.sprite = Field.Icon; // Use the field's icon as the sprite
+        SegmentRenderer.color = Field.Color;
 
         // Add a Collider2D component for interaction if it doesn't exist
         SegmentCollider = gameObject.GetComponent<PolygonCollider2D>();
