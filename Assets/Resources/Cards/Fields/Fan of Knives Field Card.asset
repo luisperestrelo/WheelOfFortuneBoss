@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Fan of Knives
   description: While in this field, your attack is replaced with three small knives.
   rarity: 0
-  icon: {fileID: 21300000, guid: 1f6a6276d86013e488af9164231f2281, type: 3}
+  icon: {fileID: 21300000, guid: ade23379e84bcb94c97f5d96726c91dc, type: 3}
   cardType: 0
   isKissCurse: 0
   field: {fileID: 11400000, guid: 014a8939210a92945ac90130223e8bd6, type: 2}
