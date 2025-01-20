@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,18 +26,22 @@ public class SceneLoader : MonoBehaviour
     private AsyncOperation async;
     public IEnumerator LoadScene(string sceneName)
     {
-        float timeElapsed = 0;
-
-        async = SceneManager.LoadSceneAsync(sceneName);
-        async.allowSceneActivation = false;
-        sceneTransitionAnimator?.SetTrigger("Close Scene");
-        while (async.progress < 0.9f || timeElapsed <= 1)
+        if (async == null) //silly coroutines and their inability to return null :P
         {
-            timeElapsed += Time.deltaTime;
-            yield return null;
+            float timeElapsed = 0;
+
+            async = SceneManager.LoadSceneAsync(sceneName);
+            async.allowSceneActivation = false;
+            sceneTransitionAnimator?.SetTrigger("Close Scene");
+            while (async.progress < 0.9f || timeElapsed <= 1)
+            {
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+            yield return new WaitForSeconds(0.1f);
+            async.allowSceneActivation = true;
+            sceneTransitionAnimator?.SetTrigger("Open Scene");
+            async = null;
         }
-        yield return new WaitForSeconds(0.1f);
-        async.allowSceneActivation = true;
-        sceneTransitionAnimator?.SetTrigger("Open Scene");
     }
 }
