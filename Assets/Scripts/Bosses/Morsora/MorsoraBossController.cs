@@ -28,6 +28,7 @@ public class MorsoraBossController : MonoBehaviour
     public MorsoraShockwavesState shockwavesState { get; private set; }
     public MorsoraShockwaveWithTentaclesState shockwaveWithTentaclesState { get; private set; }
     public MorsoraTentacleHellState tentacleHellState { get; private set; }
+    public MorsoraTentacleHellPhaseTwoState tentacleHellPhaseTwoState { get; private set; }
     public MorsoraRadialTentacleSlamState radialTentacleSlamState { get; private set; }
     public MorsoraTentacleSpiralState tentacleSpiralState { get; private set; }
     public MorsoraBossState placeholderState { get; private set; }
@@ -58,7 +59,7 @@ public class MorsoraBossController : MonoBehaviour
     public bool shouldTransitionToPhase2 { get; private set; } = false;
 
     [SerializeField] private GameObject upgradeOrb;
-    [SerializeField] private Transform player;
+    [SerializeField] public Transform player { get; private set; }
     [SerializeField] private CircularPath playerPath;
 
     public WheelManager wheelManager { get; private set; }
@@ -71,6 +72,9 @@ public class MorsoraBossController : MonoBehaviour
 
         spawnTentacleShield = GetComponent<SpawnTentacleShield>();
         spawnRangedMinions = GetComponent<SpawnRangedMinionsAbility>();
+
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        playerPath = FindObjectOfType<CircularPath>();
 
         stateMachine = new MorsoraBossStateMachine();
         idleState = new MorsoraIdleState(stateMachine, this, "Idle");
@@ -85,6 +89,7 @@ public class MorsoraBossController : MonoBehaviour
         placeholderState = new MorsoraBossState(stateMachine, this, "Idle");
         throwChakramState = new MorsoraThrowChakramState(stateMachine, this, "ThrowChakram");
         tentacleShieldState = new MorsoraTentacleShieldState(stateMachine, this, "Idle", shieldBusterField);
+        tentacleHellPhaseTwoState = new MorsoraTentacleHellPhaseTwoState(stateMachine, this, "Idle");
 
         // Initialize basic attack states
         basicAttackStatesPhase1 = new List<MorsoraBossState>
@@ -98,7 +103,7 @@ public class MorsoraBossController : MonoBehaviour
         {
             lightScytheSwingState,
             darkScytheSwingState
-           
+
         };
 
         basicAttackStates = basicAttackStatesPhase1;
@@ -116,12 +121,10 @@ public class MorsoraBossController : MonoBehaviour
 
         throwChakramAbility = GetComponent<ThrowChakramAbility>();
 
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        playerPath = FindObjectOfType<CircularPath>();
 
         InitializeBasicAttackProbabilities();
         InitializeConstantAbility("SpawnTentacleSnap", 3.5f);
-        InitializeConstantAbility("SpawnTentacleSpitter", 10f);
+        InitializeConstantAbility("SpawnTentacleSpitter", 8f);
 
         stateMachine.Initialize(idleState);
         //stateMachine.ChangeState(tentacleShieldState);
@@ -144,9 +147,10 @@ public class MorsoraBossController : MonoBehaviour
         CheckIfUpgradeThreshold();
         CheckPhase2Transition();
 
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L)) // for testing
         {
-            stateMachine.ChangeState(tentacleHellState);
+            //stateMachine.ChangeState(radialTentacleSlamState);
+            //stateMachine.ChangeState(tentacleHellPhaseTwoState);
         }
     }
 
@@ -203,9 +207,10 @@ public class MorsoraBossController : MonoBehaviour
     {
         availableSpecialAttacksPhase2 = new List<MorsoraBossState>
         {
-            tentacleHellState,
+            radialTentacleSlamState, // maybe remove this one from P2
             shockwaveWithTentaclesState,
-            tentacleSpiralState,
+            tentacleHellPhaseTwoState,
+            //tentacleSpiralState,
             //scytheComboState // I would like this to be a sequence of Scythe Slashes but much faster
                               // But need a way to indiciate that
         };
@@ -263,7 +268,7 @@ public class MorsoraBossController : MonoBehaviour
                         break;
                     case "Phase2Chakram":
                         throwChakramAbility.ThrowChakramAtPredictedPlayerPosition(0f);
-                        throwChakramAbility.ThrowChakramAtPredictedPlayerPosition(1f);
+                        throwChakramAbility.ThrowChakramAtPredictedPlayerPosition(3f);
                         break;
                     default:
                         Debug.LogError("Unknown constant ability: " + abilityName);
@@ -424,7 +429,7 @@ public class MorsoraBossController : MonoBehaviour
             basicAttackCounter = 0;
         }
     }
-    
+
     public void TentacleShieldChargeCompleted()
     {
         tentacleShieldState.IncrementChargeCount();
@@ -451,8 +456,8 @@ public class MorsoraBossController : MonoBehaviour
 
     private void InitializeConstantAbilitiesPhase2()
     {
-        InitializeConstantAbility("Phase2TentacleSnap", 5f); 
-        InitializeConstantAbility("Phase2TentacleSpitter", 2f); 
+        InitializeConstantAbility("Phase2TentacleSnap", 5f);
+        InitializeConstantAbility("Phase2TentacleSpitter", 2f);
         InitializeConstantAbility("Phase2Chakram", 6f);
     }
 
@@ -473,7 +478,7 @@ public class MorsoraBossController : MonoBehaviour
             {
                 StopCoroutine(constantAbilityCoroutines[abilityName]);
                 SetConstantAbilityStatus(abilityName, false);
-                Debug.Log("Stopped coroutine for: " + abilityName); 
+                Debug.Log("Stopped coroutine for: " + abilityName);
             }
         }
     }

@@ -6,7 +6,7 @@ public class BasicAttack : BaseAttack
     [SerializeField] private BaseProjectile projectilePrefab;
     
 
-    public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle = 30f)
+    public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle = 15f)
     {
         base.PerformAttack(playerCombat);
 

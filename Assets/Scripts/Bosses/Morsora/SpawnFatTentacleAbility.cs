@@ -96,7 +96,7 @@ public class SpawnFatTentacleAbility : MonoBehaviour
         }
     }
 
-    public void SpawnFatTentacleDegreesFromPlayer(float angle)
+    public float SpawnFatTentacleDegreesFromPlayer(float angle)
     {
         // Calculate the direction from the boss (tentacleCenter) to the player
         Vector3 toPlayer = player.transform.position - tentacleCenter.position;
@@ -128,6 +128,10 @@ public class SpawnFatTentacleAbility : MonoBehaviour
         {
             wall.Initialize(currentAngle - 20f, currentAngle + 20f);
         }
+
+
+
+        return (currentAngle + 360f) % 360f;
     }
 
     //quadrant stuff unneccesary, we are just doing horizontal flipping
