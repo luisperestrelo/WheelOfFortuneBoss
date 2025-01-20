@@ -25,5 +25,5 @@ MonoBehaviour:
   size: 1
   resetsOnExit: 1
   decayRate: 0
-  chargeTime: 2
+  chargeTime: 6
   healAmount: 10
