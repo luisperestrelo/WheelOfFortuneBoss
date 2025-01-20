@@ -160,7 +160,6 @@ public class RunManager : MonoBehaviour
         MusicPlayer.instance.SetFilterIntensity(0f);
 
         Time.timeScale = 1f;
-        midFightCardOfferUI.gameObject.SetActive(false);
     }
 
     public void OnMidFightFieldCardSelected(Card selectedCard)

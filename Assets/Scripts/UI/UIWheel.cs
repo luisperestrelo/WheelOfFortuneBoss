@@ -37,6 +37,7 @@ public class UIWheel : MonoBehaviour
         currentMode = mode;
         selectedIndex = -1;
         incomingCardDisplay.DisplayCard(newCard);
+        gameObject.SetActive(true);
         UpdateWheelVisualization();
     }
 
