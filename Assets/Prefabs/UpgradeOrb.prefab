@@ -63,7 +63,7 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 0.0020914965, y: 0.28235295, z: 0.4433962, w: 0}
+      - m_Value: {x: 1, y: 0.43472755, z: 0.015686274, w: 0}
         m_Name: New Color
         m_Overridden: 1
     m_Uint:
@@ -135,7 +135,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5200686009550405897
 Transform:
   m_ObjectHideFlags: 0
