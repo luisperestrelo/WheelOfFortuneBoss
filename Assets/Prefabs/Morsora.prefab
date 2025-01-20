@@ -25371,7 +25371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe3aca7726cc464181577e932e2665e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10000
+  maxHealth: 12500
   currentHealth: 0
   hpHeavyDamageThreshold: 25
   lightDamageSfx: {fileID: 8300000, guid: 587c1108a21a8524c83353de20bf10e2, type: 3}
@@ -25595,7 +25595,6 @@ MonoBehaviour:
   - 0.25
   bossPhase2HealthThreshold: 0.5
   upgradeOrb: {fileID: 4831472064132810505, guid: 4201f5fda37fd864b8f0f35c0af84c05, type: 3}
-  player: {fileID: 0}
   playerPath: {fileID: 0}
   shieldBusterField: {fileID: 11400000, guid: d9bbc7aa109f402418d79f0d19c2d494, type: 2}
 --- !u!114 &2068535191983629042
