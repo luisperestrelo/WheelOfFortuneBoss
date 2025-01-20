@@ -11,9 +11,9 @@ public class Health : MonoBehaviour
     [SerializeField] private int hpHeavyDamageThreshold = 25;
     [SerializeField] private AudioClip lightDamageSfx;
     [SerializeField] private AudioClip heavyDamageSfx;
-    [SerializeField] private AudioClip parrySfx;
+    [SerializeField] protected AudioClip parrySfx;
     [SerializeField] private AudioClip healSfx;
-    [SerializeField] private AudioSource damageSource;
+    [SerializeField] protected AudioSource damageSource;
 
     private PlayerCombat pc;
 

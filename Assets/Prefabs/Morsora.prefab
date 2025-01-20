@@ -25376,7 +25376,7 @@ MonoBehaviour:
   hpHeavyDamageThreshold: 25
   lightDamageSfx: {fileID: 8300000, guid: 587c1108a21a8524c83353de20bf10e2, type: 3}
   heavyDamageSfx: {fileID: 8300000, guid: 8602518a3e6e7c74bab30911fd517a5c, type: 3}
-  parrySfx: {fileID: 0}
+  parrySfx: {fileID: 8300000, guid: 4736589d402b158409addc4fc6591e93, type: 3}
   healSfx: {fileID: 0}
   damageSource: {fileID: 8067951667134333179}
   OnHealthChanged:
@@ -25496,7 +25496,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
