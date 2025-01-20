@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MorsoraTentacleSpiralState : MorsoraBossState
 {
-    private int totalWaves = 3;
+    private int totalWaves = 2;
     private int currentWave = 0;
     private float timeBetweenWaves = 5.5f;
     private float waveTimer = 0f;

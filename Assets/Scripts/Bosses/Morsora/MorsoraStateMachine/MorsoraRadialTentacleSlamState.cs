@@ -35,7 +35,7 @@ public class MorsoraRadialTentacleSlamState : MorsoraBossState
         // Spawn tentacles with a gap facing the player
         //bossController.spawnTentacleSnapAbility.SpawnCircleOfTentaclesWithGap(Random.Range(0f, 360f), 60f);
 
-        bossController.spawnTentacleSnapAbility.SpawnCircleOfTentaclesWithGap(initialAngle + currentWave * Random.Range(160f, 200f), 50f);
+        bossController.spawnTentacleSnapAbility.SpawnCircleOfTentaclesWithGap(initialAngle + currentWave * Random.Range(160f, 220f), 50f);
 
         currentWave++;
         isWaiting = true;
