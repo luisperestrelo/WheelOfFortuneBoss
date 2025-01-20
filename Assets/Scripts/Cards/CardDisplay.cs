@@ -24,7 +24,16 @@ public class CardDisplay : MonoBehaviour
     {
         iconImage.sprite = card.icon;
         nameText.text = card.cardName;
-        descriptionText.text = card.description;
+        
+        if (card.isKissCurse)
+        {
+            descriptionText.text = card.description + " <color=red>" + card.downSideDescription + "</color>";
+        }
+        else
+        {
+            descriptionText.text = card.description;
+        }
+
         typeText.text = card.cardType.ToString() + " card";
 
         rarityText.text = card.rarity.ToString();
