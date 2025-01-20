@@ -7,8 +7,12 @@ public class SpawnTentacleShield : MonoBehaviour
 {
     [SerializeField] private GameObject tentacleShield;
     [SerializeField] private List<GameObject> tentacles;
-    [SerializeField] private float despawnDelay = 2f;
+    [SerializeField] private float despawnDelay = 3f;
     [SerializeField] private Transform spawnSpot;
+
+    [SerializeField] private AudioClip destroySfx;
+    [SerializeField] private AudioClip spawnSfx;
+    [SerializeField] private AudioSource attackSource;
 
     private GameObject tentacleShieldInstance;
 
@@ -21,6 +25,7 @@ public class SpawnTentacleShield : MonoBehaviour
     {
         tentacleShieldInstance = Instantiate(tentacleShield, spawnSpot.position, spawnSpot.rotation);
         tentacles = new List<GameObject>();
+        attackSource.PlayOneShot(spawnSfx);
         foreach (Transform child in tentacleShieldInstance.transform)
         {
             tentacles.Add(child.gameObject);
@@ -34,6 +39,7 @@ public class SpawnTentacleShield : MonoBehaviour
             // play a despawn animation
             tentacle.GetComponent<Animator>().SetTrigger("Despawn");
         }
+        attackSource.PlayOneShot(destroySfx);
         Destroy(tentacleShieldInstance, despawnDelay);
     }
     }
