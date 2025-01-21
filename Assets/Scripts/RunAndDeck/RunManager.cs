@@ -118,7 +118,7 @@ public class RunManager : MonoBehaviour
     private IEnumerator StartFightRoutine()
     {
         yield return SceneLoader.Instance.LoadScene(bossFightSceneName);
-        MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.fight);
+        //MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.fight);
         EnableWheelAndPlayer(); // Enable when the fight starts. It is messy , but its fine for now
     }
 

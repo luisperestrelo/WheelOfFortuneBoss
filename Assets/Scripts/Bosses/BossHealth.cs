@@ -33,8 +33,11 @@ public class BossHealth : Health
 
     protected override void Die()
     {
-        bossController.SpawnUpgradeOrbWithOffset(-30f);
-        bossController.SpawnUpgradeOrbWithOffset(+30f);
+        if (bossController != null)
+        {
+            bossController.SpawnUpgradeOrbWithOffset(-30f);
+            bossController.SpawnUpgradeOrbWithOffset(+30f);
+        }
         AbilityObjectManager.Instance.DestroyAllFatTentacles(); // TODO: Despawn animation
 
 
