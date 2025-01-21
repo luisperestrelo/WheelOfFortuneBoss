@@ -15,7 +15,7 @@ MonoBehaviour:
   fieldName: Damage Buff
   description: Increases your damage output
   icon: {fileID: 21300000, guid: 8516a9e59a1ff4e439517921f85ef66d, type: 3}
-  color: {r: 1, g: 1, b: 1, a: 1}
+  color: {r: 0.9150943, g: 0.47613308, b: 0.02158241, a: 1}
   fieldType: 0
   tags: 02000000
   activationType: 0
