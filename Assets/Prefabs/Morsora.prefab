@@ -25614,7 +25614,7 @@ MonoBehaviour:
   tentacleCenter: {fileID: 6179273767138577720}
   spawnDistance: 2
   angleOffset: 180
-  damage: 10
+  damage: 5
   player: {fileID: 0}
   testAngleStep: 15
 --- !u!114 &8957217160656665894
@@ -25633,7 +25633,7 @@ MonoBehaviour:
   tentacleCenter: {fileID: 6179273767138577720}
   spawnDistance: 3
   angleOffset: 180
-  damage: 10
+  damage: 5
   projectileSpeed: 10
   shootingCooldown: 1
   testAngleStep: 15
@@ -25654,7 +25654,7 @@ MonoBehaviour:
   tentacleCenter: {fileID: 6179273767138577720}
   spawnDistance: 0
   angleOffset: 180
-  onContactDamage: 10
+  onContactDamage: 5
   testAngleStep: 0
 --- !u!114 &7069625005685426964
 MonoBehaviour:
@@ -26414,7 +26414,7 @@ MonoBehaviour:
   tentacleCenter: {fileID: 6179273767138577720}
   spawnDistance: 2
   angleOffset: 180
-  damage: 10
+  damage: 5
   player: {fileID: 0}
   testAngleStep: 15
 --- !u!114 &1662911475614576995

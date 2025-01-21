@@ -9,12 +9,12 @@ public class RunManager : MonoBehaviour
     public CardPool cardPool;
     public CardManager cardManager;
     public List<Card> currentRunCards = new List<Card>();
-    public WheelManager wheelManager; 
+    public WheelManager wheelManager;
     public string bossFightSceneName = "BossFightScene"; // right now we only have one but later we fix this
     public CardDisplay[] cardDisplays;
     public Player player;
-    public MidFightCardOfferUI midFightCardOfferUI; 
-    public string postBossSceneName = "PostBossCardSelectionScene"; 
+    public MidFightCardOfferUI midFightCardOfferUI;
+    public string postBossSceneName = "PostBossCardSelectionScene";
     private List<Card> offeredCards;
     private bool first = true; // TODO: right now startrun is also used just to go next boss, this will be removed once fixed
     public UIWheel uiWheel; // Reference to the UIWheel
@@ -38,11 +38,11 @@ public class RunManager : MonoBehaviour
     {
         // Reset player stats, clear current run cards, etc.
         currentRunCards.Clear();
-            //cardPool.Initialize(); 
+        //cardPool.Initialize(); 
 
         if (first) // TODO: right now startrun is also used just to go next boss, this will be removed once fixed
         {
-            cardPool.Initialize(); 
+            cardPool.Initialize();
             first = false;
         }
 
@@ -79,7 +79,7 @@ public class RunManager : MonoBehaviour
             currentRunCards.Add(card);
         }
 
-        
+
         Debug.Log("Applied initial cards");
 
         foreach (Card card in currentRunCards)
@@ -90,10 +90,10 @@ public class RunManager : MonoBehaviour
 
     public void OfferCardSelection()
     {
-        
+
         List<Card> cardsToOffer = cardPool.GetRandomCards(5);
 
-       
+
         Debug.Log("Offered Cards:");
         foreach (Card card in cardsToOffer)
         {
@@ -135,15 +135,15 @@ public class RunManager : MonoBehaviour
 
     public void DisableWheelAndPlayer()
     {
-        wheelManager.gameObject.SetActive(false); 
+        wheelManager.gameObject.SetActive(false);
 
-        player.gameObject.SetActive(false); 
+        player.gameObject.SetActive(false);
     }
 
     public void EnableWheelAndPlayer()
     {
-        wheelManager.gameObject.SetActive(true); 
-        player.gameObject.SetActive(true); 
+        wheelManager.gameObject.SetActive(true);
+        player.gameObject.SetActive(true);
     }
 
     public void OfferMidFightCards()
@@ -193,4 +193,18 @@ public class RunManager : MonoBehaviour
     {
         offeredCards = cardPool.GetRandomCards(5);
     }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        StartCoroutine(ReloadBootstrapScene());
+    }
+
+    private IEnumerator ReloadBootstrapScene()
+    {
+        //tod:transition stuff here
+        yield return SceneLoader.Instance.LoadScene("BootstrapScene"); 
+
+    }
 }
+

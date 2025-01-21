@@ -36,7 +36,7 @@ public class PlayerSpinMovement : MonoBehaviour
 
     public bool isCollidingWithWall = false;
 
-    private enum MovementSchemeType
+    public enum MovementSchemeType
     {
         TapToChangeDirection, // Space to change direction
         HoldToMove, // E and Q to move
@@ -152,6 +152,8 @@ public class PlayerSpinMovement : MonoBehaviour
 
     private void Update()
     {
+
+
         if (circularPath != null)
         {
             radius = circularPath.GetRadius();
@@ -372,6 +374,12 @@ public class PlayerSpinMovement : MonoBehaviour
         {
             return angle >= start && angle <= end;
         }
+    }
+
+    public void ChangeMovementScheme(MovementSchemeType newMovementSchemeType)
+    {
+        movementSchemeType = newMovementSchemeType;
+        InitializeMovementScheme();
     }
 
 }

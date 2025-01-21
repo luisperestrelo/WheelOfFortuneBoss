@@ -15,6 +15,19 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
     [SerializeField] private float minionShootingCooldown = 1f;
     [SerializeField] private float minionDamage = 5f;
 
+    private void Start()
+    {
+        GameObject parentObject = GameObject.Find("RangedMinionSpawnPositions");
+        if (parentObject != null)
+        {
+            Transform[] children = parentObject.GetComponentsInChildren<Transform>(); 
+
+            for (int i = 1; i < children.Length; i++)
+            {
+                spawnPoints[i - 1] = children[i];
+            }
+        }
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F8))
@@ -64,4 +77,4 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
             array[randomIndex] = temp;
         }
     }
-} 
+}

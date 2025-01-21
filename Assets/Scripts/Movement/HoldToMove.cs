@@ -4,6 +4,10 @@ public class HoldToMove : IMovementScheme
 {
     private PlayerSpinMovement _player;
 
+    public string description = "Hold Q to move clockwise, E to move counter-clockwise.\nHold M1 to Fire";
+
+    public string Description { get { return description; } }
+
     public void Initialize(PlayerSpinMovement player)
     {
         _player = player;

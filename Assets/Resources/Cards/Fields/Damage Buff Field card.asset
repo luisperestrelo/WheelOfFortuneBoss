@@ -18,4 +18,5 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 0f98f8a1949590a41ae68af7a30b23e6, type: 3}
   cardType: 0
   isKissCurse: 0
+  downSideDescription: 
   field: {fileID: 11400000, guid: 374610433da2a034d815f1e2a8b92068, type: 2}

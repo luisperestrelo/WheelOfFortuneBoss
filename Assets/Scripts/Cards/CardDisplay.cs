@@ -34,7 +34,7 @@ public class CardDisplay : MonoBehaviour
             descriptionText.text = card.description;
         }
 
-        typeText.text = card.cardType.ToString() + " card";
+        typeText.text = card.cardType.ToString();
 
         rarityText.text = card.rarity.ToString();
         if (card.rarity == CardRarity.Common)

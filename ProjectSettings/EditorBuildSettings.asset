@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PostBossCardSelectionScene.unity
     guid: a0149e4454ba83e45a16c4058209b500
+  - enabled: 1
+    path: Assets/Scenes/BootstrapScene.unity
+    guid: 6a6deb45db2c0ab4081248e5cfdb1690
   m_configObjects: {}

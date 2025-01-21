@@ -5,6 +5,9 @@ public class TwoInputSpaceAndToggleMove : IMovementScheme
     private PlayerSpinMovement _player;
     private bool _isMoving = false;
 
+    public string description = "Tap Space to change direction.\nHold M1 to Fire\nTap W or M2 to toggle movement";
+    public string Description { get { return description; } }
+
     public void Initialize(PlayerSpinMovement player)
     {
         _player = player;

@@ -4,6 +4,10 @@ public class TapToChangeDirection : IMovementScheme
 {
     private PlayerSpinMovement _player;
 
+    public string description = "Tap Space to change direction\nHold M1 to Fire";
+
+    public string Description { get { return description; } }
+
     public void Initialize(PlayerSpinMovement player)
     {
         _player = player;

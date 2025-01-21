@@ -177,11 +177,24 @@ public class MorsoraBossController : MonoBehaviour
 
     }
 
-    private void SpawnUpgradeOrb()
+    public void SpawnUpgradeOrb()
     {
         Vector3 toPlayer = player.position - playerPath.GetCenter();
         float currentAngle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
         currentAngle += 180f;
+
+        float x = playerPath.GetCenter().x + playerPath.GetRadius() * Mathf.Cos(currentAngle * Mathf.Deg2Rad);
+        float y = playerPath.GetCenter().y + playerPath.GetRadius() * Mathf.Sin(currentAngle * Mathf.Deg2Rad);
+        Vector3 spawnPosition = new Vector3(x, y, transform.position.z);
+
+        Instantiate(upgradeOrb, spawnPosition, Quaternion.identity);
+    }
+
+    public void SpawnUpgradeOrbWithOffset(float offset)
+    {
+        Vector3 toPlayer = player.position - playerPath.GetCenter();
+        float currentAngle = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg;
+        currentAngle += 180f + offset;
 
         float x = playerPath.GetCenter().x + playerPath.GetRadius() * Mathf.Cos(currentAngle * Mathf.Deg2Rad);
         float y = playerPath.GetCenter().y + playerPath.GetRadius() * Mathf.Sin(currentAngle * Mathf.Deg2Rad);

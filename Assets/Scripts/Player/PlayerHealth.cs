@@ -93,4 +93,14 @@ public class PlayerHealth : Health
             OnHealthChanged.Invoke(GetCurrentHealth(), GetMaxHealth());
         }
     }
+
+    protected override void Die()
+    {
+        OnDie.Invoke();
+
+        //TODO: SFX/VFX etc.
+
+        Debug.Log(gameObject.name + " died!");
+        RunManager.Instance.RestartGame();
+    }
 }

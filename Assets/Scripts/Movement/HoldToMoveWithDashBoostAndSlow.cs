@@ -3,6 +3,11 @@ using UnityEngine;
 public class HoldToMoveWithDashBoostAndSlow : IMovementScheme
 {
     private PlayerSpinMovement _player;
+
+    public string description = "Hold Q to move clockwise, E to move counter-clockwise.\nHold M1 to Fire, Space to dash, F to boost, G to slow";
+
+    public string Description { get { return description; } }
+
     private bool _isDashing;
     private float _dashCooldown = 1f; 
     private float _dashCooldownTimer;

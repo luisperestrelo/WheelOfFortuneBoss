@@ -6,6 +6,10 @@ public class TapToChangeFireToSlow : IMovementScheme
 {
     private PlayerSpinMovement _player;
 
+    public string description = "Tap Space to change direction.\nHold M1 to fire\nYou are slower while holding M1";
+
+    public string Description { get { return description; } }
+
     public void Initialize(PlayerSpinMovement player)
     {
         _player = player;
