@@ -30,6 +30,7 @@ public class Health : MonoBehaviour
 
     protected virtual void Start()
     {
+        isAlive = true;
         currentHealth = maxHealth;
         OnHealthChanged.Invoke(currentHealth, maxHealth);
         Debug.Log(gameObject.name + " has " + currentHealth + " health!");

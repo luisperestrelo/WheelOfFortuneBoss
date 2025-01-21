@@ -154,6 +154,9 @@ public class RunManager : MonoBehaviour
     {
         List<Card> basicStatUpgradeCards = cardPool.GetBasicStatUpgradeCards();
         MusicPlayer.instance.SetFilterIntensity(0.6f);
+
+
+
         midFightCardOfferUI.ShowCards(basicStatUpgradeCards);
     }
 

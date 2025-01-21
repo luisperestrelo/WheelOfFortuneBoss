@@ -44,6 +44,16 @@ public class AbilityObjectManager : MonoBehaviour
 
     public void DestroyAllFatTentacles()
     {
+        if (activeAbilityObjects == null)
+        {
+            return;
+        }
+
+        if (activeAbilityObjects.Count == 0)
+        {
+            return;
+        }
+
         foreach (GameObject obj in activeAbilityObjects)
         {
             if (obj.CompareTag("FatTentacle"))
