@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Crit Multiplier
   description: Increases CritMultiplier by +20%
   rarity: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 6e6a738188354c44683b3d08e1100335, type: 3}
   cardType: 1
   isKissCurse: 0
   downSideDescription: 

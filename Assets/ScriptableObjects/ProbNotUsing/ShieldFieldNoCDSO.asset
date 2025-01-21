@@ -15,9 +15,12 @@ MonoBehaviour:
   fieldName: Shield
   description: Grants a shield while remaining in field that absorbs one hit.
   icon: {fileID: 0}
+  color: {r: 0.2028302, g: 0.34844398, b: 1, a: 1}
   fieldType: 3
+  tags: 
   activationType: 0
   duration: 0
   cooldown: 0
   visualEffect: {fileID: 0}
   audioEffect: {fileID: 0}
+  size: 1
