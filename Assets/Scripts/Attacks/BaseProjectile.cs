@@ -6,6 +6,9 @@ public class BaseProjectile : MonoBehaviour
     [SerializeField] protected float speed = 10f;
     [SerializeField] protected float damage = 10f;
     [SerializeField] private ParticleSystem hitVfxPrefab;
+    [SerializeField] private float lifeTime = 3f;
+
+    private float lifeTimeCounter = 0f;
 
     protected Vector2 velocity;
 
@@ -22,6 +25,12 @@ public class BaseProjectile : MonoBehaviour
     protected virtual void Update()
     {
         transform.Translate(velocity * Time.deltaTime);
+
+        lifeTimeCounter += Time.deltaTime;
+        if (lifeTimeCounter > lifeTime)
+        {
+            Destroy(gameObject);
+        }
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)

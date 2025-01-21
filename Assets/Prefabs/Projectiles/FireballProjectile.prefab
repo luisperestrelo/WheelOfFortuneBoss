@@ -4942,6 +4942,7 @@ MonoBehaviour:
   speed: 10
   damage: 10
   hitVfxPrefab: {fileID: 2891204747330124268, guid: 1895269bc8696af40902c93cedab8a9b, type: 3}
+  lifeTime: 5
 --- !u!1 &3070230622613349311
 GameObject:
   m_ObjectHideFlags: 0

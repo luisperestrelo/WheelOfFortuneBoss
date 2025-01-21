@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4558305748651535714, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: maxHealth
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4558305748651535714, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: baseDamageMultiplier
