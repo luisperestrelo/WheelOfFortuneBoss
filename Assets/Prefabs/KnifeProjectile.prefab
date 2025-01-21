@@ -195,3 +195,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   damage: 10
+  hitVfxPrefab: {fileID: 0}
+  lifeTime: 3
