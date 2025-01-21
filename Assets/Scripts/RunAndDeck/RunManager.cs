@@ -153,6 +153,13 @@ public class RunManager : MonoBehaviour
         midFightCardOfferUI.ShowCards(cardsToOffer);
     }
 
+    public void OfferBasicStatUpgradeCards()
+    {
+        List<Card> basicStatUpgradeCards = cardPool.GetBasicStatUpgradeCards();
+        MusicPlayer.instance.SetFilterIntensity(0.6f);
+        midFightCardOfferUI.ShowCards(basicStatUpgradeCards);
+    }
+
     public void OnMidFightStatCardSelected(Card selectedCard)
     {
         cardManager.ApplyCard(selectedCard);
@@ -170,6 +177,8 @@ public class RunManager : MonoBehaviour
 
         Time.timeScale = 1f;
     }
+
+    
 
     public void AddCardsToCurrentRun(List<Card> cards)
     {

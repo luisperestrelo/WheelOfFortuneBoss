@@ -1729,6 +1729,18 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1552096408}
+    - target: {fileID: 3037909902172167354, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3037909902172167354, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: Tap to Change Directions, W or M2 To slow
+      objectReference: {fileID: 0}
+    - target: {fileID: 3037909902172167354, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
+      value: Tap to Change Directions, W or M2 To stop
+      objectReference: {fileID: 0}
     - target: {fileID: 3553657924083562364, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

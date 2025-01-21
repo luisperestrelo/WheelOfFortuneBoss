@@ -19,5 +19,5 @@ MonoBehaviour:
   cardType: 0
   isKissCurse: 1
   downSideDescription: If you stand too long in this field, you become Cursed, taking
-    30 damage over 5 seconds
+    20 damage over 5 seconds
   field: {fileID: 11400000, guid: 08d059c14894a174f900444170f61d48, type: 2}

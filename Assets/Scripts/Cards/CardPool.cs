@@ -142,16 +142,32 @@ public class CardPool : MonoBehaviour
             initialCards.Add(chargeCard);
         }
 
-        if (statUpgradeCards.Count > 0)
+/*         if (statUpgradeCards.Count > 0)
         {
             Card statUpgradeCard = GetRandomCardFromList(statUpgradeCards, true);
             initialCards.Add(statUpgradeCard);
         }
-
+ */
         return initialCards;
     }
 
-   
+    public List<Card> GetBasicStatUpgradeCards()
+    {
+        List<Card> basicStatUpgradeCards = new List<Card>();
+
+        for (int i = 0; i < 5; i++)
+        {
+            if (this.statUpgradeCards.Count > 0)
+            {
+                Card statUpgradeCard = GetRandomCardFromList(this.statUpgradeCards, true);
+                basicStatUpgradeCards.Add(statUpgradeCard);
+            }
+        }
+
+        return basicStatUpgradeCards;
+    }
+
+
     private Card GetRandomCardFromList(List<Card> cardList, bool removeFromAvailable = false)
     {
         Card selectedCard = cardList.OrderBy(x => Random.value).First();

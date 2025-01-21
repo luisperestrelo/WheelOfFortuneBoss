@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,9 @@ public class UIWheel : MonoBehaviour
     public Color HoverColor = Color.gray;
     public float HighlightedLineWidth = 10f;
     public CardDisplay incomingCardDisplay = null;
+    public TextMeshProUGUI explanationText = null;
+    public string explanationTextAddField = "Click a line to choose where the new field goes";
+    public string explanationTextReplaceField = "You are at maximum fields! Click a field to replace it";
     
 
     private List<UISegment> uiSegments = new List<UISegment>();
@@ -86,6 +90,15 @@ public class UIWheel : MonoBehaviour
             uiLines.Add(line);
 
             uiSegments.Add(uiSegment);
+        }
+
+        if (currentMode == UIWheelMode.Insert)
+        {
+            explanationText.text = explanationTextAddField;
+        }
+        else
+        {
+            explanationText.text = explanationTextReplaceField;
         }
 
         

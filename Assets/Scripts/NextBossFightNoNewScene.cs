@@ -31,7 +31,7 @@ public class NextBossFightNoNewScene : MonoBehaviour
 
     public void OnBossDefeated()
     {
-        StartCoroutine(SpawnNextBossAfterDelay(5f));
+        StartCoroutine(SpawnNextBossAfterDelay(8f));
     }
 
     IEnumerator SpawnNextBossAfterDelay(float delay)
