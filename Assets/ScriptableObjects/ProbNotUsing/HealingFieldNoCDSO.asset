@@ -15,6 +15,7 @@ MonoBehaviour:
   fieldName: Healing Field
   description: Charges up, healing you when charged
   icon: {fileID: 21300000, guid: 5da14d36cd37f6c4c833f8e055871fb7, type: 3}
+  color: {r: 0.5746766, g: 0.990566, b: 0.31305623, a: 1}
   fieldType: 4
   tags: 0300000006000000
   activationType: 1
