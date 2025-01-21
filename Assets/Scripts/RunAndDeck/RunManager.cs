@@ -58,10 +58,7 @@ public class RunManager : MonoBehaviour
 
     void Update() //testing
     {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            OfferCardSelection();
-        }
+
     }
 
     public void OfferInitialCards()

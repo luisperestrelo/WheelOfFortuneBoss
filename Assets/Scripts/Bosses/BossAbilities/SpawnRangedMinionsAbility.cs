@@ -30,10 +30,7 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F8))
-        {
-            SpawnMinions();
-        }
+
     }
 
     public void SpawnMinions()

@@ -44,6 +44,7 @@ public class WheelTestScript : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.F))
         {
             AddFieldToWheel();
@@ -75,6 +76,7 @@ public class WheelTestScript : MonoBehaviour
         {
             uiWheel.Initialize(wheelManager, fieldToAdd, null, UIWheelMode.Replace);
         }
+#endif
     }
 
     private void SpawnUpgradeOrb()

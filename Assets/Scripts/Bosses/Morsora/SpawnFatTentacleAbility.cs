@@ -27,11 +27,7 @@ public class SpawnFatTentacleAbility : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-            testAngleStep += 15f;
-            SpawnFatTentacle180DegreesFromPlayer();
-        }
+
     }
 
     public void SpawnFatTentacle(float angle)
