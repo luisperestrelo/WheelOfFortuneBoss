@@ -15,7 +15,7 @@ MonoBehaviour:
   fieldName: Shield
   description: Upon entering this field, gain a shield for a short time that blocks
     one instance of damage.
-  icon: {fileID: 21300000, guid: f529ac7445c16ec4cb15899720a2897b, type: 3}
+  icon: {fileID: 21300000, guid: ad712de1ffb6d7f448a9af8f1e892235, type: 3}
   color: {r: 1, g: 1, b: 1, a: 1}
   fieldType: 3
   tags: 0400000005000000

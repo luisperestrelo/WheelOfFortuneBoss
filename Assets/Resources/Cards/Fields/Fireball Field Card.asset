@@ -16,7 +16,7 @@ MonoBehaviour:
   description: While in this field, your attack is replaced with a slow-moving but
     powerful fireball.
   rarity: 0
-  icon: {fileID: 21300000, guid: 949a0f0977f6b4f4d8212c3540a3865c, type: 3}
+  icon: {fileID: 21300000, guid: 8c25616dd1126c44c8452b9e07663b34, type: 3}
   cardType: 0
   isKissCurse: 0
   downSideDescription: 
