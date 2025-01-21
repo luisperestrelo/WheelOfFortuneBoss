@@ -3,6 +3,10 @@ using UnityEngine;
 public class TwoInputSpaceAndDash : IMovementScheme
 {
     private PlayerSpinMovement _player;
+
+    public string description = "Tap Space to change direction.\nHold M1 to Fire\n W or M2 to dash";
+    public string Description { get { return description; } }
+
     private bool _isDashing;
     private float _dashCooldown = 1f; 
     private float _dashCooldownTimer;

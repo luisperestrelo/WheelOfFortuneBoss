@@ -5,6 +5,10 @@ public class DifferentAccelerationandDecelerationvalues : IMovementScheme
 {
     private PlayerSpinMovement _player;
 
+    public string description = "Pretend this one doesn't exist";
+
+    public string Description { get { return description; } }
+
     public void Initialize(PlayerSpinMovement player)
     {
         _player = player;

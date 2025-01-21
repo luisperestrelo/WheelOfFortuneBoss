@@ -5,6 +5,9 @@ public class TwoInputSpaceAndStop : IMovementScheme
 {
     private PlayerSpinMovement _player;
 
+    public string description = "Tap Space to change direction.\nHold M1 to Fire\nHold W or M2 to stop";
+    public string Description { get { return description; } }
+
     public void Initialize(PlayerSpinMovement player)
     {
         _player = player;

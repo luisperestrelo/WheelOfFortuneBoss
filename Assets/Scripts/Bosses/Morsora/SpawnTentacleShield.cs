@@ -19,6 +19,7 @@ public class SpawnTentacleShield : MonoBehaviour
     private void Start()
     {
         tentacles = new List<GameObject>();
+        spawnSpot = GameObject.Find("TentacleShieldSpawnSpot").transform;
     }
 
     public void SpawnShield()

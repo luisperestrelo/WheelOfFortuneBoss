@@ -4,6 +4,9 @@ public class TwoInputSpaceAndBoost : IMovementScheme
 {
     private PlayerSpinMovement _player;
 
+    public string description = "Tap Space to change direction.\nHold M1 to Fire\n Hold W or M2 to increase speed";
+    public string Description { get { return description; } }
+
     public void Initialize(PlayerSpinMovement player)
     {
         _player = player;

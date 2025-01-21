@@ -187,7 +187,7 @@ MonoBehaviour:
   damage: 5
   damageCooldown: 1
   stopDuration: 1.25
-  duration: 2.25
+  duration: 3
   growthRate: 2
   maxScale: 1
 --- !u!82 &6035165586166093823

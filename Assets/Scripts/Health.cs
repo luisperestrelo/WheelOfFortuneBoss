@@ -21,6 +21,8 @@ public class Health : MonoBehaviour
 
     public UnityEvent OnDie;
 
+    private bool isAlive = true;
+
     protected virtual void Awake()
     {
         pc = GetComponent<PlayerCombat>();
@@ -56,8 +58,9 @@ public class Health : MonoBehaviour
         else
             damageSource.PlayOneShot(heavyDamageSfx);
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && isAlive)
         {
+            isAlive = false;
             Die();
         }
 
@@ -115,6 +118,12 @@ public class Health : MonoBehaviour
     protected void SetCurrentHealth(float newHealth)
     {
         currentHealth = newHealth;
+        OnHealthChanged.Invoke(currentHealth, maxHealth);
+    }
+
+    public void SetHealthToFull()
+    {
+        currentHealth = maxHealth;
         OnHealthChanged.Invoke(currentHealth, maxHealth);
     }
 }
