@@ -19,6 +19,7 @@ public class SceneReloader : MonoBehaviour
         Destroy(FindObjectOfType<CircularPath>().gameObject);
         Destroy(FindObjectOfType<WheelManager>().gameObject);
         Destroy(FindObjectOfType<RunManager>().gameObject);
+        Destroy(FindObjectOfType<AbilityObjectManager>().gameObject);
 
         SceneManager.LoadScene(initialSceneName, LoadSceneMode.Single);
 
