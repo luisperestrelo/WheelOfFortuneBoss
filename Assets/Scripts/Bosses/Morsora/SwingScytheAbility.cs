@@ -12,14 +12,7 @@ public class SwingScytheAbility : MonoBehaviour
 
     /*     private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.F10))
-            {
-                SwingScythe(true);
-            }
-            if (Input.GetKeyDown(KeyCode.F11))
-            {
-                SwingScythe(false);
-            }
+
         }
         private void SwingScythe(bool isDarkSlash)
         {

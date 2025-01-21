@@ -24,19 +24,7 @@ public class SpawnTentacleSpitterAbility : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F3))
-        {
 
-
-            SpawnTentacleSpitterAimedAtPlayer(5);
-        }
-
-        if (Input.GetKeyDown(KeyCode.F4))
-        {
-            testAngleStep += 15f;
-            SpawnTentacleSpitter(testAngleStep, 1);
-
-        }
     }
 
     public void SpawnTentacleSpitter(float angle, int numberOfSpits = 1)

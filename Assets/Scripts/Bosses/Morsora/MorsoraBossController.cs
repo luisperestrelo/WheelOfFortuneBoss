@@ -147,11 +147,13 @@ public class MorsoraBossController : MonoBehaviour
         CheckIfUpgradeThreshold();
         CheckPhase2Transition();
 
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.L)) // for testing
         {
             //stateMachine.ChangeState(radialTentacleSlamState);
             //stateMachine.ChangeState(tentacleHellPhaseTwoState);
         }
+#endif
     }
 
     private void CheckPhase2Transition()

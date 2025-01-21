@@ -31,18 +31,7 @@ public class SpawnTentacleSnapAbility : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
 
-
-            SpawnTentacleSnapAtPlayer(5);
-        }
-
-        if (Input.GetKeyDown(KeyCode.F2))
-        {
-            SpawnTentacleSnap(testAngleStep, 1);
-            testAngleStep += 15f;
-        }
     }
 
     //quadrant stuff unneccesary, we are just doing horizontal flipping
