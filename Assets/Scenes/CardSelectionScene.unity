@@ -1495,6 +1495,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ddedbac19511045a5aabacd649e542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1552096408 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7901722751892932440, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+  m_PrefabInstance: {fileID: 71604780}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe63a394fb0981468a73a85d73b17ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1626885755
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1503,6 +1514,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 697078138867957198, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1552096408}
+    - target: {fileID: 3553657924083562364, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3553657924083562364, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611737096314475716, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5499157809595442691, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1583,9 +1610,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6005516533296868049, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000015258789
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248580140119624587, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248580140119624587, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6248580140119624587, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6719628383258786095, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
       propertyPath: m_Name
       value: Pause Menu Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771436573816314169, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6771436573816314169, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787727931553417397, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787727931553417397, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787727931553417397, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
