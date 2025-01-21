@@ -7,6 +7,8 @@ public class NextBossFightNoNewScene : MonoBehaviour
     public List<GameObject> bossPrefabs;
     public Transform bossSpawnPoint;
 
+    [SerializeField] private List<SoundProfile> profiles;
+
     private GameObject currentBoss;
     private int currentBossIndex = 0;
 
@@ -27,7 +29,7 @@ public class NextBossFightNoNewScene : MonoBehaviour
 
     public void OnBossDefeated()
     {
-        StartCoroutine(SpawnNextBossAfterDelay(2f));
+        StartCoroutine(SpawnNextBossAfterDelay(5f));
     }
 
     IEnumerator SpawnNextBossAfterDelay(float delay)
@@ -44,6 +46,8 @@ public class NextBossFightNoNewScene : MonoBehaviour
         {
             currentBoss = Instantiate(bossPrefabs[currentBossIndex], bossSpawnPoint.position, bossSpawnPoint.rotation);
             bossHealth = currentBoss.GetComponent<BossHealth>();
+            MusicPlayer.instance.LoadProfile(profiles[currentBossIndex]);
+            MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.fight);
             if (bossHealth != null)
             {
                 bossHealth.OnDie.AddListener(OnBossDefeated);
