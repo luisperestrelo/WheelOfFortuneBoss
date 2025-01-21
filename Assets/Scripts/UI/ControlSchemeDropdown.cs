@@ -24,6 +24,12 @@ public class ControlSchemeDropdown : MonoBehaviour
             case 2:
                 player.ChangeMovementScheme(PlayerSpinMovement.MovementSchemeType.TapToChangeDirection);
                 break;
+            case 3:
+                player.ChangeMovementScheme(PlayerSpinMovement.MovementSchemeType.TwoInputSpaceAndSlow);
+                break;
+            case 4:
+                player.ChangeMovementScheme(PlayerSpinMovement.MovementSchemeType.TwoInputSpaceAndStop);
+                break;
             default:
                 break;
         }

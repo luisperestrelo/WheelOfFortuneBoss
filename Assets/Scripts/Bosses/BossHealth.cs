@@ -38,6 +38,20 @@ public class BossHealth : Health
             bossController.SpawnUpgradeOrbWithOffset(-30f);
             bossController.SpawnUpgradeOrbWithOffset(+30f);
         }
+        
+        
+
+        //TODO: this is a shitty temporary solution
+        else
+        {
+            TargetDummy targetDummy = GetComponent<TargetDummy>();
+            if (targetDummy != null)
+            {
+                targetDummy.SpawnUpgradeOrbWithOffset(0);
+            }
+        }
+
+
         AbilityObjectManager.Instance.DestroyAllFatTentacles(); // TODO: Despawn animation
 
 

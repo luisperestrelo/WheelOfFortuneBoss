@@ -6,6 +6,7 @@ public class TutorialClick : MonoBehaviour
 {
     private Animator animator;
     private bool isTutorialFinished = false;
+    [SerializeField] private GameObject slowdownTutorial;
     private void Awake()
     {
         animator = GetComponent<Animator>();
@@ -18,7 +19,9 @@ public class TutorialClick : MonoBehaviour
         {
             isTutorialFinished = true;
             animator.SetBool("isShowing", false);
+            slowdownTutorial.SetActive(true);
             Destroy(gameObject, 1.0f);
+            Destroy(slowdownTutorial, 3.0f);
         }
 
     }

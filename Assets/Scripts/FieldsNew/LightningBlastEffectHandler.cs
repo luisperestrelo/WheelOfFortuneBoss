@@ -15,6 +15,7 @@ public class LightningBlastEffectHandler : ChargeableFieldEffectHandler
         // Find the boss and instantiate the lightning blast, maybe change later
         Boss boss = FindObjectOfType<Boss>();
         Vector3 offset = boss.transform.Find("Sprite").localPosition;
+        
 
         if (boss != null)
         {
