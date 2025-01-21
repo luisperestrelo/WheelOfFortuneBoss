@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Increases Crit Chance by 8%. By default, Critical Strikes deal 100%
     more damage.
   rarity: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: eef054c27ba736c4aaac29d9ce96ca21, type: 3}
   cardType: 1
   isKissCurse: 0
   downSideDescription: 
