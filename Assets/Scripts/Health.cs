@@ -124,6 +124,7 @@ public class Health : MonoBehaviour
 
     public void SetHealthToFull()
     {
+        Debug.Log("Setting health to full");
         currentHealth = maxHealth;
         OnHealthChanged.Invoke(currentHealth, maxHealth);
     }
