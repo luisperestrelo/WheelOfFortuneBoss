@@ -56,11 +56,21 @@ public class CardPool : MonoBehaviour
 
     public List<Card> GetRandomCards(int numCards)
     {
+        // Safety check
+        numCards = Mathf.Min(numCards, availableCards.Count);
+
         // Shuffle the availableCards list (todo: maybe a fisher yates shuffle for shits and giggles)
         List<Card> shuffledCards = availableCards.OrderBy(x => Random.value).ToList();
 
-        // Take the first numCards from the shuffled list
-        List<Card> selectedCards = shuffledCards.Take(numCards).ToList();
+        // Take the first numCards from the shuffled list without duplicates
+        HashSet<Card> selectedCardsSet = new HashSet<Card>();
+        foreach (Card card in shuffledCards)
+        {
+            if (selectedCardsSet.Count >= numCards) break;
+            selectedCardsSet.Add(card);
+        }
+
+        List<Card> selectedCards = selectedCardsSet.ToList();
 
         // Remove the selected cards from the availableCards list
         // need to rework this a bit
@@ -74,13 +84,21 @@ public class CardPool : MonoBehaviour
 
     public List<Card> GetRandomWithoutRemovingFromPool(int numCards)
     {
+        // Safety check
+        numCards = Mathf.Min(numCards, availableCards.Count);
+
         // Shuffle the availableCards list (todo: maybe a fisher yates shuffle for shits and giggles)
         List<Card> shuffledCards = availableCards.OrderBy(x => Random.value).ToList();
 
-        // Take the first numCards from the shuffled list
-        List<Card> selectedCards = shuffledCards.Take(numCards).ToList();
-
+        // Take the first numCards from the shuffled list without duplicates
+        HashSet<Card> selectedCardsSet = new HashSet<Card>();
+        foreach (Card card in shuffledCards)
+        {
+            if (selectedCardsSet.Count >= numCards) break;
+            selectedCardsSet.Add(card);
+        }
         // todo: need to rework this a bit, not being used.
+        List<Card> selectedCards = selectedCardsSet.ToList();
 
         return selectedCards;
     }
@@ -142,12 +160,12 @@ public class CardPool : MonoBehaviour
             initialCards.Add(chargeCard);
         }
 
-/*         if (statUpgradeCards.Count > 0)
-        {
-            Card statUpgradeCard = GetRandomCardFromList(statUpgradeCards, true);
-            initialCards.Add(statUpgradeCard);
-        }
- */
+        /*         if (statUpgradeCards.Count > 0)
+                {
+                    Card statUpgradeCard = GetRandomCardFromList(statUpgradeCards, true);
+                    initialCards.Add(statUpgradeCard);
+                }
+         */
         return initialCards;
     }
 
@@ -155,11 +173,22 @@ public class CardPool : MonoBehaviour
     {
         List<Card> basicStatUpgradeCards = new List<Card>();
 
+        // Use a HashSet to track selected cards and ensure uniqueness
+        HashSet<Card> selectedCards = new HashSet<Card>();
+
         for (int i = 0; i < 5; i++)
         {
             if (this.statUpgradeCards.Count > 0)
             {
-                Card statUpgradeCard = GetRandomCardFromList(this.statUpgradeCards, true);
+                // Select a random card until a unique one is found
+                Card statUpgradeCard;
+                do
+                {
+                    statUpgradeCard = GetRandomCardFromList(this.statUpgradeCards, false);
+                } while (selectedCards.Contains(statUpgradeCard));
+
+                // Add the unique card to the HashSet and the list
+                selectedCards.Add(statUpgradeCard);
                 basicStatUpgradeCards.Add(statUpgradeCard);
             }
         }
