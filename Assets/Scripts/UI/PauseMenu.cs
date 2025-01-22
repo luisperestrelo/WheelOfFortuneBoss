@@ -6,14 +6,17 @@ public class PauseMenu : MonoBehaviour
 {
     private bool isPaused = false;
     private Animator animator;
-    private PauseMenu instance;
-    private void Awake()
+    private static PauseMenu instance;
+    private void Start()
     {
         animator = GetComponent<Animator>();
         if (instance != null)
             Destroy(gameObject);
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
     }
     public void Pause()
     {
