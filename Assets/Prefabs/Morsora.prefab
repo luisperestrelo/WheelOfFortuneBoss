@@ -25716,6 +25716,14 @@ MonoBehaviour:
   lightSlashPrefab: {fileID: 6503118944386814951, guid: 380417b190163e942bc3042696c89293, type: 3}
   darkSlashSpawnPoint: {fileID: 1549437899210114616}
   lightSlashSpawnPoint: {fileID: 8508624367241683391}
+  damage: 10
+  darkSlashDamageSize: {x: 23.21, y: 8.97}
+  lightSlashDamageSize: {x: 23.8, y: 9.05}
+  darkSlashOffset: {x: 0, y: 1.31}
+  lightSlashOffset: {x: 0, y: -0.77}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &7233575668219198028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26354,6 +26362,14 @@ MonoBehaviour:
   lightSlashPrefab: {fileID: 6503118944386814951, guid: 380417b190163e942bc3042696c89293, type: 3}
   darkSlashSpawnPoint: {fileID: 1549437899210114616}
   lightSlashSpawnPoint: {fileID: 8508624367241683391}
+  damage: 10
+  darkSlashDamageSize: {x: 23.21, y: 6.5}
+  lightSlashDamageSize: {x: 23.8, y: 8.24}
+  darkSlashOffset: {x: 0, y: 0.5}
+  lightSlashOffset: {x: 0, y: 0.5}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &1826632992102343041
 MonoBehaviour:
   m_ObjectHideFlags: 0
