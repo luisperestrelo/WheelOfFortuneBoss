@@ -167,6 +167,9 @@ public class RunManager : MonoBehaviour
         MusicPlayer.instance.SetFilterIntensity(0f);
 
         Time.timeScale = 1f;
+
+        // Remove the selected card from the pool
+        cardPool.RemoveCardFromAvailable(selectedCard);
     }
 
     public void OnMidFightFieldCardSelected(Card selectedCard)
@@ -176,6 +179,8 @@ public class RunManager : MonoBehaviour
         MusicPlayer.instance.SetFilterIntensity(0f);
 
         Time.timeScale = 1f;
+
+        cardPool.RemoveCardFromAvailable(selectedCard);
     }
 
     

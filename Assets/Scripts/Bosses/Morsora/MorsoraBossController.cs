@@ -150,6 +150,7 @@ public class MorsoraBossController : MonoBehaviour
 #if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.L)) // for testing
         {
+            stateMachine.ChangeState(shockwavesState);
             //stateMachine.ChangeState(radialTentacleSlamState);
             //stateMachine.ChangeState(tentacleHellPhaseTwoState);
         }

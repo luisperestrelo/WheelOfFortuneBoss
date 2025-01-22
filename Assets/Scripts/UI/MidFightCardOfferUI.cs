@@ -11,7 +11,7 @@ public class MidFightCardOfferUI : MonoBehaviour
     private Card selectedCard;
     private int selectedIndex = -1;
 
-    public Color highlightColor = new Color(1f, 1f, 1f, 0.5f); 
+    public Color highlightColor = new Color(1f, 1f, 1f, 0.5f);
     public UIWheel uiWheel;
 
     private Animator animator;
@@ -28,13 +28,15 @@ public class MidFightCardOfferUI : MonoBehaviour
         offeredCards = cards;
         selectedCard = null;
 
+        bool anyCardsActive = false; // Flag to check if any cards are displayed
+
         for (int i = 0; i < cardDisplays.Length; i++)
         {
             if (i < cards.Count)
             {
                 cardDisplays[i].DisplayCard(cards[i]);
                 cardDisplays[i].gameObject.SetActive(true);
-
+                anyCardsActive = true; // Set flag to true if at least one card is active
             }
             else
             {
@@ -42,9 +44,10 @@ public class MidFightCardOfferUI : MonoBehaviour
             }
         }
 
-        confirmButton.interactable = false; // player can only confirm when he selects a card
+        // Enable confirm button if no cards are displayed or a card is selected
+        confirmButton.interactable = !anyCardsActive || selectedCard != null;
 
-        gameObject.SetActive(true); 
+        gameObject.SetActive(true);
     }
 
     public void OnCardClicked(int cardIndex)
@@ -72,7 +75,7 @@ public class MidFightCardOfferUI : MonoBehaviour
             if (selectedCard.cardType == CardType.Field)
             {
                 Debug.Log("Selected card is a Field card");
-                Field newField = ((FieldCard)selectedCard).field; 
+                Field newField = ((FieldCard)selectedCard).field;
                 if (RunManager.Instance.wheelManager.Segments.Count >= uiWheel.MaxSegments)
                 {
                     uiWheel.Initialize(RunManager.Instance.wheelManager, newField, selectedCard, UIWheelMode.Replace);
@@ -101,6 +104,13 @@ public class MidFightCardOfferUI : MonoBehaviour
                     selectedIndex = -1;
                 }
             }
+        }
+        else if (offeredCards.Count == 0)
+        {
+            // Handle the case where no cards are offered (empty list)
+            Debug.Log("No cards to select, continuing the game.");
+            Time.timeScale = 1f; // ok I hate having this here but like we should never get to this point anyway
+            StartCoroutine(DeactivateAfterDelay());
         }
     }
 

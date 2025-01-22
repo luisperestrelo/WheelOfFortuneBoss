@@ -54,6 +54,7 @@ public class CardPool : MonoBehaviour
         availableCards = new List<Card>(allCards);
     }
 
+    // Does the exact same thing as GetRandomWithoutRemovingFromPool, needs cleanup.
     public List<Card> GetRandomCards(int numCards)
     {
         // Safety check
@@ -74,14 +75,15 @@ public class CardPool : MonoBehaviour
 
         // Remove the selected cards from the availableCards list
         // need to rework this a bit
-        foreach (Card card in selectedCards)
-        {
-            availableCards.Remove(card);
-        }
+        /*         foreach (Card card in selectedCards)
+                {
+                    availableCards.Remove(card);
+                } */
 
         return selectedCards;
     }
 
+    // Does the exact same thing as GetRandomCards, needs cleanup.
     public List<Card> GetRandomWithoutRemovingFromPool(int numCards)
     {
         // Safety check
@@ -207,5 +209,10 @@ public class CardPool : MonoBehaviour
         }
 
         return selectedCard;
+    }
+
+    public void RemoveCardFromAvailable(Card card)
+    {
+        availableCards.Remove(card);
     }
 }
