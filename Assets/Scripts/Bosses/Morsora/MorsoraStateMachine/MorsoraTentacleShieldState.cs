@@ -11,13 +11,14 @@ public class MorsoraTentacleShieldState : MorsoraBossState
     private int chargesCompleted = 0;
     private int currentFieldIndex;
 
-    private float minionSpawnInterval = 5f; // Initial time between minion spawns
+    private float minionSpawnInterval = 6f; // Initial time between minion spawns
     private float minionSpawnTimer = 0f;
-    private float spawnRateIncreaseFactor = 0.02f; // Controls how quickly the spawn rate increases
+    private float spawnRateIncreaseFactor = 0.030f; // Controls how quickly the spawn rate increases
                                                 // this is to prevent the player from abusing this phase
                                                 // however it might make it too hard for a "noob" player
                                                 // and it's probably not even needed to think of an edge-case like this
                                                 // but yeah, can just set to 0 if need.
+    private float timeToStartIncreasingSpawnRate = 20f;
 
     public MorsoraTentacleShieldState(MorsoraBossStateMachine stateMachine, MorsoraBossController bossController, string animBoolName, TentacleShieldBusterField shieldBusterField) : base(stateMachine, bossController, animBoolName)
     {
@@ -58,13 +59,18 @@ public class MorsoraTentacleShieldState : MorsoraBossState
             bossController.spawnRangedMinions.SpawnMinions();
             minionSpawnTimer = 0f;
 
-            // Increase spawn rate (decrease interval)
-            minionSpawnInterval -= spawnRateIncreaseFactor * timer;
+            // Increase spawn rate after 20 seconds
+            if (timer > timeToStartIncreasingSpawnRate)
+            {
+                // Increase spawn rate (decrease interval)
+                float timeSinceStartOfIncrease = timer - timeToStartIncreasingSpawnRate;
+                minionSpawnInterval -= spawnRateIncreaseFactor * timeSinceStartOfIncrease;
 
-            // Set a minimum spawn interval to prevent it from becoming too fast
-            minionSpawnInterval = Mathf.Max(minionSpawnInterval, 1.5f);
+                // Set a minimum spawn interval to prevent it from becoming too fast
+                minionSpawnInterval = Mathf.Max(minionSpawnInterval, 1.5f);
 
-            Debug.Log("Minion Spawn Interval: " + minionSpawnInterval);
+                Debug.Log("Minion Spawn Interval: " + minionSpawnInterval);
+            }
         }
     }
 

@@ -25385,6 +25385,8 @@ MonoBehaviour:
   OnDie:
     m_PersistentCalls:
       m_Calls: []
+  nextBoss: {fileID: 0}
+  upgradeOrb: {fileID: 0}
 --- !u!114 &6743735037320729315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25687,12 +25689,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangedMinionPrefab: {fileID: 2057324329541433720, guid: 0b53e8b396b225342a65a66488535e48, type: 3}
   spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

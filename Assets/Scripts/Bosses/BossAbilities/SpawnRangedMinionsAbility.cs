@@ -18,9 +18,12 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
     private void Start()
     {
         GameObject parentObject = GameObject.Find("RangedMinionSpawnPositions");
+        Debug.Log("Parent Object: " + parentObject);
         if (parentObject != null)
         {
-            Transform[] children = parentObject.GetComponentsInChildren<Transform>(); 
+            Transform[] children = parentObject.GetComponentsInChildren<Transform>();
+
+            Debug.Log("Children Length: " + children.Length);
 
             for (int i = 1; i < children.Length; i++)
             {
@@ -44,13 +47,22 @@ public class SpawnRangedMinionsAbility : MonoBehaviour
         // Ensure we don't try to spawn more minions than there are spawn points
         int numToSpawn = Mathf.Min(numberOfMinionsToSpawn, spawnPoints.Length);
 
-        // Shuffle the spawn points array to randomize spawn locations
-        Shuffle(spawnPoints);
+        int spawnPointIndex = Random.Range(0, spawnPoints.Length);
 
-        for (int i = 0; i < numToSpawn; i++)
+        // this choses a random spawn point and spawns all the minions at that point, clumping them together
+        for (int i = 0; i < numberOfMinionsToSpawn; i++)
         {
-            StartCoroutine(SpawnMinionAfterDelay(i * desyncTime, i));
+            StartCoroutine(SpawnMinionAfterDelay(i * desyncTime, spawnPointIndex));
         }
+
+            // This is used to spawn them *anywhere* in the spawn points array.
+        /*         // Shuffle the spawn points array to randomize spawn locations
+                Shuffle(spawnPoints);
+
+                for (int i = 0; i < numToSpawn; i++)
+                {
+                    StartCoroutine(SpawnMinionAfterDelay(i * desyncTime, i));
+                } */
     }
 
     private IEnumerator SpawnMinionAfterDelay(float time, int spawnPointIndex)
