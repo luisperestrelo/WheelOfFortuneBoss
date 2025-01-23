@@ -9839,7 +9839,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &321591270002203612
 Transform:
   m_ObjectHideFlags: 0
@@ -10170,7 +10170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a97d52e92efcdf40badde32275152f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progress: 0
+  spriteRenderer: {fileID: 1629536621883475286}
+  baseMaterial: {fileID: 2100000, guid: 99a1dbfd57fe91347a5a62c74079cee4, type: 2}
 --- !u!1 &2852764372786114403
 GameObject:
   m_ObjectHideFlags: 0
@@ -10418,7 +10419,7 @@ SpriteMask:
   m_BackSortingLayerID: -617809293
   m_FrontSortingLayer: -1
   m_BackSortingLayer: -1
-  m_FrontSortingOrder: 5
+  m_FrontSortingOrder: 6
   m_BackSortingOrder: 2
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
@@ -10471,7 +10472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c0adddeb160a840a79251db73b2b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mask: {fileID: 4552508854753695049}
+  mask: {fileID: 4552508854753695049}
   progress: 0
 --- !u!1 &5191284465472610722
 GameObject:
@@ -10490,7 +10491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5635737895864902148
 Transform:
   m_ObjectHideFlags: 0
@@ -15432,7 +15433,7 @@ SpriteMask:
   m_BackSortingLayerID: -617809293
   m_FrontSortingLayer: -1
   m_BackSortingLayer: -1
-  m_FrontSortingOrder: 3
+  m_FrontSortingOrder: 4
   m_BackSortingOrder: 1
   m_IsCustomRangeActive: 1
   m_SpriteSortPoint: 0
@@ -15768,7 +15769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c0adddeb160a840a79251db73b2b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mask: {fileID: 5527177575942744812}
+  mask: {fileID: 5527177575942744812}
   progress: 0
 --- !u!1 &9061127649311623915
 GameObject:
@@ -15796,7 +15797,7 @@ Transform:
   m_GameObject: {fileID: 9061127649311623915}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.29, y: 1.96, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15824,3 +15825,6 @@ MonoBehaviour:
   icon: {fileID: 0}
   inactiveProgress: {fileID: 1453657766981509929}
   activeProgress: {fileID: 5016892024326863950}
+  cooldownIcon: {fileID: 483267608874396566}
+  inactiveIcon: {fileID: 4626028185513067269}
+  activeIcon: {fileID: 4482724638966453914}

@@ -50,10 +50,12 @@ public class Field : ScriptableObject
     [SerializeField] private string description;
     public string Description => description;
     [SerializeField] private Sprite icon;    
-    [SerializeField] private Color color;
-
     public Sprite Icon => icon;
+   
+    [SerializeField] private Color color;
     public Color Color => color;
+    [SerializeField] private Rune rune;
+    public Rune Rune => rune;
     [SerializeField] private FieldType fieldType;
     public FieldType FieldType => fieldType;
     [SerializeField] private List<Tags> tags;
