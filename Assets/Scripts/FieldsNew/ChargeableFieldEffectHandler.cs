@@ -56,6 +56,8 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
             Debug.Log("Current charge time: " + currentChargeTime);
             Debug.Log("Charge time: " + chargeTime);
             Debug.Log("Charge up fields speed multiplier: " + playerStats.ChargeUpFieldsSpeedMultiplier);
+            Segment.Rune?.SetChargeProgress(ChargePercent);
+            
             if (currentChargeTime >= chargeTime)
             {
                 OnChargeComplete(player);
@@ -90,6 +92,8 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
             // Apply the decaying charge-up field decay slowdown multiplier
             currentChargeTime -= decayRate * Time.deltaTime * playerStats.DecayingChargeUpFieldsDecaySlowdownMultiplier;
             currentChargeTime = Mathf.Clamp(currentChargeTime, 0f, chargeTime);
+            Segment.Rune?.SetChargeProgress(ChargePercent);
+
 
             if (currentChargeTime == 0)
             {
@@ -122,6 +126,7 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
         if (chargeIndicatorImage != null)
         {
             chargeIndicatorImage.fillAmount = 0f; // Initialize to 0
+            Segment.Rune?.SetChargeProgress(0f);
         }
     }
 }

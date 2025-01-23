@@ -7,6 +7,7 @@ public abstract class FieldEffectHandler : MonoBehaviour
     protected WheelSegment Segment { get; private set; }
     protected PlayerStats playerStats;
     protected AudioSource audioSource;
+    
     //protected SkillStats skillStats;
 
     public virtual void Initialize(Field fieldData)
