@@ -14,6 +14,7 @@ public class WheelSegment : MonoBehaviour
     public SpriteRenderer SegmentRenderer { get; private set; }
     public Collider2D SegmentCollider { get; private set; }
     public CircularPath CircularPath { get; private set; }
+    public Rune Rune { get;  private set; }
 
     public void Initialize(Field field, float startAngle, float endAngle)
     {
@@ -33,7 +34,16 @@ public class WheelSegment : MonoBehaviour
         {
             SegmentRenderer = gameObject.AddComponent<SpriteRenderer>();
         }
-        SegmentRenderer.sprite = Field.Icon; // Use the field's icon as the sprite
+        if (Field.Rune)
+        {
+            Rune = Instantiate(Field.Rune, transform); // TODO: rotate
+            Rune.Initialize(Field.Icon);
+        }
+        else
+        {
+            SegmentRenderer.sprite = Field.Icon; // Use the field's icon as the sprite
+        }
+        
         SegmentRenderer.color = Field.Color;
 
         // Add a Collider2D component for interaction if it doesn't exist
@@ -85,6 +95,7 @@ public class WheelSegment : MonoBehaviour
         if (IsOnCooldown)
         {
             cooldownTimer -= deltaTime;
+            Rune?.SetCooldownProgress(1 - cooldownTimer / Field.Cooldown);
             if (cooldownTimer <= 0f)
             {
                 IsOnCooldown = false;

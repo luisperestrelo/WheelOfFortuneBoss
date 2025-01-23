@@ -1,43 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Rune : MonoBehaviour
 {
     [SerializeField] private RadialProgressBar chargeProgressBar;
-    [SerializeField] private Color color;
+    [SerializeField] private Color color; // not used yet
     [SerializeField] private Sprite icon;
     [SerializeField] private RuneProgress inactiveProgress;
     [SerializeField] private RuneProgress activeProgress;
-    private float _chargeProgress;
+    // lazy
+    [SerializeField] private SpriteRenderer cooldownIcon;
+    [SerializeField] private SpriteRenderer inactiveIcon;
+    [SerializeField] private SpriteRenderer activeIcon;
 
-    public float ChargeProgress
+    public void Initialize(Sprite icon)
     {
-        get => _chargeProgress;
-        set
-        {
-            _chargeProgress = value;
-            chargeProgressBar.SetProgress(value);
-        }
+        cooldownIcon.sprite = icon;
+        inactiveIcon.sprite = icon;
+        activeIcon.sprite = icon;
+        SetCooldownProgress(1f);
     }
 
 
-    private float _cooldownProgress
-    ;
-    public float CooldownProgress
+    public void SetChargeProgress(float value)
     {
-        get { return _cooldownProgress; }
-        set
-        {
-            _cooldownProgress = value;
-            inactiveProgress.Progress = 1 - value;
-        }
+        chargeProgressBar.SetProgress(value);
     }
 
-    public float ActiveProgress
+    /// <summary>
+    /// 0 -> Cooldown starts <br/>
+    /// 1 -> Cooldown completed
+    /// </summary>
+    /// <param name="value"></param>
+    public void SetCooldownProgress(float value)
     {
-        get { return activeProgress.Progress; }
-        set { activeProgress.Progress = value; }
+        inactiveProgress.SetProgress(value);
+    }
+    
+
+
+    // TODO
+    public void SetActiveProgress(float value)
+    {
+        activeProgress.SetProgress(value);
     }
 
 

@@ -1,39 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class RuneProgress : MonoBehaviour
 {
 
-    [SerializeField] private Transform _mask;
-    [Range(0, 1)] public float progress = 0f; 
-
-
-     private float _progress = 0f;
-
-
-    private Vector3 _scale;
-
-
-    public float Progress
-    {
-        get { return _progress; }
-        set
-        {
-            _progress = value;
-            _mask.localScale = new Vector3(_scale.x, value * _scale.y, 1);
-        }
-    }
+    [SerializeField] private Transform mask;
+    [SerializeField]
+    [Range(0, 1)] private float progress = 0f; 
+    
+    private Vector3 initialScale;
 
     void Awake(){
-        _scale = _mask.localScale;
-
+        initialScale = mask.localScale;
+    }
+    
+    public void SetProgress(float value)
+    {
+        progress = value;
+        mask.localScale = new Vector3(initialScale.x, value * initialScale.y, 1);
     }
 
     void Update() {
-        _mask.localScale = new Vector3(_scale.x, progress * _scale.y, 1);
+        mask.localScale = new Vector3(initialScale.x, progress * initialScale.y, 1);
     }
-
 
 }

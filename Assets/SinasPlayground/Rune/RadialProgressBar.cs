@@ -1,24 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RadialProgressBar : MonoBehaviour
 {
-     private  Material progressBarMaterial; 
-    [Range(0, 1)] public float progress = 0f; 
+    [SerializeField] private Material baseMaterial; 
+    
+    private SpriteRenderer spriteRenderer; 
+    private Material instanceMaterial; 
 
-void Start(){
-    progressBarMaterial = GetComponent<SpriteRenderer>().material;
-}
-
-     void Update()
+    
+    private void Awake()
     {
-        var x = 360 - (progress * 360);
-        progressBarMaterial.SetFloat("_Arc2", x);
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        instanceMaterial = new Material(baseMaterial);
+        spriteRenderer.material = instanceMaterial;
+        SetProgress(0f);
     }
 
     public void SetProgress(float value)
     {
-        progress = value;
+        instanceMaterial?.SetFloat("_Arc2", 360 - (value * 360));  
     }
 }
