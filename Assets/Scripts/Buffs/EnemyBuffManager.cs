@@ -1,12 +1,18 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
-[RequireComponent(typeof(PlayerStats))]
-public class BuffManager : MonoBehaviour
+/// <summary>
+/// Minimal buff manager for enemies. 
+/// Does NOT interact with aggregator-based stats, or stats in general.
+/// If we do want to have stuff like "Boss takes increase damage", we will just add custom code here, since bosses dont really have stats.
+/// Tracks buffs (like poison) and handles their durations.
+/// </summary>
+public class EnemyBuffManager : MonoBehaviour
 {
-    private PlayerStats _playerStats;
-    private Health _playerHealth;
+    // Store each buff by BuffId
     private Dictionary<string, List<BuffBase>> activeBuffs = new Dictionary<string, List<BuffBase>>();
+
+    private Health _health;
 
     // For debug/inspector display:
     [SerializeField] private List<ActiveBuffDebugData> debugBuffs = new List<ActiveBuffDebugData>();
@@ -14,37 +20,40 @@ public class BuffManager : MonoBehaviour
 
     private void Awake()
     {
-        _playerStats = GetComponent<PlayerStats>();
-        _playerHealth = GetComponent<Health>();
+        _health = GetComponent<Health>();
     }
 
     private void Update()
     {
         float deltaTime = Time.deltaTime;
-        // We'll gather a list of buffs to remove
         List<(string, BuffBase)> buffsToRemove = null;
 
-        // Now we have a list per BuffId
+        // Update each buff's duration
         foreach (var kvp in activeBuffs)
         {
             var buffList = kvp.Value;
+
             foreach (var buff in buffList)
             {
-                buff.OnUpdate(_playerHealth, deltaTime);
+                buff.OnUpdate(_health, deltaTime);
 
+                // Decrement buff's duration
                 if (buff.UpdateDuration(deltaTime))
                 {
-                    if (buffsToRemove == null) buffsToRemove = new List<(string, BuffBase)>();
+                    // Mark for removal if expired
+                    if (buffsToRemove == null)
+                        buffsToRemove = new List<(string, BuffBase)>();
                     buffsToRemove.Add((kvp.Key, buff));
                 }
             }
         }
 
+        // Remove expired buffs
         if (buffsToRemove != null)
         {
-            foreach (var tuple in buffsToRemove)
+            foreach ((string buffId, BuffBase buff) in buffsToRemove)
             {
-                RemoveBuffInstance(tuple.Item1, tuple.Item2);
+                RemoveBuffInstance(buffId, buff);
             }
         }
 
@@ -53,45 +62,32 @@ public class BuffManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Apply a new buff using that Buff's StackingMode.
+    /// Apply a new buff. This manager does not handle aggregator logic; 
+    /// we simply track durations, stacking, etc.
     /// </summary>
     public void ApplyBuff(BuffBase newBuff)
     {
         string buffId = newBuff.BuffId;
 
-        // See if we have any existing buffs with this BuffId
+        // Check if we already have a list for this buffId
         if (!activeBuffs.TryGetValue(buffId, out var buffList))
         {
-            // No buff with that ID, so create a new list
             buffList = new List<BuffBase>();
             activeBuffs[buffId] = buffList;
         }
 
-        // If the buff is "Independent" and has a MaxStackCount >= 0, 
-        // enforce that many stacks by removing oldest if we're at capacity:
-        if (newBuff.StackingMode == StackingMode.Independent && newBuff.MaxStackCount >= 0)
-        {
-            if (buffList.Count >= newBuff.MaxStackCount)
-            {
-                BuffBase oldestBuff = buffList[0];
-                oldestBuff.OnRemove(_playerStats);
-                buffList.RemoveAt(0);
-                Debug.Log($"Removed oldest stack of buffId={buffId} due to max stack limit={newBuff.MaxStackCount}.");
-            }
-        }
-
+        // Standard approach: if the buff mode is "Independent," 
+        // we simply add a new instance. If user wants special logic 
+        // (like max stacks), they'd copy from the player's BuffManager code.
         if (buffList.Count == 0)
         {
-            // No existing buff of this type
             AddNewBuff(newBuff);
             return;
         }
 
-        // Otherwise handle stacking mode. For "Independent", we just add a new instance:
         switch (newBuff.StackingMode)
         {
             case StackingMode.Independent:
-                // Simply add a new instance
                 AddNewBuff(newBuff);
                 break;
 
@@ -99,40 +95,35 @@ public class BuffManager : MonoBehaviour
                 // Remove each old instance
                 foreach (var oldBuff in buffList)
                 {
-                    oldBuff.OnRemove(_playerStats);
+                    oldBuff.OnRemove(null);
                 }
                 buffList.Clear();
-                // Now add the new instance
+                // Add the new instance
                 AddNewBuff(newBuff);
                 break;
 
             case StackingMode.RefreshDuration:
-                // We just pick the first old buff (or all) to refresh
-                // for this example, assume 1 buff
+                // Just refresh the first instance's duration. 
                 var firstBuff = buffList[0];
                 firstBuff.Duration = newBuff.Duration;
-                // We do NOT re-apply stats => we keep oldBuff's stats
                 break;
 
             case StackingMode.IncrementStack:
-                // Potentially each BuffBase has a "StackCount" property
-                // we'd do oldBuff.IncrementStack() or something
-                // For demonstration, assume we'll keep track in the buff itself
                 var existingBuff = buffList[0];
                 existingBuff.AddStack();
-                // etc. Not used in this scenario
                 break;
         }
     }
 
-    private void AddNewBuff(BuffBase newBuff)
+    private void AddNewBuff(BuffBase buff)
     {
-        activeBuffs[newBuff.BuffId].Add(newBuff);
-        newBuff.OnApply(_playerStats);
+        activeBuffs[buff.BuffId].Add(buff);
+        buff.OnApply(null);
+        // We pass null instead of stats since we don't handle aggregator logic for enemies
     }
 
     /// <summary>
-    /// Called when a single BuffBase instance ends
+    /// Remove a single buff instance from the dictionary
     /// </summary>
     private void RemoveBuffInstance(string buffId, BuffBase instance)
     {
@@ -140,11 +131,10 @@ public class BuffManager : MonoBehaviour
         {
             if (buffList.Contains(instance))
             {
-                instance.OnRemove(_playerStats);
+                instance.OnRemove(null);
                 buffList.Remove(instance);
             }
 
-            // If no more buff instances of this ID, remove the dictionary entry
             if (buffList.Count == 0)
             {
                 activeBuffs.Remove(buffId);
@@ -153,7 +143,7 @@ public class BuffManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Forcibly remove all copies of a buff by ID
+    /// Forcibly remove all copies of a buff by ID (e.g. all poison stacks)
     /// </summary>
     public void RemoveBuffImmediately(string buffId)
     {
@@ -161,27 +151,33 @@ public class BuffManager : MonoBehaviour
         {
             foreach (var b in buffList)
             {
-                b.OnRemove(_playerStats);
+                b.OnRemove(null);
             }
             activeBuffs.Remove(buffId);
         }
     }
 
+    /// <summary>
+    /// Returns how many total "stacks" of a given buff ID exist.
+    /// If using StackingMode.Independent with N instances, each 
+    /// typically has StackCount=1 => total = buffList.Count.
+    /// If using IncrementStack, it might be a single buff with .StackCount
+    /// </summary>
     public int GetTotalStacksOf(string buffId)
     {
         if (!activeBuffs.TryGetValue(buffId, out var buffList))
             return 0;
-        int totalStacks = 0;
+
+        int total = 0;
         foreach (var buff in buffList)
         {
-            totalStacks += buff.StackCount;
+            total += buff.StackCount;
         }
-        return totalStacks;
+        return total;
     }
 
-    /// <summary>
-    /// Can expand in the inspector to show info about current buffs
-    /// </summary>
+    
+
     private void RefreshDebugList()
     {
         debugBuffs.Clear();
@@ -205,12 +201,7 @@ public class BuffManager : MonoBehaviour
             }
         }
     }
+
+
 }
 
-[System.Serializable]
-public struct ActiveBuffDebugData
-{
-    public string BuffId;
-    public float CurrentDuration;
-    public BuffType BuffType;
-}

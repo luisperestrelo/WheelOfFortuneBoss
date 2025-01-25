@@ -14,7 +14,7 @@ public class BasicAttack : BaseAttack
 
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
-        if (Random.value < playerStats.CritChance)
+        if (Random.value < playerStats.GetAggregatedCritChance())
         {
             damageMultiplier *= playerStats.CritMultiplier;
             Debug.Log("Basic Attack CRIT!");

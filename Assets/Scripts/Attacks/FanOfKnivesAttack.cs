@@ -5,7 +5,7 @@ public class FanOfKnivesAttack : BaseAttack
 {
     [SerializeField] private KnifeProjectile knifePrefab;
 /*     [SerializeField] private int numberOfKnives = 3; */
-    [SerializeField] private float spreadAngle = 15f; 
+    [SerializeField] private float spreadAngle = 10f; 
 
     public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle)
     {
@@ -42,7 +42,7 @@ public class FanOfKnivesAttack : BaseAttack
 
                 float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
-                if (Random.value < playerStats.CritChance)
+                if (Random.value < playerStats.GetAggregatedCritChance())
                 {
                     damageMultiplier *= playerStats.CritMultiplier;
                     Debug.Log("Knife CRIT!");
@@ -61,7 +61,7 @@ public class FanOfKnivesAttack : BaseAttack
 
             float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
-            if (Random.value < playerStats.CritChance)
+            if (Random.value < playerStats.GetAggregatedCritChance())
             {
                 damageMultiplier *= playerStats.CritMultiplier;
                 Debug.Log("Knife CRIT!");

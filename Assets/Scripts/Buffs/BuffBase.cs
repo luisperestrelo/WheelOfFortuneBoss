@@ -10,9 +10,13 @@ public abstract class BuffBase
 
     public StackingMode StackingMode { get; protected set; }
 
+    public int StackCount { get; protected set; } = 1;
+
+    public int MaxStackCount { get; protected set; } = -1;
+
     public abstract void OnApply(PlayerStats targetStats);
 
-    public virtual void OnUpdate(PlayerStats targetStats, float deltaTime) { }
+    public virtual void OnUpdate(Health targetHealth, float deltaTime) { }
 
     public abstract void OnRemove(PlayerStats targetStats);
 
@@ -20,5 +24,17 @@ public abstract class BuffBase
     {
         Duration -= deltaTime;
         return Duration <= 0f;
+    }
+
+    public virtual void AddStack()
+    {
+        if (MaxStackCount < 0)
+        {
+            StackCount++;
+        }
+        else
+        {
+            StackCount = Mathf.Min(StackCount + 1, MaxStackCount);
+        }
     }
 } 

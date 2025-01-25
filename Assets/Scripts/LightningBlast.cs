@@ -38,9 +38,9 @@ public class LightningBlast : MonoBehaviour
             {
                 float finalDamage = damage;
 
-                finalDamage *= playerCombat.GetUniversalDamageMultiplier();
+                finalDamage *= playerStats.GetAggregatedDamageMultiplier();
 
-                if (Random.value < playerStats.CritChance)
+                if (Random.value < playerStats.GetAggregatedCritChance())
                 {
                     finalDamage *= playerStats.CritMultiplier;
                     Debug.Log("Lightning Blast CRIT!"); 

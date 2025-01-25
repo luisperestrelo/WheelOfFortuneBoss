@@ -5,14 +5,13 @@ public abstract class DamageOverTimeBuff : BuffBase
     // E.g., how much damage per second
     protected float damagePerSecond;
     
-    public override void OnUpdate(PlayerStats targetStats, float deltaTime)
+    public override void OnUpdate(Health targetHealth, float deltaTime)
     {
         float damage = damagePerSecond * deltaTime;
 
-        var health = targetStats.GetComponent<Health>();
-        if (health != null && damage > 0f)
+        if (targetHealth != null && damage > 0f)
         {
-            health.TakeDamage(damage);
+            targetHealth.TakeDamage(damage);
         }
     }
 } 

@@ -13,7 +13,7 @@ public class VoidBurstAttack : BaseAttack
 
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier() * playerStats.PositiveNegativeFieldsEffectivenessMultiplier;
 
-        if (Random.value < playerStats.CritChance)
+        if (Random.value < playerStats.GetAggregatedCritChance())
         {
             damageMultiplier *= playerStats.CritMultiplier;
             Debug.Log("Void Burst CRIT!");

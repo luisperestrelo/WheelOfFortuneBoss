@@ -173,7 +173,8 @@ public class PlayerCombat : MonoBehaviour
 
     public float GetUniversalDamageMultiplier()
     {
-        return playerStats.BaseDamageMultiplier * temporaryDamageMultiplier;
+        //return playerStats.BaseDamageMultiplier * temporaryDamageMultiplier;
+        return playerStats.GetAggregatedDamageMultiplier();
     }
     private int CalculateTotalProjectiles(BaseAttack attack, bool shouldFanOut = false)
     {

@@ -11,7 +11,7 @@ public class FireballAttack : BaseAttack
 
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
-        if (Random.value < playerStats.CritChance)
+        if (Random.value < playerStats.GetAggregatedCritChance())
         {
             damageMultiplier *= playerStats.CritMultiplier;
             Debug.Log("Fireball CRIT!");

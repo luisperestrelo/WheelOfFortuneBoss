@@ -20,6 +20,8 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float lingeringBuffFieldsEffectivenessMultiplier = 1f;
     [SerializeField] private float fieldsCooldownMultiplier = 1f;
 
+
+
     public float MaxHealth { get { return maxHealth; } private set { maxHealth = value; } }
     public float HealthRegen { get { return healthRegen; } private set { healthRegen = value; } }
     public float BaseDamageMultiplier { get { return baseDamageMultiplier; } private set { baseDamageMultiplier = value; } }
@@ -36,6 +38,91 @@ public class PlayerStats : MonoBehaviour
     public float LingeringBuffFieldsDurationMultiplier { get { return lingeringBuffFieldsDurationMultiplier; } private set { lingeringBuffFieldsDurationMultiplier = value; } }
     public float LingeringBuffFieldsEffectivenessMultiplier { get { return lingeringBuffFieldsEffectivenessMultiplier; } private set { lingeringBuffFieldsEffectivenessMultiplier = value; } }
     public float FieldsCooldownMultiplier { get { return fieldsCooldownMultiplier; } private set { fieldsCooldownMultiplier = value; } }
+
+    // Stat-Aggregators
+    // Damage aggregator for stacking damage buffs (multiplicative)
+    private Dictionary<int, float> activeDamageContributions = new Dictionary<int, float>();
+    private int nextDamageId = 0;
+
+    // Crit aggregator for additive crit buffs (additive)
+    private Dictionary<int, float> activeCritContributions = new Dictionary<int, float>();
+    private int nextCritId = 0;
+
+    public int AddDamageContribution(float multiplier)
+    {
+        int id = nextDamageId++;
+        activeDamageContributions[id] = multiplier; // each buff can have e.g. 1.07 for +7%
+        return id;
+    }
+
+    public void UpdateDamageContribution(int id, float newValue)
+    {
+        if (activeDamageContributions.ContainsKey(id))
+        {
+            activeDamageContributions[id] = newValue;
+        }
+    }
+
+    public void RemoveDamageContribution(int id)
+    {
+        if (activeDamageContributions.ContainsKey(id))
+        {
+            activeDamageContributions.Remove(id);
+        }
+    }
+
+    /// <summary>
+    /// Multiply all active damage contributions together.
+    /// Then multiply by baseDamageMultiplier (if desired).
+    /// Example: If we have three instances each with 1.07 => final = 1.07 * 1.07 * 1.07 ...
+    /// </summary>
+    public float GetAggregatedDamageMultiplier()
+    {
+        float total = 1f;
+        foreach (var val in activeDamageContributions.Values)
+        {
+            total *= val;
+        }
+        return baseDamageMultiplier * total;
+    }
+
+    // CritChance (additive)
+    public int AddCritContribution(float extraCrit)
+    {
+        int id = nextCritId++;
+        activeCritContributions[id] = extraCrit; // e.g. +1.0 => +100%
+        return id;
+    }
+
+    public void UpdateCritContribution(int id, float newValue)
+    {
+        if (activeCritContributions.ContainsKey(id))
+        {
+            activeCritContributions[id] = newValue;
+        }
+    }
+
+    public void RemoveCritContribution(int id)
+    {
+        if (activeCritContributions.ContainsKey(id))
+        {
+            activeCritContributions.Remove(id);
+        }
+    }
+
+    /// <summary>
+    /// Sum up all active crit contributions, add to base, clamp to 1.0
+    /// e.g. base=0.05 => 5%. If we have +1.0 => total = 1.05 => 105% => clamp 1.0
+    /// </summary>
+    public float GetAggregatedCritChance()
+    {
+        float sum = critChance;
+        foreach (var val in activeCritContributions.Values)
+        {
+            sum += val;
+        }
+        return Mathf.Clamp01(sum);
+    }
 
     private void Awake()
     {
@@ -117,7 +204,7 @@ public class PlayerStats : MonoBehaviour
     public void MultiplyLingeringBuffFieldsEffectiveness(float multiplier)
     {
         LingeringBuffFieldsEffectivenessMultiplier *= multiplier;
-    }   
+    }
 
     public void MultiplyFieldsCooldownMultiplier(float multiplier)
     {
@@ -126,7 +213,9 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        #if UNITY_EDITOR
+
+
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.N))
         {
             BuffManager manager = GetComponent<BuffManager>();
@@ -138,6 +227,79 @@ public class PlayerStats : MonoBehaviour
                 Debug.Log("Applied a PoisonBuff via keyboard 'N'.");
             }
         }
-        #endif
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            BuffManager manager = GetComponent<BuffManager>();
+            int poisonStacks = manager.GetTotalStacksOf("Poison");
+            if (manager != null)
+            {
+                int extraDamage = poisonStacks * 5;
+                Debug.Log("Poison stacks: " + poisonStacks);
+                PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(extraDamage);
+                }
+                manager.RemoveBuffImmediately("Poison");
+            }
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            EnemyBuffManager manager = FindObjectOfType<Boss>().GetComponent<EnemyBuffManager>();
+            if (manager != null)
+            {
+                // e.g. 5 DPS for 3 seconds
+                PoisonBuff newPoison = new PoisonBuff(5f, 3f);
+                manager.ApplyBuff(newPoison);
+                Debug.Log("Applied a PoisonBuff via keyboard '2'.");
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            EnemyBuffManager manager = FindObjectOfType<Boss>().GetComponent<EnemyBuffManager>();
+            int poisonStacks = manager.GetTotalStacksOf("Poison");
+            if (manager != null)
+            {
+                int extraDamage = poisonStacks * 5;
+                Debug.Log("Poison stacks: " + poisonStacks);
+                Health health = FindObjectOfType<Boss>().GetComponent<Health>();
+                if (health != null)
+                {
+                    health.TakeDamage(extraDamage);
+                }
+                manager.RemoveBuffImmediately("Poison");
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            var buffManager = GetComponent<BuffManager>();
+            if (buffManager != null)
+            {
+                // 7% for e.g. 5 seconds
+                var stackingBuff = new StackingDamageBuff(1.07f, 5f);
+                buffManager.ApplyBuff(stackingBuff);
+                Debug.Log("Applied StackingDamageBuff (7% x multiple stacks) via M key.");
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            var buffManager = GetComponent<BuffManager>();
+            if (buffManager != null)
+            {
+                // +100% crit for 1 second
+                var critBuff = new CritBuff(1.0f, 1f);
+                buffManager.ApplyBuff(critBuff);
+                Debug.Log("Applied CritBuff +100% for 1 second via K key.");
+            }
+        }
+
+
+#endif
     }
-} 
+}
