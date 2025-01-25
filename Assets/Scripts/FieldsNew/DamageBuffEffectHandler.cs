@@ -15,43 +15,45 @@ public class DamageBuffEffectHandler : FieldEffectHandler
 
     public override void OnEnter(Player player)
     {
-        PlayerCombat playerCombat = player.GetComponent<PlayerCombat>();
-
-        // Apply the positive-negative field effectiveness multiplier to the damage multiplier
-        float finalMultiplier = damageMultiplier * playerStats.LingeringBuffFieldsEffectivenessMultiplier; //TODO change to buff fields
-
-        // Apply the lingering buff duration multiplier from PlayerStats
-        float finalDuration = duration * playerStats.LingeringBuffFieldsDurationMultiplier;
-
-        Debug.Log("Entering Damage Buff Field, boosting damage by " + finalMultiplier + " for " + finalDuration + " seconds");
-        playerCombat.SetDamageMultiplierForDuration(finalMultiplier, finalDuration);
+        var playerStats = player.GetComponent<PlayerStats>();
+        if (playerStats != null)
+        {
+            var buffManager = playerStats.GetComponent<BuffManager>();
+            if (buffManager != null)
+            {
+                float finalMultiplier = damageMultiplier * playerStats.LingeringBuffFieldsEffectivenessMultiplier;
+                float finalDuration = duration * playerStats.LingeringBuffFieldsDurationMultiplier;
+                DamageBuff dmgBuff = new DamageBuff(finalMultiplier, finalDuration);
+                buffManager.ApplyBuff(dmgBuff);
+                Debug.Log("Entering Damage Buff Field with multiplier=" + finalMultiplier + " for " + finalDuration + "s");
+            }
+        }
     }
 
     public override void OnStay(Player player, float deltaTime)
     {
-        PlayerCombat playerCombat = player.GetComponent<PlayerCombat>();
-
-        // Apply the positive-negative field effectiveness multiplier to the damage multiplier
-        float finalMultiplier = damageMultiplier * playerStats.LingeringBuffFieldsEffectivenessMultiplier;
-
-        // Apply the lingering buff duration multiplier from PlayerStats
-        float finalDuration = duration * playerStats.LingeringBuffFieldsDurationMultiplier;
-
-        playerCombat.SetDamageMultiplierForDuration(finalMultiplier, finalDuration); //it constantly refreshes
+        var playerStats = player.GetComponent<PlayerStats>();
+        if (playerStats != null)
+        {
+            var buffManager = playerStats.GetComponent<BuffManager>();
+            if (buffManager != null)
+            {
+                float finalMultiplier = damageMultiplier * playerStats.LingeringBuffFieldsEffectivenessMultiplier;
+                float finalDuration = duration * playerStats.LingeringBuffFieldsDurationMultiplier;
+                DamageBuff dmgBuff = new DamageBuff(finalMultiplier, finalDuration);
+                buffManager.ApplyBuff(dmgBuff);
+            }
+        }
+        // Debug or logs as needed...
     }
 
     public override void OnExit(Player player)
     {
-        PlayerCombat playerCombat = player.GetComponent<PlayerCombat>();
-
-        // Apply the positive-negative field effectiveness multiplier to the damage multiplier
-        float finalMultiplier = damageMultiplier * playerStats.LingeringBuffFieldsEffectivenessMultiplier;
-
-        // Apply the lingering buff duration multiplier from PlayerStats
-        float finalDuration = duration * playerStats.LingeringBuffFieldsDurationMultiplier;
-
-        playerCombat.SetDamageMultiplierForDuration(finalMultiplier, finalDuration);
-        Debug.Log("Exiting Damage Buff Field, boosting damage by " + finalMultiplier + " for " + finalDuration + " seconds ");
-        // The damage multiplier is automatically reset after the duration in PlayerCombat
+        // Currently, we do nothing special on exit. We can let the buff linger
+        // for its remaining duration. If you want it removed immediately:
+        // var playerStats = player.GetComponent<PlayerStats>();
+        // var buffManager = playerStats.GetComponent<BuffManager>();
+        // buffManager.RemoveBuffImmediately("DamageBuff");
+        Debug.Log("Exiting Damage Buff Field");
     }
 }

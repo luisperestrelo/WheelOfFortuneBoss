@@ -58,6 +58,11 @@ public class PlayerStats : MonoBehaviour
         HealthRegen = amount;
     }
 
+    public void SetBaseDamageMultiplier(float multiplier)
+    {
+        BaseDamageMultiplier = multiplier;
+    }
+
     public void MultiplyBaseDamageMultiplier(float multiplier)
     {
         BaseDamageMultiplier *= multiplier;
@@ -117,5 +122,22 @@ public class PlayerStats : MonoBehaviour
     public void MultiplyFieldsCooldownMultiplier(float multiplier)
     {
         FieldsCooldownMultiplier = Mathf.Clamp01(FieldsCooldownMultiplier * multiplier);
+    }
+
+    private void Update()
+    {
+        #if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            BuffManager manager = GetComponent<BuffManager>();
+            if (manager != null)
+            {
+                // e.g. 5 DPS for 3 seconds
+                PoisonBuff newPoison = new PoisonBuff(5f, 3f);
+                manager.ApplyBuff(newPoison);
+                Debug.Log("Applied a PoisonBuff via keyboard 'N'.");
+            }
+        }
+        #endif
     }
 } 

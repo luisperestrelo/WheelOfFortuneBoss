@@ -179,4 +179,15 @@ public class PlayerCombat : MonoBehaviour
     {
         return attack.ProjectileCount + Mathf.FloorToInt(playerStats.AdditionalProjectilesForAttacks);
     }
+
+    public float GetTemporaryDamageMultiplier()
+    {
+        return temporaryDamageMultiplier;
+    }
+
+    public void SetTemporaryDamageMultiplier(float newMultiplier)
+    {
+        temporaryDamageMultiplier = newMultiplier;
+        // If you want to handle stacking multiple buffs, you might do more logic here
+    }
 }

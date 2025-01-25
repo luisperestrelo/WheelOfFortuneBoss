@@ -10,7 +10,7 @@ public class BasicAttack : BaseAttack
     {
         base.PerformAttack(playerCombat);
 
-        Debug.Log("spreadAngle: " + spreadAngle);
+//        Debug.Log("spreadAngle: " + spreadAngle);
 
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 

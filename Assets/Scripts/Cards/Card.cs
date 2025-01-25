@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public enum CardRarity { Common, Rare, Epic }
-public enum StatType
+public enum  StatType
 {
     Health,
     GlobalDamageMultiplier,
