@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : Stats
 {
-
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 }

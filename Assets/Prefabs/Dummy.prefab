@@ -183,7 +183,8 @@ GameObject:
   - component: {fileID: 2482671343858765153}
   - component: {fileID: 4791756107283042383}
   - component: {fileID: 3737699018332008235}
-  - component: {fileID: -2136239617544019909}
+  - component: {fileID: -4287059693438845489}
+  - component: {fileID: -960222791904844731}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Enemy
@@ -422,7 +423,7 @@ MonoBehaviour:
   upgradeOrb: {fileID: 3248166573470281562, guid: 6f352a6f3562c1a478f70490dfe648e7, type: 3}
   player: {fileID: 0}
   playerPath: {fileID: 0}
---- !u!114 &-2136239617544019909
+--- !u!114 &-4287059693438845489
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -431,7 +432,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 3523418360789619746}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8f12e81dff6c949a32d3c64e8b88b2, type: 3}
+  m_Script: {fileID: 11500000, guid: b79a32cdfb8675541acb079b8e32e9ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthRegen: 0
+  baseDamageMultiplier: 1
+  baseFireRateMultiplier: 1
+  critChance: 0.05
+  critMultiplier: 2
+  healingFieldsStrengthMultiplier: 1
+  chargeUpFieldsSpeedMultiplier: 1
+  decayingChargeUpFieldsDecaySlowdownMultiplier: 1
+  positiveNegativeFieldsEffectivenessMultiplier: 1
+  additionalProjectilesForAttacks: 0
+  lingeringBuffFieldsDurationMultiplier: 1
+  lingeringBuffFieldsEffectivenessMultiplier: 1
+  fieldsCooldownMultiplier: 1
+--- !u!114 &-960222791904844731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3523418360789619746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9efb1868d6bcdf4448e74cf6598b5d86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   debugBuffs: []

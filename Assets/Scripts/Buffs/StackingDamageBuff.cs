@@ -8,7 +8,7 @@ using UnityEngine;
 public class StackingDamageBuff : BuffBase
 {
     private float multiplierPerStack;
-    private PlayerStats _targetStats;
+    private Stats _targetStats;
     private int aggregatorId = -1;
     private bool isApplied = false;
 
@@ -25,19 +25,19 @@ public class StackingDamageBuff : BuffBase
         MaxStackCount = 10;
     }
 
-    public override void OnApply(PlayerStats targetStats)
+    public override void OnApply(Stats targetStats)
     {
         _targetStats = targetStats;
         aggregatorId = _targetStats.AddDamageContribution(multiplierPerStack);
         isApplied = true;
     }
 
-    public override void OnUpdate(Health targetHealth, float deltaTime)
+    public override void OnUpdate(Stats targetStats, float deltaTime)
     {
         // No tick-based logic, so do nothing here
     }
 
-    public override void OnRemove(PlayerStats targetStats)
+    public override void OnRemove(Stats targetStats)
     {
         if (isApplied && aggregatorId >= 0)
         {

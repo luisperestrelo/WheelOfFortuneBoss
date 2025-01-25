@@ -3,7 +3,7 @@ using UnityEngine;
 public class CritBuff : BuffBase
 {
     private float addedCrit;  // e.g. 1.0 => +100%
-    private PlayerStats _targetStats;
+    private Stats _targetStats;
     private int aggregatorId = -1;
     private bool isApplied = false;
 
@@ -16,19 +16,19 @@ public class CritBuff : BuffBase
         this.addedCrit = addedCrit;
     }
 
-    public override void OnApply(PlayerStats targetStats)
+    public override void OnApply(Stats targetStats)
     {
         _targetStats = targetStats;
         aggregatorId = _targetStats.AddCritContribution(addedCrit);
         isApplied = true;
     }
 
-    public override void OnUpdate(Health targetHealth, float deltaTime)
+    public override void OnUpdate(Stats targetStats, float deltaTime)
     {
         // No special tick logic
     }
 
-    public override void OnRemove(PlayerStats targetStats)
+    public override void OnRemove(Stats targetStats)
     {
         if (isApplied && aggregatorId >= 0)
         {

@@ -14,11 +14,11 @@ public abstract class BuffBase
 
     public int MaxStackCount { get; protected set; } = -1;
 
-    public abstract void OnApply(PlayerStats targetStats);
+    public abstract void OnApply(Stats targetStats);
 
-    public virtual void OnUpdate(Health targetHealth, float deltaTime) { }
+    public virtual void OnUpdate(Stats targetStats, float deltaTime) { }
 
-    public abstract void OnRemove(PlayerStats targetStats);
+    public abstract void OnRemove(Stats targetStats);
 
     public virtual bool UpdateDuration(float deltaTime)
     {

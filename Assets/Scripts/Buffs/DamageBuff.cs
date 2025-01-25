@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DamageBuff : BuffBase
 {
-    private PlayerStats _targetStats;
+    private Stats _targetStats;
     private bool isApplied = false;
     private int aggregatorId = -1;
 
@@ -17,19 +17,19 @@ public class DamageBuff : BuffBase
         damageMultiplier = baseMultiplier;
     }
 
-    public override void OnApply(PlayerStats targetStats)
+    public override void OnApply(Stats targetStats)
     {
         _targetStats = targetStats;
         aggregatorId = _targetStats.AddDamageContribution(damageMultiplier);
         isApplied = true;
     }
 
-    public override void OnUpdate(Health targetHealth, float deltaTime)
+    public override void OnUpdate(Stats targetStats, float deltaTime)
     {
         // No ticking logic needed
     }
 
-    public override void OnRemove(PlayerStats targetStats)
+    public override void OnRemove(Stats targetStats)
     {
         if (isApplied && aggregatorId >= 0)
         {

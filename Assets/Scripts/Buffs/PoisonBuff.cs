@@ -13,13 +13,13 @@ public class PoisonBuff : DamageOverTimeBuff
         Duration = duration;
     }
 
-    public override void OnApply(PlayerStats targetStats)
+    public override void OnApply(Stats targetStats)
     {
         // Possibly spawn or enable a poison VFX
         Debug.Log("PoisonBuff OnApply: Starting DoT...");
     }
 
-    public override void OnRemove(PlayerStats targetStats)
+    public override void OnRemove(Stats targetStats)
     {
         // Stop poison visuals/sfx if needed
         Debug.Log("PoisonBuff OnRemove: Stopped DoT.");

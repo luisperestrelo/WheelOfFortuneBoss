@@ -11,6 +11,7 @@ public class EnemyBuffManager : MonoBehaviour
 {
     // Store each buff by BuffId
     private Dictionary<string, List<BuffBase>> activeBuffs = new Dictionary<string, List<BuffBase>>();
+    private Stats _stats;
 
     private Health _health;
 
@@ -21,6 +22,7 @@ public class EnemyBuffManager : MonoBehaviour
     private void Awake()
     {
         _health = GetComponent<Health>();
+        _stats = GetComponent<Stats>();
     }
 
     private void Update()
@@ -35,7 +37,7 @@ public class EnemyBuffManager : MonoBehaviour
 
             foreach (var buff in buffList)
             {
-                buff.OnUpdate(_health, deltaTime);
+                buff.OnUpdate(_stats, deltaTime);
 
                 // Decrement buff's duration
                 if (buff.UpdateDuration(deltaTime))

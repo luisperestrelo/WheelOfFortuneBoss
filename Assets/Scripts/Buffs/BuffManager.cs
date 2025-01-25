@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(PlayerStats))]
+//[RequireComponent(typeof(PlayerStats))]
 public class BuffManager : MonoBehaviour
 {
-    private PlayerStats _playerStats;
+    private Stats _stats;
     private Health _playerHealth;
     private Dictionary<string, List<BuffBase>> activeBuffs = new Dictionary<string, List<BuffBase>>();
 
@@ -14,7 +14,7 @@ public class BuffManager : MonoBehaviour
 
     private void Awake()
     {
-        _playerStats = GetComponent<PlayerStats>();
+        _stats = GetComponent<Stats>();
         _playerHealth = GetComponent<Health>();
     }
 
@@ -30,7 +30,7 @@ public class BuffManager : MonoBehaviour
             var buffList = kvp.Value;
             foreach (var buff in buffList)
             {
-                buff.OnUpdate(_playerHealth, deltaTime);
+                buff.OnUpdate(_stats, deltaTime);
 
                 if (buff.UpdateDuration(deltaTime))
                 {
@@ -74,7 +74,7 @@ public class BuffManager : MonoBehaviour
             if (buffList.Count >= newBuff.MaxStackCount)
             {
                 BuffBase oldestBuff = buffList[0];
-                oldestBuff.OnRemove(_playerStats);
+                oldestBuff.OnRemove(_stats);
                 buffList.RemoveAt(0);
                 Debug.Log($"Removed oldest stack of buffId={buffId} due to max stack limit={newBuff.MaxStackCount}.");
             }
@@ -99,7 +99,7 @@ public class BuffManager : MonoBehaviour
                 // Remove each old instance
                 foreach (var oldBuff in buffList)
                 {
-                    oldBuff.OnRemove(_playerStats);
+                    oldBuff.OnRemove(_stats);
                 }
                 buffList.Clear();
                 // Now add the new instance
@@ -128,7 +128,7 @@ public class BuffManager : MonoBehaviour
     private void AddNewBuff(BuffBase newBuff)
     {
         activeBuffs[newBuff.BuffId].Add(newBuff);
-        newBuff.OnApply(_playerStats);
+        newBuff.OnApply(_stats);
     }
 
     /// <summary>
@@ -140,7 +140,7 @@ public class BuffManager : MonoBehaviour
         {
             if (buffList.Contains(instance))
             {
-                instance.OnRemove(_playerStats);
+                instance.OnRemove(_stats);
                 buffList.Remove(instance);
             }
 
@@ -161,7 +161,7 @@ public class BuffManager : MonoBehaviour
         {
             foreach (var b in buffList)
             {
-                b.OnRemove(_playerStats);
+                b.OnRemove(_stats);
             }
             activeBuffs.Remove(buffId);
         }

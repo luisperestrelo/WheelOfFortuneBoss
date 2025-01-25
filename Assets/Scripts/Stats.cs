@@ -124,10 +124,7 @@ public class Stats : MonoBehaviour
         return Mathf.Clamp01(sum);
     }
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+
 
     public void IncreaseMaxHealth(float amount)
     {

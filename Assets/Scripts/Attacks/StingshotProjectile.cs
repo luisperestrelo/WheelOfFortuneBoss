@@ -11,7 +11,7 @@ public class StingshotProjectile : BaseProjectile
     {
         if (collision.gameObject.TryGetComponent<Health>(out var health) && health.gameObject.tag != "Player")
         {
-            EnemyBuffManager manager = health.GetComponent<EnemyBuffManager>();
+            BuffManager manager = health.GetComponent<BuffManager>();
             if (manager != null)
             {
                 manager.ApplyBuff(new PoisonBuff(poisonDuration, poisonDamage));
