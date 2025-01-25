@@ -64,6 +64,12 @@ public static class FieldEffectHandlerFactory
                 return chargedVoidBurstHandler;
             case FieldType.TentacleShieldBusterField:
                 return new GameObject("TentacleShieldBusterEffectHandler").AddComponent<TentacleShieldBusterEffectHandler>();
+            case FieldType.Stingshot:
+                var stingshotHandler = new GameObject().AddComponent<StingshotAttackEffectHandler>();
+                stingshotHandler.Initialize(fieldData);
+                stingshotHandler.name = "StingshotAttackEffectHandler";
+                return stingshotHandler;
+
 
             default:
                 Debug.LogError("FieldEffectHandlerFactory::CreateEffectHandler: No handler found for field type " + fieldData.FieldType);

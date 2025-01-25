@@ -1,8 +1,8 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "StingShotField", menuName = "Fields/StingShot Field")]
-public class StingShotField : Field
+[CreateAssetMenu(fileName = "StingShotField", menuName = "Fields/Stingshot Field")]
+public class StingshotField : Field
 {
-    [SerializeField] private StingShotAttack stingShot;
-    public StingShotAttack StingShot => stingShot;
+    [SerializeField] private StingshotAttack stingshotAttack;
+    public StingshotAttack StingshotAttack => stingshotAttack;
 } 

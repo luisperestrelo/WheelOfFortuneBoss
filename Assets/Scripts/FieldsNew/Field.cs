@@ -16,7 +16,8 @@ public enum FieldType
     FanOfKnives,
     DamagePlayer,
     DamagingField,
-    TentacleShieldBusterField
+    TentacleShieldBusterField,
+    Stingshot
    
 }
 
