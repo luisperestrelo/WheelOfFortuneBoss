@@ -17,7 +17,10 @@ public class HoldToMove : IMovementScheme
     {
         if (Input.GetKey(KeyCode.E))
         {
-            _player.Direction = -1f; // Counter-clockwise
+            if (Input.GetMouseButton(0))
+                _player.Direction = -0.5f;
+            else
+                _player.Direction = -1f; // Counter-clockwise
             if (_player.UsesAcceleration)
             {
                 _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed, _player.AccelerationRate * Time.deltaTime);
@@ -29,7 +32,10 @@ public class HoldToMove : IMovementScheme
         }
         else if (Input.GetKey(KeyCode.Q))
         {
-            _player.Direction = 1f; // Clockwise
+            if (Input.GetMouseButton(0))
+                _player.Direction = 0.5f;
+            else
+                _player.Direction = 1f; // Clockwise
             if (_player.UsesAcceleration)
             {
                 _player.CurrentRotationSpeed = Mathf.MoveTowards(_player.CurrentRotationSpeed, _player.Direction * _player.MaxRotationSpeed, _player.AccelerationRate * Time.deltaTime);
