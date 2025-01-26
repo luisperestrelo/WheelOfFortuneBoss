@@ -318,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe3aca7726cc464181577e932e2665e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 180
   currentHealth: 0
   hpHeavyDamageThreshold: 25
   lightDamageSfx: {fileID: 8300000, guid: 7c07f3453db41de478903fd766d7c9f3, type: 3}
@@ -441,6 +441,7 @@ MonoBehaviour:
   baseFireRateMultiplier: 1
   critChance: 0.05
   critMultiplier: 2
+  baseDamageTakenMultiplier: 1
   healingFieldsStrengthMultiplier: 1
   chargeUpFieldsSpeedMultiplier: 1
   decayingChargeUpFieldsDecaySlowdownMultiplier: 1
@@ -449,6 +450,15 @@ MonoBehaviour:
   lingeringBuffFieldsDurationMultiplier: 1
   lingeringBuffFieldsEffectivenessMultiplier: 1
   fieldsCooldownMultiplier: 1
+  damageOverTimeMultiplier: 1
+  poisonDamageOverTimeMultiplier: 1
+  poisonDurationMultiplier: 1
+  poisonChance: 0
+  basePoisonDamage: 1
+  basePoisonDuration: 4
+  aggregatedCritChance: 0
+  aggregatedDamageMultiplier: 0
+  aggregatedDamageTakenMultiplier: 0
 --- !u!114 &-960222791904844731
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95a8803432e6df249a5e95155e7c0306, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 200
+  damage: 125
   lifetime: 0.8
   strikeSfx: {fileID: 8300000, guid: b45e7124284cbab4db491e8a0f0f88f5, type: 3}
 --- !u!82 &2020867012672625023

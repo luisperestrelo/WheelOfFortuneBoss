@@ -149,6 +149,14 @@ public class PlayerCombat : MonoBehaviour
         _currentShieldArea = source;
         //if (shieldPrefab == null) return;
         _activeShield = Instantiate(this.shieldPrefab, transform.position, Quaternion.identity, transform);
+        StartCoroutine(RemoveShieldAfterDelay(source));
+    }
+
+    private IEnumerator RemoveShieldAfterDelay(ShieldArea source)
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (source == _currentShieldArea)
+            RemoveShield();
     }
 
     public void RemoveShield()
