@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
@@ -35,6 +35,15 @@ public class PlayerCombat : MonoBehaviour
     // Temporary multipliers for buffs
     private float temporaryDamageMultiplier = 1f;
     private float temporaryFireRateMultiplier = 1f;
+
+    // FireballAttack (and other attacks) can call this if a crit occurs
+    public UnityEvent OnCrit;  
+
+    private void Awake()
+    {
+        if (OnCrit == null)
+            OnCrit = new UnityEvent();
+    }
 
     private void Start()
     {
@@ -190,5 +199,10 @@ public class PlayerCombat : MonoBehaviour
     {
         temporaryDamageMultiplier = newMultiplier;
         // If you want to handle stacking multiple buffs, you might do more logic here
+    }
+
+    public void NotifyCrit()
+    {
+        OnCrit.Invoke();
     }
 }

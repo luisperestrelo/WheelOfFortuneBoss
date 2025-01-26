@@ -13,15 +13,19 @@ public class VoidBurstAttack : BaseAttack
 
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier() * playerStats.PositiveNegativeFieldsEffectivenessMultiplier;
 
+        
         if (Random.value < playerStats.GetAggregatedCritChance())
         {
             damageMultiplier *= playerStats.CritMultiplier;
             Debug.Log("Void Burst CRIT!");
+            playerCombat.NotifyCrit();
+
         }
         //playerCombat.shootAudioSource.PlayOneShot(playerCombat.shootSfx); //TODO: Add void burst sfx
         //playerCombat.shootAudioSource.pitch = Random.Range(0.9f, 1.3f);
 
         damageDealer.SetDamage(BaseDamage * damageMultiplier);
+        damageDealer.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
 
         Plane plane = new(Vector3.forward, playerCombat.transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);

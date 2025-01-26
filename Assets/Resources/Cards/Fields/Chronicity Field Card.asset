@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8e8f83f0e9fa740b98eab6bc31ecc0, type: 3}
+  m_Name: Chronicity Field Card
+  m_EditorClassIdentifier: 
+  cardName: Chronicity
+  description: When charged, increase the time remaining on all poison stacks by
+    4 seconds
+  rarity: 1
+  icon: {fileID: 0}
+  cardType: 0
+  isKissCurse: 0
+  downSideDescription: 
+  field: {fileID: 11400000, guid: a19c9a49852a8c24e8f3b3dad19fcdce, type: 2}

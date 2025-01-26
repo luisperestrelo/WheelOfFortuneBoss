@@ -28,5 +28,10 @@ public enum StackingMode
     /// Increase an internal "stack count" and recalculates stats accordingly.
     /// (Requires internal logic to handle how stats scale with stack count.)
     /// </summary>
-    IncrementStack
+    IncrementStack,
+
+    /// <summary>
+    /// Same as Independent, but refresh all existing durations.
+    /// </summary>
+    IndependentButRefreshesAll
 }

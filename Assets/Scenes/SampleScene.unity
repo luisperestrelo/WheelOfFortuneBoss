@@ -2911,7 +2911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheelManager: {fileID: 0}
-  fieldToAdd: {fileID: 11400000, guid: b9d45bcdbf1f61e449b1fadba7dda377, type: 2}
+  fieldToAdd: {fileID: 11400000, guid: 7a7322c246766e6468341027b92d9a94, type: 2}
   fieldToRemove: {fileID: 11400000, guid: 014a8939210a92945ac90130223e8bd6, type: 2}
   upgradeOrbPrefab: {fileID: 4831472064132810505, guid: 4201f5fda37fd864b8f0f35c0af84c05, type: 3}
   player: {fileID: 0}
@@ -3636,6 +3636,7 @@ MonoBehaviour:
   baseFireRateMultiplier: 1
   critChance: 0.05
   critMultiplier: 2
+  baseDamageTakenMultiplier: 1
   healingFieldsStrengthMultiplier: 1
   chargeUpFieldsSpeedMultiplier: 1
   decayingChargeUpFieldsDecaySlowdownMultiplier: 1
@@ -3644,6 +3645,15 @@ MonoBehaviour:
   lingeringBuffFieldsDurationMultiplier: 1
   lingeringBuffFieldsEffectivenessMultiplier: 1
   fieldsCooldownMultiplier: 1
+  damageOverTimeMultiplier: 1
+  poisonDamageOverTimeMultiplier: 1
+  poisonDurationMultiplier: 1
+  poisonChance: 0
+  basePoisonDamage: 3
+  basePoisonDuration: 5
+  aggregatedCritChance: 0
+  aggregatedDamageMultiplier: 0
+  aggregatedDamageTakenMultiplier: 0
 --- !u!114 &1896026460 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7586169954359990532, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}

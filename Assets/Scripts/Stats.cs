@@ -9,6 +9,7 @@ public class Stats : MonoBehaviour
     [SerializeField] private float baseFireRateMultiplier = 1f;
     [SerializeField] private float critChance = 0.05f;
     [SerializeField] private float critMultiplier = 2f;
+    [SerializeField] private float baseDamageTakenMultiplier = 1f;
 
     // Field-related stats
     [SerializeField] private float healingFieldsStrengthMultiplier = 1f;
@@ -20,7 +21,13 @@ public class Stats : MonoBehaviour
     [SerializeField] private float lingeringBuffFieldsEffectivenessMultiplier = 1f;
     [SerializeField] private float fieldsCooldownMultiplier = 1f;
 
-
+    //More specialized stats
+    [SerializeField] private float damageOverTimeMultiplier = 1f;
+    [SerializeField] private float poisonDamageOverTimeMultiplier = 1f;
+    [SerializeField] private float poisonDurationMultiplier = 1f;
+    [SerializeField] private float poisonChance = 0f;
+    [SerializeField] private float basePoisonDamage = 1f;
+    [SerializeField] private float basePoisonDuration = 4f;
 
     public float MaxHealth { get { return maxHealth; } private set { maxHealth = value; } }
     public float HealthRegen { get { return healthRegen; } private set { healthRegen = value; } }
@@ -28,6 +35,7 @@ public class Stats : MonoBehaviour
     public float BaseFireRateMultiplier { get { return baseFireRateMultiplier; } private set { baseFireRateMultiplier = value; } }
     public float CritChance { get { return critChance; } private set { critChance = value; } }
     public float CritMultiplier { get { return critMultiplier; } private set { critMultiplier = value; } }
+    public float BaseDamageTakenMultiplier { get { return baseDamageTakenMultiplier; } private set { baseDamageTakenMultiplier = value; } }
 
     // Field-related properties
     public float HealingFieldsStrengthMultiplier { get { return healingFieldsStrengthMultiplier; } private set { healingFieldsStrengthMultiplier = value; } }
@@ -39,6 +47,14 @@ public class Stats : MonoBehaviour
     public float LingeringBuffFieldsEffectivenessMultiplier { get { return lingeringBuffFieldsEffectivenessMultiplier; } private set { lingeringBuffFieldsEffectivenessMultiplier = value; } }
     public float FieldsCooldownMultiplier { get { return fieldsCooldownMultiplier; } private set { fieldsCooldownMultiplier = value; } }
 
+    // More specialized stats
+    public float DamageOverTimeMultiplier { get { return damageOverTimeMultiplier; } private set { damageOverTimeMultiplier = value; } }
+    public float PoisonDamageOverTimeMultiplier { get { return poisonDamageOverTimeMultiplier; } private set { poisonDamageOverTimeMultiplier = value; } }
+    public float PoisonDurationMultiplier { get { return poisonDurationMultiplier; } private set { poisonDurationMultiplier = value; } }
+    public float PoisonChance { get { return poisonChance; } private set { poisonChance = value; } }
+    public float BasePoisonDamage { get { return basePoisonDamage; } private set { basePoisonDamage = value; } }
+    public float BasePoisonDuration { get { return basePoisonDuration; } private set { basePoisonDuration = value; } }
+
     // Stat-Aggregators
     // Damage aggregator for stacking damage buffs (multiplicative)
     private Dictionary<int, float> activeDamageContributions = new Dictionary<int, float>();
@@ -47,6 +63,18 @@ public class Stats : MonoBehaviour
     // Crit aggregator for additive crit buffs (additive)
     private Dictionary<int, float> activeCritContributions = new Dictionary<int, float>();
     private int nextCritId = 0;
+
+    // Damage-taken aggregator for stacking damage taken buffs (multiplicative)
+    private Dictionary<int, float> activeDamageTakenContributions = new Dictionary<int, float>();
+    private int nextDamageTakenId = 0;
+
+    // just to see in the inspector
+    [Space]
+    [Header("Stats with temporary buffs")]
+    [SerializeField] private float aggregatedCritChance = 0f;
+    [SerializeField] private float aggregatedDamageMultiplier = 0f;
+    [SerializeField] private float aggregatedDamageTakenMultiplier = 0f;
+
 
     public int AddDamageContribution(float multiplier)
     {
@@ -124,7 +152,37 @@ public class Stats : MonoBehaviour
         return Mathf.Clamp01(sum);
     }
 
+    // Damage-taken aggregator
+    public int AddDamageTakenContribution(float multiplier)
+    {
+        int id = nextDamageTakenId++;
+        activeDamageTakenContributions[id] = multiplier; // e.g. 1.20 => +20% 
+        return id;
+    }
 
+    public void RemoveDamageTakenContribution(int id)
+    {
+        if (activeDamageTakenContributions.ContainsKey(id))
+        {
+            activeDamageTakenContributions.Remove(id);
+        }
+    }
+
+    /// <summary>
+    /// Multiply all active damage-taken contributions together,
+    /// then multiply by baseDamageTakenMultiplier. 
+    /// Example: if we have two 1.2 multipliers => final = baseDamageTakenMultiplier * 1.2 * 1.2
+    /// </summary>
+    public float GetAggregatedDamageTakenMultiplier()
+    {
+        float total = 1f;
+        foreach (var val in activeDamageTakenContributions.Values)
+        {
+            total *= val;
+        }
+        //Debug.Log("Total damage taken multiplier: " + total);
+        return baseDamageTakenMultiplier * total;
+    }
 
     public void IncreaseMaxHealth(float amount)
     {
@@ -155,6 +213,7 @@ public class Stats : MonoBehaviour
     public void MultiplyBaseFireRateMultiplier(float multiplier)
     {
         BaseFireRateMultiplier *= multiplier;
+        Debug.Log("BaseFireRateMultiplier: " + BaseFireRateMultiplier);
     }
 
     public void SetCritChance(float newCritChance)
@@ -166,6 +225,18 @@ public class Stats : MonoBehaviour
     {
         CritMultiplier = newCritMultiplier;
     }
+
+    public void SetBaseDamageTakenMultiplier(float multiplier)
+    {
+        BaseDamageTakenMultiplier = multiplier;
+    }
+
+    public void MultiplyBaseDamageTakenMultiplier(float multiplier)
+    {
+        BaseDamageTakenMultiplier *= multiplier;
+    }
+
+
 
     // Field-related modification methods 
     public void MultiplyHealingFieldsStrength(float multiplier)
@@ -208,94 +279,34 @@ public class Stats : MonoBehaviour
         FieldsCooldownMultiplier = Mathf.Clamp01(FieldsCooldownMultiplier * multiplier);
     }
 
+    public void SetPoisonChance(float newPoisonChance)
+    {
+        PoisonChance = newPoisonChance;
+    }
+
+    public void MultiplyPoisonDamageOverTimeMultiplier(float multiplier)
+    {
+        PoisonDamageOverTimeMultiplier *= multiplier;
+    }
+
+    public void MultiplyPoisonDurationMultiplier(float multiplier)
+    {
+        PoisonDurationMultiplier *= multiplier;
+    }
+
+    
+
+
+
     private void Update()
     {
 
 
 #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            BuffManager manager = GetComponent<BuffManager>();
-            if (manager != null)
-            {
-                // e.g. 5 DPS for 3 seconds
-                PoisonBuff newPoison = new PoisonBuff(5f, 3f);
-                manager.ApplyBuff(newPoison);
-                Debug.Log("Applied a PoisonBuff via keyboard 'N'.");
-            }
-        }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            BuffManager manager = GetComponent<BuffManager>();
-            int poisonStacks = manager.GetTotalStacksOf("Poison");
-            if (manager != null)
-            {
-                int extraDamage = poisonStacks * 5;
-                Debug.Log("Poison stacks: " + poisonStacks);
-                PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage(extraDamage);
-                }
-                manager.RemoveBuffImmediately("Poison");
-            }
-        }
-
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            EnemyBuffManager manager = FindObjectOfType<Boss>().GetComponent<EnemyBuffManager>();
-            if (manager != null)
-            {
-                // e.g. 5 DPS for 3 seconds
-                PoisonBuff newPoison = new PoisonBuff(5f, 3f);
-                manager.ApplyBuff(newPoison);
-                Debug.Log("Applied a PoisonBuff via keyboard '2'.");
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            EnemyBuffManager manager = FindObjectOfType<Boss>().GetComponent<EnemyBuffManager>();
-            int poisonStacks = manager.GetTotalStacksOf("Poison");
-            if (manager != null)
-            {
-                int extraDamage = poisonStacks * 5;
-                Debug.Log("Poison stacks: " + poisonStacks);
-                Health health = FindObjectOfType<Boss>().GetComponent<Health>();
-                if (health != null)
-                {
-                    health.TakeDamage(extraDamage);
-                }
-                manager.RemoveBuffImmediately("Poison");
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            var buffManager = GetComponent<BuffManager>();
-            if (buffManager != null)
-            {
-                // 7% for e.g. 5 seconds
-                var stackingBuff = new StackingDamageBuff(1.07f, 5f);
-                buffManager.ApplyBuff(stackingBuff);
-                Debug.Log("Applied StackingDamageBuff (7% x multiple stacks) via M key.");
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            var buffManager = GetComponent<BuffManager>();
-            if (buffManager != null)
-            {
-                // +100% crit for 1 second
-                var critBuff = new CritBuff(1.0f, 1f);
-                buffManager.ApplyBuff(critBuff);
-                Debug.Log("Applied CritBuff +100% for 1 second via K key.");
-            }
-        }
-
+        aggregatedCritChance = GetAggregatedCritChance();
+        aggregatedDamageMultiplier = GetAggregatedDamageMultiplier();
+        aggregatedDamageTakenMultiplier = GetAggregatedDamageTakenMultiplier();
 
 #endif
     }

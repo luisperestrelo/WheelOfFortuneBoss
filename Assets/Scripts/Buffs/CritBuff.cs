@@ -25,7 +25,6 @@ public class CritBuff : BuffBase
 
     public override void OnUpdate(Stats targetStats, float deltaTime)
     {
-        // No special tick logic
     }
 
     public override void OnRemove(Stats targetStats)

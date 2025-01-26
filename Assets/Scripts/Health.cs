@@ -17,6 +17,8 @@ public class Health : MonoBehaviour
 
     private PlayerCombat pc;
 
+    private Stats stats;
+
     public UnityEvent<float, float> OnHealthChanged;
 
     public UnityEvent OnDie;
@@ -26,6 +28,7 @@ public class Health : MonoBehaviour
     protected virtual void Awake()
     {
         pc = GetComponent<PlayerCombat>();
+        stats = GetComponent<Stats>();
     }
 
     protected virtual void Start()
@@ -38,7 +41,7 @@ public class Health : MonoBehaviour
 
     // should be in PlayerHealth but I am keeping it here in case we add shields for enemies
     /// <returns>Whether or not HP was lost</returns>
-    public virtual bool TakeDamage(float damageAmount)
+    public virtual bool TakeDamage(float damageAmount, bool isDamageOverTime = false)
     {
         if (pc != null && pc.HasShield)
         {
@@ -47,17 +50,23 @@ public class Health : MonoBehaviour
             return false;
         }
 
+        float damageTakenMultiplier = stats.GetAggregatedDamageTakenMultiplier();
+        damageAmount *= damageTakenMultiplier;
 
-        Debug.Log( gameObject.name + " is Taking damage: " + damageAmount);
+        Debug.Log(gameObject.name + " is Taking damage: " + damageAmount);
 
         currentHealth -= damageAmount;
         OnHealthChanged.Invoke(currentHealth, maxHealth);
 
+        Debug.Log("isDamageOverTime: " + isDamageOverTime);
         //SFX
-        if (damageAmount < hpHeavyDamageThreshold)
-            damageSource.PlayOneShot(lightDamageSfx);
-        else
-            damageSource.PlayOneShot(heavyDamageSfx);
+        if (!isDamageOverTime)
+        {
+            if (damageAmount < hpHeavyDamageThreshold)
+                damageSource.PlayOneShot(lightDamageSfx);
+            else
+                damageSource.PlayOneShot(heavyDamageSfx);
+        }
 
         if (currentHealth <= 0 && isAlive)
         {

@@ -130,6 +130,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2144968459779040693, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: basePoisonDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2144968459779040693, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: basePoisonDuration
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5928400350805490060, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1180,6 +1188,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b658e56254b31f6478828219f62e32c7, type: 2}
   - {fileID: 11400000, guid: 246fd43871d651442a32ccd805966fcc, type: 2}
   - {fileID: 11400000, guid: 021eacc0266ee294cabecf8f2b6d50e1, type: 2}
+  - {fileID: 11400000, guid: 78bc18908526a4943987a12b2c18624e, type: 2}
 --- !u!4 &1287000252
 Transform:
   m_ObjectHideFlags: 0

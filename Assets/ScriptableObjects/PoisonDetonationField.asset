@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09ee3833e3425224594c6366a80eec48, type: 3}
+  m_Name: PoisonDetonationField
+  m_EditorClassIdentifier: 
+  fieldName: Poison Detonation
+  description: When charged, all enemies lose 10 HP for each stack of poison they
+    are inflicted with
+  icon: {fileID: 21300000, guid: 0982677a943822841b40273ac6cee99a, type: 3}
+  color: {r: 0, g: 0, b: 1, a: 1}
+  fieldType: 16
+  tags: 
+  activationType: 1
+  duration: 0
+  cooldown: 0
+  visualEffect: {fileID: 0}
+  audioEffect: {fileID: 0}
+  size: 1
+  resetsOnExit: 0
+  decayRate: 0.3
+  chargeTime: 3
+  damagePerStack: 5
+  removePoisonStacksAfterDamage: 1

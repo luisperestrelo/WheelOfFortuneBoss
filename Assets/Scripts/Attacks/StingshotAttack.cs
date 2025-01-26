@@ -14,8 +14,12 @@ public class StingshotAttack : BaseAttack
         if (Random.value < playerStats.GetAggregatedCritChance())
         {
             damageMultiplier *= playerStats.CritMultiplier;
-            Debug.Log("Stingshot CRIT!");
+            Debug.Log("Stingshot CRIT!"); // TODO: This needs to be moved to the projectile itself...
+            playerCombat.NotifyCrit();
+
         }
+
+        Debug.Log(spreadAngle);
 
         //playerCombat.shootAudioSource.PlayOneShot(playerCombat.shootSfx); //TODO: Add fireball sfx
         //playerCombat.shootAudioSource.pitch = Random.Range(0.9f, 1.3f);
@@ -48,7 +52,9 @@ public class StingshotAttack : BaseAttack
                     StingshotProjectile projectile = Instantiate(stingshotPrefab, playerCombat.transform.position, Quaternion.identity);
                     projectile.SetDamage(BaseDamage * damageMultiplier);
                     projectile.SetVelocity(direction * ProjectileSpeed);
-                    projectile.SetPoisonStats(BaseDamage * damageMultiplier, 5f);
+                    //scales with poison chance in addition to normal scaling
+
+                    projectile.SetPoisonStats(1f, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier * (1+ playerStats.PoisonChance), playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
                 }
             }
             else
@@ -60,7 +66,8 @@ public class StingshotAttack : BaseAttack
 
                 projectile.SetDamage(BaseDamage * damageMultiplier);
                 projectile.SetVelocity(direction * ProjectileSpeed);
-                projectile.SetPoisonStats(3f * damageMultiplier, 5f); //TODO: here we would have poison stats once we make them
+                //scales with poison chance in addition to normal scaling
+                projectile.SetPoisonStats(1f, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier * (1+ playerStats.PoisonChance), playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
             }
         }
 

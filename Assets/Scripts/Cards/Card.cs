@@ -19,6 +19,11 @@ public enum  StatType
     LingeringBuffFieldsEffectiveness,
     FieldsCooldownReduction,
     AdditionalProjectilesForAttacks,
+    CritsGiveAttackSpeedBuff,
+    CritsGiveStackingDamageBuff,
+    PoisonChance,
+    PoisonDamageOverTimeMultiplier,
+    PoisonDurationMultiplier
 
 }
 public enum CardType { Field, StatUpgrade, FieldCategoryUpgrade, FieldSpecificUpgrade, WheelUpgrade }

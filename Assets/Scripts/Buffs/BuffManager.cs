@@ -48,7 +48,6 @@ public class BuffManager : MonoBehaviour
             }
         }
 
-        // Refresh our debug list so we can see it in the inspector
         RefreshDebugList();
     }
 
@@ -106,14 +105,15 @@ public class BuffManager : MonoBehaviour
                 AddNewBuff(newBuff);
                 break;
 
+            //NOTUSED
             case StackingMode.RefreshDuration:
                 // We just pick the first old buff (or all) to refresh
-                // for this example, assume 1 buff
                 var firstBuff = buffList[0];
                 firstBuff.Duration = newBuff.Duration;
                 // We do NOT re-apply stats => we keep oldBuff's stats
                 break;
 
+            //NOTUSED
             case StackingMode.IncrementStack:
                 // Potentially each BuffBase has a "StackCount" property
                 // we'd do oldBuff.IncrementStack() or something
@@ -121,6 +121,16 @@ public class BuffManager : MonoBehaviour
                 var existingBuff = buffList[0];
                 existingBuff.AddStack();
                 // etc. Not used in this scenario
+                break;
+
+            case StackingMode.IndependentButRefreshesAll:
+                // Refresh duration for existing instances:
+                foreach (var oldBuff in buffList)
+                {
+                    oldBuff.Duration = newBuff.Duration;
+                }
+                // Add a new, separate instance:
+                AddNewBuff(newBuff);
                 break;
         }
     }
@@ -202,6 +212,21 @@ public class BuffManager : MonoBehaviour
                     debugBuffs.Add(data);
                 else
                     debugDebuffs.Add(data);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Extends the duration of all BuffBase instances matching buffId by extraSeconds.
+    /// </summary>
+    public void ExtendBuffDuration(string buffId, float extraSeconds)
+    {
+        if (activeBuffs.TryGetValue(buffId, out var buffList))
+        {
+            foreach (var buff in buffList)
+            {
+                buff.Duration += extraSeconds;
+
             }
         }
     }

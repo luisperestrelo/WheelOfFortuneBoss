@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8e8f83f0e9fa740b98eab6bc31ecc0, type: 3}
+  m_Name: Concentration Field Card
+  m_EditorClassIdentifier: 
+  cardName: Concentration
+  description: When charged, grants you 100% crit chance for 2 seconds. 8 Second
+    cooldown
+  rarity: 1
+  icon: {fileID: 0}
+  cardType: 0
+  isKissCurse: 0
+  downSideDescription: 
+  field: {fileID: 11400000, guid: 0f0281bf5784bfa4c8ac73f98cdf3148, type: 2}

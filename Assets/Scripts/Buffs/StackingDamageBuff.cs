@@ -1,9 +1,9 @@
 using UnityEngine;
 
 /// <summary>
-/// Each instance adds +7% (1.07) to damage aggregator. 
-/// We can limit stacks to 10 in BuffManager or in the buff's OnApply.
-/// This demonstration uses aggregator approach instead of direct math.
+/// Each instance adds +x%  to damage aggregator. 
+/// Has a max stack count of MaxStacks 
+/// 
 /// </summary>
 public class StackingDamageBuff : BuffBase
 {
@@ -34,7 +34,7 @@ public class StackingDamageBuff : BuffBase
 
     public override void OnUpdate(Stats targetStats, float deltaTime)
     {
-        // No tick-based logic, so do nothing here
+
     }
 
     public override void OnRemove(Stats targetStats)

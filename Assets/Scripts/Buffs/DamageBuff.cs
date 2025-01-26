@@ -1,5 +1,6 @@
 using UnityEngine;
 
+//This is our OG Damage Buff, now properly using a Buff system
 public class DamageBuff : BuffBase
 {
     private Stats _targetStats;
@@ -26,7 +27,6 @@ public class DamageBuff : BuffBase
 
     public override void OnUpdate(Stats targetStats, float deltaTime)
     {
-        // No ticking logic needed
     }
 
     public override void OnRemove(Stats targetStats)

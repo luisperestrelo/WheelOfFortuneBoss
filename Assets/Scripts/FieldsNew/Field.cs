@@ -17,8 +17,12 @@ public enum FieldType
     DamagePlayer,
     DamagingField,
     TentacleShieldBusterField,
-    Stingshot
-   
+    Stingshot,
+    PoisonExtension,
+    PoisonDetonation,
+    CritChanceBuff,
+    ChargedCritBuff,
+    WagerOfAeons
 }
 
 public enum ActivationType

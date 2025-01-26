@@ -4,19 +4,23 @@ using UnityEngine;
 public class BasicAttack : BaseAttack
 {
     [SerializeField] private BaseProjectile projectilePrefab;
-    
+
 
     public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle = 15f)
     {
         base.PerformAttack(playerCombat);
 
-//        Debug.Log("spreadAngle: " + spreadAngle);
+        //        Debug.Log("spreadAngle: " + spreadAngle);
 
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
+        Debug.Log("crit chance: " + playerStats.GetAggregatedCritChance());
 
         if (Random.value < playerStats.GetAggregatedCritChance())
         {
             damageMultiplier *= playerStats.CritMultiplier;
+            playerCombat.NotifyCrit(); // TODO: yeah no this is really bad rn, but we fix it when refactoring
+                                     // Crits are being calculated immediately, even if the attack does not hit an enemy
+
             Debug.Log("Basic Attack CRIT!");
         }
 
@@ -47,18 +51,20 @@ public class BasicAttack : BaseAttack
                     BaseProjectile projectile = Instantiate(projectilePrefab, playerCombat.transform.position, Quaternion.identity);
                     projectile.SetDamage(BaseDamage * damageMultiplier);
                     projectile.SetVelocity(direction * ProjectileSpeed);
+                    projectile.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
                 }
             }
             else
             {
-                Vector2 direction = towardMouse; 
+                Vector2 direction = towardMouse;
 
                 BaseProjectile projectile = Instantiate(projectilePrefab, playerCombat.transform.position, Quaternion.identity);
                 projectile.SetDamage(BaseDamage * damageMultiplier);
                 projectile.SetVelocity(direction * ProjectileSpeed);
+                projectile.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
             }
         }
 
         playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(fireRate));
     }
-} 
+}

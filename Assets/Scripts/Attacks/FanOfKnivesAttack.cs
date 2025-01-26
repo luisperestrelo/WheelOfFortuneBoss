@@ -4,8 +4,8 @@ using UnityEngine;
 public class FanOfKnivesAttack : BaseAttack
 {
     [SerializeField] private KnifeProjectile knifePrefab;
-/*     [SerializeField] private int numberOfKnives = 3; */
-    [SerializeField] private float spreadAngle = 10f; 
+    /*     [SerializeField] private int numberOfKnives = 3; */
+    [SerializeField] private float spreadAngle = 10f;
 
     public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle)
     {
@@ -46,10 +46,13 @@ public class FanOfKnivesAttack : BaseAttack
                 {
                     damageMultiplier *= playerStats.CritMultiplier;
                     Debug.Log("Knife CRIT!");
+                    playerCombat.NotifyCrit();
                 }
 
                 knife.SetDamage(BaseDamage * damageMultiplier);
                 knife.SetVelocity(direction * ProjectileSpeed);
+                knife.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration);
+
             }
         }
         else
@@ -65,10 +68,12 @@ public class FanOfKnivesAttack : BaseAttack
             {
                 damageMultiplier *= playerStats.CritMultiplier;
                 Debug.Log("Knife CRIT!");
+                playerCombat.NotifyCrit();
             }
 
             knife.SetDamage(BaseDamage * damageMultiplier);
             knife.SetVelocity(direction * ProjectileSpeed);
+            knife.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
         }
 
         playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(fireRate));
