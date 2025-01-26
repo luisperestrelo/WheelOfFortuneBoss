@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(AudioSource))]
@@ -35,6 +35,15 @@ public class PlayerCombat : MonoBehaviour
     // Temporary multipliers for buffs
     private float temporaryDamageMultiplier = 1f;
     private float temporaryFireRateMultiplier = 1f;
+
+    // FireballAttack (and other attacks) can call this if a crit occurs
+    public UnityEvent OnCrit;  
+
+    private void Awake()
+    {
+        if (OnCrit == null)
+            OnCrit = new UnityEvent();
+    }
 
     private void Start()
     {
@@ -140,6 +149,14 @@ public class PlayerCombat : MonoBehaviour
         _currentShieldArea = source;
         //if (shieldPrefab == null) return;
         _activeShield = Instantiate(this.shieldPrefab, transform.position, Quaternion.identity, transform);
+        StartCoroutine(RemoveShieldAfterDelay(source));
+    }
+
+    private IEnumerator RemoveShieldAfterDelay(ShieldArea source)
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (source == _currentShieldArea)
+            RemoveShield();
     }
 
     public void RemoveShield()
@@ -173,10 +190,27 @@ public class PlayerCombat : MonoBehaviour
 
     public float GetUniversalDamageMultiplier()
     {
-        return playerStats.BaseDamageMultiplier * temporaryDamageMultiplier;
+        //return playerStats.BaseDamageMultiplier * temporaryDamageMultiplier;
+        return playerStats.GetAggregatedDamageMultiplier();
     }
     private int CalculateTotalProjectiles(BaseAttack attack, bool shouldFanOut = false)
     {
         return attack.ProjectileCount + Mathf.FloorToInt(playerStats.AdditionalProjectilesForAttacks);
+    }
+
+    public float GetTemporaryDamageMultiplier()
+    {
+        return temporaryDamageMultiplier;
+    }
+
+    public void SetTemporaryDamageMultiplier(float newMultiplier)
+    {
+        temporaryDamageMultiplier = newMultiplier;
+        // If you want to handle stacking multiple buffs, you might do more logic here
+    }
+
+    public void NotifyCrit()
+    {
+        OnCrit.Invoke();
     }
 }

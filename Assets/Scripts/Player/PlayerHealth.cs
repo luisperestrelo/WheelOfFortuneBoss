@@ -24,7 +24,7 @@ public class PlayerHealth : Health
         base.Start();
     }
 
-    public override bool TakeDamage(float damageAmount)
+    public override bool TakeDamage(float damageAmount, bool isDamageOverTime = false)
     {
         StartCoroutine(HitpauseRoutine());
         if (!base.TakeDamage(damageAmount))

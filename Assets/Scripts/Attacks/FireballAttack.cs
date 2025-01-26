@@ -11,10 +11,12 @@ public class FireballAttack : BaseAttack
 
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
-        if (Random.value < playerStats.CritChance)
+        if (Random.value < playerStats.GetAggregatedCritChance())
         {
             damageMultiplier *= playerStats.CritMultiplier;
             Debug.Log("Fireball CRIT!");
+
+            playerCombat.NotifyCrit();
         }
 
         //playerCombat.shootAudioSource.PlayOneShot(playerCombat.shootSfx); //TODO: Add fireball sfx
@@ -48,6 +50,7 @@ public class FireballAttack : BaseAttack
                     FireballProjectile projectile = Instantiate(fireballPrefab, playerCombat.transform.position, Quaternion.identity);
                     projectile.SetDamage(BaseDamage * damageMultiplier);
                     projectile.SetVelocity(direction * ProjectileSpeed);
+                    projectile.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
                 }
             }
             else
@@ -58,6 +61,7 @@ public class FireballAttack : BaseAttack
                 FireballProjectile projectile = Instantiate(fireballPrefab, playerCombat.transform.position, Quaternion.identity);
                 projectile.SetDamage(BaseDamage * damageMultiplier);
                 projectile.SetVelocity(direction * ProjectileSpeed);
+                projectile.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
             }
         }
 

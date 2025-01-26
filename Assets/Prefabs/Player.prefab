@@ -540,10 +540,12 @@ GameObject:
   - component: {fileID: 6724869266207916452}
   - component: {fileID: 9140755374635846707}
   - component: {fileID: 7166551282647893016}
-  - component: {fileID: 4558305748651535714}
   - component: {fileID: 6556659084784631737}
   - component: {fileID: 4630231693192748150}
   - component: {fileID: 3790712526603840470}
+  - component: {fileID: -2144968459779040693}
+  - component: {fileID: 418291518794395319}
+  - component: {fileID: -1518155386828152305}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -725,6 +727,9 @@ MonoBehaviour:
   shootAudioSource: {fileID: 7166551282647893016}
   CurrentAttack: {fileID: 11400000, guid: d7deb79675d05aa4f81870dab36e3ecf, type: 2}
   DefaultAttack: {fileID: 11400000, guid: d7deb79675d05aa4f81870dab36e3ecf, type: 2}
+  OnCrit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!120 &8830945086055876768
 LineRenderer:
   serializedVersion: 2
@@ -1002,32 +1007,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4558305748651535714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5928400350805490060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8fa46246c440724ea653889a4e5dcc8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  healthRegen: 0
-  baseDamageMultiplier: 1
-  baseFireRateMultiplier: 1
-  critChance: 0.05
-  critMultiplier: 2
-  healingFieldsStrengthMultiplier: 1
-  chargeUpFieldsSpeedMultiplier: 1
-  decayingChargeUpFieldsDecaySlowdownMultiplier: 1
-  positiveNegativeFieldsEffectivenessMultiplier: 1
-  additionalProjectilesForAttacks: 0
-  lingeringBuffFieldsDurationMultiplier: 1
-  lingeringBuffFieldsEffectivenessMultiplier: 1
-  fieldsCooldownMultiplier: 1
 --- !u!82 &6556659084784631737
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1316,6 +1295,61 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2144968459779040693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928400350805490060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05ad2e7861210442b819b90f38a1578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthRegen: 0
+  baseDamageMultiplier: 1
+  baseFireRateMultiplier: 1
+  critChance: 0.05
+  critMultiplier: 2
+  baseDamageTakenMultiplier: 1
+  healingFieldsStrengthMultiplier: 1
+  chargeUpFieldsSpeedMultiplier: 1
+  decayingChargeUpFieldsDecaySlowdownMultiplier: 1
+  positiveNegativeFieldsEffectivenessMultiplier: 1
+  additionalProjectilesForAttacks: 0
+  lingeringBuffFieldsDurationMultiplier: 1
+  lingeringBuffFieldsEffectivenessMultiplier: 1
+  fieldsCooldownMultiplier: 1
+  damageOverTimeMultiplier: 1
+  poisonDamageOverTimeMultiplier: 1
+--- !u!114 &418291518794395319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928400350805490060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9efb1868d6bcdf4448e74cf6598b5d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugBuffs: []
+  debugDebuffs: []
+--- !u!114 &-1518155386828152305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5928400350805490060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29dbfcaa71e7f9c47af357d5fc825f8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6389844122480484167
 GameObject:
   m_ObjectHideFlags: 0

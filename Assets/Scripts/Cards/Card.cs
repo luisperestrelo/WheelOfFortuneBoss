@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public enum CardRarity { Common, Rare, Epic }
-public enum StatType
+public enum  StatType
 {
     Health,
     GlobalDamageMultiplier,
@@ -19,6 +19,11 @@ public enum StatType
     LingeringBuffFieldsEffectiveness,
     FieldsCooldownReduction,
     AdditionalProjectilesForAttacks,
+    CritsGiveAttackSpeedBuff,
+    CritsGiveStackingDamageBuff,
+    PoisonChance,
+    PoisonDamageOverTimeMultiplier,
+    PoisonDurationMultiplier
 
 }
 public enum CardType { Field, StatUpgrade, FieldCategoryUpgrade, FieldSpecificUpgrade, WheelUpgrade }

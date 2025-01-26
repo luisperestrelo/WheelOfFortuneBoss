@@ -64,6 +64,44 @@ public static class FieldEffectHandlerFactory
                 return chargedVoidBurstHandler;
             case FieldType.TentacleShieldBusterField:
                 return new GameObject("TentacleShieldBusterEffectHandler").AddComponent<TentacleShieldBusterEffectHandler>();
+            case FieldType.Stingshot:
+                var stingshotHandler = new GameObject().AddComponent<StingshotAttackEffectHandler>();
+                stingshotHandler.Initialize(fieldData);
+                stingshotHandler.name = "StingshotAttackEffectHandler";
+                return stingshotHandler;
+            case FieldType.PoisonExtension:
+            {
+                var obj = new GameObject("PoisonExtensionEffectHandler");
+                var handler = obj.AddComponent<PoisonExtensionEffectHandler>();
+                handler.Initialize(fieldData);
+                return handler;
+            }
+            case FieldType.PoisonDetonation:
+            {
+                var obj = new GameObject("PoisonDetonationEffectHandler");
+                var handler = obj.AddComponent<PoisonDetonationEffectHandler>();
+                handler.Initialize(fieldData);
+                return handler;
+            }
+            case FieldType.CritChanceBuff:
+            {
+                var obj = new GameObject("CritChanceBuffEffectHandler");
+                var handler = obj.AddComponent<CritChanceBuffEffectHandler>();
+                handler.Initialize(fieldData);
+                return handler;
+            }
+            case FieldType.ChargedCritBuff:
+            {
+                var obj = new GameObject("ChargedCritEffectHandler");
+                var handler = obj.AddComponent<ChargedCritEffectHandler>();
+                handler.Initialize(fieldData);
+                return handler;
+            }
+            case FieldType.WagerOfAeons:
+                var wagerHandler = new GameObject().AddComponent<WagerOfAeonsEffectHandler>();
+                wagerHandler.Initialize(fieldData);
+                wagerHandler.name = "WagerOfAeonsEffectHandler";
+                return wagerHandler;
 
             default:
                 Debug.LogError("FieldEffectHandlerFactory::CreateEffectHandler: No handler found for field type " + fieldData.FieldType);

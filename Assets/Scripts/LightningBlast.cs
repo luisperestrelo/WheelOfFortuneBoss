@@ -38,12 +38,14 @@ public class LightningBlast : MonoBehaviour
             {
                 float finalDamage = damage;
 
-                finalDamage *= playerCombat.GetUniversalDamageMultiplier();
+                finalDamage *= playerStats.GetAggregatedDamageMultiplier();
 
-                if (Random.value < playerStats.CritChance)
+                if (Random.value < playerStats.GetAggregatedCritChance())
                 {
                     finalDamage *= playerStats.CritMultiplier;
-                    Debug.Log("Lightning Blast CRIT!"); 
+                    Debug.Log("Lightning Blast CRIT!");
+                    playerCombat.NotifyCrit();
+
                     //TODO: Would be cool to have something to add more "oomph" to crits but maybe too much?
                 }
 
