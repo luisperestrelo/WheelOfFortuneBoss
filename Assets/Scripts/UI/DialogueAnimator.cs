@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DialogueAnimator : MonoBehaviour
 {
+    [SerializeField] private CutsceneEnder ender;
     [SerializeField] private TextMeshProUGUI text1;
     [SerializeField] private TextMeshProUGUI text2;
 
@@ -34,60 +35,36 @@ public class DialogueAnimator : MonoBehaviour
         }
     }
 
+    private IEnumerator SetNewDialogue(string s1, string s2, AudioClip clip1, AudioClip clip2)
+    {
+        source.PlayOneShot(clip1);
+        yield return DisplayLine(text1, s1);
+        yield return new WaitForSeconds(timeBetweenText);
+
+        source.PlayOneShot(clip2);
+        yield return DisplayLine(text2, s2);
+        yield return new WaitForSeconds(timeBetweenText * 1.5f);
+
+        yield return ClearTextRoutine();
+    }
+
     private IEnumerator CutsceneRoutine()
     {
         yield return new WaitForSeconds(2);
+        yield return SetNewDialogue("Oh, little wisp...", "What has my wretched brother made of you?", voiceSfx[0], voiceSfx[1]);
 
-        source.PlayOneShot(voiceSfx[0]);
-        yield return DisplayLine(text1, "Oh, little wisp...");
-        yield return new WaitForSeconds(timeBetweenText);
+        yield return SetNewDialogue("I am so sorry.", "This is not how the thread of your fate was spun.", voiceSfx[2], voiceSfx[1]);
 
-        source.PlayOneShot(voiceSfx[1]);
-        yield return DisplayLine(text2, "What has my brother made of you?");
-        yield return new WaitForSeconds(timeBetweenText * 1.5f);
+        yield return SetNewDialogue("This can still be fixed.", "I will spin your fate anew.", voiceSfx[0], voiceSfx[1]);
 
-        yield return ClearTextRoutine();
+        yield return SetNewDialogue("Let it be so; You shall go unto my two siblings.", "You shall slay them each.", voiceSfx[0], voiceSfx[1]);
+
+        yield return SetNewDialogue("Know you may not turn away from your fate...", "You may not move freely until it is done.", voiceSfx[0], voiceSfx[1]);
+
+        yield return SetNewDialogue("Go, now, little wisp...", "Reclaim your fate.", voiceSfx[0], voiceSfx[1]);
         yield return new WaitForSeconds(timeBetweenText / 2);
 
-        //Ctrl + V Supremacy. (I did not feel like making a new method for this);
-        source.PlayOneShot(voiceSfx[2]);
-        yield return DisplayLine(text1, "I am so sorry.");
-        yield return new WaitForSeconds(timeBetweenText);
-
-        source.PlayOneShot(voiceSfx[0]);
-        yield return DisplayLine(text2, "This is not how the thread of your fate was spun.");
-        yield return new WaitForSeconds(timeBetweenText * 1.5f);
-        yield return ClearTextRoutine();
-        yield return new WaitForSeconds(timeBetweenText / 2);
-
-        source.PlayOneShot(voiceSfx[1]);
-        yield return DisplayLine(text1, "This can still be fixed.");
-        yield return new WaitForSeconds(timeBetweenText);
-
-        source.PlayOneShot(voiceSfx[2]);
-        yield return DisplayLine(text2, "I will spin your fate anew.");
-        yield return new WaitForSeconds(timeBetweenText * 1.5f);
-        yield return ClearTextRoutine();
-        yield return new WaitForSeconds(timeBetweenText / 2);
-
-        yield return DisplayLine(text1, "Let it be so; You will go unto my siblings.");
-        yield return new WaitForSeconds(timeBetweenText);
-        yield return DisplayLine(text2, "You will slay them each.");
-        yield return new WaitForSeconds(timeBetweenText * 1.5f);
-        yield return ClearTextRoutine();
-        yield return new WaitForSeconds(timeBetweenText / 2);
-
-        yield return DisplayLine(text1, "You are now bound to your adversaries.");
-        yield return new WaitForSeconds(timeBetweenText);
-        yield return DisplayLine(text2, "I bestow unto you the runes of old.");
-        yield return new WaitForSeconds(timeBetweenText * 1.5f);
-        yield return ClearTextRoutine();
-        yield return new WaitForSeconds(timeBetweenText / 2);
-
-        yield return DisplayLine(text1, "Go now, little wisp.");
-        yield return new WaitForSeconds(timeBetweenText);
-        yield return ClearTextRoutine();
-        yield return new WaitForSeconds(timeBetweenText / 2);
+        ender.EndCutscene();
     }
 
     private IEnumerator ClearTextRoutine()
