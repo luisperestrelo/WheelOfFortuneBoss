@@ -33,6 +33,7 @@ public class UIWheel : MonoBehaviour
     private Card newCard;
     private GameObject selectedLine = null;
 
+
     public void Initialize(WheelManager wheelManager, Field newField, Card newCard, UIWheelMode mode)
     {
         this.wheelManager = wheelManager;
@@ -216,6 +217,11 @@ public class UIWheel : MonoBehaviour
         // When we replace a field, we *do not* remove the card from the run. I think that's fine, and we can even allow the player to
         // customize their wheel with "excess cards" they own at some point.
 
+        gameObject.SetActive(false);
+    }
+
+    public void OnBackButtonClicked()
+    {
         gameObject.SetActive(false);
     }
 
