@@ -16,8 +16,13 @@ public enum FieldType
     FanOfKnives,
     DamagePlayer,
     DamagingField,
-    TentacleShieldBusterField
-   
+    TentacleShieldBusterField,
+    Stingshot,
+    PoisonExtension,
+    PoisonDetonation,
+    CritChanceBuff,
+    ChargedCritBuff,
+    WagerOfAeons
 }
 
 public enum ActivationType

@@ -423,6 +423,8 @@ GameObject:
   - component: {fileID: 8900783316693222900}
   - component: {fileID: 6227527267133301130}
   - component: {fileID: -3719108576687399211}
+  - component: {fileID: 8276911597638526282}
+  - component: {fileID: 5358252033117466908}
   m_Layer: 9
   m_Name: Squid
   m_TagString: Enemy
@@ -653,6 +655,56 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2
+--- !u!114 &8276911597638526282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057324329541433720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79a32cdfb8675541acb079b8e32e9ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthRegen: 0
+  baseDamageMultiplier: 1
+  baseFireRateMultiplier: 1
+  critChance: 0.05
+  critMultiplier: 2
+  baseDamageTakenMultiplier: 1
+  healingFieldsStrengthMultiplier: 1
+  chargeUpFieldsSpeedMultiplier: 1
+  decayingChargeUpFieldsDecaySlowdownMultiplier: 1
+  positiveNegativeFieldsEffectivenessMultiplier: 1
+  additionalProjectilesForAttacks: 0
+  lingeringBuffFieldsDurationMultiplier: 1
+  lingeringBuffFieldsEffectivenessMultiplier: 1
+  fieldsCooldownMultiplier: 1
+  damageOverTimeMultiplier: 1
+  poisonDamageOverTimeMultiplier: 1
+  poisonDurationMultiplier: 1
+  poisonChance: 0
+  basePoisonDamage: 3
+  basePoisonDuration: 5
+  aggregatedCritChance: 0
+  aggregatedDamageMultiplier: 0
+  aggregatedDamageTakenMultiplier: 0
+--- !u!114 &5358252033117466908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057324329541433720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9efb1868d6bcdf4448e74cf6598b5d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugBuffs: []
+  debugDebuffs: []
 --- !u!1 &2373304938786357675
 GameObject:
   m_ObjectHideFlags: 0

@@ -215,4 +215,17 @@ public class CardPool : MonoBehaviour
     {
         availableCards.Remove(card);
     }
+
+    public void RemoveAllCardsOfStatType(StatType statTypeToRemove)
+    {
+        availableCards.RemoveAll(card =>
+        {
+            if (card is StatUpgradeCard statUpgradeCard)
+            {
+                return statUpgradeCard.statTypes.Contains(statTypeToRemove);
+            }
+            return false;
+        });
+    }
+
 }

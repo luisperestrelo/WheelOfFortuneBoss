@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb8e8f83f0e9fa740b98eab6bc31ecc0, type: 3}
+  m_Name: Wager of Aeons Field Card
+  m_EditorClassIdentifier: 
+  cardName: Wager of Aeons
+  description: While in this field, your attack becomes a slash that evolves every
+    2 seconds, up to 6 levels.
+  rarity: 2
+  icon: {fileID: 21300000, guid: d622dfc46951e3e4cae67cdaa5301069, type: 3}
+  cardType: 0
+  isKissCurse: 1
+  downSideDescription: Every 2 seconds, inflicts a stacking 20% incoming-damage debuff,
+    which lingers for 3 seconds after you leave
+  field: {fileID: 11400000, guid: 7a7322c246766e6468341027b92d9a94, type: 2}

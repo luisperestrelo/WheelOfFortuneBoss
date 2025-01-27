@@ -24,7 +24,6 @@ public class ShieldEffectHandler : FieldEffectHandler
 
     public override void OnExit(Player player)
     {
-        Debug.Log("Exiting Shield Field");
-        player.GetComponent<PlayerCombat>().RemoveShield(); // Remove the shield when exiting
+        
     }
 } 

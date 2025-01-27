@@ -25326,6 +25326,8 @@ GameObject:
   - component: {fileID: 7233575668219198028}
   - component: {fileID: 6974248992066422196}
   - component: {fileID: 2016718473807299096}
+  - component: {fileID: -2656438526814057656}
+  - component: {fileID: -6001104149928868915}
   m_Layer: 0
   m_Name: Morsora
   m_TagString: Enemy
@@ -25772,6 +25774,46 @@ MonoBehaviour:
   destroySfx: {fileID: 8300000, guid: 69f6c68a06c81bf43a27249ad7a02136, type: 3}
   spawnSfx: {fileID: 8300000, guid: 9ef97f821a894d1459413470becf185b, type: 3}
   attackSource: {fileID: 927514385244874588}
+--- !u!114 &-2656438526814057656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049915848689469648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79a32cdfb8675541acb079b8e32e9ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  healthRegen: 0
+  baseDamageMultiplier: 1
+  baseFireRateMultiplier: 1
+  critChance: 0.05
+  critMultiplier: 2
+  healingFieldsStrengthMultiplier: 1
+  chargeUpFieldsSpeedMultiplier: 1
+  decayingChargeUpFieldsDecaySlowdownMultiplier: 1
+  positiveNegativeFieldsEffectivenessMultiplier: 1
+  additionalProjectilesForAttacks: 0
+  lingeringBuffFieldsDurationMultiplier: 1
+  lingeringBuffFieldsEffectivenessMultiplier: 1
+  fieldsCooldownMultiplier: 1
+--- !u!114 &-6001104149928868915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7049915848689469648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9efb1868d6bcdf4448e74cf6598b5d86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugBuffs: []
+  debugDebuffs: []
 --- !u!1 &7331360546990643597
 GameObject:
   m_ObjectHideFlags: 0

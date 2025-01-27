@@ -6,7 +6,10 @@ public class InstantDamageDealer : MonoBehaviour
 {
     [SerializeField] private float damage = 10f;
     [SerializeField] private float lifetime = 1f;
-    
+    [SerializeField] private float poisonChance = 0f;
+    [SerializeField] private float poisonDamage = 0f;
+    [SerializeField] private float poisonDuration = 0f;
+
     private float timer = 0f;
 
     private void Update()
@@ -21,6 +24,13 @@ public class InstantDamageDealer : MonoBehaviour
     public virtual void SetDamage(float newDamage)
     {
         damage = newDamage;
+    }
+
+    public virtual void SetPoisonStats(float poisonChance, float poisonDamage, float poisonDuration)
+    {
+        this.poisonChance = poisonChance;
+        this.poisonDamage = poisonDamage;
+        this.poisonDuration = poisonDuration;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

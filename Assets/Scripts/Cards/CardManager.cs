@@ -4,6 +4,8 @@ using UnityEngine;
 public class CardManager : MonoBehaviour
 {
     private PlayerStats playerStats;
+    private CritUpgrades critUpgrades;
+    private CardPool cardPool;
 
     private void Awake()
     {
@@ -13,6 +15,8 @@ public class CardManager : MonoBehaviour
     private void Start()
     {
         playerStats = FindObjectOfType<PlayerStats>();
+        critUpgrades = FindObjectOfType<CritUpgrades>();   
+        cardPool = FindObjectOfType<CardPool>();
     }
 
     public void ApplyCard(Card card)
@@ -86,7 +90,30 @@ public class CardManager : MonoBehaviour
                 {
                     playerStats.MultiplyFieldsCooldownMultiplier(1 - statValue);
                 }
-                
+                else if (statType == StatType.CritsGiveAttackSpeedBuff)
+                {
+                    critUpgrades.AddCritEffect(new CritAttackSpeedBuffEffect(1 + statValue, 2f));
+                    cardPool.RemoveAllCardsOfStatType(StatType.CritsGiveAttackSpeedBuff); // Remove the card from the pool
+                }
+                else if (statType == StatType.CritsGiveStackingDamageBuff)
+                {
+                    critUpgrades.AddCritEffect(new CritDamageBuffEffect(statValue, 2f)); 
+                    cardPool.RemoveAllCardsOfStatType(StatType.CritsGiveStackingDamageBuff); // Remove the card from the pool
+                }
+                else if (statType == StatType.PoisonChance)
+                {
+                    playerStats.SetPoisonChance(playerStats.PoisonChance + statValue);
+                }
+                else if (statType == StatType.PoisonDamageOverTimeMultiplier)
+                {
+                    playerStats.MultiplyPoisonDamageOverTimeMultiplier(1 + statValue);
+                }
+                else if (statType == StatType.PoisonDurationMultiplier)
+                {
+                    playerStats.MultiplyPoisonDurationMultiplier(1 + statValue);
+                }
+
+
             }
         }
         else if (card is FieldCategoryUpgradeCard fieldCategoryUpgradeCard)

@@ -21,14 +21,14 @@ public class BossHealth : Health
         this.isImmune = isImmune;
     }
 
-    public override bool TakeDamage(float damageAmount)
+    public override bool TakeDamage(float damageAmount, bool isDamageOverTime = false)
     {
         if (isImmune)
         {
             damageSource.PlayOneShot(parrySfx);
             return false;
         }
-        return base.TakeDamage(damageAmount);
+        return base.TakeDamage(damageAmount, isDamageOverTime);
     }
 
     protected override void Die()

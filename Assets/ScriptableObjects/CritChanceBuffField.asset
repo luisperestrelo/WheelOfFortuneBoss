@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c6564670feb3b4092b3041dfb1abf7, type: 3}
+  m_Name: CritChanceBuffField
+  m_EditorClassIdentifier: 
+  fieldName: Crit Chance Buff
+  description: Gain +15% crit chance for as long as you stay in this field, lingering
+    for 6 seconds
+  icon: {fileID: 21300000, guid: 0982677a943822841b40273ac6cee99a, type: 3}
+  color: {r: 1, g: 0.4764151, b: 0.4764151, a: 1}
+  fieldType: 17
+  tags: 02000000
+  activationType: 0
+  duration: 6
+  cooldown: 0
+  visualEffect: {fileID: 0}
+  audioEffect: {fileID: 0}
+  size: 1
+  critChanceIncrease: 0.15
+  buffDuration: 6

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Shield Field Card
   m_EditorClassIdentifier: 
   cardName: Shield
-  description: While in this Field, gain a shield that blocks one instance of damage.
-    Has a long cooldown
-  rarity: 1
+  description: When you enter this Field, gain a shield for 0.5s that blocks one
+    instance of damage. Has a long cooldown
+  rarity: 0
   icon: {fileID: 21300000, guid: ad712de1ffb6d7f448a9af8f1e892235, type: 3}
   cardType: 0
   isKissCurse: 0
