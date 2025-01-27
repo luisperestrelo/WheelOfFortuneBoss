@@ -10,7 +10,7 @@ public class UpgradeDisplayVisual : MonoBehaviour
     [SerializeField] private Image icon;
     [SerializeField] private List<GameObject> rarityFxObjects;
 
-    public void SetValues(Card card, bool replaceIcon = false)
+    public void SetValues(Card card, bool replaceIcon = true)
     {
         nameText.text = card.cardName;
         if(replaceIcon)

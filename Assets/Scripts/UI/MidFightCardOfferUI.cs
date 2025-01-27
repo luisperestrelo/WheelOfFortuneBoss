@@ -8,6 +8,8 @@ public class MidFightCardOfferUI : MonoBehaviour
     public CardDisplay[] cardDisplays;
     public UpgradeDisplay[] upgradeDisplays;
     public Button confirmButton;
+    public StatsDisplay statsDisplay;
+    
     private List<Card> offeredCards;
     private Card selectedCard;
     private int selectedIndex = -1;
@@ -24,6 +26,7 @@ public class MidFightCardOfferUI : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    // ShowCards
     public void ShowUpgrades(List<Card> cards)
     {
         animator.SetBool("isOpen", true);
@@ -43,87 +46,32 @@ public class MidFightCardOfferUI : MonoBehaviour
             }
             else
             {
-                upgradeDisplays[i].gameObject.SetActive(false); // Hide unused (eg if we run out of cards in the pool i guess)
+                upgradeDisplays[i].gameObject
+                    .SetActive(false); // Hide unused (eg if we run out of cards in the pool i guess)
             }
         }
 
         // Enable confirm button if no cards are displayed or a card is selected
         confirmButton.interactable = !anyCardsActive || selectedCard != null;
 
+        statsDisplay.UpdateStats();
+
         gameObject.SetActive(true);
     }
 
-    
+
+    // On Card clicked
     public void OnUpgradeClicked(int cardIndex)
     {
-        // Reset the previously selected card's border (if any)
-        if (selectedIndex != -1)
-        {
-            // upgradeDisplays[selectedIndex].transform.Find("BorderImage").GetComponent<Image>().color = Color.clear;
-            upgradeDisplays[selectedIndex].Deselect();
-        }
-
-        selectedIndex = cardIndex;
-        selectedCard = offeredCards[cardIndex];
-
-        // Highlight the selected card
-        // cardDisplays[selectedIndex].transform.Find("BorderImage").GetComponent<Image>().color = highlightColor;
-        upgradeDisplays[selectedIndex].Select();
-
+        SelectCard(cardIndex);
+        
         // Enable the confirm button
         confirmButton.interactable = true;
     }
-    
-    public void ShowCards(List<Card> cards)
-    {
-        animator.SetBool("isOpen", true);
 
-        offeredCards = cards;
-        selectedCard = null;
-
-        bool anyCardsActive = false; // Flag to check if any cards are displayed
-
-        for (int i = 0; i < cardDisplays.Length; i++)
-        {
-            if (i < cards.Count)
-            {
-                cardDisplays[i].DisplayCard(cards[i]);
-                cardDisplays[i].gameObject.SetActive(true);
-                anyCardsActive = true; // Set flag to true if at least one card is active
-            }
-            else
-            {
-                cardDisplays[i].gameObject.SetActive(false); // Hide unused (eg if we run out of cards in the pool i guess)
-            }
-        }
-
-        // Enable confirm button if no cards are displayed or a card is selected
-        confirmButton.interactable = !anyCardsActive || selectedCard != null;
-
-        gameObject.SetActive(true);
-    }
-
-    public void OnCardClicked(int cardIndex)
-    {
-        // Reset the previously selected card's border (if any)
-        if (selectedIndex != -1)
-        {
-            cardDisplays[selectedIndex].transform.Find("BorderImage").GetComponent<Image>().color = Color.clear;
-        }
-
-        selectedIndex = cardIndex;
-        selectedCard = offeredCards[cardIndex];
-
-        // Highlight the selected card
-        cardDisplays[selectedIndex].transform.Find("BorderImage").GetComponent<Image>().color = highlightColor;
-
-        // Enable the confirm button
-        confirmButton.interactable = true;
-    }
 
     public void OnConfirmButtonClicked()
     {
-        Debug.Log("OnConfirmButtonClicked");
         if (selectedCard != null)
         {
             if (selectedCard.cardType == CardType.Field)
@@ -132,7 +80,7 @@ public class MidFightCardOfferUI : MonoBehaviour
             }
             else
             {
-                ConfirmPassiveCard();
+                ConfirmStatUpgradeCard();
             }
         }
         else if (offeredCards.Count == 0)
@@ -144,21 +92,16 @@ public class MidFightCardOfferUI : MonoBehaviour
         }
     }
 
-    private void ConfirmPassiveCard()
+    private void ConfirmStatUpgradeCard()
     {
         RunManager.Instance.OnMidFightStatCardSelected(selectedCard);
         Debug.Log("Selected card is not a Field card");
 
         // StartCoroutine(DeactivateAfterDelay());
-        if (selectedIndex != -1)
-        {
-            // cardDisplays[selectedIndex].transform.Find("BorderImage").GetComponent<Image>().color = Color.clear;
-            upgradeDisplays[selectedIndex].Deselect();
-            selectedIndex = -1;
-        }
-        Close();
+        SelectCard(-1);
 
-        
+
+        Close();
     }
 
     private void ConfirmFieldCard()
@@ -173,16 +116,36 @@ public class MidFightCardOfferUI : MonoBehaviour
         {
             uiWheel.Initialize(RunManager.Instance.wheelManager, newField, selectedCard, UIWheelMode.Insert);
         }
-        if (selectedIndex != -1)
-        {
-            // cardDisplays[selectedIndex].transform.Find("BorderImage").GetComponent<Image>().color = Color.clear;
-            upgradeDisplays[selectedIndex].Deselect();
-            selectedIndex = -1;
-        }
-        
+        SelectCard(-1);
+
+
         // StartCoroutine(DeactivateAfterDelay());
     }
 
+    private void SelectCard(int index)
+    {
+        // deselect previous selected card
+        if (selectedIndex >= 0)
+        { 
+            upgradeDisplays[selectedIndex].Deselect();
+            selectedCard = null;
+            statsDisplay.RemoveTemporaryStats();
+        }
+        
+        if (index >= 0)
+        {
+            upgradeDisplays[index].Select();
+            selectedCard = index < offeredCards.Count ? offeredCards[index] : null;
+            if (selectedCard is StatUpgradeCard statUpgradeCard)
+            {
+                statsDisplay.AddTemporaryStats(statUpgradeCard.statTypes, statUpgradeCard.statValues);
+            }
+        }
+        selectedIndex = index;
+    }
+
+
+    
     public void Close()
     {
         gameObject.SetActive(false);

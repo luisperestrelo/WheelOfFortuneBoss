@@ -536,12 +536,12 @@ GameObject:
   - component: {fileID: 118409958036840236}
   - component: {fileID: 2125508719696169755}
   m_Layer: 5
-  m_Name: Passive Uprade
+  m_Name: StatsUpgradeCardDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &118409958036840236
 RectTransform:
   m_ObjectHideFlags: 0
@@ -579,11 +579,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efaccb1dbabc22143b3913d0d931ad36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameText: {fileID: 0}
-  Icon: {fileID: 0}
-  commonRarityFx: {fileID: 2758458382530958040}
-  rareRarityFx: {fileID: 3585099828869196716}
-  epicRarityFx: {fileID: 5129246849234834882}
+  nameText: {fileID: 8440777626878771895}
+  icon: {fileID: 1094573239134003516}
+  rarityFxObjects:
+  - {fileID: 2758458382530958040}
+  - {fileID: 3585099828869196716}
+  - {fileID: 5129246849234834882}
 --- !u!1 &7224614004593912718
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,7 +619,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.7000377, y: -88.90005}
+  m_AnchoredPosition: {x: 1.7000377, y: -70.3}
   m_SizeDelta: {x: 120.7, y: 29.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7887120464006436349
