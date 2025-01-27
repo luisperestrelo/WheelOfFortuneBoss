@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class StatsDisplay : MonoBehaviour
 {
-
+    // Quick Solution for Tooltips
     public static Action<StatType, Vector2> OnMouseHover;
     public static Action OnMouseLoseFocus;
     
@@ -35,7 +35,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Health",
-                ToolTip = "Represents your total health pool.",
+                ToolTipText = "Represents your total health pool.",
                 Type = StatDisplayType.Absolute
             }
         },
@@ -44,7 +44,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Health Regeneration",
-                ToolTip = "Determines how quickly your health regenerates while in a Healing Field time.",
+                ToolTipText = "Determines how quickly your health regenerates while in a Healing Field time.",
                 Type = StatDisplayType.Time
             }
         },
@@ -53,7 +53,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Damage Multiplier",
-                ToolTip = "Increases all damage dealt by a percentage.",
+                ToolTipText = "Increases all damage dealt by a percentage.",
                 Type = StatDisplayType.Multiplier
             }
         },
@@ -62,7 +62,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Attack Speed",
-                ToolTip = "Increases the speed at which you attack or fire weapons.",
+                ToolTipText = "Increases the speed at which you attack or fire weapons.",
                 Type = StatDisplayType.Multiplier
             }
         },
@@ -71,7 +71,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Critical Hit Chance",
-                ToolTip = "The percentage chance to deal a critical hit, causing extra damage.",
+                ToolTipText = "The percentage chance to deal a critical hit, causing extra damage.",
                 Type = StatDisplayType.Percentage
             }
         },
@@ -80,7 +80,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Critical Damage Multiplier",
-                ToolTip = "The multiplier applied to damage when landing a critical hit.",
+                ToolTipText = "The multiplier applied to damage when landing a critical hit.",
                 Type = StatDisplayType.Multiplier
             }
         },
@@ -91,7 +91,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Healing Fields Strength",
-                ToolTip = "Increases the effectiveness of healing fields.",
+                ToolTipText = "Increases the effectiveness of healing fields.",
                 Type = StatDisplayType.Multiplier
             }
         },
@@ -100,7 +100,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Charge-Up Fields Speed",
-                ToolTip = "Improves the speed at which charge-up fields take effect.",
+                ToolTipText = "Improves the speed at which charge-up fields take effect.",
                 Type = StatDisplayType.Multiplier
             }
         },
@@ -109,7 +109,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Charge-Up Field Decay Slowdown",
-                ToolTip = "Reduces the rate at which charge-up fields lose their effect.",
+                ToolTipText = "Reduces the rate at which charge-up fields lose their effect.",
                 Type = StatDisplayType.Percentage
             }
         },
@@ -118,7 +118,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Positive/Negative Fields Effectiveness",
-                ToolTip = "Increases the effectiveness of both positive and negative fields.",
+                ToolTipText = "Increases the effectiveness of both positive and negative fields.",
                 Type = StatDisplayType.Multiplier
             }
         },
@@ -127,7 +127,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Lingering Buff Duration",
-                ToolTip = "Extends the duration of buffs provided by fields.",
+                ToolTipText = "Extends the duration of buffs provided by fields.",
                 Type = StatDisplayType.Time
             }
         },
@@ -136,7 +136,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Lingering Buff Effectiveness",
-                ToolTip = "Improves the strength of buffs provided by lingering fields.",
+                ToolTipText = "Improves the strength of buffs provided by lingering fields.",
                 Type = StatDisplayType.Multiplier
             }
         },
@@ -145,7 +145,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Field Cooldown Reduction",
-                ToolTip = "Reduces the cooldown time for deploying fields.",
+                ToolTipText = "Reduces the cooldown time for deploying fields.",
                 Type = StatDisplayType.Percentage
             }
         },
@@ -154,7 +154,7 @@ public class StatsDisplay : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Additional Projectiles",
-                ToolTip = "Adds extra projectiles to your attacks.",
+                ToolTipText = "Adds extra projectiles to your attacks.",
                 Type = StatDisplayType.Absolute
             }
         }
@@ -187,7 +187,7 @@ public class StatsDisplay : MonoBehaviour
 
     private void ShowTooltip(StatType type, Vector2 position)
     {
-        var text = statsDisplayMap[type].ToolTip;
+        var text = statsDisplayMap[type].ToolTipText;
         tooltip.transform.position = new Vector2(position.x + tooltip.Rect.sizeDelta.x * 2, position.y);
 
         tooltip.Text = text;
@@ -216,8 +216,10 @@ public class StatsDisplay : MonoBehaviour
         statsToDisplay.ForEach(type =>
         {
             var item = AddStatDisplay(type );
+            if (!item) return;
             SetCurrentY(currentY - item.Rect.rect.height);
             statsDisplayItems.Add(item);
+
         });
         tempStartY = currentY;
     }
@@ -229,19 +231,20 @@ public class StatsDisplay : MonoBehaviour
     }
     private StatsDisplayItem AddStatDisplay(StatType type)
     {
-        var data = statsDisplayMap[type];
-        StatsDisplayItem  item = Instantiate(statsTextPrefab, container);
+        if (!statsDisplayMap.TryGetValue(type, out var data)) return null;
+
+        var  item = Instantiate(statsTextPrefab, container);
         var text = $" {GetStatValue(type)}{GetDisplayTypeText(data.Type)} {data.Name} ";
         item.Initialize(type,text,bg.sizeDelta.x, new Vector2(0f, currentY) );
         return item;
     }
     private StatsDisplayItem AddStatDisplay(StatType type, float value )
     {
-        var data = statsDisplayMap[type];
-        StatsDisplayItem  item = Instantiate(statsTextPrefab, container);
+        if (!statsDisplayMap.TryGetValue(type, out var data)) return null;
+        
+        var item = Instantiate(statsTextPrefab, container);
         var text = $" + {value}{GetDisplayTypeText(data.Type)} {data.Name}";
-        item.Initialize(type, text,  bg.sizeDelta.x,  new Vector2(0f, currentY) , Color.green);
-       
+        item.Initialize(type, text, bg.sizeDelta.x, new Vector2(0f, currentY), Color.green);
         return item;
     }
 
@@ -257,10 +260,12 @@ public class StatsDisplay : MonoBehaviour
                      .Select((type, index) => (type, values[index])))
         {
             var item = AddStatDisplay(type, value );
+            if (!item) continue;
             item.Text.color = Color.green;
             SetCurrentY(currentY - item.Rect.rect.height);
             tempStatsDisplayItems.Add(item);
         }
+
         
     }
 

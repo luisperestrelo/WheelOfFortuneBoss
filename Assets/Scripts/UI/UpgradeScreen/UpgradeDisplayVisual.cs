@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UpgradeDisplayVisual : MonoBehaviour
+public abstract class UpgradeDisplayVisual : MonoBehaviour //, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private Image icon;
     [SerializeField] private List<GameObject> rarityFxObjects;
+
 
     public void SetValues(Card card, bool replaceIcon = true)
     {
@@ -18,11 +20,17 @@ public class UpgradeDisplayVisual : MonoBehaviour
         SetRarity(card.rarity);
     }
 
-    private void SetRarity(CardRarity rarity)
+    protected virtual void SetRarity(CardRarity rarity)
     {
         for (var i = 0; i < rarityFxObjects.Count; i++)
         {
-            rarityFxObjects[i].SetActive(i == (int)rarity);
+            rarityFxObjects[i].gameObject.SetActive(i == (int)rarity);
         }
+    
     }
+
+    public abstract void Select();
+
+    public abstract void Deselect();
+
 }

@@ -12,7 +12,7 @@ public enum StatDisplayType {
 
 public class StatDisplayData 
 {
-    public string ToolTip;
+    public string ToolTipText;
     public string Name;
     public StatDisplayType Type;
     public float ValueToAdd;

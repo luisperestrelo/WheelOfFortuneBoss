@@ -508,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3656331074564706349}
-  - component: {fileID: 5459862891503064015}
+  - component: {fileID: 1510215809364923451}
   m_Layer: 0
   m_Name: FieldCardDisplay
   m_TagString: Untagged
@@ -536,7 +536,7 @@ Transform:
   - {fileID: 3012574038733842673}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5459862891503064015
+--- !u!114 &1510215809364923451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -545,15 +545,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 6151512755435897874}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efaccb1dbabc22143b3913d0d931ad36, type: 3}
+  m_Script: {fileID: 11500000, guid: 58aa70ea2108a6e4688c2cfa4722330f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   nameText: {fileID: 3917402130846356129}
   icon: {fileID: 7649967849744280136}
   rarityFxObjects:
-  - {fileID: 159347610545723158}
+  - {fileID: 1356227963408253911}
   - {fileID: 7124796011246388118}
   - {fileID: 2276638918745743066}
+  selectObjects:
+  - {fileID: 8542986141570730759}
+  - {fileID: 4200108202970630096}
+  - {fileID: 5769074437289297687}
+  - {fileID: 5664301765953389171}
+  - {fileID: 1079646813671970044}
+  - {fileID: 1794484079280621110}
 --- !u!1 &6269647282888709423
 GameObject:
   m_ObjectHideFlags: 0

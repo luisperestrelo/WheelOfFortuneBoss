@@ -10,6 +10,12 @@ public class Tooltip : MonoBehaviour
     [SerializeField] private RectTransform rect;
 
     public RectTransform Rect { get => rect; private set => rect = value; }
-    public string Text { get => text.text; set => text.text = value; }
-
+    public string Text
+    {
+        get => text.text;
+        set
+        {
+            text.text = value;
+        }
+    }
 }

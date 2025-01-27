@@ -3261,7 +3261,6 @@ MonoBehaviour:
   baseFireRateMultiplier: 1
   critChance: 0.05
   critMultiplier: 2
-  baseDamageTakenMultiplier: 1
   healingFieldsStrengthMultiplier: 1
   chargeUpFieldsSpeedMultiplier: 1
   decayingChargeUpFieldsDecaySlowdownMultiplier: 1
@@ -3270,15 +3269,6 @@ MonoBehaviour:
   lingeringBuffFieldsDurationMultiplier: 1
   lingeringBuffFieldsEffectivenessMultiplier: 1
   fieldsCooldownMultiplier: 1
-  damageOverTimeMultiplier: 1
-  poisonDamageOverTimeMultiplier: 1
-  poisonDurationMultiplier: 1
-  poisonChance: 0
-  basePoisonDamage: 3
-  basePoisonDuration: 5
-  aggregatedCritChance: 0
-  aggregatedDamageMultiplier: 0
-  aggregatedDamageTakenMultiplier: 0
 --- !u!114 &1896026460 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7586169954359990532, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
@@ -3305,7 +3295,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1917754722
 Transform:
   m_ObjectHideFlags: 0
@@ -4805,7 +4795,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6785460950205326201, guid: 54e5da7ab28035d4687d2f49a9ce78b5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 54e5da7ab28035d4687d2f49a9ce78b5, type: 3}
 --- !u!114 &5649302861926929021
 MonoBehaviour:
