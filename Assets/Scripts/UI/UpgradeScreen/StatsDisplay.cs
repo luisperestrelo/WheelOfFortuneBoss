@@ -38,8 +38,8 @@ public class StatsDisplay : MonoBehaviour
 
     void Start()
     {
-        // Testing
-        AddAllStatsToDisplay();
+        // Enable for Testing
+        // AddAllStatsToShow();
 
         playerStats = FindObjectOfType<PlayerStats>();
         initialBgSize = bg.sizeDelta;
@@ -58,7 +58,7 @@ public class StatsDisplay : MonoBehaviour
     }
 
     // Can be used to test all stats at once
-    private void AddAllStatsToDisplay()
+    private void AddAllStatsToShow()
     {
         AddStatsToListToShow(StatsHelper.StatTypeToDisplayDataMapping.Keys.ToList());
     }

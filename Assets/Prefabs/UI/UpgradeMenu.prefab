@@ -2220,6 +2220,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestItem (deacticate(
       objectReference: {fileID: 0}
+    - target: {fileID: 8763160046922972346, guid: 6a5d36a8221ad4e42892254268c0e2da, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
