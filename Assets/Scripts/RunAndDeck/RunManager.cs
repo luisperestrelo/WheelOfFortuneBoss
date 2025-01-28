@@ -147,7 +147,7 @@ public class RunManager : MonoBehaviour
     {
         List<Card> cardsToOffer = cardPool.GetRandomCards(5);
         MusicPlayer.instance.SetFilterIntensity(0.6f);
-        midFightCardOfferUI.ShowCards(cardsToOffer);
+        midFightCardOfferUI.ShowUpgrades(cardsToOffer);
     }
 
     public void OfferBasicStatUpgradeCards()
@@ -157,7 +157,8 @@ public class RunManager : MonoBehaviour
 
 
 
-        midFightCardOfferUI.ShowCards(basicStatUpgradeCards);
+        // midFightCardOfferUI.ShowCards(basicStatUpgradeCards);
+        midFightCardOfferUI.ShowUpgrades(basicStatUpgradeCards);
     }
 
     public void OnMidFightStatCardSelected(Card selectedCard)
