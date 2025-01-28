@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.41509432, g: 0.21733712, b: 0.38213482, a: 1}
+  m_Color: {r: 0.31764707, g: 0.2, b: 0.24705882, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -918,7 +918,7 @@ MonoBehaviour:
   HighlightedLineWidth: 10
   incomingCardDisplay: {fileID: 2788754461018095716}
   explanationText: {fileID: 6277508035180333398}
-  explanationTextAddField: Click a line to choose where the new field goes
+  explanationTextAddField: Click a <color=green>line</color> to place a new field.
   explanationTextReplaceField: You are at maximum fields! Click a field to replace
     it
 --- !u!1 &7718170948599501029
@@ -1295,10 +1295,64 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4393281162349524268, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_text
+      value: 'Name
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4393281162349524268, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b009d355716e1bf40b71c9cd81299a1f, type: 2}
+    - target: {fileID: 4393281162349524268, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -563198581256857477, guid: b009d355716e1bf40b71c9cd81299a1f, type: 2}
     - target: {fileID: 7560562144807881861, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
       propertyPath: m_Name
       value: CardDisplay (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 9006374550543807434, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_text
+      value: Description
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006374550543807434, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b9578bed18a35214ca88480c113a9211, type: 2}
+    - target: {fileID: 9006374550543807434, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 5995592573389721564, guid: b9578bed18a35214ca88480c113a9211, type: 2}
+    - target: {fileID: 9046932028630907588, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_text
+      value: Rarity
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046932028630907588, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b009d355716e1bf40b71c9cd81299a1f, type: 2}
+    - target: {fileID: 9046932028630907588, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9046932028630907588, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -563198581256857477, guid: b009d355716e1bf40b71c9cd81299a1f, type: 2}
+    - target: {fileID: 9174777052326696584, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_text
+      value: Type
+      objectReference: {fileID: 0}
+    - target: {fileID: 9174777052326696584, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: b009d355716e1bf40b71c9cd81299a1f, type: 2}
+    - target: {fileID: 9174777052326696584, guid: ef90b89ae3ed08341b890c7bd6a36222, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -563198581256857477, guid: b009d355716e1bf40b71c9cd81299a1f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1334,7 +1388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3646388733558568734, guid: 3c5733c41d9047f4cafef0889560e8fc, type: 3}
       propertyPath: m_text
-      value: "Click a line to place\n the new field. "
+      value: Click a <color=green>line</color> to place a new field.
       objectReference: {fileID: 0}
     - target: {fileID: 3646388733558568734, guid: 3c5733c41d9047f4cafef0889560e8fc, type: 3}
       propertyPath: m_fontAsset

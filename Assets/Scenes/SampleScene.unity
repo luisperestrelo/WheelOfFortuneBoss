@@ -2808,10 +2808,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4670524752038225099, guid: 84959d77b0351f546bbd873a101785f5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5179067784920541386, guid: 84959d77b0351f546bbd873a101785f5, type: 3}
       propertyPath: m_Name
       value: WheelUIRepresentation

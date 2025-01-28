@@ -37,18 +37,6 @@ public class CardDisplay : MonoBehaviour
         typeText.text = card.cardType.ToString();
 
         rarityText.text = card.rarity.ToString();
-        if (card.rarity == CardRarity.Common)
-        {
-            rarityText.color = Color.white;
-        }
-        else if (card.rarity == CardRarity.Rare)
-        {
-            rarityText.color = Color.blue;
-        }
-        else if (card.rarity == CardRarity.Epic)
-        {
-            rarityText.color = Color.magenta;
-        }
-
+        rarityText.color = StatsHelper.GetRarityColor(card.rarity);
     }
 }
