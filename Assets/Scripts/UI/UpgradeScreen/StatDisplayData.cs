@@ -9,7 +9,8 @@ public enum StatDisplayType
     Percentage,
     Multiplier,
     Time,
-    Duration
+    Duration,
+    NoValue
 }
 
 public class StatDisplayData

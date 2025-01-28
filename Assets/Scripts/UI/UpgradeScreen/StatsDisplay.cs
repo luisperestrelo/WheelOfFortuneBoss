@@ -105,14 +105,13 @@ public class StatsDisplay : MonoBehaviour
         bg.sizeDelta = new Vector2(initialBgSize.x, initialBgSize.y - currentY);
     }
 
-    private StatsDisplayItem AddStatDisplay(StatType type)
+    private StatsDisplayItem AddStatDisplay(StatType statType)
     {
-        if (!StatsHelper.StatTypeToDisplayDataMapping.TryGetValue(type, out var data)) return null;
+        if (!StatsHelper.StatTypeToDisplayDataMapping.TryGetValue(statType, out var data)) return null;
 
         var item = Instantiate(statsTextPrefab, container);
-        var text =
-            $" {StatsHelper.GetStatValue(type, playerStats)}{StatsHelper.GetValueSuffix(data.Type)} {data.Name} ";
-        item.Initialize(type, text, initialBgSize.x, new Vector2(0f, currentY));
+        var text = StatsHelper.GetStatsDisplayText(statType, playerStats);
+        item.Initialize(statType, text, initialBgSize.x, new Vector2(0f, currentY));
         return item;
     }
 
@@ -121,7 +120,7 @@ public class StatsDisplay : MonoBehaviour
         if (!StatsHelper.StatTypeToDisplayDataMapping.TryGetValue(type, out var data)) return null;
 
         var item = Instantiate(statsTextPrefab, container);
-        var text = $" + {value}{StatsHelper.GetValueSuffix(data.Type)} {data.Name}";
+        var text = StatsHelper.GetStatsDisplayText(type, value);
         item.Initialize(type, text, initialBgSize.x, new Vector2(0f, currentY), Color.green);
         return item;
     }
