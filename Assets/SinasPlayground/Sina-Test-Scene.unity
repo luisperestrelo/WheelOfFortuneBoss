@@ -750,7 +750,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &368895366
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3081,7 +3081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1412081761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12247,7 +12247,9 @@ MonoBehaviour:
   - {fileID: 1799117932}
   - {fileID: 1210288841}
   - {fileID: 2024554974}
+  upgradeDisplays: []
   confirmButton: {fileID: 780454983}
+  statsDisplay: {fileID: 0}
   highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.44705883}
   uiWheel: {fileID: 1625189718}
 --- !u!1001 &8705802611879776679
