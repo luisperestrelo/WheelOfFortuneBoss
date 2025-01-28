@@ -20,7 +20,8 @@ public class UIWheel : MonoBehaviour
     public float HighlightedLineWidth = 10f;
     public CardDisplay incomingCardDisplay = null;
     public TextMeshProUGUI explanationText = null;
-    public string explanationTextAddField = "Click a line to choose where the new field goes";
+    public string explanationTextAddField = "Click a line to place the new field. ";
+    // private string explanationTextAddField2 = "Click a" + " <color=green>" + "line" + "</color>" + " to place the new field.";
     public string explanationTextReplaceField = "You are at maximum fields! Click a field to replace it";
     
 
