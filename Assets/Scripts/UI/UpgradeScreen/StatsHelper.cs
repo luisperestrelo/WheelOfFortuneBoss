@@ -21,7 +21,7 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Health Regeneration",
                 ToolTipText = "Determines how quickly your health regenerates while in a Healing Field time.",
-                Type = StatDisplayType.Time
+                Type = StatDisplayType.TimeRate
             }
         },
         {
@@ -30,7 +30,7 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Damage Multiplier",
                 ToolTipText = "Increases all damage dealt by a percentage.",
-                Type = StatDisplayType.Multiplier
+                Type = StatDisplayType.Percentage
             }
         },
         {
@@ -66,18 +66,18 @@ public class StatsHelper : MonoBehaviour
             StatType.HealingFieldsStrength,
             new StatDisplayData
             {
-                Name = "Healing Fields Strength",
+                Name = "Healing Fields Effectiveness",
                 ToolTipText = "Increases the effectiveness of healing fields.",
-                Type = StatDisplayType.Multiplier
+                Type = StatDisplayType.Absolute
             }
         },
         {
             StatType.ChargeUpFieldsSpeed,
             new StatDisplayData
             {
-                Name = "Charge-Up Fields Speed",
+                Name = "Charging Speed (Fields)",
                 ToolTipText = "Improves the speed at which charge-up fields take effect.",
-                Type = StatDisplayType.Multiplier
+                Type = StatDisplayType.Multiplier // TODO: ? or TimeRate
             }
         },
         {
@@ -86,14 +86,14 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Charge-Up Field Decay Slowdown",
                 ToolTipText = "Reduces the rate at which charge-up fields lose their effect.",
-                Type = StatDisplayType.Percentage
+                Type = StatDisplayType.Percentage // TODO: ?
             }
         },
         {
             StatType.PositiveNegativeFieldsEffectiveness,
             new StatDisplayData
             {
-                Name = "Positive/Negative Fields Effectiveness",
+                Name = "Fields Effectiveness (positive/negative)",
                 ToolTipText = "Increases the effectiveness of both positive and negative fields.",
                 Type = StatDisplayType.Multiplier
             }
@@ -102,17 +102,17 @@ public class StatsHelper : MonoBehaviour
             StatType.LingeringBuffFieldsDuration,
             new StatDisplayData
             {
-                Name = "Lingering Buff Duration",
-                ToolTipText = "Extends the duration of buffs provided by fields.",
-                Type = StatDisplayType.Time
+                Name = "Buff Duration",
+                ToolTipText = "Extends the duration of buffs while standing on a field.",
+                Type = StatDisplayType.Duration // TODO: ?
             }
         },
         {
             StatType.LingeringBuffFieldsEffectiveness,
             new StatDisplayData
             {
-                Name = "Lingering Buff Effectiveness",
-                ToolTipText = "Improves the strength of buffs provided by lingering fields.",
+                Name = "Buff Effectiveness",
+                ToolTipText = "Improves the strength of buffs provided by fields.",
                 Type = StatDisplayType.Multiplier
             }
         },
@@ -121,15 +121,15 @@ public class StatsHelper : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Field Cooldown Reduction",
-                ToolTipText = "Reduces the cooldown time for deploying fields.",
-                Type = StatDisplayType.Percentage
+                ToolTipText = "Reduces the cooldown time for fields.",
+                Type = StatDisplayType.Duration // TODO: ?
             }
         },
         {
             StatType.AdditionalProjectilesForAttacks,
             new StatDisplayData
             {
-                Name = "Additional Projectiles",
+                Name = "Additional Projectile/s",
                 ToolTipText = "Adds extra projectiles to your attacks.",
                 Type = StatDisplayType.Absolute
             }
@@ -138,18 +138,18 @@ public class StatsHelper : MonoBehaviour
             StatType.CritsGiveAttackSpeedBuff,
             new StatDisplayData
             {
-                Name = "Critical Hits Grant Attack Speed Buff",
-                ToolTipText = "Critical hits provide a temporary boost to attack speed.",
-                Type = StatDisplayType.NoValue,
+                Name = "Attack Speed On Crits",
+                ToolTipText = "Critical hits provide a temporary boost to attack speed.",  
+                Type = StatDisplayType.Absolute, //TODO: ?
             }
         },
         {
             StatType.CritsGiveStackingDamageBuff,
             new StatDisplayData
             {
-                Name = "Critical Hits Grant Stacking Damage Buff",
-                ToolTipText = "Critical hits provide a stacking damage buff.",
-                Type = StatDisplayType.NoValue,
+                Name = "Damage Increase On Crits",
+                ToolTipText = "Critical hits provide a stacking damage buff.", 
+                Type = StatDisplayType.Absolute, //TODO: ?
             }
         },
         {
@@ -157,7 +157,7 @@ public class StatsHelper : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Poison Chance",
-                ToolTipText = "Determines the probability of applying poison effects on hit.",
+                ToolTipText = "Probability of applying poison effects on hit.",
                 Type = StatDisplayType.Percentage,
             }
         },
@@ -253,8 +253,8 @@ public class StatsHelper : MonoBehaviour
         {
             StatDisplayType.Multiplier => "x",
             StatDisplayType.Percentage => "%",
-            StatDisplayType.Time => "s",
-            StatDisplayType.Duration => "/s",
+            StatDisplayType.TimeRate => "/s",
+            StatDisplayType.Duration => "s",
             _ => ""
         };
     }
