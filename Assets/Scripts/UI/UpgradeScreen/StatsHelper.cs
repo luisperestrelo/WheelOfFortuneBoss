@@ -140,7 +140,7 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Critical Hits Grant Attack Speed Buff",
                 ToolTipText = "Critical hits provide a temporary boost to attack speed.",
-                Type = StatDisplayType.Percentage,
+                Type = StatDisplayType.NoValue,
             }
         },
         {
@@ -149,7 +149,7 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Critical Hits Grant Stacking Damage Buff",
                 ToolTipText = "Critical hits provide a stacking damage buff.",
-                Type = StatDisplayType.Multiplier,
+                Type = StatDisplayType.NoValue,
             }
         },
         {
@@ -181,9 +181,31 @@ public class StatsHelper : MonoBehaviour
         }
     };
 
-    public static StatDisplayData GetStatDisplayData(StatType statType)
+    // Showing the total value
+    public static string GetStatsDisplayText(StatType statType, PlayerStats playerStats)
     {
-        return StatTypeToDisplayDataMapping.GetValueOrDefault(statType);
+        return StatTypeToDisplayDataMapping.TryGetValue(statType, out var data)
+            ? $"{FormatValue(GetStatValue(statType, playerStats), data.Type)} {data.Name}"
+            : "";
+    }
+
+    // Used for temporary stats, showing only the additional stat value
+    public static string GetStatsDisplayText(StatType statType, float value)
+    {
+        if (!StatTypeToDisplayDataMapping.TryGetValue(statType, out var data))
+            return "";
+        value = data.FlippedSign ? -value : value;
+        return $"+ {FormatValue(value, data.Type)} {data.Name}";
+
+    }
+
+    private static string FormatValue(float value, StatDisplayType displayType)
+    {
+        if (displayType == StatDisplayType.NoValue) return "";
+
+        value = displayType == StatDisplayType.Percentage ? value * 100 : value;
+
+        return value + GetValueSuffix(displayType);
     }
 
     public static string GetTooltipText(StatType statType)
@@ -193,7 +215,6 @@ public class StatsHelper : MonoBehaviour
             : "";
     }
 
-    // Start is called before the first frame update
     public static float GetStatValue(StatType statType, PlayerStats playerStats)
     {
         return statType switch
