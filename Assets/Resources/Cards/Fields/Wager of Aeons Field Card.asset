@@ -16,7 +16,7 @@ MonoBehaviour:
   description: While in this field, your attack becomes a slash that evolves every
     2 seconds, up to 6 levels.
   rarity: 2
-  icon: {fileID: 21300000, guid: d622dfc46951e3e4cae67cdaa5301069, type: 3}
+  icon: {fileID: 21300000, guid: 3c18d0a78f16dec4bb692f0690c6fa38, type: 3}
   cardType: 0
   isKissCurse: 1
   downSideDescription: Every 2 seconds, inflicts a stacking 20% incoming-damage debuff,
