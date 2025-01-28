@@ -8,27 +8,22 @@ public class StatsDisplayItem : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
     [SerializeField] public RectTransform Rect;
     [SerializeField] public TextMeshProUGUI Text;
-    
+
     private StatType statType;
 
-    
-    public void Initialize(StatType statType, string text, float maxWidth, Vector2 position)
-    {
-        this.statType = statType;
-        Text.text = text;
-        Rect.sizeDelta = new Vector2(maxWidth, Rect.sizeDelta.y);
-        Rect.anchoredPosition = position;
 
-    }
-    
-    public void Initialize(StatType statType, string text,  float maxWidth, Vector2 position,  Color color) 
+    public void Initialize(StatType type, string text, float maxWidth, Vector2 position, Color color)
     {
-        Initialize(statType, text, maxWidth, position);
+        Initialize(type, text, maxWidth, position);
         Text.color = color;
     }
-
-    // public string Text { get => text.text; set => text.text = value; }
-
+    public void Initialize(StatType type, string text, float maxWidth, Vector2 position)
+    {
+        statType = type;
+        Text.text = text;
+        Rect.sizeDelta = new Vector2(maxWidth - 16, Rect.sizeDelta.y);
+        Rect.anchoredPosition = position;
+    }
     public void OnPointerEnter(PointerEventData eventData)
     {
         StatsDisplay.OnMouseHover?.Invoke(statType, Input.mousePosition);
@@ -37,7 +32,5 @@ public class StatsDisplayItem : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerExit(PointerEventData eventData)
     {
         StatsDisplay.OnMouseLoseFocus?.Invoke();
-
-
     }
 }

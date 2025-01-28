@@ -26,7 +26,6 @@ public abstract class UpgradeDisplayVisual : MonoBehaviour //, IPointerEnterHand
         {
             rarityFxObjects[i].gameObject.SetActive(i == (int)rarity);
         }
-    
     }
 
     public abstract void Select();

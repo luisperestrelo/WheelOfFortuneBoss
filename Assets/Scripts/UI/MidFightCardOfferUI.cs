@@ -95,9 +95,14 @@ public class MidFightCardOfferUI : MonoBehaviour
     private void ConfirmStatUpgradeCard()
     {
         RunManager.Instance.OnMidFightStatCardSelected(selectedCard);
-        Debug.Log("Selected card is not a Field card");
+        Debug.Log("Selected card is not a Field card"); 
+        if (selectedCard is StatUpgradeCard statUpgradeCard)
+        {
+            statsDisplay.AddStatsToListToShow(statUpgradeCard.statTypes);
+        }
 
         // StartCoroutine(DeactivateAfterDelay());
+        
         SelectCard(-1);
 
 

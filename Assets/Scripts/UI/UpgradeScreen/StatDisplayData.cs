@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum StatDisplayType {
+public enum StatDisplayType
+{
     Absolute,
     Percentage,
     Multiplier,
-    Time
+    Time,
+    Duration
 }
 
-public class StatDisplayData 
+public class StatDisplayData
 {
     public string ToolTipText;
     public string Name;
     public StatDisplayType Type;
-    public float ValueToAdd;
-    public Transform Transform;
-
+    public bool FlippedSign; // if positive values need to displayed with "-" or vice versa
 }
