@@ -16,7 +16,7 @@ MonoBehaviour:
   description: When charged, grants you 100% crit chance for 2 seconds. 8 Second
     cooldown
   rarity: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 3c18d0a78f16dec4bb692f0690c6fa38, type: 3}
   cardType: 0
   isKissCurse: 0
   downSideDescription: 

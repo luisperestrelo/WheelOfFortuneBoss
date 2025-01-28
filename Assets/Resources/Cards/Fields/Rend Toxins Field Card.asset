@@ -17,7 +17,7 @@ MonoBehaviour:
     they are inflicted with. Removes the stacks. DEV: Whether or not to remove stacks
     is controlled by a boolean on PoisonDetonationField'
   rarity: 2
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 3c18d0a78f16dec4bb692f0690c6fa38, type: 3}
   cardType: 0
   isKissCurse: 0
   downSideDescription: 
