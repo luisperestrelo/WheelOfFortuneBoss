@@ -2822,6 +2822,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardTooltip
       objectReference: {fileID: 0}
+    - target: {fileID: 2400366154335741591, guid: 61d67c81eb8c50640a19d7f9d81cbaae, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6453895897985990161, guid: 61d67c81eb8c50640a19d7f9d81cbaae, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2884,11 +2888,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6453895897985990161, guid: 61d67c81eb8c50640a19d7f9d81cbaae, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 192
+      value: 413
       objectReference: {fileID: 0}
     - target: {fileID: 6453895897985990161, guid: 61d67c81eb8c50640a19d7f9d81cbaae, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 125.140015
+      value: 390
       objectReference: {fileID: 0}
     - target: {fileID: 6453895897985990161, guid: 61d67c81eb8c50640a19d7f9d81cbaae, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

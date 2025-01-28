@@ -39,7 +39,8 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Attack Speed",
                 ToolTipText = "Increases the speed at which you attack or fire weapons.",
-                Type = StatDisplayType.Multiplier
+                Type = StatDisplayType.Percentage, // TODO: ?
+                FlippedSign = true
             }
         },
         {
@@ -68,7 +69,7 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Healing Fields Effectiveness",
                 ToolTipText = "Increases the effectiveness of healing fields.",
-                Type = StatDisplayType.Absolute
+                Type = StatDisplayType.Percentage
             }
         },
         {
@@ -95,7 +96,7 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Fields Effectiveness (positive/negative)",
                 ToolTipText = "Increases the effectiveness of both positive and negative fields.",
-                Type = StatDisplayType.Multiplier
+                Type = StatDisplayType.Percentage
             }
         },
         {
@@ -113,7 +114,7 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Buff Effectiveness",
                 ToolTipText = "Improves the strength of buffs provided by fields.",
-                Type = StatDisplayType.Multiplier
+                Type = StatDisplayType.Percentage
             }
         },
         {
@@ -140,7 +141,8 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Attack Speed On Crits",
                 ToolTipText = "Critical hits provide a temporary boost to attack speed.",  
-                Type = StatDisplayType.Absolute, //TODO: ?
+                Type = StatDisplayType.Percentage, //TODO: ?,
+                FlippedSign = true
             }
         },
         {
@@ -149,7 +151,7 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Damage Increase On Crits",
                 ToolTipText = "Critical hits provide a stacking damage buff.", 
-                Type = StatDisplayType.Absolute, //TODO: ?
+                Type = StatDisplayType.Multiplier, //TODO: ?
             }
         },
         {
@@ -165,18 +167,18 @@ public class StatsHelper : MonoBehaviour
             StatType.PoisonDamageOverTimeMultiplier,
             new StatDisplayData
             {
-                Name = "Poison Damage Over Time Multiplier",
+                Name = "Poison Damage Over Time",
                 ToolTipText = "Increases the damage dealt by poison effects over time.",
-                Type = StatDisplayType.Multiplier,
+                Type = StatDisplayType.Multiplier,//TODO: ?
             }
         },
         {
             StatType.PoisonDurationMultiplier,
             new StatDisplayData
             {
-                Name = "Poison Duration Multiplier",
+                Name = "Poison Duration",
                 ToolTipText = "Increases the duration of poison effects applied to enemies.",
-                Type = StatDisplayType.Multiplier,
+                Type = StatDisplayType.Percentage,//TODO: ?
             }
         }
     };
@@ -195,7 +197,8 @@ public class StatsHelper : MonoBehaviour
         if (!StatTypeToDisplayDataMapping.TryGetValue(statType, out var data))
             return "";
         value = data.FlippedSign ? -value : value;
-        return $"+ {FormatValue(value, data.Type)} {data.Name}";
+        var sign = value > 0 ? "+" : "-";
+        return $"{sign} {FormatValue(Mathf.Abs(value), data.Type)} {data.Name}";
 
     }
 
