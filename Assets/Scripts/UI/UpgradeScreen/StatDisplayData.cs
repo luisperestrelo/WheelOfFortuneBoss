@@ -8,7 +8,7 @@ public enum StatDisplayType
     Absolute,
     Percentage,
     Multiplier,
-    Time,
+    TimeRate,
     Duration,
     NoValue
 }
