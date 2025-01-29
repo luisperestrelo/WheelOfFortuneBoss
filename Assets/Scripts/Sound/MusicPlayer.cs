@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioLowPassFilter))]
 public class MusicPlayer : MonoBehaviour
@@ -15,6 +16,7 @@ public class MusicPlayer : MonoBehaviour
 
     [SerializeField] private AudioLowPassFilter lpFilter;
     [SerializeField] private AudioHighPassFilter hpFilter;
+    [SerializeField] private AudioMixer mixer;
 
     private int preFightLoopStartSamples;
     private int preFightLoopEndSamples;
@@ -33,8 +35,9 @@ public class MusicPlayer : MonoBehaviour
 
     [Tooltip("Set to true for one frame at the start of each measure.")]
     public bool measureFlag = false;
-
     private bool fadeOverrideFlag = false;
+
+    [SerializeField] private AnimationCurve reverbFadeInCurve;
 
     public enum MusicSection
     {
@@ -63,7 +66,6 @@ public class MusicPlayer : MonoBehaviour
         //Alas, such dreams are of a man asleep.
 
         loadedProfile = profile;
-
         preFightSource.clip = profile.preFightLoop;
         //Convert loop start and end timestamps of fight music from seconds to samples.
         preFightLoopStartSamples = (int)(profile.preFightLoopStartTime * preFightSource.clip.frequency);
@@ -85,6 +87,7 @@ public class MusicPlayer : MonoBehaviour
         //Reset the measure cycle to realign with the BPM of the new music profile
         StopCoroutine(MeasureFlagCycle());
         StartCoroutine(MeasureFlagCycle());
+        StartCoroutine(TransitionToNewSongRoutine(profile));
     }
 
     /// <summary>
@@ -105,7 +108,7 @@ public class MusicPlayer : MonoBehaviour
                 break;
             case MusicSection.fight:
                 fightSource.Play();
-                StartCoroutine(FadeSourceVolumeRoutine(source: preFightSource, targetVolume: 0, time: loadedProfile.fightLoopStartTime));
+                StartCoroutine(FadeSourceVolumeRoutine(source: preFightSource, targetVolume: 0, time: loadedProfile.fightLoopStartTime * 2));
                 StartCoroutine(FadeSourceVolumeRoutine(source: fightSource, targetVolume: 1, time: loadedProfile.fightLoopStartTime));
                 StartCoroutine(FadeSourceVolumeRoutine(source: ambienceSource, targetVolume: 0, time: loadedProfile.fightLoopStartTime));
                 break;
@@ -117,6 +120,38 @@ public class MusicPlayer : MonoBehaviour
             default:
                 Debug.LogWarning("Unknown music section loaded.");
                 break;
+        }
+    }
+
+    private IEnumerator TransitionToNewSongRoutine(SoundProfile profile)
+    {
+        float timeElapsed = 0;
+        if (fightSource.volume > 0)
+        {
+            //fade out fight
+            
+            const float fadeOutTime = 3f;
+            StartCoroutine(FadeSourceVolumeRoutine(fightSource, 0, 6f));
+            while (timeElapsed < fadeOutTime)
+            {
+                timeElapsed += Time.deltaTime;
+                SetReverbIntensity(Mathf.Lerp(0, 1, timeElapsed / fadeOutTime));
+                yield return new WaitForSecondsRealtime(0);
+            }
+            fightSource.Stop();
+            fightSource.volume = 1;
+        }
+
+        //fade in pre-fight
+        timeElapsed = 0;
+        const float fadeInTime = 5;
+        preFightSource.Play();
+        while(timeElapsed < fadeInTime)
+        {
+            timeElapsed += Time.deltaTime;
+            SetReverbIntensity(Mathf.Lerp(1, 0, timeElapsed / fadeInTime));
+            preFightSource.volume = Mathf.Lerp(0, 1, timeElapsed / fadeInTime);
+            yield return new WaitForSecondsRealtime(0);
         }
     }
 
@@ -172,6 +207,15 @@ public class MusicPlayer : MonoBehaviour
 
             yield return new WaitForSecondsRealtime(0);
         }
+    }
+
+    /// <summary>
+    /// Snaps the reverb mix on the music insert to a given percentage.
+    /// </summary>
+    /// <param name="intensity">0 is no reverb, 1 is 100% reverb.</param>
+    private void SetReverbIntensity(float intensity)
+    {
+        mixer.SetFloat("MusicReverbMix", Mathf.Lerp(-80, 0, reverbFadeInCurve.Evaluate(intensity)));
     }
 
     #region Filter

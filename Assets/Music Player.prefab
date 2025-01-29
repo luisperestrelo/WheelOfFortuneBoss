@@ -232,8 +232,33 @@ MonoBehaviour:
     m_RotationOrder: 4
   lpFilter: {fileID: 8644015709860308193}
   hpFilter: {fileID: 7176874190034887751}
+  mixer: {fileID: 24100000, guid: 6ad2b2cae9639ea489e06085fa43cb8f, type: 2}
   musicVolume: 1
   measureFlag: 0
+  reverbFadeInCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2.925118
+      outSlope: 2.925118
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.03305785
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!82 &7626453082289106441
 AudioSource:
   m_ObjectHideFlags: 0
@@ -512,7 +537,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -529,7 +554,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7626453082289106440}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0860537f40f3ec440a1856ce7aa7e73a, type: 3}
   m_Name: 
