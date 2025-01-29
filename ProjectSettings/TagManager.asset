@@ -50,6 +50,12 @@ TagManager:
   - name: runes
     uniqueID: 3677158003
     locked: 0
+  - name: AttacksOnGround
+    uniqueID: 4262908821
+    locked: 0
+  - name: EnvAboveGround
+    uniqueID: 4259622755
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
