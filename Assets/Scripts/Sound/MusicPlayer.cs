@@ -125,6 +125,7 @@ public class MusicPlayer : MonoBehaviour
 
     private IEnumerator TransitionToNewSongRoutine(SoundProfile profile)
     {
+        StartCoroutine(FadeInPrefightAfterDelay());
         float timeElapsed = 0;
         if (fightSource.volume > 0)
         {
@@ -141,12 +142,16 @@ public class MusicPlayer : MonoBehaviour
             fightSource.Stop();
             fightSource.volume = 1;
         }
+    }
 
-        //fade in pre-fight
-        timeElapsed = 0;
+    //This is its own method so that it doesnt have to be activated in the middle of a while loop
+    private IEnumerator FadeInPrefightAfterDelay()
+    {
+        yield return new WaitForSecondsRealtime(2);
+        float timeElapsed = 0;
         const float fadeInTime = 5;
         preFightSource.Play();
-        while(timeElapsed < fadeInTime)
+        while (timeElapsed < fadeInTime)
         {
             timeElapsed += Time.deltaTime;
             SetReverbIntensity(Mathf.Lerp(1, 0, timeElapsed / fadeInTime));
@@ -292,10 +297,9 @@ public class MusicPlayer : MonoBehaviour
 
     private void Update()
     {
-        //If the pre-fight music has gone past the end of its loop point, rewind it by the duration of the loop.
-        if (preFightSource.timeSamples >= preFightLoopEndSamples) { preFightSource.timeSamples -= preFightLoopLengthSamples;}
-
         //Same thing for the fight music
-        if (fightSource.timeSamples >= fightLoopEndSamples) { fightSource.timeSamples -= fightLoopLengthSamples; }
+        float correctedTimeSamples = fightSource.timeSamples * (44100 / AudioSettings.outputSampleRate);
+        if (correctedTimeSamples >= fightLoopEndSamples) { fightSource.timeSamples -= fightLoopLengthSamples; }
+        Debug.Log(AudioSettings.outputSampleRate);
     }
 }
