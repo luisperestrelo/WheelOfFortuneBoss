@@ -215,6 +215,8 @@ MonoBehaviour:
   selectionImage: {fileID: 3647768177596857844}
   fieldCardDisplay: {fileID: 5136535925324928952}
   statUpgradeDisplay: {fileID: 2624731096440393616}
+  menuSource: {fileID: 0}
+  hoverSfx: {fileID: 8300000, guid: f17854de07ee68b4890d410703a307a7, type: 3}
   tooltip: {fileID: 0}
 --- !u!114 &1530831935798840423
 MonoBehaviour:

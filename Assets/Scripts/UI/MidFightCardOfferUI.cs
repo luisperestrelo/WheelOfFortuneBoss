@@ -9,12 +9,17 @@ public class MidFightCardOfferUI : MonoBehaviour
     public UpgradeDisplay[] upgradeDisplays;
     public Button confirmButton;
     public StatsDisplay statsDisplay;
+
+    [SerializeField] private AudioClip openSfx;
+    [SerializeField] private AudioClip selectSfx;
+    [SerializeField] private AudioClip openWheelPlacementSfx;
+    [SerializeField] private AudioClip closeSfx;
     
     private List<Card> offeredCards;
     private Card selectedCard;
     private int selectedIndex = -1;
-    
-    
+
+    private AudioSource source;
 
     public Color highlightColor = new Color(1f, 1f, 1f, 0.5f);
     public UIWheel uiWheel;
@@ -24,13 +29,14 @@ public class MidFightCardOfferUI : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        source = GetComponent<AudioSource>();
     }
 
     // ShowCards
     public void ShowUpgrades(List<Card> cards)
     {
         animator.SetBool("isOpen", true);
-
+        source.PlayOneShot(openSfx);
         offeredCards = cards;
         selectedCard = null;
 
@@ -64,6 +70,7 @@ public class MidFightCardOfferUI : MonoBehaviour
     public void OnUpgradeClicked(int cardIndex)
     {
         SelectCard(cardIndex);
+        source.PlayOneShot(selectSfx);
         
         // Enable the confirm button
         confirmButton.interactable = true;
@@ -122,7 +129,7 @@ public class MidFightCardOfferUI : MonoBehaviour
             uiWheel.Initialize(RunManager.Instance.wheelManager, newField, selectedCard, UIWheelMode.Insert);
         }
         SelectCard(-1);
-
+        source.PlayOneShot(openWheelPlacementSfx);
 
         // StartCoroutine(DeactivateAfterDelay());
     }
@@ -153,12 +160,14 @@ public class MidFightCardOfferUI : MonoBehaviour
     
     public void Close()
     {
+        SFXPool.instance.PlaySound(closeSfx, SFXPool.MixGroup.ui);
         gameObject.SetActive(false);
     }
 
     private IEnumerator DeactivateAfterDelay()
     {
         animator.SetBool("isOpen", false);
+        SFXPool.instance.PlaySound(closeSfx, SFXPool.MixGroup.ui);
         const float delay = 0.8f;
         yield return new WaitForSeconds(delay);
         gameObject.SetActive(false);
