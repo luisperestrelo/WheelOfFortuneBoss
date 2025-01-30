@@ -1983,11 +1983,26 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8492273469870880089, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+      propertyPath: manualMoveCheckbox
+      value: 
+      objectReference: {fileID: 1752404232}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+--- !u!114 &1752404232 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5625695611515700013, guid: 62d90a4bb2293244ca5efd06b12f526e, type: 3}
+  m_PrefabInstance: {fileID: 1626885755}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec42d82ff1213549a4094370c5bb709, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1844620341
 PrefabInstance:
   m_ObjectHideFlags: 0
