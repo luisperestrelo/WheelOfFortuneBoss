@@ -12,10 +12,14 @@ public class BuffManager : MonoBehaviour
     [SerializeField] private List<ActiveBuffDebugData> debugBuffs = new List<ActiveBuffDebugData>();
     [SerializeField] private List<ActiveBuffDebugData> debugDebuffs = new List<ActiveBuffDebugData>();
 
+    private AudioSource source;
+    [SerializeField] private AudioClip removePoisonSfx;
+
     private void Awake()
     {
         _stats = GetComponent<Stats>();
         _playerHealth = GetComponent<Health>();
+        source = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -174,6 +178,9 @@ public class BuffManager : MonoBehaviour
                 b.OnRemove(_stats);
             }
             activeBuffs.Remove(buffId);
+
+            if (buffId == "Poison")
+                source.PlayOneShot(removePoisonSfx);
         }
     }
 
