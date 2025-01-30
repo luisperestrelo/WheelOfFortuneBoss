@@ -94,6 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7492055258595649175}
   - component: {fileID: 1476847131931412183}
+  - component: {fileID: 6237572707053305511}
   m_Layer: 0
   m_Name: Flail-Telegraph
   m_TagString: Untagged
@@ -129,6 +130,19 @@ SortingGroup:
   m_SortingLayer: -2
   m_SortingOrder: 0
   m_SortAtRoot: 1
+--- !u!114 &6237572707053305511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506881482310404943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c93e36a010f6c024a9f7e0390b8f53b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInDuration: 1
 --- !u!1 &6917760119457813732
 GameObject:
   m_ObjectHideFlags: 0

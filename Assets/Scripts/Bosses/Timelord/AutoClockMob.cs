@@ -4,7 +4,21 @@ using UnityEngine;
 
 public class AutoClockMob : ClockMob
 {
- 
+    [Header("Auto Clock Mob")]
+    [SerializeField] private float durationUntilPunishment = 10f;
+
+
+    [Header("Slow Zone")]
+    [SerializeField] private GameObject slowZonePrefab;
+    [SerializeField] private float slowZoneDuration = 15f;
+
+    private void Start()
+    {
+        StartTimer(durationUntilPunishment, () =>
+        {
+            SpawnSlowZone();
+        });
+    }
     /// <summary>
     /// Flips the hourglass and starts the timer afterward.
     /// </summary>
@@ -20,8 +34,8 @@ public class AutoClockMob : ClockMob
         StartCoroutine(StartProgress(seconds));
         return true;
     }
-    
-    
+
+
     IEnumerator StartProgress(float duration)
     {
         var elapsedTime = 0f;
@@ -36,6 +50,8 @@ public class AutoClockMob : ClockMob
         }
 
         OnComplete?.Invoke();
+        //SpawnSlowZone();
+        StartCoroutine(StartProgress(duration));
     }
 
     private void SetProgress(float value)
@@ -43,5 +59,11 @@ public class AutoClockMob : ClockMob
         progressMat?.SetFloat("_Arc2", 350 + value);
         pointer.localRotation = Quaternion.Euler(pointer.localRotation.eulerAngles.x,
             pointer.localRotation.eulerAngles.y, value);
+    }
+
+    private void SpawnSlowZone()
+    {
+        GameObject slowZone = Instantiate(slowZonePrefab, transform.position, Quaternion.identity);
+        Destroy(slowZone, 10f);
     }
 }

@@ -387,4 +387,17 @@ public class PlayerSpinMovement : MonoBehaviour
         return movementSchemeType;
     }
 
+    //be very careful using this
+    public void SetMaxRotationSpeed(float newMaxRotationSpeed)
+    {
+        maxRotationSpeed = newMaxRotationSpeed;
+    }
+
+    public void SetCurrentAngle(float newCurrentAngle)
+    {
+        _currentAngle = newCurrentAngle;
+    }
+
+
+
 }
