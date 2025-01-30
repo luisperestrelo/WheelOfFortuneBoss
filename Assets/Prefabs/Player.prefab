@@ -1324,6 +1324,13 @@ MonoBehaviour:
   fieldsCooldownMultiplier: 1
   damageOverTimeMultiplier: 1
   poisonDamageOverTimeMultiplier: 1
+  poisonDurationMultiplier: 1
+  poisonChance: 0
+  basePoisonDamage: 1
+  basePoisonDuration: 4
+  aggregatedCritChance: 0
+  aggregatedDamageMultiplier: 0
+  aggregatedDamageTakenMultiplier: 0
 --- !u!114 &418291518794395319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,6 +1345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugBuffs: []
   debugDebuffs: []
+  removePoisonSfx: {fileID: 8300000, guid: fe0dce65bc3d4b147949e637dbf515bc, type: 3}
 --- !u!114 &-1518155386828152305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,6 +1358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29dbfcaa71e7f9c47af357d5fc825f8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onCritEffectNames: []
 --- !u!1 &6389844122480484167
 GameObject:
   m_ObjectHideFlags: 0

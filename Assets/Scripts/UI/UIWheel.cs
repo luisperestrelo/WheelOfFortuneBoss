@@ -23,6 +23,8 @@ public class UIWheel : MonoBehaviour
     public string explanationTextAddField = "Click a line to place the new field. ";
     // private string explanationTextAddField2 = "Click a" + " <color=green>" + "line" + "</color>" + " to place the new field.";
     public string explanationTextReplaceField = "You are at maximum fields! Click a field to replace it";
+
+    [SerializeField] private AudioClip selectLineSfx;
     
 
     private List<UISegment> uiSegments = new List<UISegment>();
@@ -166,7 +168,7 @@ public class UIWheel : MonoBehaviour
         {
             Debug.Log($"Line {index} clicked (insertion point)");
             selectedIndex = index;
-            
+            SFXPool.instance.PlaySound(selectLineSfx);
         }
 
         else

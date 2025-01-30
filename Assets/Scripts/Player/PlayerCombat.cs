@@ -74,7 +74,7 @@ public class PlayerCombat : MonoBehaviour
     {
         RotatePlayerTowardsMouse();
         
-        if (canShoot && Input.GetMouseButton(0))
+        if (canShoot && Input.GetMouseButton(0) && Time.timeScale > 0)
         {
             if (CurrentAttack == null)
                 CurrentAttack = DefaultAttack;

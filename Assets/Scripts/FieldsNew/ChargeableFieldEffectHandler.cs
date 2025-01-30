@@ -32,7 +32,7 @@ public abstract class ChargeableFieldEffectHandler : FieldEffectHandler
         if (chargeSource == null)
         {
             chargeSource = CreateAudioSource(true);
-            chargeSource.clip = Resources.Load("SE_Field_Charge") as AudioClip;
+            chargeSource.clip = Resources.Load("SFX/SE_Field_Charge") as AudioClip;
             chargeSource.loop = true;
             chargeSource.volume = 0;
             chargeSource.Play();

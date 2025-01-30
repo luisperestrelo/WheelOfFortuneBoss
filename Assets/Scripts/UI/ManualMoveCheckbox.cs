@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,21 +5,58 @@ using UnityEngine.UI;
 public class ManualMoveCheckbox : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI useQEToMovePrompt;
-    [SerializeField] private PlayerSpinMovement movement;
     private Toggle toggle;
-    private void Start()
+
+    private PlayerSpinMovement movement;
+
+    public void UpdateUI()
+    {
+        FindPlayerMovement();
+        if(movement)
+            toggle.isOn = movement.GetCurrentMovementScheme() == PlayerSpinMovement.MovementSchemeType.HoldToMove;
+    }
+
+    private void Awake()
     {
         toggle = GetComponent<Toggle>();
+    }
+
+    private void Start()
+    {
         toggle.onValueChanged.AddListener(UpdateScheme);
+
+        UpdateUI();
+    }
+
+    private void OnEnable()
+    {
+        UpdateUI();
+    }
+
+    private void FindPlayerMovement()
+    {
+        // last minute fix for the bug, when toggling Manual Move after the player died (movement doesnt exist anymore)
+        if(!movement)
+            movement = FindObjectOfType<PlayerSpinMovement>();
+  
     }
 
     public void UpdateScheme(bool doManualMove)
     {
-        if (doManualMove)
-            movement.ChangeMovementScheme(PlayerSpinMovement.MovementSchemeType.HoldToMove);
-        else
-            movement.ChangeMovementScheme(PlayerSpinMovement.MovementSchemeType.TapToChangeFireToSlow);
+        if (!movement) FindPlayerMovement();
 
-        useQEToMovePrompt.gameObject.SetActive(doManualMove);
+        if (movement)
+        {
+            if (doManualMove)
+                movement.ChangeMovementScheme(PlayerSpinMovement.MovementSchemeType.HoldToMove);
+            else
+                movement.ChangeMovementScheme(PlayerSpinMovement.MovementSchemeType.TapToChangeFireToSlow);
+
+            useQEToMovePrompt.gameObject.SetActive(doManualMove);
+        }
+        else
+        {
+            Debug.LogWarning("PlayerSpinMovement not found!");
+        }
     }
 }
