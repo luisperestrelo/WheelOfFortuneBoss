@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour
     private bool isPaused = false;
     private Animator animator;
     private static PauseMenu instance;
+    
+    [SerializeField] private ManualMoveCheckbox manualMoveCheckbox;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -24,7 +26,9 @@ public class PauseMenu : MonoBehaviour
             return;
         Time.timeScale = 0;
         isPaused = true;
+        manualMoveCheckbox.UpdateUI();
         animator.SetBool("isPaused", true);
+        
         MusicPlayer.instance.SetFilterIntensity(0.8f);
     }
 

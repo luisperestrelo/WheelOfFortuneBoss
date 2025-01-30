@@ -382,4 +382,9 @@ public class PlayerSpinMovement : MonoBehaviour
         InitializeMovementScheme();
     }
 
+    public MovementSchemeType GetCurrentMovementScheme()
+    {
+        return movementSchemeType;
+    }
+
 }
