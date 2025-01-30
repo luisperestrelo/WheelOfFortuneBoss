@@ -300,6 +300,5 @@ public class MusicPlayer : MonoBehaviour
         //Same thing for the fight music
         float correctedTimeSamples = fightSource.timeSamples * (44100 / AudioSettings.outputSampleRate);
         if (correctedTimeSamples >= fightLoopEndSamples) { fightSource.timeSamples -= fightLoopLengthSamples; }
-        Debug.Log(AudioSettings.outputSampleRate);
     }
 }
