@@ -10,6 +10,7 @@ using UnityEngine;
 public class SFXPool : MonoBehaviour
 {
     [SerializeField] private AudioSource miscAudioSource;
+    [SerializeField] private AudioSource uiAudioSource;
     // Sources for other mix groups will go here.
 
     public static SFXPool instance;
@@ -26,7 +27,8 @@ public class SFXPool : MonoBehaviour
     }
     public enum MixGroup //For mixing, won't be used until the end of the audio production cycle.
     {
-        misc
+        misc,
+        ui
     }
     /// <summary>
     /// Plays a given sound effect on an AudioSource assigned to no Mix Group.
@@ -46,6 +48,9 @@ public class SFXPool : MonoBehaviour
         {
             case MixGroup.misc:
                 miscAudioSource.PlayOneShot(clip);
+                break;
+            case MixGroup.ui:
+                uiAudioSource.PlayOneShot(clip);
                 break;
             default:
                 Debug.LogWarning("Unknown mix group assigned to " + clip);

@@ -108,9 +108,9 @@ public class MusicPlayer : MonoBehaviour
                 break;
             case MusicSection.fight:
                 fightSource.Play();
-                StartCoroutine(FadeSourceVolumeRoutine(source: preFightSource, targetVolume: 0, time: loadedProfile.fightLoopStartTime * 2));
-                StartCoroutine(FadeSourceVolumeRoutine(source: fightSource, targetVolume: 1, time: loadedProfile.fightLoopStartTime));
-                StartCoroutine(FadeSourceVolumeRoutine(source: ambienceSource, targetVolume: 0, time: loadedProfile.fightLoopStartTime));
+                StartCoroutine(FadeSourceVolumeRoutine(source: preFightSource, targetVolume: 0, time: 5));
+                StartCoroutine(FadeSourceVolumeRoutine(source: fightSource, targetVolume: 1, time: 2));
+                StartCoroutine(FadeSourceVolumeRoutine(source: ambienceSource, targetVolume: 0, time: 3));
                 break;
             case MusicSection.ambience:
                 StartCoroutine(FadeSourceVolumeRoutine(source: preFightSource, targetVolume: 0, time: 3));
@@ -300,6 +300,5 @@ public class MusicPlayer : MonoBehaviour
         //Same thing for the fight music
         float correctedTimeSamples = fightSource.timeSamples * (44100 / AudioSettings.outputSampleRate);
         if (correctedTimeSamples >= fightLoopEndSamples) { fightSource.timeSamples -= fightLoopLengthSamples; }
-        Debug.Log(AudioSettings.outputSampleRate);
     }
 }

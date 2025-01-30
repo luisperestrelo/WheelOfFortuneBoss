@@ -1475,7 +1475,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5316809387663816570, guid: 81608d7b2a5a8d44ebd641b21166c989, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 7454754741982818596, guid: 81608d7b2a5a8d44ebd641b21166c989, type: 3}
       insertIndex: -1
@@ -1537,7 +1538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190d9e9918d0aaf48a103a2bb6995059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameOverride: Misc Source (Audio Source)
+  nameOverride: misc source (Audio Source)
   tooltipOverride: 
   target: {fileID: 1114297647}
 --- !u!1001 &1497479086

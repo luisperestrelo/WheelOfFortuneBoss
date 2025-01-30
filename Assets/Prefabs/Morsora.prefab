@@ -25792,6 +25792,7 @@ MonoBehaviour:
   baseFireRateMultiplier: 1
   critChance: 0.05
   critMultiplier: 2
+  baseDamageTakenMultiplier: 1
   healingFieldsStrengthMultiplier: 1
   chargeUpFieldsSpeedMultiplier: 1
   decayingChargeUpFieldsDecaySlowdownMultiplier: 1
@@ -25800,6 +25801,15 @@ MonoBehaviour:
   lingeringBuffFieldsDurationMultiplier: 1
   lingeringBuffFieldsEffectivenessMultiplier: 1
   fieldsCooldownMultiplier: 1
+  damageOverTimeMultiplier: 1
+  poisonDamageOverTimeMultiplier: 1
+  poisonDurationMultiplier: 1
+  poisonChance: 0
+  basePoisonDamage: 1
+  basePoisonDuration: 4
+  aggregatedCritChance: 0
+  aggregatedDamageMultiplier: 0
+  aggregatedDamageTakenMultiplier: 0
 --- !u!114 &-6001104149928868915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25814,6 +25824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugBuffs: []
   debugDebuffs: []
+  removePoisonSfx: {fileID: 8300000, guid: fe0dce65bc3d4b147949e637dbf515bc, type: 3}
 --- !u!1 &7331360546990643597
 GameObject:
   m_ObjectHideFlags: 0

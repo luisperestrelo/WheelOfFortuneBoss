@@ -11,6 +11,8 @@ public class UpgradeDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private Image selectionImage;
     [SerializeField] private UpgradeDisplayVisual fieldCardDisplay;
     [SerializeField] private UpgradeDisplayVisual statUpgradeDisplay;
+    [SerializeField] private AudioSource menuSource;
+    [SerializeField] private AudioClip hoverSfx;
 
     [SerializeField] private CardTooltip tooltip;
 
@@ -73,6 +75,7 @@ public class UpgradeDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void ShowTooltip(Card card, Vector2 position)
     {
+        menuSource.PlayOneShot(hoverSfx, 0.5f);
         var xOffset = position.x < Screen.width / 2 ? tooltip.Rect.sizeDelta.x : -tooltip.Rect.sizeDelta.x;
         tooltip.transform.position = new Vector2(position.x + xOffset, position.y);
 
