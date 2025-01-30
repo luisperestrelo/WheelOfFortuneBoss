@@ -4,8 +4,14 @@ using UnityEngine.Serialization;
 public class RotateImage : MonoBehaviour
 {
     public float rotationSpeed = 50f;  
-    private bool isPlaying = false; 
+    public bool autoPlay = false;
+    private bool isPlaying = false;
 
+
+    void Start()
+    {
+        isPlaying = autoPlay;
+    }
         
     void Update()
     {
