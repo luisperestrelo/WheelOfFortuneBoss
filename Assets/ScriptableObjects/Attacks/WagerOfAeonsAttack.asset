@@ -16,7 +16,7 @@ MonoBehaviour:
   FireRate: 1
   ProjectileCount: 1
   ProjectileSpeed: 35
-  shootSfx: {fileID: 0}
+  shootSfx: {fileID: 8300000, guid: 5f4a429a3bf6d93489ddd79129622955, type: 3}
   projectilesByLevel:
   - {fileID: 840971475343940106, guid: 7a14644c7b26108488899144c1839ef1, type: 3}
   - {fileID: 2780052620087695442, guid: 7b9516b137cb4c3478e1c3b1e051f003, type: 3}
