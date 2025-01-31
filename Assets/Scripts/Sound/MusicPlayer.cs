@@ -72,12 +72,6 @@ public class MusicPlayer : MonoBehaviour
         preFightLoopEndSamples = (int)(profile.preFightLoopEndTime * preFightSource.clip.frequency);
         preFightLoopLengthSamples = preFightLoopEndSamples - preFightLoopStartSamples;
 
-        fightSource.clip = profile.fightLoop;
-        //Same thing for the pre-fight music.
-        fightLoopStartSamples = (int)(profile.fightLoopStartTime * fightSource.clip.frequency);
-        fightLoopEndSamples = (int)(profile.fightLoopEndTime * fightSource.clip.frequency);
-        fightLoopLengthSamples = fightLoopEndSamples - fightLoopStartSamples;
-
         if (ambienceSource.clip != profile.ambienceLoop)
         {
             ambienceSource.clip = profile.ambienceLoop;
@@ -132,13 +126,18 @@ public class MusicPlayer : MonoBehaviour
             //fade out fight
             
             const float fadeOutTime = 3f;
-            StartCoroutine(FadeSourceVolumeRoutine(fightSource, 0, 6f));
+            StartCoroutine(FadeSourceVolumeRoutine(fightSource, 0, fadeOutTime));
             while (timeElapsed < fadeOutTime)
             {
                 timeElapsed += Time.deltaTime;
                 SetReverbIntensity(Mathf.Lerp(0, 1, timeElapsed / fadeOutTime));
                 yield return new WaitForSecondsRealtime(0);
             }
+            fightSource.clip = profile.fightLoop;
+            //Same thing for the pre-fight music.
+            fightLoopStartSamples = (int)(profile.fightLoopStartTime * fightSource.clip.frequency);
+            fightLoopEndSamples = (int)(profile.fightLoopEndTime * fightSource.clip.frequency);
+            fightLoopLengthSamples = fightLoopEndSamples - fightLoopStartSamples;
             fightSource.Stop();
             fightSource.volume = 1;
         }

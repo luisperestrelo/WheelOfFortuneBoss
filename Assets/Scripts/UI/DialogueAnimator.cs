@@ -14,14 +14,15 @@ public class DialogueAnimator : MonoBehaviour
     [SerializeField] private float clearTextTime = 1.2f;
 
     [SerializeField] private List<AudioClip> voiceSfx;
+    [SerializeField] private AudioSource ambientLoopSource;
 
     [SerializeField] private AnimationCurve textFadeCurve;
+    private int dialogueIndex = 0;
 
     private AudioSource source;
     private void Start()
     {
         source = GetComponent<AudioSource>();
-        StartCoroutine(CutsceneRoutine());
     }
     private IEnumerator DisplayLine(TextMeshProUGUI text, string s)
     {
@@ -37,6 +38,7 @@ public class DialogueAnimator : MonoBehaviour
 
     private IEnumerator SetNewDialogue(string s1, string s2, AudioClip clip1, AudioClip clip2)
     {
+        Debug.Log("Showing dialogue ");
         source.PlayOneShot(clip1);
         yield return DisplayLine(text1, s1);
         yield return new WaitForSeconds(timeBetweenText);
@@ -48,23 +50,55 @@ public class DialogueAnimator : MonoBehaviour
         yield return ClearTextRoutine();
     }
 
-    private IEnumerator CutsceneRoutine()
+    public IEnumerator CutsceneRoutine()
     {
         yield return new WaitForSeconds(2);
-        yield return SetNewDialogue("Oh, little wisp...", "What has my wretched brother made of you?", voiceSfx[0], voiceSfx[1]);
 
-        yield return SetNewDialogue("I am so sorry.", "This is not how the thread of your fate was spun.", voiceSfx[2], voiceSfx[1]);
+        while(dialogueIndex < 4)
+        {
+            IterateDialogue();
+            yield return new WaitForSeconds(9);
+        }
 
-        yield return SetNewDialogue("This can still be fixed.", "I will spin your fate anew.", voiceSfx[0], voiceSfx[1]);
-
-        yield return SetNewDialogue("Let it be so; You shall go unto my two siblings.", "You shall slay them each.", voiceSfx[0], voiceSfx[1]);
-
-        yield return SetNewDialogue("Know you may not turn away from your fate...", "You may not move freely until it is done.", voiceSfx[0], voiceSfx[1]);
-
-        yield return SetNewDialogue("Go, now, little wisp...", "Reclaim your fate.", voiceSfx[0], voiceSfx[1]);
         yield return new WaitForSeconds(timeBetweenText / 2);
 
         ender.EndCutscene();
+    }
+
+    public void IterateDialogue()
+    {
+        dialogueIndex++;
+        switch (dialogueIndex)
+        {
+            case 1:
+                StartCoroutine(FadeInAmbience());
+                StartCoroutine(SetNewDialogue("Hail, fallen mortal. I am Clotho, spinner of fate and life.", "I wove the threads that shaped the world.", voiceSfx[0], voiceSfx[1]));
+                break;
+            case 2:
+                StartCoroutine(SetNewDialogue("You've met an untimely demise to my siblings, one that I did not spin.", "I will grant you life anew...", voiceSfx[2], voiceSfx[3]));
+                break;
+            case 3:
+                StartCoroutine(SetNewDialogue("But first, to break your chains, you must slay my two siblings each.", "Go now to the heavens and reclaim your fate.", voiceSfx[1], voiceSfx[4]));
+                break;
+            case 4:
+                ender.EndCutscene();
+                break;
+            default:
+                Debug.LogWarning("Invalid dialogue index");
+                break;
+        }
+    }
+
+    private IEnumerator FadeInAmbience()
+    {
+        const float k_fadeTime = 4;
+        float timeElapsed = 0;
+        while(timeElapsed < k_fadeTime)
+        {
+            timeElapsed += Time.deltaTime;
+            ambientLoopSource.volume = timeElapsed / k_fadeTime;
+            yield return null;
+        }
     }
 
     private IEnumerator ClearTextRoutine()

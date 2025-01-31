@@ -2893,6 +2893,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7bbb4398fbbdf5478381ef81248f7fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  manualMoveCheckbox: {fileID: 0}
+  openSfx: {fileID: 8300000, guid: a3049b38b2ceccd42908dd6253746105, type: 3}
 --- !u!1 &6836965361333362769
 GameObject:
   m_ObjectHideFlags: 0
@@ -3206,7 +3208,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useQEToMovePrompt: {fileID: 6210521452924157334}
-  movement: {fileID: 0}
 --- !u!1 &7617533082572037784
 GameObject:
   m_ObjectHideFlags: 0

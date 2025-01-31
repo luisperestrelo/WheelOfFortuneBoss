@@ -87,4 +87,14 @@ public class CameraMovement : MonoBehaviour
             yield return new WaitForSecondsRealtime(0);
         }
     }
+
+    /// <summary>
+    /// Only to be used in the title menu.
+    /// </summary>
+    /// 
+    //(Yes, I know I should just make a different class, I just don't feel like it :P)
+    public void SetPerspectiveZoom(float z)
+    {
+        originalPos = new Vector3(originalPos.x, originalPos.y, z);
+    }
 }
