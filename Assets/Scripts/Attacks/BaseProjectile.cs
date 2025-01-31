@@ -40,7 +40,7 @@ public class BaseProjectile : MonoBehaviour
 
     protected virtual void Update()
     {
-        transform.Translate(velocity * Time.deltaTime);
+        transform.Translate(velocity * Time.deltaTime, Space.World);
 
         lifeTimeCounter += Time.deltaTime;
         if (lifeTimeCounter > lifeTime)
