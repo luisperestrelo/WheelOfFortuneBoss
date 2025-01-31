@@ -101,6 +101,7 @@ public class FallingMeteor : MonoBehaviour
     {
         Debug.Log("Meteor impacted visually at " + transform.position);
         Instantiate(_impactVfxPrefab, _telegraphTransform.position, Quaternion.identity);
+        CameraMovement.instance.ShakeCamera(0.04f, 0.1f);
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(_damageCenter2D, explosionRadius, damageLayerMask);
         foreach (Collider2D hit in hits)
