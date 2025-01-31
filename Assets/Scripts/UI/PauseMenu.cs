@@ -29,7 +29,8 @@ public class PauseMenu : MonoBehaviour
         manualMoveCheckbox.UpdateUI();
         animator.SetBool("isPaused", true);
         
-        MusicPlayer.instance.SetFilterIntensity(0.8f);
+        if(MusicPlayer.instance != null)
+            MusicPlayer.instance.SetFilterIntensity(0.6f);
     }
 
     public void Resume()
@@ -39,7 +40,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1;
         isPaused = false;
         animator.SetBool("isPaused", false);
-        MusicPlayer.instance.SetFilterIntensity(0f); //This will cause an audio bug if the player unpauses while in the upgrade orb screen.
+        if (MusicPlayer.instance != null)
+            MusicPlayer.instance.SetFilterIntensity(0f); //This will cause an audio bug if the player unpauses while in the upgrade orb screen.
     }
 
     private void Update()
