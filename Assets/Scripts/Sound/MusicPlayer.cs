@@ -138,7 +138,7 @@ public class MusicPlayer : MonoBehaviour
             fightLoopStartSamples = (int)(profile.fightLoopStartTime * fightSource.clip.frequency);
             fightLoopEndSamples = (int)(profile.fightLoopEndTime * fightSource.clip.frequency);
             fightLoopLengthSamples = fightLoopEndSamples - fightLoopStartSamples;
-            //fightSource.Stop();
+            fightSource.Stop();
             fightSource.volume = 1;
         }
     }
