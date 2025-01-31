@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class TimelordBigWaveOfDoomState : TimelordBossState
 {
-    private float initialWaitTime = 4f;
+    private float initialWaitTime = 1f;
     private float waitTimer = 0f;
     private bool hasWaitFinished = false;
 
     // After wave begins, how long it should last before going to Break
-    private float waveDuration = 22f;
+    private float waveDuration = 11.5f;
     private float waveTimer = 0f;
     private bool waveHasStarted = false;
 

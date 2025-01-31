@@ -7,6 +7,9 @@ public class EnableRotatingOrbs : MonoBehaviour
     [SerializeField] private GameObject orbHolder;
     [SerializeField] private GameObject[] lasers;
 
+    [SerializeField] private AudioSource attackSource;
+    [SerializeField] private AudioClip spawnOrbsSfx;
+    [SerializeField] private AudioClip activateLasersSfx;
 
     private void Update()
     {
@@ -32,7 +35,7 @@ public class EnableRotatingOrbs : MonoBehaviour
     {
         // Enable the orb holder
         orbHolder.SetActive(true);
-
+        attackSource.PlayOneShot(spawnOrbsSfx);
         // Disable all lasers on each orb
         foreach (Transform orbTransform in orbHolder.transform)
         {
@@ -50,6 +53,7 @@ public class EnableRotatingOrbs : MonoBehaviour
         {
             laser.SetActive(enableLasers);
         }
+        attackSource.PlayOneShot(activateLasersSfx);
 /*         foreach (Transform orbTransform in orbHolder.transform)
         {
             Transform laserTransform = orbTransform.Find("Laser");

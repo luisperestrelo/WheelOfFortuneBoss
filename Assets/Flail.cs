@@ -25,6 +25,7 @@ public class Flail : MonoBehaviour
         Instantiate(flailVfxPrefab, flailVfxSpawnPosition.position, Quaternion.identity);
         Instantiate(crackVfxPrefab, crackVfxSpawnPosition.position, Quaternion.identity);
         StartCoroutine(EnableDamageCollider()); // for damage
+        CameraMovement.instance.ShakeCamera(0.08f, 0.15f);
         //TODO: Ideally we would destroy the telegraph here
     }
 

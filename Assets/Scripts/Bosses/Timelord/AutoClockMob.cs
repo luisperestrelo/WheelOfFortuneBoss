@@ -12,8 +12,12 @@ public class AutoClockMob : ClockMob
     [SerializeField] private GameObject slowZonePrefab;
     [SerializeField] private float slowZoneDuration = 15f;
 
-    private void Start()
+    [SerializeField] private AudioSource tickSource;
+
+    protected override void Start()
     {
+        Debug.Log("Start");
+        base.Start();
         StartTimer(durationUntilPunishment, () =>
         {
             SpawnSlowZone();
@@ -27,11 +31,9 @@ public class AutoClockMob : ClockMob
     /// <returns>True, if timer has successfully started. False, if timer is already running. </returns>
     public bool StartTimer(float seconds, Action onComplete = null)
     {
-        if (isRunning)
-            return false;
-
         OnComplete += onComplete;
         StartCoroutine(StartProgress(seconds));
+        Debug.Log("Start");
         return true;
     }
 
@@ -45,6 +47,7 @@ public class AutoClockMob : ClockMob
             var degree = -elapsedTime / duration * 360f;
             SetProgress(degree);
             elapsedTime += Time.deltaTime;
+            tickSource.pitch = 1 + (elapsedTime / duration);
 
             yield return null;
         }
