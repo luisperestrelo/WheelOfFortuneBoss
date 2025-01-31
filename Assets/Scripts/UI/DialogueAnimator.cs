@@ -14,6 +14,7 @@ public class DialogueAnimator : MonoBehaviour
     [SerializeField] private float clearTextTime = 1.2f;
 
     [SerializeField] private List<AudioClip> voiceSfx;
+    [SerializeField] private AudioSource ambientLoopSource;
 
     [SerializeField] private AnimationCurve textFadeCurve;
     private int dialogueIndex = 0;
@@ -70,6 +71,7 @@ public class DialogueAnimator : MonoBehaviour
         switch (dialogueIndex)
         {
             case 1:
+                StartCoroutine(FadeInAmbience());
                 StartCoroutine(SetNewDialogue("Hail, fallen mortal. I am Clotho, spinner of fate and life.", "I wove the threads that shaped the world.", voiceSfx[0], voiceSfx[1]));
                 break;
             case 2:
@@ -84,6 +86,18 @@ public class DialogueAnimator : MonoBehaviour
             default:
                 Debug.LogWarning("Invalid dialogue index");
                 break;
+        }
+    }
+
+    private IEnumerator FadeInAmbience()
+    {
+        const float k_fadeTime = 4;
+        float timeElapsed = 0;
+        while(timeElapsed < k_fadeTime)
+        {
+            timeElapsed += Time.deltaTime;
+            ambientLoopSource.volume = timeElapsed / k_fadeTime;
+            yield return null;
         }
     }
 
