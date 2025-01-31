@@ -131,6 +131,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2144968459779040693, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -2144968459779040693, guid: 3e1e1ef4659c13d43867d1351325b272, type: 3}
       propertyPath: basePoisonDamage
       value: 1
       objectReference: {fileID: 0}
@@ -1052,7 +1056,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: -1.4
   far clip plane: 1000
   field of view: 60
   orthographic: 1

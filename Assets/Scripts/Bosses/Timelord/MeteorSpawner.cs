@@ -80,7 +80,7 @@ public class MeteorSpawner : MonoBehaviour
             spawnPosition += new Vector3(horizontalSpawnOffset.x, 0f, horizontalSpawnOffset.y);
         }
 
-        GameObject telegraphObj = Instantiate(telegraphPrefab, landPosition, Quaternion.Euler(-45, 0, 0));
+        GameObject telegraphObj = Instantiate(telegraphPrefab, landPosition, Quaternion.Euler(0, 0, 0));
 
 
 
