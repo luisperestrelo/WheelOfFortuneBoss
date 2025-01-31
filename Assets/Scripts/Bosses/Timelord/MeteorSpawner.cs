@@ -7,6 +7,7 @@ public class MeteorSpawner : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject meteorPrefab;
     [SerializeField] private GameObject telegraphPrefab;
+    [SerializeField] private GameObject impactVfxPrefab;
     [SerializeField] private CircularPath circularPath;
 
     [Header("Spawn Settings")]
@@ -53,7 +54,7 @@ public class MeteorSpawner : MonoBehaviour
     /// </summary>
     public void SpawnMeteorAtAngle(float angleInDegrees)
     {
-        if (meteorPrefab == null || telegraphPrefab == null || circularPath == null)
+        if (meteorPrefab == null || telegraphPrefab == null || impactVfxPrefab == null ||  circularPath == null)
         {
             Debug.LogWarning("MeteorSpawner: Missing a prefab or the circularPath reference!");
             return;
@@ -83,7 +84,6 @@ public class MeteorSpawner : MonoBehaviour
         GameObject telegraphObj = Instantiate(telegraphPrefab, landPosition, Quaternion.Euler(0, 0, 0));
 
 
-
         GameObject meteorObj = Instantiate(meteorPrefab, spawnPosition, Quaternion.Euler(-45, 0, 0));
 
         if (isSpawningAtAnAngle)
@@ -95,7 +95,7 @@ public class MeteorSpawner : MonoBehaviour
         if (fallingMeteor != null)
         {
             // We pass "damageCenter" so OverlapCircle can use the correct 2D coords
-            fallingMeteor.Init(landPosition, telegraphObj.transform, damageCenter);
+            fallingMeteor.Init(landPosition, telegraphObj.transform, damageCenter, impactVfxPrefab);
         }
     }
 

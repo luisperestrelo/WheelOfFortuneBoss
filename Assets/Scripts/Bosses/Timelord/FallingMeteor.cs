@@ -27,6 +27,8 @@ public class FallingMeteor : MonoBehaviour
     // The telegraph is a separate object pinned on the ground at _targetPosition
     private Transform _telegraphTransform;
 
+    private GameObject _impactVfxPrefab;
+
     // A 2D coordinate used for OverlapCircle to damage the player. Receives it from the spawner
     private Vector2 _damageCenter2D;
 
@@ -39,7 +41,7 @@ public class FallingMeteor : MonoBehaviour
     /// Called from the spawner to set the specific ground location
     /// and the telegraph object that belongs to this meteor instance.
     /// </summary>
-    public void Init(Vector3 targetPos, Transform telegraph, Vector2 damageCenter2D)
+    public void Init(Vector3 targetPos, Transform telegraph, Vector2 damageCenter2D, GameObject impactVfxPrefab)
     {
         _targetPosition = targetPos;
         _telegraphTransform = telegraph;
@@ -47,6 +49,8 @@ public class FallingMeteor : MonoBehaviour
         _startPosition = transform.position;
 
         _damageCenter2D = damageCenter2D;
+        
+        _impactVfxPrefab = impactVfxPrefab;
 
         if (_telegraphTransform != null)
         {
@@ -96,6 +100,7 @@ public class FallingMeteor : MonoBehaviour
     private void Explode()
     {
         Debug.Log("Meteor impacted visually at " + transform.position);
+        Instantiate(_impactVfxPrefab, _telegraphTransform.position, Quaternion.identity);
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(_damageCenter2D, explosionRadius, damageLayerMask);
         foreach (Collider2D hit in hits)
