@@ -32,6 +32,8 @@ public class WagerOfAeonsAttack : BaseAttack
     {
         base.PerformAttack(playerCombat, fireRate, playerStats, projectileCount, spreadAngle);
 
+        bool isCrit = false;
+
         if (currentLevel < 0 || currentLevel >= damagePerLevel.Length)
         {
             Debug.LogWarning("WagerOfAeonsAttack: currentLevel out of range for damagePerLevel!");
@@ -66,11 +68,12 @@ public class WagerOfAeonsAttack : BaseAttack
                 damageMultiplier *= playerStats.CritMultiplier;
                 Debug.Log("WagerOfAeons CRIT!");
                 playerCombat.NotifyCrit();
+                isCrit = true;
             }
 
             float finalDamage = baseDamageForLevel * damageMultiplier * playerStats.PositiveNegativeFieldsEffectivenessMultiplier;
             
-            //TODO: Rotate the projectile , cba doing it right now
+            
             if (projectileCount > 1)
             {
                 float mouseAngle = Mathf.Atan2(towardMouse.y, towardMouse.x) * Mathf.Rad2Deg;
@@ -92,6 +95,7 @@ public class WagerOfAeonsAttack : BaseAttack
                         playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier,
                         playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier
                     );
+                    projectile.SetCrit(isCrit);
                 }
             }
             else
@@ -104,8 +108,10 @@ public class WagerOfAeonsAttack : BaseAttack
                     playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier,
                     playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier
                 );
+                projectile.SetCrit(isCrit);
             }
         }
+
 
         playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(fireRate));
     }

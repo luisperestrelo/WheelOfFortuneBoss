@@ -696,6 +696,10 @@ MonoBehaviour:
   parrySfx: {fileID: 8300000, guid: e3c50d1780bcaab49bcd831db321b16c, type: 3}
   healSfx: {fileID: 8300000, guid: 495c7d34ad7410e4d904debca39c25dd, type: 3}
   damageSource: {fileID: 4630231693192748150}
+  basicPopupPrefab: {fileID: 0}
+  bigHitPopupPrefab: {fileID: 0}
+  criticalHitPopupPrefab: {fileID: 0}
+  healPopupPrefab: {fileID: 1156503239943992185, guid: 351d46e8814601a4e9e3e8c9da70d7c5, type: 3}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []

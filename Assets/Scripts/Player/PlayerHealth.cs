@@ -24,10 +24,10 @@ public class PlayerHealth : Health
         base.Start();
     }
 
-    public override bool TakeDamage(float damageAmount, bool isDamageOverTime = false)
+    public override bool TakeDamage(float damageAmount, bool isDamageOverTime = false, bool isCrit = false)
     {
         StartCoroutine(HitpauseRoutine());
-        if (!base.TakeDamage(damageAmount))
+        if (!base.TakeDamage(damageAmount, isDamageOverTime, isCrit))
             return false;
         CameraMovement.instance.ShakeCamera(0.1f, 0.25f);
 

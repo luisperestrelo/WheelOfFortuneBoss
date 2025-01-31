@@ -9,6 +9,7 @@ public class InstantDamageDealer : MonoBehaviour
     [SerializeField] private float poisonChance = 0f;
     [SerializeField] private float poisonDamage = 0f;
     [SerializeField] private float poisonDuration = 0f;
+    [SerializeField] private bool isCrit = false;
 
     private float timer = 0f;
 
@@ -33,11 +34,17 @@ public class InstantDamageDealer : MonoBehaviour
         this.poisonDuration = poisonDuration;
     }
 
+    public virtual void SetCrit(bool isCrit)
+    {
+        this.isCrit = isCrit;
+    }
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.TryGetComponent<Health>(out var health) && health.gameObject.tag != "Player")
         {
-            health.TakeDamage(damage);
+            health.TakeDamage(damage, isCrit: isCrit);
         }
     }
 }

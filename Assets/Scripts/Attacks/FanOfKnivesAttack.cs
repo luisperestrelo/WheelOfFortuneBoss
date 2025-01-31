@@ -33,6 +33,8 @@ public class FanOfKnivesAttack : BaseAttack
 
             for (int i = 0; i < projectileCount; i++)
             {
+                bool isCrit = false;
+
                 float currentAngle = startAngle + angleStep * i;
 
                 Quaternion rotation = Quaternion.Euler(0, 0, currentAngle);
@@ -47,16 +49,20 @@ public class FanOfKnivesAttack : BaseAttack
                     damageMultiplier *= playerStats.CritMultiplier;
                     Debug.Log("Knife CRIT!");
                     playerCombat.NotifyCrit();
+                    isCrit = true;
                 }
 
                 knife.SetDamage(BaseDamage * damageMultiplier);
                 knife.SetVelocity(direction * ProjectileSpeed);
                 knife.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration);
+                knife.SetCrit(isCrit);
 
             }
         }
         else
         {
+            bool isCrit = false;
+
             // Handle cases where projectileCount is not greater than 1
             Vector2 direction = towardMouse; // Default direction
 
@@ -69,11 +75,14 @@ public class FanOfKnivesAttack : BaseAttack
                 damageMultiplier *= playerStats.CritMultiplier;
                 Debug.Log("Knife CRIT!");
                 playerCombat.NotifyCrit();
+                isCrit = true;
             }
+
 
             knife.SetDamage(BaseDamage * damageMultiplier);
             knife.SetVelocity(direction * ProjectileSpeed);
             knife.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
+            knife.SetCrit(isCrit);
         }
 
         playerCombat.StartCoroutine(playerCombat.ShootCooldownRoutine(fireRate));

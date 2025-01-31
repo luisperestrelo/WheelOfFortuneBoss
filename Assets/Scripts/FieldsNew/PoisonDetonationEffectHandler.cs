@@ -17,6 +17,9 @@ public class PoisonDetonationEffectHandler : ChargeableFieldEffectHandler
     protected override void OnChargeComplete(Player player)
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        bool isCrit = false;
+
         foreach (var e in enemies)
         {
             var enemyBuff = e.GetComponent<BuffManager>();
@@ -37,12 +40,14 @@ public class PoisonDetonationEffectHandler : ChargeableFieldEffectHandler
                             playerCombat.NotifyCrit();
                         }
                         Debug.Log("Rend Toxins CRIT!");
+                        isCrit = true;
                     }
+
 
                     var health = e.GetComponent<Health>();
                     if (health != null)
                     {
-                        health.TakeDamage(totalDamage);
+                        health.TakeDamage(totalDamage, isCrit: isCrit);
                     }
                     Debug.Log($"[PoisonDetonation] Dealt {totalDamage} with {poisonStacks} poison stacks.");
 

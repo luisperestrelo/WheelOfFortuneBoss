@@ -9,6 +9,7 @@ public class BasicAttack : BaseAttack
     public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle = 15f)
     {
         base.PerformAttack(playerCombat);
+        bool isCrit = false;
 
         //        Debug.Log("spreadAngle: " + spreadAngle);
 
@@ -20,7 +21,7 @@ public class BasicAttack : BaseAttack
             damageMultiplier *= playerStats.CritMultiplier;
             playerCombat.NotifyCrit(); // TODO: yeah no this is really bad rn, but we fix it when refactoring
                                      // Crits are being calculated immediately, even if the attack does not hit an enemy
-
+            isCrit = true;
             Debug.Log("Basic Attack CRIT!");
         }
 
@@ -52,6 +53,7 @@ public class BasicAttack : BaseAttack
                     projectile.SetDamage(BaseDamage * damageMultiplier);
                     projectile.SetVelocity(direction * ProjectileSpeed);
                     projectile.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
+                    projectile.SetCrit(isCrit);
                 }
             }
             else
@@ -62,6 +64,7 @@ public class BasicAttack : BaseAttack
                 projectile.SetDamage(BaseDamage * damageMultiplier);
                 projectile.SetVelocity(direction * ProjectileSpeed);
                 projectile.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
+                projectile.SetCrit(isCrit);
             }
         }
 

@@ -37,8 +37,14 @@ public class BaseProjectile : MonoBehaviour
         this.poisonDuration = duration;
     }
 
+    public virtual void SetCrit(bool isCrit)
+    {
+        this.isCrit = isCrit;
+    }
+
 
     protected virtual void Update()
+
     {
         transform.Translate(velocity * Time.deltaTime);
 
@@ -58,7 +64,9 @@ public class BaseProjectile : MonoBehaviour
                 var hit = Instantiate(hitVfxPrefab, transform.position, Quaternion.identity);
                 hit.GetComponent<LayerSort>()?.SortToBossLayer();
             }
-            health.TakeDamage(damage);
+            Debug.Log("isCrit in Projectile script: " + isCrit);
+            health.TakeDamage(damage, isCrit: isCrit);
+
 
             if (poisonChance > 0f && Random.value <= poisonChance)
             {
