@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
     private static PauseMenu instance;
     
     [SerializeField] private ManualMoveCheckbox manualMoveCheckbox;
+
+    [SerializeField] private AudioClip openSfx;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -28,6 +30,7 @@ public class PauseMenu : MonoBehaviour
         isPaused = true;
         manualMoveCheckbox.UpdateUI();
         animator.SetBool("isPaused", true);
+        SFXPool.instance.PlaySound(openSfx, SFXPool.MixGroup.ui);
         
         if(MusicPlayer.instance != null)
             MusicPlayer.instance.SetFilterIntensity(0.6f);

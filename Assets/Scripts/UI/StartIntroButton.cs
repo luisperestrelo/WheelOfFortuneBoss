@@ -25,6 +25,8 @@ public class StartIntroButton : MonoBehaviour
 
         source.PlayOneShot(clickSfx);
         skipButton.SetActive(true);
+
+        CameraMovement.instance.SetPerspectiveZoom(-11);
     }
 
 }
