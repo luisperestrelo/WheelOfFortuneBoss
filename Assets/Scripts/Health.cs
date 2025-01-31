@@ -25,10 +25,13 @@ public class Health : MonoBehaviour
 
     private bool isAlive = true;
 
+    private DamageFlash damageFlash;
+
     protected virtual void Awake()
     {
         pc = GetComponent<PlayerCombat>();
         stats = GetComponent<Stats>();
+        damageFlash = GetComponent<DamageFlash>();
     }
 
     protected virtual void Start()
@@ -59,9 +62,11 @@ public class Health : MonoBehaviour
         OnHealthChanged.Invoke(currentHealth, maxHealth);
 
         Debug.Log("isDamageOverTime: " + isDamageOverTime);
-        //SFX
+        //SFX + VFX
         if (!isDamageOverTime)
         {
+            if(damageFlash)
+                damageFlash.Play();
             if (damageAmount < hpHeavyDamageThreshold)
                 damageSource.PlayOneShot(lightDamageSfx);
             else
