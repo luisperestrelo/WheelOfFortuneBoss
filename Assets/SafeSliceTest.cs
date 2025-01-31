@@ -10,7 +10,8 @@ public class SafeSliceTest : MonoBehaviour
 
     void Start()
     {
-        playerRotationSpeed = FindObjectOfType<PlayerSpinMovement>().MaxRotationSpeed;
+        //playerRotationSpeed = FindObjectOfType<PlayerSpinMovement>().MaxRotationSpeed;
+        playerRotationSpeed = 140f; // because of the slow zone etc and I don't want to ensure this won't introduce bugs
         playerRotationSpeedSlowed = playerRotationSpeed * 0.5f;
         desiredRotationSpeed = 0;
         
@@ -20,13 +21,13 @@ public class SafeSliceTest : MonoBehaviour
     void Update()
     {
         #if UNITY_EDITOR
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             // Start rotating this object at the same speed as playerotationspeed
             desiredRotationSpeed = playerRotationSpeed;
 
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.T))
         {
             // Start rotating this object at the same speed as playerotationspeed
             desiredRotationSpeed = playerRotationSpeedSlowed;

@@ -6,7 +6,7 @@ public class SlowZone : MonoBehaviour
 {
     [SerializeField] private float speedReductionFactor = 0.5f; // Adjust this to control how much the speed is reduced
     private PlayerSpinMovement playerMovement;
-    private float originalMaxSpeed;
+    private float originalMaxSpeed = 140f; // w.e
 
     //TODO: put references here
     void Start()
@@ -21,7 +21,7 @@ public class SlowZone : MonoBehaviour
         if (playerMovement == null && other.GetComponent<PlayerSpinMovement>() != null)
         {
             playerMovement = other.GetComponent<PlayerSpinMovement>();
-            originalMaxSpeed = playerMovement.MaxRotationSpeed; 
+            //originalMaxSpeed = playerMovement.MaxRotationSpeed; 
             playerMovement.SetMaxRotationSpeed(originalMaxSpeed * speedReductionFactor); 
             Debug.Log("Player entered Slow Zone. Speed reduced.");
         }
@@ -29,9 +29,11 @@ public class SlowZone : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerSpinMovement>() == playerMovement)
+        playerMovement = other.GetComponent<PlayerSpinMovement>();
+        if (playerMovement != null)
         {
             playerMovement.SetMaxRotationSpeed(originalMaxSpeed); 
+
             playerMovement = null; 
             Debug.Log("Player exited Slow Zone. Speed restored.");
         }

@@ -69,6 +69,8 @@ public class BaseProjectile : MonoBehaviour
                 }
             }
 
+            Debug.Log("Hit: " + collision.gameObject.name);
+
             if (shouldDestroyOnHit)
             {
                 Destroy(gameObject);

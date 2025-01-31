@@ -25,7 +25,7 @@ public class ClockMobSpawner : MonoBehaviour
         }
     }
 
-    private void SpawnClockMob()
+    public void SpawnClockMob()
     {
         int randomIndex = Random.Range(0, spawnPoints.Length);
         Instantiate(clockMobPrefab, spawnPoints[randomIndex].position, Quaternion.Euler(-45, 0, 0));

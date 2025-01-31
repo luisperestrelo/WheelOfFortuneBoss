@@ -105,6 +105,37 @@ MonoBehaviour:
     m_Extent: {x: 0.7550001, y: 0.7627449, z: 0}
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
+--- !u!1 &4727571877527229109
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7651866353316044152}
+  m_Layer: 0
+  m_Name: Visuals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7651866353316044152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727571877527229109}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3475979744514934347}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9152976321008484939
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,6 +288,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7552582706839291426, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7531816643626266048}
+    - targetCorrespondingSourceObject: {fileID: -7552582706839291426, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7651866353316044152}
     - targetCorrespondingSourceObject: {fileID: -7221020487405985688, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2036977256781928039}
@@ -343,7 +377,7 @@ MonoBehaviour:
   color: {r: 1, g: 0, b: 0, a: 1}
   progressImage: {fileID: 6370403728750606469}
   durationUntilPunishment: 8
-  slowZonePrefab: {fileID: 863168314030996514, guid: 4751451b0946e404382edd242a38048e, type: 3}
+  slowZonePrefab: {fileID: 756021898830015811, guid: e3b17ebb4a7cc794bb1c41c016812e0f, type: 3}
   slowZoneDuration: 15
 --- !u!82 &-6581889347903889049
 AudioSource:
@@ -590,15 +624,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e43eab91d2f30da4f8325b3ebba2b25c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 5.5
   damage: 10
-  meleeRange: 5
+  meleeRange: 3
   animator: {fileID: 8737310575747726400}
   frontForMeleeHit: {fileID: 7531816643626266048}
   meleeHitRadius: 2.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  visuals: {fileID: 0}
+  maxRotationDegrees: 30
 --- !u!4 &3475979744514934347 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}

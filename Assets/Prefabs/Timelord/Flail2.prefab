@@ -220,6 +220,8 @@ MonoBehaviour:
   crackVfxPrefab: {fileID: 6475026104576908933, guid: a0dfe431fd26e5245a9717e302757411, type: 3}
   flailVfxSpawnPosition: {fileID: 648765765546941895}
   crackVfxSpawnPosition: {fileID: 7923674714086671991}
+  damageCollider: {fileID: 0}
+  damage: 10
 --- !u!60 &6394667574255512140
 PolygonCollider2D:
   m_ObjectHideFlags: 0

@@ -17,6 +17,11 @@ public class FlailAttack : MonoBehaviour
 
     private GameObject activeFlail;
 
+    private void Start()
+    {
+        flailSpawnPoint = GameObject.Find("FlailSpawnPoint").transform;
+    }
+
     public void Initialize(float damage)
     {
         this.damage = damage;
@@ -58,12 +63,18 @@ public class FlailAttack : MonoBehaviour
             SlamAtAngle(-45f);
         }   
 
-        if (Input.GetKeyDown(KeyCode.Alpha0))
+        if (Input.GetKeyDown(KeyCode.F1))
         {
             TripleSlamSequence();
         }
+        if (Input.GetKeyDown(KeyCode.F2))
+        {
+            QuadSlamSequence();
+        }
+
 #endif
     }
+
 
     public void SpawnFlailTelegraph(float rotation)
     {
@@ -93,8 +104,14 @@ public class FlailAttack : MonoBehaviour
         }
     }
 
+    public void DespawnFlail()
+    {
+        Destroy(activeFlail);
+    }
+
     // this is so ugly :D ideally we would have two separate Animations, one for "pulling back" and one for "slamming"
     public void RotateFlail(float angle)
+
     {
         StartCoroutine(RotateFlailDelayed(angle));
     }
@@ -110,6 +127,13 @@ public class FlailAttack : MonoBehaviour
         StartCoroutine(TripleTelegraphSequenceCoroutine());
         StartCoroutine(TripleSlamSequenceCoroutine());
     }
+
+    public void QuadSlamSequence()
+    {
+        StartCoroutine(QuadTelegraphSequenceCoroutine());
+        StartCoroutine(QuadSlamSequenceCoroutine());
+    }
+
 
     private IEnumerator TripleTelegraphSequenceCoroutine()
     {
@@ -132,4 +156,34 @@ public class FlailAttack : MonoBehaviour
 
         SlamAtAngle(-45f);
     }
+
+    private IEnumerator QuadTelegraphSequenceCoroutine()
+    {
+        SpawnFlailTelegraph(90f);
+        yield return new WaitForSeconds(telegraphSequenceDelay);
+
+        SpawnFlailTelegraph(180f);
+        yield return new WaitForSeconds(telegraphSequenceDelay);
+
+        SpawnFlailTelegraph(0f);
+        yield return new WaitForSeconds(telegraphSequenceDelay);
+
+        SpawnFlailTelegraph(270f);  
+        
+    }
+
+    private IEnumerator QuadSlamSequenceCoroutine()
+    {
+        SlamAtAngle(45f);
+        yield return new WaitForSeconds(slamSequenceDelay);
+
+        SlamAtAngle(135f);
+        yield return new WaitForSeconds(slamSequenceDelay);
+
+        SlamAtAngle(-45f);
+        yield return new WaitForSeconds(slamSequenceDelay);
+
+        SlamAtAngle(-135f);
+    }
+
 }

@@ -25,6 +25,7 @@ public class Flail : MonoBehaviour
         Instantiate(flailVfxPrefab, flailVfxSpawnPosition.position, Quaternion.identity);
         Instantiate(crackVfxPrefab, crackVfxSpawnPosition.position, Quaternion.identity);
         StartCoroutine(EnableDamageCollider()); // for damage
+        //TODO: Ideally we would destroy the telegraph here
     }
 
     private IEnumerator EnableDamageCollider()

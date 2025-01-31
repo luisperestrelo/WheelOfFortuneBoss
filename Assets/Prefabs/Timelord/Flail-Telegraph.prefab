@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeInDuration: 1
+  innerTargetAlpha: 0.255
 --- !u!1 &6917760119457813732
 GameObject:
   m_ObjectHideFlags: 0
