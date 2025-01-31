@@ -7,6 +7,7 @@ public class StartIntroButton : MonoBehaviour
     [SerializeField] private Animator titleAnimator;
     [SerializeField] private DialogueAnimator dialogueAnimator;
     [SerializeField] private AudioClip clickSfx;
+    [SerializeField] private GameObject skipButton;
     private bool isPressed = false;
     private AudioSource source;
     private void Awake()
@@ -23,6 +24,7 @@ public class StartIntroButton : MonoBehaviour
         dialogueAnimator.StartCoroutine(dialogueAnimator.CutsceneRoutine());
 
         source.PlayOneShot(clickSfx);
+        skipButton.SetActive(true);
     }
 
 }
