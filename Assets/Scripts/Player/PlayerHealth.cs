@@ -6,15 +6,17 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : Health
 {
     [SerializeField] private PlayerFlashFX playerFlashFX;
-    [SerializeField] private PlayerSFX playerSFX;
     [SerializeField] private Animator animator;
 
     private PlayerStats playerStats;
+    private Player player;
+    [SerializeField] private AudioClip dieSfx;
 
     protected override void Awake()
     {
         base.Awake();
         playerStats = GetComponent<PlayerStats>();
+        player = GetComponent<Player>();
     }
 
     protected override void Start()
@@ -100,8 +102,10 @@ public class PlayerHealth : Health
         OnDie.Invoke();
 
         //TODO: SFX/VFX etc.
+        SFXPool.instance.PlaySound(dieSfx, SFXPool.MixGroup.misc);
 
         Debug.Log(gameObject.name + " died!");
         RunManager.Instance.RestartGame();
+        player.Die();
     }
 }

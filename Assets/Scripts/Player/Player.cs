@@ -5,7 +5,11 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private WheelManager wheelManager;
     [SerializeField] private PlayerSpinMovement playerSpinMovement;
+    [SerializeField] private GameObject vfx;
     private PlayerCombat combatScript;
+
+    [SerializeField] private ParticleSystem deathParticlePrefab;
+    [SerializeField] private CanvasGroup deathBackground;
 
     //Wheel SFX are handled by the player because the field effect SFX are a colossal pain to implement
     [Header("SFX")]
@@ -47,10 +51,22 @@ public class Player : MonoBehaviour
         combatScript.enabled = false;
         spriteRenderer.enabled = false;
         playerSpinMovement.enabled = false;
+        vfx.SetActive(false);
         yield return new WaitForSeconds(3.8f);
         spriteRenderer.enabled = true;
         playerSpinMovement.enabled = true;
         combatScript.enabled = true;
+        vfx.SetActive(true);
+    }
+
+    public void Die()
+    {
+        combatScript.enabled = false;
+        spriteRenderer.enabled = false;
+        playerSpinMovement.enabled = false;
+        vfx.SetActive(false);
+        MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.ambience);
+        Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
     }
 
     private void Update()

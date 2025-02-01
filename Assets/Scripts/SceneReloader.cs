@@ -12,8 +12,6 @@ public class SceneReloader : MonoBehaviour
         //destroy all DontDestroyOnLoad objects...
         Destroy(FindObjectOfType<Player>().gameObject);
         Destroy(FindObjectOfType<SceneLoader>().gameObject);
-        Destroy(FindObjectOfType<SFXPool>().gameObject);
-        Destroy(FindObjectOfType<MusicPlayer>().gameObject);
         Destroy(FindObjectOfType<CardPool>().gameObject);
         Destroy(FindObjectOfType<CardManager>().gameObject);
         Destroy(FindObjectOfType<CircularPath>().gameObject);
