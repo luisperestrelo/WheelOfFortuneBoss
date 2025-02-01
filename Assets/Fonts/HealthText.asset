@@ -169,9 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: HealthText
   m_EditorClassIdentifier: 
-  hashCode: -117894198
+  hashCode: 1335020641
   material: {fileID: -563198581256857477}
-  materialHashCode: 813289642
+  materialHashCode: -882281183
   m_Version: 1.1.0
   m_SourceFontFileGUID: 66889238433c51f4b82d2701c350f61b
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 66889238433c51f4b82d2701c350f61b, type: 3}
