@@ -26,6 +26,8 @@ public class MusicPlayer : MonoBehaviour
     private int fightLoopEndSamples;
     private int fightLoopLengthSamples;
 
+    private float reverbIntensity = 0;
+
     private SoundProfile loadedProfile;
 
     [SerializeField]
@@ -110,10 +112,22 @@ public class MusicPlayer : MonoBehaviour
                 StartCoroutine(FadeSourceVolumeRoutine(source: preFightSource, targetVolume: 0, time: 3));
                 StartCoroutine(FadeSourceVolumeRoutine(source: fightSource, targetVolume: 0, time: 3));
                 StartCoroutine(FadeSourceVolumeRoutine(source: ambienceSource, targetVolume: 1, time: 3));
+                StartCoroutine(LerpReverbIntensityRoutine(1, 1.5f));
                 break;
             default:
                 Debug.LogWarning("Unknown music section loaded.");
                 break;
+        }
+    }
+    private IEnumerator LerpReverbIntensityRoutine(float targetInt, float time)
+    {
+        float timeElapsed = 0;
+        float originalInt = reverbIntensity;
+        while(timeElapsed < 2)
+        {
+            timeElapsed += Time.deltaTime;
+            SetReverbIntensity(Mathf.Lerp(originalInt, targetInt, reverbFadeInCurve.Evaluate(Mathf.Lerp(originalInt, targetInt, timeElapsed / time))));
+            yield return null;
         }
     }
 
@@ -217,8 +231,9 @@ public class MusicPlayer : MonoBehaviour
     /// Snaps the reverb mix on the music insert to a given percentage.
     /// </summary>
     /// <param name="intensity">0 is no reverb, 1 is 100% reverb.</param>
-    private void SetReverbIntensity(float intensity)
+    public void SetReverbIntensity(float intensity)
     {
+        reverbIntensity = intensity;
         mixer.SetFloat("MusicReverbMix", Mathf.Lerp(-80, 0, reverbFadeInCurve.Evaluate(intensity)));
     }
 

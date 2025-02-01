@@ -643,6 +643,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wheelManager: {fileID: 0}
   playerSpinMovement: {fileID: 0}
+  vfx: {fileID: 6768379102119648339}
+  deathParticlePrefab: {fileID: 482145474468753769, guid: f5bcaffdf16b1e7419fb5893fd859b4a, type: 3}
+  deathBackground: {fileID: 0}
   wheelStateChangeSource: {fileID: 3790712526603840470}
   enterFieldSfx: {fileID: 8300000, guid: bd55b1aeb36fd9b4492d00d973075ccd, type: 3}
   exitFieldSfx: {fileID: 8300000, guid: 71aba984b2735dd43b8e9e65b91c2fbf, type: 3}
@@ -716,7 +719,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   playerFlashFX: {fileID: 9140755374635846707}
-  playerSFX: {fileID: 0}
   animator: {fileID: 6073993921164192649}
   dieSfx: {fileID: 8300000, guid: a0876f9a26d068144a3d1b39dfdd7065, type: 3}
 --- !u!114 &2357789789725850331
