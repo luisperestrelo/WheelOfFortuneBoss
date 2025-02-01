@@ -480,6 +480,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ambienceSource: {fileID: 1670380930}
   voiceSource: {fileID: 935032769}
+  endSfx: {fileID: 8300000, guid: 8f19aa62ca589ba4bbf563ff3c688b04, type: 3}
 --- !u!4 &511889607
 Transform:
   m_ObjectHideFlags: 0

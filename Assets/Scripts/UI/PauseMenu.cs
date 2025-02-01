@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private ManualMoveCheckbox manualMoveCheckbox;
 
     [SerializeField] private AudioClip openSfx;
+    [SerializeField] private AudioSource source;
     private void Start()
     {
         animator = GetComponent<Animator>();
