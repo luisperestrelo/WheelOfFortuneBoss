@@ -27,6 +27,7 @@ public class Hourglass : MonoBehaviour
     private bool isRunning;
 
     [SerializeField] private AudioClip turnSfx;
+    [SerializeField] private AudioClip preExplodeSfx;
     private AudioSource source;
 
     void Start()
@@ -79,6 +80,7 @@ public class Hourglass : MonoBehaviour
         isRunning = true;
         SetProgress(1f);
 
+        StartCoroutine(PlayPreExplodeSfxAfterDelay());
         yield return StartCoroutine(Flip());
         yield return StartCoroutine(ScaleSandRay());
         yield return StartCoroutine(FlowSand(duration));
@@ -90,6 +92,15 @@ public class Hourglass : MonoBehaviour
     {
         topMask.transform.localScale = new Vector3(maxTopMaskScale.x, (1 - value) * maxTopMaskScale.y, maxTopMaskScale.z);
         bottomMask.transform.localScale = new Vector3(maxBottomMaskScale.x, value * maxBottomMaskScale.y, maxBottomMaskScale.z);
+    }
+
+    private IEnumerator PlayPreExplodeSfxAfterDelay()
+    {
+        const float flowDuration = 3f;
+        const float otherDuration = 1.5f;
+        const float clipTime = 5;
+        yield return new WaitForSeconds(Mathf.Max(0, (flowDuration + flipDuration + otherDuration) - clipTime));
+        source.PlayOneShot(preExplodeSfx);
     }
 
     private void Reset()
