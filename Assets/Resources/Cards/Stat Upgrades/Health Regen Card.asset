@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Health Regen
   description: 'Increases HealthRegen by +0,4. '
   rarity: 1
-  icon: {fileID: 21300000, guid: 8063e90e2419298448a93114d12c61bf, type: 3}
+  icon: {fileID: 21300000, guid: 7b755e4ec84d4674ab685c393299aee7, type: 3}
   cardType: 1
   isKissCurse: 0
   downSideDescription: 

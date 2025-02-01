@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Additional projectile
   description: Projectile attacks fire one additional projectile
   rarity: 1
-  icon: {fileID: 21300000, guid: 8532903d2bdc833499186313b4f5ed22, type: 3}
+  icon: {fileID: 21300000, guid: 153b60a97353aca4999ff2139720f4a7, type: 3}
   cardType: 1
   isKissCurse: 0
   downSideDescription: 

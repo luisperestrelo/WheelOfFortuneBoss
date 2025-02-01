@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Lingering Buff Strength
   description: Buffs from Lingering Fields are 20% stronger
   rarity: 1
-  icon: {fileID: 21300000, guid: b5c49b698910abc448bb3aa10a5ec85c, type: 3}
+  icon: {fileID: 21300000, guid: 9c7a1b99e12582548b22913800d13003, type: 3}
   cardType: 1
   isKissCurse: 0
   downSideDescription: 

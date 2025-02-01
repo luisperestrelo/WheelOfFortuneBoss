@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Stronger but Shorter buffs
   description: Your Lingering Buffs are 50% stronger, but are 25% shorter
   rarity: 1
-  icon: {fileID: 21300000, guid: 7a67549c8fa9d9e4d9e858233eec2b15, type: 3}
+  icon: {fileID: 21300000, guid: 9c7a1b99e12582548b22913800d13003, type: 3}
   cardType: 1
   isKissCurse: 0
   downSideDescription: 
