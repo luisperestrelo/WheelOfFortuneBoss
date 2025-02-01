@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Enduring Toxins
   description: Your poisons last 15% longer.
   rarity: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 5a545567633204a48a2d0143009b8ec7, type: 3}
   cardType: 1
   isKissCurse: 0
   downSideDescription: 

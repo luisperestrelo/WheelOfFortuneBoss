@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Kiss Curse Effectiveness
   description: Cards with both positive and negative effects gain 17% effectiveness.
   rarity: 1
-  icon: {fileID: 21300000, guid: 1d01d391f4ed28c4488f4114ee2072c0, type: 3}
+  icon: {fileID: 21300000, guid: 3c18d0a78f16dec4bb692f0690c6fa38, type: 3}
   cardType: 1
   isKissCurse: 1
   downSideDescription: But their negative effects are also 17% stronger

@@ -25641,6 +25641,8 @@ MonoBehaviour:
   angleOffset: 180
   damage: 5
   player: {fileID: 0}
+  radialSfx: {fileID: 8300000, guid: 27d25a62d659678429a4ed7e2c87bc53, type: 3}
+  attackSource: {fileID: 927514385244874588}
   testAngleStep: 15
 --- !u!114 &8957217160656665894
 MonoBehaviour:
@@ -26617,6 +26619,8 @@ MonoBehaviour:
   angleOffset: 180
   damage: 5
   player: {fileID: 0}
+  radialSfx: {fileID: 0}
+  attackSource: {fileID: 0}
   testAngleStep: 15
 --- !u!114 &1662911475614576995
 MonoBehaviour:

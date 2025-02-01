@@ -44,6 +44,8 @@ public class TentacleSnap : MonoBehaviour
         Debug.Log("OverlapBox Center: " + ((Vector2)transform.position + hitBox.offset) + ", Size: " + hitBox.size);
         int numColliders = Physics2D.OverlapCollider(hitBox, filter, hitColliders);
 
+        CameraMovement.instance.ShakeCamera(0.05f, 0.1f);
+
         if (numColliders > 0)
         {
             Debug.Log(numColliders + " tentacle snap hit");

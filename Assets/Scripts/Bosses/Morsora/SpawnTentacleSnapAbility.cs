@@ -19,6 +19,8 @@ public class SpawnTentacleSnapAbility : MonoBehaviour
     [SerializeField] private float damage = 10f;
 
     [SerializeField] private Player player;
+    [SerializeField] private AudioClip radialSfx;
+    [SerializeField] private AudioSource attackSource;
 
     [SerializeField] private float testAngleStep = 15f;
 
@@ -35,7 +37,7 @@ public class SpawnTentacleSnapAbility : MonoBehaviour
     }
 
     //quadrant stuff unneccesary, we are just doing horizontal flipping
-    public void SpawnTentacleSnap(float angle, int numberOfSlams = 1, bool isSlower = false)
+    public void SpawnTentacleSnap(float angle, int numberOfSlams = 1, bool isSlower = false, bool doForceSfxOff = false)
     {
         Vector3 direction = Quaternion.Euler(0, 0, angle + angleOffset) * Vector3.left;
         Vector3 spawnPosition = tentacleCenter.position + direction * spawnDistance;
@@ -44,6 +46,8 @@ public class SpawnTentacleSnapAbility : MonoBehaviour
         AdjustFlipping(tentacleSnapRoot, angle);
 
         TentacleSnap tentacleSnapComponent = tentacleSnapRoot.GetComponentInChildren<TentacleSnap>();
+        if (doForceSfxOff)
+            tentacleSnapRoot.GetComponentInChildren<AudioSource>().enabled = false;
         if (tentacleSnapComponent != null)
         {
             tentacleSnapComponent.Initialize(damage, numberOfSlams);
@@ -413,7 +417,7 @@ public class SpawnTentacleSnapAbility : MonoBehaviour
 
     public void SpawnCircleOfTentaclesWithGap(float gapCenterAngle, float gapSize, float angleStep = 15f, int numberOfSlams = 1)
     {
-
+        attackSource.PlayOneShot(radialSfx);
         gapCenterAngle = (gapCenterAngle % 360 + 360) % 360;
 
         float gapStart = (gapCenterAngle - gapSize/2 + 360) % 360;
@@ -435,7 +439,7 @@ public class SpawnTentacleSnapAbility : MonoBehaviour
 
             if (!isInGap)
             {
-                SpawnTentacleSnap(angle, numberOfSlams, true);
+                SpawnTentacleSnap(angle, numberOfSlams, isSlower: true, doForceSfxOff: true);
                 //SpawnTentacleSnap(angle, numberOfSlams);
             }
         }

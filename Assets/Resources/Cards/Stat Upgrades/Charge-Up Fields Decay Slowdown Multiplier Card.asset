@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Decay Slowdown
   description: Charge-up Fields Decay 20% slower
   rarity: 0
-  icon: {fileID: 21300000, guid: 467c3beb8d9a3244a8364b5e226ef2a1, type: 3}
+  icon: {fileID: 21300000, guid: 9c7a1b99e12582548b22913800d13003, type: 3}
   cardType: 1
   isKissCurse: 0
   downSideDescription: 
