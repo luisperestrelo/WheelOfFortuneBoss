@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Poison Chance
   m_EditorClassIdentifier: 
   cardName: Coated Arms
-  description: Your attacks gain +15% chance to Poison. By default, each instance
-    of poison deals 1 damage per second, for 4 seconds. Poison stacks indefinitely
+  description: Your Attacks gain +15% chance to Poison.
   rarity: 0
   icon: {fileID: 21300000, guid: 5a545567633204a48a2d0143009b8ec7, type: 3}
   cardType: 1

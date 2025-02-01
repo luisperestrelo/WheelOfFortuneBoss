@@ -52,7 +52,7 @@ public class PlayerSpinMovement : MonoBehaviour
         TapToChangeFireToSlow //Space to change direction, shoot to slow.
     }
 
-    private float _currentAngle = 50f;
+    private float _currentAngle = -300f;
     public float CurrentAngle
     {
         get { return _currentAngle; }
@@ -105,6 +105,7 @@ public class PlayerSpinMovement : MonoBehaviour
 
     private void Start()
     {
+        _currentAngle = -90f;
         _lineRenderer = GetComponent<LineRenderer>();
         radius = circularPath.GetRadius();
 

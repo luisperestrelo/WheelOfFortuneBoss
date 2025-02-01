@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Charge-Up Fields Speed Multiplier Card
   m_EditorClassIdentifier: 
   cardName: Charge-Up Speed
-  description: Charge-Up fields charge up 20% faster.
+  description: Charge-Up Fields Charge up 20% faster.
   rarity: 0
   icon: {fileID: 21300000, guid: 9c7a1b99e12582548b22913800d13003, type: 3}
   cardType: 1

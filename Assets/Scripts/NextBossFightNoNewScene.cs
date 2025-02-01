@@ -38,7 +38,7 @@ public class NextBossFightNoNewScene : MonoBehaviour
 
     IEnumerator SpawnNextBossAfterDelay(float delay)
     {
-        timerText.gameObject.SetActive(true);
+        timerText.gameObject.SetActive(true);   
         MusicPlayer.instance.LoadProfile(profiles[currentBossIndex + 1]);
         float timeElapsed = 0;
         while (timeElapsed < delay)
@@ -62,6 +62,7 @@ public class NextBossFightNoNewScene : MonoBehaviour
             {
                 currentBoss = Instantiate(bossPrefabs[currentBossIndex], new Vector3(0.12f, -4.93f, 0), Quaternion.Euler(-45f,0,1.12f));
             }
+
             else
             {
                 currentBoss = Instantiate(bossPrefabs[currentBossIndex], bossSpawnPoint.position, bossSpawnPoint.rotation);

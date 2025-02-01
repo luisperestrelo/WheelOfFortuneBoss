@@ -11,7 +11,7 @@ public class StatsHelper : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Health",
-                ToolTipText = "Represents your total health pool.",
+                ToolTipText = "Represents your total health pool. Don't reach 0!",
                 Type = StatDisplayType.Absolute
             }
         },
@@ -20,7 +20,7 @@ public class StatsHelper : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Health Regeneration",
-                ToolTipText = "Determines how quickly your health regenerates while in a Healing Field time.",
+                ToolTipText = "Passive Health Regeneration.",
                 Type = StatDisplayType.TimeRate
             }
         },
@@ -28,21 +28,23 @@ public class StatsHelper : MonoBehaviour
             StatType.GlobalDamageMultiplier,
             new StatDisplayData
             {
-                Name = "Damage Multiplier",
-                ToolTipText = "Increases all damage dealt by a percentage.",
+                Name = "Bonus Damage",
+                ToolTipText = "Global bonus damage.",
                 Type = StatDisplayType.Percentage
+
             }
         },
         {
             StatType.BaseFireRateMultiplier,
             new StatDisplayData
             {
-                Name = "Attack Speed",
-                ToolTipText = "Increases the speed at which you attack or fire weapons.",
-                Type = StatDisplayType.Percentage, // TODO: ?
+                Name = "Base Attacks Per Second",
+                ToolTipText = "Your baseline fire rate. Attacks use this stat to calculate their fire rate.",
+                Type = StatDisplayType.TimeRate, // TODO: ?
                 FlippedSign = true
             }
         },
+
         {
             StatType.CritChance,
             new StatDisplayData
@@ -68,7 +70,7 @@ public class StatsHelper : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Healing Fields Effectiveness",
-                ToolTipText = "Increases the effectiveness of healing fields.",
+                ToolTipText = "The effectiveness of healing fields.",
                 Type = StatDisplayType.Percentage
             }
         },
@@ -76,26 +78,28 @@ public class StatsHelper : MonoBehaviour
             StatType.ChargeUpFieldsSpeed,
             new StatDisplayData
             {
-                Name = "Charging Speed (Fields)",
-                ToolTipText = "Improves the speed at which charge-up fields take effect.",
-                Type = StatDisplayType.Multiplier // TODO: ? or TimeRate
+                Name = "Charge-Up Field Speed",
+                ToolTipText = "Multiplier for the speed at which charge-up fields charge-up.",
+                Type = StatDisplayType.Percentage // TODO: ? or TimeRate
+
             }
         },
         {
             StatType.DecayingChargeUpFieldsDecaySlowdown,
             new StatDisplayData
             {
-                Name = "Charge-Up Field Decay Slowdown",
-                ToolTipText = "Reduces the rate at which charge-up fields lose their effect.",
+                Name = "Charge-Up Field Decay",
+                ToolTipText = "Multiplier for the speed at which charge-up fields decay when not standing on them.",
                 Type = StatDisplayType.Percentage // TODO: ?
+
             }
         },
         {
             StatType.PositiveNegativeFieldsEffectiveness,
             new StatDisplayData
             {
-                Name = "Fields Effectiveness (positive/negative)",
-                ToolTipText = "Increases the effectiveness of both positive and negative fields.",
+                Name = "Positive/Negative Fields Effectiveness",
+                ToolTipText = "Both the Positive and Negative effects of Positive/Negative Fields are multiplied by this stat.",
                 Type = StatDisplayType.Percentage
             }
         },
@@ -103,34 +107,38 @@ public class StatsHelper : MonoBehaviour
             StatType.LingeringBuffFieldsDuration,
             new StatDisplayData
             {
-                Name = "Buff Duration",
-                ToolTipText = "Extends the duration of buffs while standing on a field.",
-                Type = StatDisplayType.Duration // TODO: ?
+                Name = "Field Buff Duration Multiplier",
+                ToolTipText = "Multiplier for the duration of buffs granted by fields.",
+                Type = StatDisplayType.Percentage // TODO: ?
             }
+
         },
         {
             StatType.LingeringBuffFieldsEffectiveness,
             new StatDisplayData
             {
-                Name = "Buff Effectiveness",
-                ToolTipText = "Improves the strength of buffs provided by fields.",
+                Name = "Field Buff Effectiveness",
+                ToolTipText = "Multiplier for the strength of buffs provided by fields.",
                 Type = StatDisplayType.Percentage
             }
+
         },
         {
             StatType.FieldsCooldownReduction,
             new StatDisplayData
             {
-                Name = "Field Cooldown Reduction",
-                ToolTipText = "Reduces the cooldown time for fields.",
-                Type = StatDisplayType.Duration // TODO: ?
+                Name = "Cooldown Reduction",
+                ToolTipText = "Fields that have a cooldown are reduced by this multiplier.",
+                Type = StatDisplayType.Percentage // TODO: ?
             }
+
+
         },
         {
             StatType.AdditionalProjectilesForAttacks,
             new StatDisplayData
             {
-                Name = "Additional Projectile/s",
+                Name = "Additional Projectiles",
                 ToolTipText = "Adds extra projectiles to your attacks.",
                 Type = StatDisplayType.Absolute
             }
@@ -151,7 +159,7 @@ public class StatsHelper : MonoBehaviour
             {
                 Name = "Damage Increase On Crits",
                 ToolTipText = "Critical hits provide a stacking damage buff.", 
-                Type = StatDisplayType.Multiplier, //TODO: ?
+                Type = StatDisplayType.Percentage, //TODO: ?
             }
         },
         {
@@ -159,7 +167,7 @@ public class StatsHelper : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Poison Chance",
-                ToolTipText = "Probability of applying poison effects on hit.",
+                ToolTipText = "Chance to apply poison. Base poison deals 1 DPS for 4s, stacking indefinitely.",
                 Type = StatDisplayType.Percentage,
             }
         },
@@ -167,9 +175,9 @@ public class StatsHelper : MonoBehaviour
             StatType.PoisonDamageOverTimeMultiplier,
             new StatDisplayData
             {
-                Name = "Poison Damage Over Time",
-                ToolTipText = "Increases the damage dealt by poison effects over time.",
-                Type = StatDisplayType.Multiplier,//TODO: ?
+                Name = "Poison Damage",
+                ToolTipText = "Multiplier for poison damage. Base poison deals 1 DPS for 4s, stacking indefinitely.",
+                Type = StatDisplayType.Multiplier,
             }
         },
         {
@@ -177,11 +185,21 @@ public class StatsHelper : MonoBehaviour
             new StatDisplayData
             {
                 Name = "Poison Duration",
-                ToolTipText = "Increases the duration of poison effects applied to enemies.",
-                Type = StatDisplayType.Percentage,//TODO: ?
+                ToolTipText = "Multiplier for poison duration. Base poison deals 1 DPS for 4s, stacking indefinitely.",
+                Type = StatDisplayType.Percentage,
+            }
+        },
+        {
+            StatType.FullCirclesGiveDamageBuff,
+            new StatDisplayData
+            {
+                Name = "Damage Increase on Full Circles",
+                ToolTipText = "A Full Circle provides a stacking damage buff. Resets when you change direction",
+                Type = StatDisplayType.Percentage,
             }
         }
     };
+
 
     // Showing the total value
     public static string GetStatsDisplayText(StatType statType, PlayerStats playerStats)
@@ -204,11 +222,16 @@ public class StatsHelper : MonoBehaviour
 
     private static string FormatValue(float value, StatDisplayType displayType)
     {
-        if (displayType == StatDisplayType.NoValue) return "";
+        if (displayType == StatDisplayType.NoValue) 
+            return "";
 
-        value = displayType == StatDisplayType.Percentage ? value * 100 : value;
+        if (displayType == StatDisplayType.Percentage)
+            value *= 100;
 
-        return value + GetValueSuffix(displayType);
+
+        string valueString = value.ToString("0.##"); // max 2 decimals
+
+        return valueString + GetValueSuffix(displayType);
     }
 
     public static string GetTooltipText(StatType statType)
@@ -225,8 +248,8 @@ public class StatsHelper : MonoBehaviour
             // Base Stats
             StatType.Health => playerStats.MaxHealth,
             StatType.HealthRegen => playerStats.HealthRegen,
-            StatType.GlobalDamageMultiplier => playerStats.BaseDamageMultiplier,
-            StatType.BaseFireRateMultiplier => playerStats.BaseFireRateMultiplier,
+            StatType.GlobalDamageMultiplier => (playerStats.BaseDamageMultiplier - 1),
+            StatType.BaseFireRateMultiplier => 1/playerStats.BaseFireRateMultiplier,
             StatType.CritChance => playerStats.CritChance,
             StatType.CritMultiplier => playerStats.CritMultiplier,
 
@@ -238,12 +261,19 @@ public class StatsHelper : MonoBehaviour
             StatType.AdditionalProjectilesForAttacks => playerStats.AdditionalProjectilesForAttacks,
             StatType.LingeringBuffFieldsDuration => playerStats.LingeringBuffFieldsDurationMultiplier,
             StatType.LingeringBuffFieldsEffectiveness => playerStats.LingeringBuffFieldsEffectivenessMultiplier,
-            StatType.FieldsCooldownReduction => playerStats.FieldsCooldownMultiplier,
+            StatType.FieldsCooldownReduction => (1 - playerStats.FieldsCooldownMultiplier),
+            
 
             // Specialized Stats
             StatType.PoisonChance => playerStats.PoisonChance,
             StatType.PoisonDamageOverTimeMultiplier => playerStats.PoisonDamageOverTimeMultiplier,
             StatType.PoisonDurationMultiplier => playerStats.PoisonDurationMultiplier,
+
+            StatType.CritsGiveAttackSpeedBuff => 0.25f, //TODO
+            StatType.CritsGiveStackingDamageBuff => 0.10f,
+            StatType.FullCirclesGiveDamageBuff => 0.20f,
+
+
 
             // Default case for unmapped stats
             _ => 0f
