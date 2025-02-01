@@ -6060,7 +6060,7 @@ MonoBehaviour:
   halfSliceRadius: 6
   realDamageEffectOffset: {x: 0, y: 0, z: 0}
   fakeDamageEffectOffset: {x: 0, y: 0, z: 0}
-  realFutureColor: {r: 0, g: 0.99068594, b: 1, a: 1}
+  realFutureColor: {r: 0.99215686, g: 0.8784314, b: 0.40784314, a: 1}
   fakeFutureColor: {r: 0.5768442, g: 0, b: 1, a: 1}
   telegraphDuration: 3
 --- !u!114 &3597484534446459143
@@ -6560,6 +6560,18 @@ PrefabInstance:
       propertyPath: m_SortAtRoot
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3825183647422278192, guid: aaad4fc56d4b7884a8e8af0b1901d4ed, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825183647422278192, guid: aaad4fc56d4b7884a8e8af0b1901d4ed, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3825183647422278192, guid: aaad4fc56d4b7884a8e8af0b1901d4ed, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4616449019420150053, guid: aaad4fc56d4b7884a8e8af0b1901d4ed, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -6570,7 +6582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6131069410651123843, guid: aaad4fc56d4b7884a8e8af0b1901d4ed, type: 3}
       propertyPath: m_Color.b
-      value: 0.8937452
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6131069410651123843, guid: aaad4fc56d4b7884a8e8af0b1901d4ed, type: 3}
       propertyPath: m_Color.g
@@ -6578,7 +6590,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6131069410651123843, guid: aaad4fc56d4b7884a8e8af0b1901d4ed, type: 3}
       propertyPath: m_Color.r
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6909893394543118348, guid: aaad4fc56d4b7884a8e8af0b1901d4ed, type: 3}
       propertyPath: m_LocalScale.y
