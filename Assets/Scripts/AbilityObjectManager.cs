@@ -44,67 +44,61 @@ public class AbilityObjectManager : MonoBehaviour
 
     public void DestroyAllFatTentacles()
     {
-        if (activeAbilityObjects == null)
-        {
-            return;
-        }
+        if (activeAbilityObjects == null || activeAbilityObjects.Count == 0) return;
 
-        if (activeAbilityObjects.Count == 0)
-        {
-            return;
-        }
-
+        List<GameObject> objectsToDestroy = new List<GameObject>();
         foreach (GameObject obj in activeAbilityObjects)
         {
             if (obj.CompareTag("FatTentacle"))
             {
-                UnregisterAbilityObject(obj);
-                Destroy(obj);
+                objectsToDestroy.Add(obj);
             }
+        }
+
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            UnregisterAbilityObject(obj);
+            Destroy(obj);
         }
     }
 
     public void DestroyAllFlails()
     {
-        if (activeAbilityObjects == null)
-        {
-            return;
-        }
+        if (activeAbilityObjects == null || activeAbilityObjects.Count == 0) return;
 
-        if (activeAbilityObjects.Count == 0)
-        {
-            return;
-        }
-
+        List<GameObject> objectsToDestroy = new List<GameObject>();
         foreach (GameObject obj in activeAbilityObjects)
         {
             if (obj.CompareTag("Flail"))
             {
-                UnregisterAbilityObject(obj);
-                Destroy(obj);
+                objectsToDestroy.Add(obj);
             }
+        }
+
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            UnregisterAbilityObject(obj);
+            Destroy(obj);
         }
     }
 
     public void DestroyAllBigWavesOfDoom()
     {
-        if (activeAbilityObjects == null)
-        {
-            return;
-        }
+        if (activeAbilityObjects == null || activeAbilityObjects.Count == 0) return;
 
-        if (activeAbilityObjects.Count == 0)
-        {
-            return;
-        }
-
+        List<GameObject> objectsToDestroy = new List<GameObject>();
         foreach (GameObject obj in activeAbilityObjects)
         {
             if (obj.CompareTag("BigWaveOfDoom"))
             {
-                UnregisterAbilityObject(obj);
-                Destroy(obj);
+                objectsToDestroy.Add(obj);
             }
+        }
+
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            UnregisterAbilityObject(obj);
+            Destroy(obj);
         }
     }
 

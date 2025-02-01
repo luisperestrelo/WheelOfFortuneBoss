@@ -315,7 +315,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -6.8732214, y: 0.040590048}
+  m_Offset: {x: -6.8732214, y: -0.07191664}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -326,7 +326,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 14.746441, y: 0.48586154}
+  m_Size: {x: 14.746441, y: 1.104648}
   m_EdgeRadius: 0
 --- !u!82 &6882437994842798596
 AudioSource:
@@ -438,11 +438,11 @@ PrefabInstance:
       objectReference: {fileID: 1831511044, guid: 4013d0eb72221204093302548986bd7a, type: 3}
     - target: {fileID: 5077541067226927950, guid: c222c36cfe558c54ca59b91574cab0b8, type: 3}
       propertyPath: m_SortingLayer
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5077541067226927950, guid: c222c36cfe558c54ca59b91574cab0b8, type: 3}
       propertyPath: m_SortingLayerID
-      value: -32058475
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8590719963086315148, guid: c222c36cfe558c54ca59b91574cab0b8, type: 3}
       propertyPath: m_Name
@@ -450,7 +450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8694604383600039575, guid: c222c36cfe558c54ca59b91574cab0b8, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.85
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8694604383600039575, guid: c222c36cfe558c54ca59b91574cab0b8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -494,7 +494,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8694604383600039575, guid: c222c36cfe558c54ca59b91574cab0b8, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

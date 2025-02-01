@@ -39,7 +39,7 @@ public class SpawnTimeRift : MonoBehaviour
 
     public void SpawnTimeRiftAtAngle(float angle)
     {
-        Quaternion rotation = Quaternion.Euler(-45f, 0f, angle);
+        Quaternion rotation = Quaternion.Euler(0f, 0f, angle);
 
 
         GameObject rift = Instantiate(timeRiftPrefab, spawnPosition, rotation);
