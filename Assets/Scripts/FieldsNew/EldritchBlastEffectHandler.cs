@@ -37,7 +37,8 @@ public class EldritchBlastEffectHandler : ChargeableFieldEffectHandler
             //Segment.StartCooldown();
 
             // Rplace the fuild with a temporary dmg field
-            StartCoroutine(ReplaceWithDamagingField(damagingField, damagingFieldDuration));
+            ReplaceWithDamagingFieldTemporarily(damagingField, damagingFieldDuration);
+           // StartCoroutine(ReplaceWithDamagingField(damagingField, damagingFieldDuration));
         }
         else
         {
@@ -45,21 +46,72 @@ public class EldritchBlastEffectHandler : ChargeableFieldEffectHandler
         }
     }
 
+    private void ReplaceWithDamagingFieldTemporarily(DamagingField damagingField, float duration)
+    {
+        WheelManager wheelManager = FindObjectOfType<WheelManager>();
+        if (wheelManager != null)
+        {
+            int segmentIndex = wheelManager.Segments.IndexOf(Segment);
+            if (segmentIndex != -1)
+            {
+                // Let the WheelManager swap out EldritchBlastField for DamagingField for the given duration
+                wheelManager.ReplaceFieldForDuration(segmentIndex, FieldData, damagingField, duration);
+            }
+        }
+        else
+        {
+            Debug.LogError("EldritchBlastEffectHandler::OnChargeComplete: Could not find WheelManager in the scene.");
+        }
+    }
+
+    //deprecated. Didn't work. Timer is now handled over at WheelManager
     private IEnumerator ReplaceWithDamagingField(DamagingField damagingField, float duration)
     {
         // Get the WheelManager
         WheelManager wheelManager = FindObjectOfType<WheelManager>();
         if (wheelManager != null)
         {
-            int segmentIndex = wheelManager.Segments.IndexOf(Segment);
 
-            wheelManager.ReplaceFieldTemporarily(segmentIndex, damagingField, duration);
+            int segmentIndex = wheelManager.Segments.IndexOf(Segment);
+            if (segmentIndex != -1)
+            {
+                wheelManager.RemoveField(segmentIndex);
+
+                wheelManager.AddField(damagingField, segmentIndex);
+
+                Debug.Log("EldritchBlastEffectHandler::ReplaceWithDamagingField: Waiting for " + duration + " seconds");
+                yield return new WaitForSeconds(duration);
+                Debug.Log("EldritchBlastEffectHandler::ReplaceWithDamagingField: Done waiting");
+
+                // Replace the DamagingField back if it is still on the wheel. This approach works even if it changes its index
+                wheelManager.ReplaceDamagingFieldWithOriginalIfPresent(damagingField, FieldData);
+            }
+            else
+            {
+                Debug.LogWarning("ReplaceWithDamagingField: Segment not found in WheelManager.");
+            }
         }
         else
         {
             Debug.LogError("EldritchBlastEffectHandler::ReplaceWithDamagingField: Could not find WheelManager in the scene.");
         }
-
-        yield return null; 
     }
-} 
+
+    /*     private IEnumerator ReplaceWithDamagingField(DamagingField damagingField, float duration)
+        {
+            // Get the WheelManager
+            WheelManager wheelManager = FindObjectOfType<WheelManager>();
+            if (wheelManager != null)
+            {
+                int segmentIndex = wheelManager.Segments.IndexOf(Segment);
+
+                wheelManager.ReplaceFieldTemporarily(segmentIndex, damagingField, duration);
+            }
+            else
+            {
+                Debug.LogError("EldritchBlastEffectHandler::ReplaceWithDamagingField: Could not find WheelManager in the scene.");
+            }
+
+            yield return null; 
+        } */
+}
