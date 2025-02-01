@@ -151,7 +151,7 @@ public class TimelordBossController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L)) // for testing
         {
             //stateMachine.ChangeState(shockwavesState);
-            stateMachine.ChangeState(realityRendState);
+            stateMachine.ChangeState(predictTheFutureState);
         }
 #endif
 
