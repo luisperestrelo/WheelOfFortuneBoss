@@ -25387,9 +25387,9 @@ MonoBehaviour:
   criticalHitPopupPrefab: {fileID: 1259023133563206875, guid: 6a005106e5a76e840861e7f26b2a163b, type: 3}
   bigHitCriticalPopupPrefab: {fileID: 1259023133563206875, guid: ff2c419e576cea14a96a2373d37c85c2, type: 3}
   healPopupPrefab: {fileID: 0}
-  basicPopupOffset: {x: 0, y: 2.5, z: -1}
+  basicPopupOffset: {x: 0, y: 0, z: -1}
   bigHitPopupOffset: {x: 1.5, y: 1.5, z: -1}
-  criticalHitPopupOffset: {x: 0, y: 2, z: -1}
+  criticalHitPopupOffset: {x: 0, y: 0.5, z: -1}
   bigHitCriticalPopupOffset: {x: 0, y: 2, z: -1}
   healPopupOffset: {x: 0, y: 0.5, z: -1}
   OnHealthChanged:
