@@ -7189,6 +7189,8 @@ MonoBehaviour:
   realityRendFastPrefab: {fileID: 6197992054644943968, guid: 8a0a10e2cc933544eae11f7baa63a759, type: 3}
   realityRendSlowPrefab: {fileID: 1004552971127744325, guid: a1a69e62325ebff43adc61079e8e227a, type: 3}
   realityRendDuration: 10
+  rendSfx: {fileID: 8300000, guid: e477d82c2ec23ec4096baba21c0ecf57, type: 3}
+  source: {fileID: 1059447768279544805}
 --- !u!114 &7362916122743430498
 MonoBehaviour:
   m_ObjectHideFlags: 0

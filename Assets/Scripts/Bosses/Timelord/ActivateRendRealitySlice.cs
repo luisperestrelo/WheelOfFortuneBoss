@@ -149,6 +149,7 @@ public class ActivateRendRealitySlice : MonoBehaviour
             // Then instantly set to final
             SetVisualsToFinal();
         }
+        CameraMovement.instance.ShakeCamera(0.08f, 0.6f);
 
         // Enable the collider to start dealing damage
         if (damageCollider != null)

@@ -8,6 +8,8 @@ public class SpawnRealityRend : MonoBehaviour
     [SerializeField] private GameObject realityRendSlowPrefab;
 
     [SerializeField] private float realityRendDuration = 10f;
+    [SerializeField] private AudioClip rendSfx;
+    [SerializeField] private AudioSource source;
 
     private Vector3 spawnPosition;
     // Start is called before the first frame update
@@ -49,8 +51,14 @@ public class SpawnRealityRend : MonoBehaviour
             Destroy(realityRendSlow, realityRendDuration);
         }
 
+        StartCoroutine(PlaySFXAfterDelay());
 
+    }
 
+    private IEnumerator PlaySFXAfterDelay()
+    {
+        yield return new WaitForSeconds(3.5f);
+        source.PlayOneShot(rendSfx); //handled in this script and not the prefab so the tail of the sound doesnt get cut off when the prefab is destroyed
     }
 
     public float GetRealityRendDuration()

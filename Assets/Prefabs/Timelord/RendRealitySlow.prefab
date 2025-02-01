@@ -66,7 +66,7 @@ MonoBehaviour:
   outlineFinalAlpha: 255
   lightInitialIntensity: 0
   lightFinalIntensity: 10
-  activationTime: 5
+  activationTime: 4
   isLinearActivation: 0
   damagePerSecond: 10
   damageInterval: 0.4
