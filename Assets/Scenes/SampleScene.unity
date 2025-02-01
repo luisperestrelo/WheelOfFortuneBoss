@@ -3873,6 +3873,10 @@ PrefabInstance:
       propertyPath: uiWheel
       value: 
       objectReference: {fileID: 1625189718}
+    - target: {fileID: 7189140801120924771, guid: 5aee488f00b0e3e42b9c4050ae6071fd, type: 3}
+      propertyPath: m_text
+      value: Your Stats
+      objectReference: {fileID: 0}
     - target: {fileID: 7366222398046878795, guid: 5aee488f00b0e3e42b9c4050ae6071fd, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

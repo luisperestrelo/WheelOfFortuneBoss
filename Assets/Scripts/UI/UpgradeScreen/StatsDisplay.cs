@@ -39,7 +39,15 @@ public class StatsDisplay : MonoBehaviour
     void Start()
     {
         // Enable for Testing
-        // AddAllStatsToShow();
+         //AddAllStatsToShow();
+
+        // Always display these three stats by default:
+        AddStatsToListToShow(new List<StatType>
+        {
+            StatType.Health,
+            StatType.CritChance,
+            StatType.CritMultiplier
+        });
 
         playerStats = FindObjectOfType<PlayerStats>();
         initialBgSize = bg.sizeDelta;

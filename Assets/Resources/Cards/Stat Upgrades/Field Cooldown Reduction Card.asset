@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Field Cooldown Reduction Card
   m_EditorClassIdentifier: 
   cardName: Cooldown Reduction
-  description: Fields that have a cooldown have 15% less cooldown
+  description: Fields that have a Cooldown have 15% less Cooldown
   rarity: 1
   icon: {fileID: 21300000, guid: 9c7a1b99e12582548b22913800d13003, type: 3}
   cardType: 1
