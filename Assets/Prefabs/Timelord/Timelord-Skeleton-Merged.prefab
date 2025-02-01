@@ -5809,7 +5809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe3aca7726cc464181577e932e2665e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20000
+  maxHealth: 10000
   currentHealth: 0
   hpHeavyDamageThreshold: 25
   lightDamageSfx: {fileID: 8300000, guid: 587c1108a21a8524c83353de20bf10e2, type: 3}
@@ -5952,7 +5952,7 @@ MonoBehaviour:
   telegraphDuration: 2.3
   telegraphSequenceDelay: 0.8
   slamSequenceDelay: 1.3
-  damage: 10
+  damage: 77
 --- !u!114 &5167683073891735999
 MonoBehaviour:
   m_ObjectHideFlags: 0

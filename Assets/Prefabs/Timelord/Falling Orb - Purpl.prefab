@@ -187,7 +187,7 @@ MonoBehaviour:
   initialTelegraphScale: 0.25
   finalTelegraphScale: 2
   explosionRadius: 1.01
-  meteorDamage: 10
+  meteorDamage: 4
   damageLayerMask:
     serializedVersion: 2
     m_Bits: 64

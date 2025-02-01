@@ -282,7 +282,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerSecond: 10
-  damageInterval: 0.4
+  damageInterval: 0.3
+  instantDamageCooldown: 0.3
 --- !u!61 &7897306023908026355
 BoxCollider2D:
   m_ObjectHideFlags: 0

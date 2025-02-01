@@ -12,7 +12,9 @@ public class TimeRift : MonoBehaviour
     [Tooltip("Interval in seconds between consecutive damage ticks while standing inside the rift.")]
     [SerializeField] private float damageInterval = 0.4f;
 
-
+    // Cooldown so that if the player steps in/out quickly, they don't get "instant" damage multiple times.
+    // Example: 1 second cooldown on immediate damage
+    [SerializeField] private float instantDamageCooldown = 0.4f;
 
     private bool _isGrown = false;
     private bool _isPlayerInRift = false;
@@ -20,6 +22,9 @@ public class TimeRift : MonoBehaviour
 
     private Collider2D _collider2D;
     private PlayerHealth _playerHealth;
+
+    // Track the last time we applied "instant damage" so it doesn't spam
+    private float _lastInstantDamageTime = -999f;
 
     private void Awake()
     {
@@ -77,12 +82,16 @@ public class TimeRift : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            
             _playerHealth = other.GetComponent<PlayerHealth>();
-            if (_playerHealth)
+            if (_playerHealth != null)
             {
-                float immediateDamage = damagePerSecond * damageInterval;
-                _playerHealth.TakeDamage(immediateDamage, isDamageOverTime: false);
+                // Apply an immediate damage chunk IF enough time passed since last immediate hit
+                if (Time.time - _lastInstantDamageTime >= instantDamageCooldown)
+                {
+                    float immediateDamage = damagePerSecond * damageInterval;
+                    _playerHealth.TakeDamage(immediateDamage, false);
+                    _lastInstantDamageTime = Time.time;
+                }
             }
 
             _isPlayerInRift = true;
