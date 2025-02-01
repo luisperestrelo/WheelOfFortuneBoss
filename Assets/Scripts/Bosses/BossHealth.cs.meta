@@ -3,7 +3,20 @@ guid: 5fe3aca7726cc464181577e932e2665e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - lightDamageSfx: {instanceID: 0}
+  - heavyDamageSfx: {instanceID: 0}
+  - parrySfx: {instanceID: 0}
+  - healSfx: {instanceID: 0}
+  - damageSource: {instanceID: 0}
+  - basicPopupPrefab: {instanceID: 0}
+  - bigHitPopupPrefab: {instanceID: 0}
+  - criticalHitPopupPrefab: {instanceID: 0}
+  - bigHitCriticalPopupPrefab: {instanceID: 0}
+  - healPopupPrefab: {instanceID: 0}
+  - nextBoss: {instanceID: 0}
+  - upgradeOrb: {instanceID: 0}
+  - dieSfx: {fileID: 8300000, guid: 69861ee80fd5fc049a5fd4bb10b2c088, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

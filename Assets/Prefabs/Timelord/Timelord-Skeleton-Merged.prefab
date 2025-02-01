@@ -5835,6 +5835,7 @@ MonoBehaviour:
       m_Calls: []
   nextBoss: {fileID: 0}
   upgradeOrb: {fileID: 4831472064132810505, guid: 4201f5fda37fd864b8f0f35c0af84c05, type: 3}
+  dieSfx: {fileID: 8300000, guid: 69861ee80fd5fc049a5fd4bb10b2c088, type: 3}
 --- !u!114 &3571660657960463806
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ public class BossHealth : Health
 {
     [SerializeField] private GameObject nextBoss;
     [SerializeField] private GameObject upgradeOrb;
+    [SerializeField] private AudioClip dieSfx;
 
     private MorsoraBossController bossController;
     private bool isImmune = false;
@@ -67,6 +68,7 @@ public class BossHealth : Health
         OnDie.Invoke();
 
         //TODO: SFX/VFX etc.
+        SFXPool.instance.PlaySound(dieSfx, SFXPool.MixGroup.ui);
 
         Debug.Log(gameObject.name + " died!");
         Destroy(gameObject, 0.1f);
