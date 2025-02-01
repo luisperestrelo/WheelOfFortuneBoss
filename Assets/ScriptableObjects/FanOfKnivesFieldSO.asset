@@ -15,7 +15,8 @@ MonoBehaviour:
   fieldName: Fan of Knives
   description: While in this field, your projectile is replaced by three small knives.
   icon: {fileID: 21300000, guid: f42740757abd2234e994a3ea736560e9, type: 3}
-  color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
+  color: {r: 0.91764706, g: 0.91764706, b: 0.91764706, a: 1}
+  rune: {fileID: 0}
   fieldType: 10
   tags: 0000000001000000
   activationType: 0
