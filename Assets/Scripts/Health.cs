@@ -98,9 +98,10 @@ public class Health : MonoBehaviour
             if(damageFlash)
                 damageFlash.Play();
             if (damageAmount < hpHeavyDamageThreshold)
-                damageSource.PlayOneShot(lightDamageSfx);
+                damageSource.clip = lightDamageSfx;
             else
-                damageSource.PlayOneShot(heavyDamageSfx);
+                damageSource.clip = heavyDamageSfx;
+            damageSource.Play();
 
             if (isCrit)
             {
