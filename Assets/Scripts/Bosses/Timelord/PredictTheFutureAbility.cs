@@ -7,6 +7,7 @@ public class PredictTheFutureAbility : MonoBehaviour
     [Header("References")]
     [SerializeField] private Hourglass hourglass;
     [SerializeField] private GameObject telegraph;
+    [SerializeField] private GameObject telegraphFake;
 
     [SerializeField] private Vector3 spawnPosition;
     [Header("Visual & Damaging Effects")]
@@ -52,16 +53,26 @@ public class PredictTheFutureAbility : MonoBehaviour
     //  TELEGRAPH SPAWNING METHODS
     // ---------------------------------------------------------------
     // Return the spawned telegraph so we can later destroy it.
-    private GameObject SpawnTelegraphAtZ(float zRotation)
+    private GameObject SpawnTelegraphAtZ(float zRotation, bool isFake = false)
     {
-        if (telegraph == null) return null;
+        if (isFake)
+        {
+            if (telegraphFake == null) return null;
+            return Instantiate(telegraphFake, spawnPosition, Quaternion.Euler(0f, 0f, zRotation));
+        }
+        else
+        {
+            if (telegraph == null) return null;
 
-        return Instantiate(
-            telegraph,
-            spawnPosition,
-            Quaternion.Euler(0f, 0f, zRotation)
-        );
+            return Instantiate(
+                telegraph,
+                spawnPosition,
+                Quaternion.Euler(0f, 0f, zRotation)
+            );
+        }
     }
+
+
 
     private GameObject SpawnTelegraphRandomZ()
     {
@@ -79,11 +90,17 @@ public class PredictTheFutureAbility : MonoBehaviour
     // ---------------------------------------------------------------
     //  FUTURE SCENARIOS
     // ---------------------------------------------------------------
+    //If we visit this later, the logic is a bit all over the place because it was a quick fix to the rework of this ability.
+    // SO ignore the usage of names like "Fake" and such, this ability doesn't work like that anymore
     public void RealFuture()
     {
         hourglass.SetHourglassColor(realFutureColor);
 
-        GameObject spawnedTelegraph = SpawnTelegraphRandomZ();
+        /* GameObject spawnedTelegraph = SpawnTelegraphRandomZ();
+        GameObject spawnedTelegraphFake = SpawnTelegraphAtZ(spawnedTelegraph.transform.eulerAngles.z + 180f, true); */
+
+        GameObject spawnedTelegraphFake = SpawnTelegraphRandomZ();
+        GameObject spawnedTelegraph = SpawnTelegraphAtZ(spawnedTelegraphFake.transform.eulerAngles.z + 180f, true);
 
 
         // Hourglass runs for telegraphDuration. After that time, spawn effect & remove telegraph.
@@ -107,6 +124,7 @@ public class PredictTheFutureAbility : MonoBehaviour
                 //Instantiate(realFutureDamageEffect, effectCenter, Quaternion.identity);
                 // The effect prefab handles the damage
                 Destroy(spawnedTelegraph);
+                Destroy(spawnedTelegraphFake);
             }
 
         });
@@ -116,7 +134,12 @@ public class PredictTheFutureAbility : MonoBehaviour
     {
         hourglass.SetHourglassColor(fakeFutureColor);
 
-        GameObject spawnedTelegraph = SpawnTelegraphRandomZ();
+/*         GameObject spawnedTelegraph = SpawnTelegraphRandomZ();
+        GameObject spawnedTelegraphFake = SpawnTelegraphAtZ(spawnedTelegraph.transform.eulerAngles.z + 180f, true); */
+
+        GameObject spawnedTelegraphFake = SpawnTelegraphRandomZ();
+        GameObject spawnedTelegraph = SpawnTelegraphAtZ(spawnedTelegraphFake.transform.eulerAngles.z + 180f, true);
+
 
         // Hourglass runs for telegraphDuration. After that time, spawn effect & remove telegraph.
         hourglass.StartTimer(telegraphDuration, () =>
@@ -139,6 +162,7 @@ public class PredictTheFutureAbility : MonoBehaviour
 
                 //Instantiate(fakeFutureDamageEffect, effectCenter, Quaternion.identity);
                 Destroy(spawnedTelegraph);
+                Destroy(spawnedTelegraphFake);
 
                 // The effect prefab handles the damage
 
