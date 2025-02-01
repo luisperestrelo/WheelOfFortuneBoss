@@ -6,7 +6,7 @@ public class TimeLordRotatingOrbsState : TimelordBossState
 {
     private bool lasersEnabled = false;
     private float nextStateTime = 7f; // Time after which you move to the next state
-    private float delayUntilLasersEnabled = 2f;
+    private float delayUntilLasersEnabled = 4f;
 
     public TimeLordRotatingOrbsState(TimelordBossStateMachine stateMachine, TimelordBossController bossController)
         : base(stateMachine, bossController, "Idle")
@@ -16,8 +16,10 @@ public class TimeLordRotatingOrbsState : TimelordBossState
     public override void Enter()
     {
         base.Enter();
+        bossController.DisableAllConstantAbilities();
         bossController.enableRotatingOrbs.EnableOrbHolder();
     }
+
 
     public override void Update()
     {
@@ -39,7 +41,9 @@ public class TimeLordRotatingOrbsState : TimelordBossState
     {
         base.Exit();
         bossController.enableRotatingOrbs.DisableOrbHolder();
+        bossController.RestartAllConstantAbilities();
         lasersEnabled = false;
+
     }
 }
 
