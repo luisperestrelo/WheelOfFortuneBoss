@@ -7,18 +7,10 @@ using UnityEngine.UI;
 
 public abstract class UpgradeDisplayVisual : MonoBehaviour //, IPointerEnterHandler, IPointerExitHandler
 {
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private Image icon;
+    [SerializeField] protected TextMeshProUGUI nameText;
+    [SerializeField] protected Image icon;
     [SerializeField] private List<GameObject> rarityFxObjects;
-
-
-    public void SetValues(Card card, bool replaceIcon = true)
-    {
-        nameText.text = card.cardName;
-        
-        icon.sprite = card.icon;
-        SetRarity(card.rarity);
-    }
+    
 
     protected virtual void SetRarity(CardRarity rarity)
     {

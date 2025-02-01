@@ -58,7 +58,7 @@ public class NextBossFightNoNewScene : MonoBehaviour
         if (currentBossIndex < bossPrefabs.Count)
         {
             //Timelord spawns at a different position... theres some weird stuff going on 
-            if (currentBossIndex == 1)
+            if (bossPrefabs[currentBossIndex].name == "Timelord-Skeleton-Merged")
             {
                 currentBoss = Instantiate(bossPrefabs[currentBossIndex], new Vector3(0.12f, -4.93f, 0), Quaternion.Euler(-45f,0,1.12f));
             }
@@ -66,7 +66,7 @@ public class NextBossFightNoNewScene : MonoBehaviour
             {
                 currentBoss = Instantiate(bossPrefabs[currentBossIndex], bossSpawnPoint.position, bossSpawnPoint.rotation);
             }
-
+            
             bossHealth = currentBoss.GetComponent<BossHealth>();
             MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.fight);
             if (bossHealth != null)
