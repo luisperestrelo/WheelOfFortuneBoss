@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: Rend Toxins Field Card
   m_EditorClassIdentifier: 
   cardName: Rend Toxins
-  description: 'When charged, all enemies take 5 Damage for each stack of poison
-    they are inflicted with. Removes the stacks. DEV: Whether or not to remove stacks
-    is controlled by a boolean on PoisonDetonationField'
+  description: When charged, consumes Poison from all enemies. They take 10 Damage
+    for each stack of poison consumed
   rarity: 2
   icon: {fileID: 21300000, guid: 3c18d0a78f16dec4bb692f0690c6fa38, type: 3}
   cardType: 0

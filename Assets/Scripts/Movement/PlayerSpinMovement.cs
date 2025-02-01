@@ -94,12 +94,30 @@ public class PlayerSpinMovement : MonoBehaviour
     [Header("Wall Collision")]
     [SerializeField] private bool enableWallCollisions = true;
 
+    [Header("Buff Logic")]
+    [SerializeField] private BuffManager buffManager;
+    [SerializeField] private PlayerStats playerStats;
+
+    // Track how much we've rotated since last direction change
+    [SerializeField] private float accumulatedRotation = 0f; // seralizing to see in the inspector
+    [SerializeField] private float previousUpdateAngle = 0f;
+    [SerializeField] private float previousDirection = 1f;
+
     private void Start()
     {
         _lineRenderer = GetComponent<LineRenderer>();
         radius = circularPath.GetRadius();
 
+        if (!buffManager)
+            buffManager = GetComponent<BuffManager>();
+
+        if (!playerStats)
+            playerStats = GetComponent<PlayerStats>();
+
         InitializeMovementScheme();
+
+        previousUpdateAngle = _currentAngle;
+        previousDirection = _direction;
     }
 
     private void InitializeMovementScheme()
@@ -152,8 +170,6 @@ public class PlayerSpinMovement : MonoBehaviour
 
     private void Update()
     {
-
-
         if (circularPath != null)
         {
             radius = circularPath.GetRadius();
@@ -164,10 +180,15 @@ public class PlayerSpinMovement : MonoBehaviour
         // Update the movement scheme (handles input and direction changes)
         currentMovementScheme.UpdateMovement();
 
+        if (playerStats.HasFullCircleBuffUpgrade)
+        {
+            HandleFullCircleBuff();
+        }
+
         if (IsThereAWallInFront())
         {
             // If a wall is detected, prevent movement by resetting the angle
-            // later we can draw a tangent from the wall to the circumference and set the angle to the angle of the tangent 
+             //later we can draw a tangent from the wall to the circumference and set the angle to the angle of the tangent 
             _currentAngle = previousAngle;
             _currentRotationSpeed = 0f;
         }
@@ -194,6 +215,37 @@ public class PlayerSpinMovement : MonoBehaviour
         float y = anchorPoint.position.y + radius * Mathf.Sin(_currentAngle * Mathf.Deg2Rad);
 
         transform.position = new Vector3(x, y, transform.position.z);
+    }
+
+    private void HandleFullCircleBuff()
+    {
+        if (Mathf.Sign(_direction) != Mathf.Sign(previousDirection))
+        {
+            if (buffManager != null)
+            {
+                buffManager.RemoveBuffImmediately("FullCircleDamageBuff");
+            }
+            accumulatedRotation = 0f;
+        }
+        else
+        {
+            float angleDelta = Mathf.DeltaAngle(previousUpdateAngle, _currentAngle);
+
+            accumulatedRotation += Mathf.Abs(angleDelta);
+
+            if (accumulatedRotation >= 360f)
+            {
+                accumulatedRotation -= 360f; 
+                if (buffManager != null)
+                {
+                    buffManager.ApplyBuff(new FullCircleDamageBuff(1.2f));
+                }
+            }
+        }
+
+        // Update tracking for next frame
+        previousUpdateAngle = _currentAngle;
+        previousDirection = _direction;
     }
 
     /*     private IEnumerator SpeedBoostRoutine()

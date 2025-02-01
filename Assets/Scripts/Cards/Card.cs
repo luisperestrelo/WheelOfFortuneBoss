@@ -23,7 +23,8 @@ public enum  StatType
     CritsGiveStackingDamageBuff,
     PoisonChance,
     PoisonDamageOverTimeMultiplier,
-    PoisonDurationMultiplier
+    PoisonDurationMultiplier,
+    FullCirclesGiveDamageBuff
 
 }
 public enum CardType { Field, StatUpgrade, FieldCategoryUpgrade, FieldSpecificUpgrade, WheelUpgrade }
