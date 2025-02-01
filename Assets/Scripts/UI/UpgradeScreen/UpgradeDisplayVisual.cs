@@ -15,8 +15,8 @@ public abstract class UpgradeDisplayVisual : MonoBehaviour //, IPointerEnterHand
     public void SetValues(Card card, bool replaceIcon = true)
     {
         nameText.text = card.cardName;
-        if(replaceIcon)
-            icon.sprite = card.icon;
+        
+        icon.sprite = card.icon;
         SetRarity(card.rarity);
     }
 

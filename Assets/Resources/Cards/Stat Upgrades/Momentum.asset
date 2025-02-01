@@ -17,7 +17,7 @@ MonoBehaviour:
     of Momentum, increasing damage by 20% per stack. Stacks up to 5 times. Lose all
     stacks upon changing direction."
   rarity: 2
-  icon: {fileID: 21300000, guid: d76d47821d505c249a084d54f13b5e76, type: 3}
+  icon: {fileID: 21300000, guid: 9c7a1b99e12582548b22913800d13003, type: 3}
   cardType: 1
   isKissCurse: 0
   downSideDescription: 

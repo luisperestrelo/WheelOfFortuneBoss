@@ -639,8 +639,46 @@ public class WheelManager : MonoBehaviour
         CreateChargeIndicators();
     }
 
+    /// <summary>
+    /// Replaces the field at the given segmentIndex with a DamagingField,
+    /// waits for 'duration' seconds, then replaces it back with 'originalField'
+    /// if the DamagingField is still on the wheel.
+    /// </summary>
+    public void ReplaceFieldForDuration(int segmentIndex, Field originalField, DamagingField damagingField, float duration)
+    {
+        StartCoroutine(ReplaceFieldForDurationCoroutine(segmentIndex, originalField, damagingField, duration));
+    }
 
+    private IEnumerator ReplaceFieldForDurationCoroutine(int segmentIndex, Field originalField, DamagingField damagingField, float duration)
+    {
+        // Removes the Original Field, for example eldritch blast
+        RemoveField(segmentIndex);
 
+        // Add the DamagingField at that same index
+        AddField(damagingField, segmentIndex);
 
+        // Wait the duration
+        yield return new WaitForSeconds(duration);
 
+        // If that DamagingField is still on the wheel, replace it back. 
+        // Otherwise (eg we replaced it does nothing)
+        // It works even if the damagingField changes its index
+        ReplaceDamagingFieldWithOriginalIfPresent(damagingField, originalField);
+    }
+
+    /// <summary>
+    /// Replaces a specific DamagingField with an original Field (e.g., EldritchBlastField)
+    /// ONLY if that DamagingField is still present on the wheel.
+    /// </summary>
+    public void ReplaceDamagingFieldWithOriginalIfPresent(DamagingField damagingField, Field originalField)
+    {
+        Debug.Log("Hi");
+        int damagingFieldIndex = FieldsToAddToWheel.IndexOf(damagingField);
+        Debug.Log("WheelManager::ReplaceDamagingFieldWithOriginalIfPresent: Damaging field index: " + damagingFieldIndex);
+        if (damagingFieldIndex != -1)
+        {
+            RemoveField(damagingFieldIndex);
+            AddField(originalField, damagingFieldIndex);
+        }
+    }
 }

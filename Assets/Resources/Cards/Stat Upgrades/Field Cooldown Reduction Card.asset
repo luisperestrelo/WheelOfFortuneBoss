@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Cooldown Reduction
   description: Fields that have a cooldown have 15% less cooldown
   rarity: 1
-  icon: {fileID: 21300000, guid: c63b3085aea8fc6409cb9c079cf99307, type: 3}
+  icon: {fileID: 21300000, guid: 9c7a1b99e12582548b22913800d13003, type: 3}
   cardType: 1
   isKissCurse: 0
   downSideDescription: 
