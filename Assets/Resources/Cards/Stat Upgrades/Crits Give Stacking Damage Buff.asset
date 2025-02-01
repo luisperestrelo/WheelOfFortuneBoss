@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Crits Give Stacking Damage Buff
   m_EditorClassIdentifier: 
   cardName: Brutal Fervor
-  description: Every time you crit, gain 10% damage for 2 seconds, stacking up to
-    10 times. Gaining a new stack does not refresh the duration.
+  description: On Crit, gain 10% Damage for 2 seconds, stacking up to 10 times. Gaining
+    a new stack does not refresh the duration.
   rarity: 1
   icon: {fileID: 21300000, guid: 153b60a97353aca4999ff2139720f4a7, type: 3}
   cardType: 1

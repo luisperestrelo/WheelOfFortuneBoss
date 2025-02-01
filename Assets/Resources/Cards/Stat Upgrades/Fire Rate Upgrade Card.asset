@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fire Rate Upgrade Card
   m_EditorClassIdentifier: 
   cardName: Attack Speed
-  description: Gain 10% attack speed
+  description: Gain 10% Attack Speed
   rarity: 0
   icon: {fileID: 21300000, guid: 153b60a97353aca4999ff2139720f4a7, type: 3}
   cardType: 1

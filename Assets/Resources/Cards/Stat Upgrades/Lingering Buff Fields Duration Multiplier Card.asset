@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e358d9f65cfe91347b9c8c31e00a6608, type: 3}
   m_Name: Lingering Buff Fields Duration Multiplier Card
   m_EditorClassIdentifier: 
-  cardName: Lingering Buff Duration
-  description: Buffs from Lingering Fields last 30% longer
+  cardName: Field Buff Duration
+  description: Buffs from Fields last 30% longer
   rarity: 1
   icon: {fileID: 21300000, guid: 9c7a1b99e12582548b22913800d13003, type: 3}
   cardType: 1

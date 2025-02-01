@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Momentum
   m_EditorClassIdentifier: 
   cardName: Momentum
-  description: "Spin around a full 360\xBA without changing direction to gain a stack
-    of Momentum, increasing damage by 20% per stack. Stacks up to 5 times. Lose all
-    stacks upon changing direction."
+  description: Do a full circle without changing direction to gain a stack of Momentum,
+    increasing damage by 20% per stack. Stacks up to 5 times. Lose all stacks upon
+    changing direction.
   rarity: 2
   icon: {fileID: 21300000, guid: 9c7a1b99e12582548b22913800d13003, type: 3}
   cardType: 1
