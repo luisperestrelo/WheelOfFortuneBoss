@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class TimelordMeteorShowerState : TimelordBossState
@@ -39,7 +40,7 @@ public class TimelordMeteorShowerState : TimelordBossState
 
         if (!useOneByOneSpawning)
         {
-            SpawnMeteorSet(0);
+            RunManager.Instance.StartCoroutine(SpawnMeteorSet(0)); //using RunManager because it's an easy-to-access monobehavior. Change if it causes any problems somehow.
             setsSpawned++;
         }
     }
@@ -57,7 +58,7 @@ public class TimelordMeteorShowerState : TimelordBossState
 
             if (setTimer <= 0f && setsSpawned < totalSetsToSpawn)
             {
-                SpawnMeteorSet(setsSpawned);
+                RunManager.Instance.StartCoroutine(SpawnMeteorSet(setsSpawned));
                 setsSpawned++;
             }
 
@@ -91,7 +92,7 @@ public class TimelordMeteorShowerState : TimelordBossState
         base.Exit();
     }
 
-    private void SpawnMeteorSet(int patternNumber)
+    private IEnumerator SpawnMeteorSet(int patternNumber)
     {
         setTimer = timeBetweenSets;
         float initialAngle = Random.Range(0f, 360f);
@@ -99,6 +100,7 @@ public class TimelordMeteorShowerState : TimelordBossState
         for (int i = 0; i < meteorsPerSet/2; i++)
         {
             bossController.meteorSpawner.SpawnMeteorAtAngle(initialAngle + i * 25f);
+            yield return new WaitForSeconds(0.1f);
         }
 
         //initialAngle += Random.Range(150f, 210f);
@@ -107,6 +109,7 @@ public class TimelordMeteorShowerState : TimelordBossState
         for (int i = meteorsPerSet/2; i < meteorsPerSet; i++)
         {
             bossController.meteorSpawner.SpawnMeteorAtAngle(initialAngle + i * 25f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 
