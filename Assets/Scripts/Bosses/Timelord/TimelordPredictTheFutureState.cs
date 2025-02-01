@@ -31,7 +31,7 @@ public class TimelordPredictTheFutureState : TimelordBossState
     {
         base.Enter();
 
-        bossController.DisableAllConstantAbilities();
+        //bossController.DisableAllConstantAbilities();
         bossController.hourglass.gameObject.SetActive(true);
 
         waitTimer = initialWaitTime;
@@ -98,7 +98,7 @@ public class TimelordPredictTheFutureState : TimelordBossState
 
         bossController.hourglass.SetDefaultValues();
         bossController.hourglass.gameObject.SetActive(false);
-        bossController.RestartAllConstantAbilities();
+        //bossController.RestartAllConstantAbilities();
     }
 
     // Picking Real pushes realProbability down by deltaProbability;
