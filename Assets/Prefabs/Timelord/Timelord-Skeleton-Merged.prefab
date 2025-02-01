@@ -7446,9 +7446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddc7c7e9a6ecabb44a40e5a3fd5b30dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColor: {r: 1, g: 1, b: 1, a: 1}
-  flashTime: 0.25
-  flashAmount: 1
+  flashColor: {r: 0.7830189, g: 0.43952474, b: 0.43952474, a: 0.53333336}
+  flashTime: 0.1
+  flashAmount: 0.08
 --- !u!4 &6113946583359928870 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: ead619be3cd271744a92368802669ee2, type: 3}

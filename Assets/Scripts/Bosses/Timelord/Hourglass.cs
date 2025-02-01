@@ -26,6 +26,9 @@ public class Hourglass : MonoBehaviour
 
     private bool isRunning;
 
+    [SerializeField] private AudioClip turnSfx;
+    private AudioSource source;
+
     void Start()
     {
         maxTopMaskScale = topMask.transform.localScale;
@@ -36,7 +39,7 @@ public class Hourglass : MonoBehaviour
         bottomSandSprite.GetComponent<SpriteRenderer>().color = color;
         sandRaySprite.GetComponent<SpriteRenderer>().color = color;
 
-        
+        source = GetComponent<AudioSource>();
 
         SetProgress(1f);
     }
@@ -97,7 +100,9 @@ public class Hourglass : MonoBehaviour
 
     private IEnumerator Flip()
     {
+        source.PlayOneShot(turnSfx);
         var elapsedTime = 0f;
+        
         while (elapsedTime < flipDuration)
         {
             elapsedTime += Time.deltaTime;
