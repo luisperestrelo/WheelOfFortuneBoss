@@ -25400,6 +25400,7 @@ MonoBehaviour:
       m_Calls: []
   nextBoss: {fileID: 0}
   upgradeOrb: {fileID: 0}
+  dieSfx: {fileID: 8300000, guid: 69861ee80fd5fc049a5fd4bb10b2c088, type: 3}
 --- !u!114 &6743735037320729315
 MonoBehaviour:
   m_ObjectHideFlags: 0

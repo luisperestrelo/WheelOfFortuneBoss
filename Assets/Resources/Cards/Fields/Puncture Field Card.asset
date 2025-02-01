@@ -16,7 +16,7 @@ MonoBehaviour:
   description: While in this field, you gain +15% Crit Chance. This buff lingers
     for 6 seconds when you exit
   rarity: 1
-  icon: {fileID: 21300000, guid: 3c18d0a78f16dec4bb692f0690c6fa38, type: 3}
+  icon: {fileID: 21300000, guid: ee40e1a6520bc1a478e509488540f7ed, type: 3}
   cardType: 0
   isKissCurse: 0
   downSideDescription: 

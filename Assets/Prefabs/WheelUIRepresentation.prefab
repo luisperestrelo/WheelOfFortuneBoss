@@ -910,11 +910,11 @@ MonoBehaviour:
   WheelImage: {fileID: 7276424560198933374}
   MaxSegments: 6
   LineMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  LineWidth: 15
+  LineWidth: 30
   IconOffset: 160
   ConfirmButton: {fileID: 63754107137105119}
-  HighlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  HoverColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  HighlightColor: {r: 1, g: 0, b: 0.88149357, a: 1}
+  HoverColor: {r: 0, g: 1, b: 0.011921406, a: 1}
   HighlightedLineWidth: 10
   incomingCardDisplay: {fileID: 2788754461018095716}
   explanationText: {fileID: 6277508035180333398}

@@ -7,6 +7,12 @@ public class StatUpgradeCardDisplay : UpgradeDisplayVisual
     [SerializeField] private GameObject selectContainer;
     [SerializeField] private List<RotateImage> selectObjects;
     
+    public void SetValues(Card card)
+    {
+        nameText.text = card.cardName;
+        icon.sprite = card.icon;
+        SetRarity(card.rarity);
+    }
 
     public override void Select()
     {
