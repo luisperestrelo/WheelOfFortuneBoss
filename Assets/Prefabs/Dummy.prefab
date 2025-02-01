@@ -755,6 +755,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Poison Counter
       objectReference: {fileID: 0}
+    - target: {fileID: 7603071238678638166, guid: b54e8a02647bda8409fe86d9ef947350, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -112,7 +112,12 @@ public class CardManager : MonoBehaviour
                 {
                     playerStats.MultiplyPoisonDurationMultiplier(1 + statValue);
                 }
-
+                else if (statType == StatType.FullCirclesGiveDamageBuff)
+                {
+                    playerStats.SetHasFullCircleBuffUpgrade(true);
+                    cardPool.RemoveAllCardsOfStatType(StatType.FullCirclesGiveDamageBuff); // Right now it is Epic so it shouldnt be needed,
+                                                                                           // but if we change this ,it's already done
+                }
 
             }
         }

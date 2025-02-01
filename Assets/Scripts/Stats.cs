@@ -29,6 +29,9 @@ public class Stats : MonoBehaviour
     [SerializeField] private float basePoisonDamage = 1f;
     [SerializeField] private float basePoisonDuration = 4f;
 
+    //Other
+    [SerializeField] private bool hasFullCircleBuffUpgrade = false;
+
     public float MaxHealth { get { return maxHealth; } private set { maxHealth = value; } }
     public float HealthRegen { get { return healthRegen; } private set { healthRegen = value; } }
     public float BaseDamageMultiplier { get { return baseDamageMultiplier; } private set { baseDamageMultiplier = value; } }
@@ -54,6 +57,9 @@ public class Stats : MonoBehaviour
     public float PoisonChance { get { return poisonChance; } private set { poisonChance = value; } }
     public float BasePoisonDamage { get { return basePoisonDamage; } private set { basePoisonDamage = value; } }
     public float BasePoisonDuration { get { return basePoisonDuration; } private set { basePoisonDuration = value; } }
+
+    // Other
+    public bool HasFullCircleBuffUpgrade { get { return hasFullCircleBuffUpgrade; } private set { hasFullCircleBuffUpgrade = value; } }
 
     // Stat-Aggregators
     // Damage aggregator for stacking damage buffs (multiplicative)
@@ -294,7 +300,11 @@ public class Stats : MonoBehaviour
         PoisonDurationMultiplier *= multiplier;
     }
 
-    
+    public void SetHasFullCircleBuffUpgrade(bool value)
+    {
+        HasFullCircleBuffUpgrade = value;
+    }
+
 
 
 

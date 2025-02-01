@@ -72,7 +72,10 @@ public class BuffManager : MonoBehaviour
 
         // If the buff is "Independent" and has a MaxStackCount >= 0, 
         // enforce that many stacks by removing oldest if we're at capacity:
-        if (newBuff.StackingMode == StackingMode.Independent && newBuff.MaxStackCount >= 0)
+
+        if ((newBuff.StackingMode == StackingMode.Independent
+             || newBuff.StackingMode == StackingMode.IndependentButRefreshesAll)
+            && newBuff.MaxStackCount >= 0)
         {
             if (buffList.Count >= newBuff.MaxStackCount)
             {
