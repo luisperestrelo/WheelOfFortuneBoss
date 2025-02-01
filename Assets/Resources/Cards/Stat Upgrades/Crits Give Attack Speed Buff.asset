@@ -15,7 +15,7 @@ MonoBehaviour:
   cardName: Capitalize
   description: On Crit, increase attack speed by 25% for 2 seconds. Does not stack.
   rarity: 1
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 153b60a97353aca4999ff2139720f4a7, type: 3}
   cardType: 1
   isKissCurse: 0
   downSideDescription: 
