@@ -9,8 +9,8 @@ using UnityEngine.UI;
 public class UpgradeDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image selectionImage;
-    [SerializeField] private UpgradeDisplayVisual fieldCardDisplay;
-    [SerializeField] private UpgradeDisplayVisual statUpgradeDisplay;
+    [SerializeField] private FieldCardDisplay fieldCardDisplay;
+    [SerializeField] private StatUpgradeCardDisplay statUpgradeDisplay;
     [SerializeField] private AudioSource menuSource;
     [SerializeField] private AudioClip hoverSfx;
 
@@ -22,7 +22,7 @@ public class UpgradeDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         this.card = card;
         if (card.cardType == CardType.Field)
-            DisplayActive(card);
+            DisplayActive(card as FieldCard);
         else
             DisplayPassive(card);
     }
@@ -53,10 +53,10 @@ public class UpgradeDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     {
         statUpgradeDisplay.gameObject.SetActive(true);
         fieldCardDisplay.gameObject.SetActive(false);
-        statUpgradeDisplay.SetValues(card, false);
+        statUpgradeDisplay.SetValues(card);
     }
 
-    private void DisplayActive(Card card)
+    private void DisplayActive(FieldCard card)
     {
         fieldCardDisplay.gameObject.SetActive(true);
         statUpgradeDisplay.gameObject.SetActive(false);

@@ -1,30 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class FieldCardDisplay : UpgradeDisplayVisual
 {
-    [SerializeField] protected List<RotateImage> rarityFxObjects;
+    [SerializeField] private List<RotateImage> selectObjects;
     // Start is called before the first frame update
-    protected override void SetRarity(CardRarity rarity)
+
+
+    public void SetValues(FieldCard card)
     {
-        for (var i = 0; i < rarityFxObjects.Count; i++)
-        {
-            rarityFxObjects[i].gameObject.SetActive(i == (int)rarity);
-        }
+        nameText.text = card.cardName;
+        icon.sprite = card.icon;
+        icon.color = card.field.Color;
+        SetRarity(card.rarity);
     }
 
     public override void Select()
     {
   
-            rarityFxObjects.ForEach(x => x.Play());   
+        selectObjects.ForEach(x => x.Play());   
  
     }
     
     public override void Deselect()
     {
 
-            rarityFxObjects.ForEach(x => x.Stop());   
+        selectObjects.ForEach(x => x.Stop());   
 
     }
 }

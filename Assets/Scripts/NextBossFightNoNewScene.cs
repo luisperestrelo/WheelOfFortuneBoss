@@ -67,7 +67,7 @@ public class NextBossFightNoNewScene : MonoBehaviour
             {
                 currentBoss = Instantiate(bossPrefabs[currentBossIndex], bossSpawnPoint.position, bossSpawnPoint.rotation);
             }
-
+            
             bossHealth = currentBoss.GetComponent<BossHealth>();
             MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.fight);
             if (bossHealth != null)
