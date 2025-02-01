@@ -30,12 +30,6 @@ public class HealthGlobe : MonoBehaviour
         float fillAmount = currentHealth / maxHealth;
 
         fillImage.fillAmount = fillAmount;
-        // if (reduceFillCoroutine != null)
-        // {
-        //     StopCoroutine(reduceFillCoroutine);
-        // }
-        // reduceFillCoroutine = StartCoroutine(ReduceFill(fillAmount));
-        //
         
         if (reduceWhiteCoroutine != null)
         {
@@ -44,22 +38,7 @@ public class HealthGlobe : MonoBehaviour
         reduceWhiteCoroutine = StartCoroutine(ReduceWhite(fillAmount));
     }
 
-    private IEnumerator ReduceFill(float toFillAmount)
-    {
-        var duration = 2f;
-        var elapsedTime = 0f;
-        
-        var fromFill = fillImage.fillAmount;
-        var fromWhite = whiteFillImage.fillAmount;
-        while (elapsedTime < duration)
-        {
-            elapsedTime += Time.deltaTime;
-             
-            fillImage.fillAmount = Mathf.Lerp(fromFill, toFillAmount, elapsedTime / duration);
-            yield return null;
-        }
-    }
-    
+
     private IEnumerator ReduceWhite(float toFillAmount)
     {
         var duration = 1f;
