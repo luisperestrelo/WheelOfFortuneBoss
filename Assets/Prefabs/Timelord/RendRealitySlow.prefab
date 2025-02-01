@@ -145,6 +145,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rend Telegraph 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4916070466612276368, guid: b3ea892fa3496c04caf018f30774c040, type: 3}
+      propertyPath: m_LightCookieSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 86afb6d24fb75744a827360a73be2d53, type: 3}
+    - target: {fileID: 4916070466612276368, guid: b3ea892fa3496c04caf018f30774c040, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -1.890564
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916070466612276368, guid: b3ea892fa3496c04caf018f30774c040, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 11.234437
+      objectReference: {fileID: 0}
     - target: {fileID: 6895588126264947098, guid: b3ea892fa3496c04caf018f30774c040, type: 3}
       propertyPath: m_Sprite
       value: 
