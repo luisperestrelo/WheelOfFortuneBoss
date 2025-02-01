@@ -97,7 +97,7 @@ public class CardManager : MonoBehaviour
                 }
                 else if (statType == StatType.CritsGiveStackingDamageBuff)
                 {
-                    critUpgrades.AddCritEffect(new CritDamageBuffEffect(statValue, 2f)); 
+                    critUpgrades.AddCritEffect(new CritDamageBuffEffect(1 + statValue, 2f)); 
                     cardPool.RemoveAllCardsOfStatType(StatType.CritsGiveStackingDamageBuff); // Remove the card from the pool
                 }
                 else if (statType == StatType.PoisonChance)
