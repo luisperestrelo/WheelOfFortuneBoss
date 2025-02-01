@@ -718,6 +718,7 @@ MonoBehaviour:
   playerFlashFX: {fileID: 9140755374635846707}
   playerSFX: {fileID: 0}
   animator: {fileID: 6073993921164192649}
+  dieSfx: {fileID: 8300000, guid: a0876f9a26d068144a3d1b39dfdd7065, type: 3}
 --- !u!114 &2357789789725850331
 MonoBehaviour:
   m_ObjectHideFlags: 0

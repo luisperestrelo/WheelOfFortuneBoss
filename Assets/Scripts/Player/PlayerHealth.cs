@@ -10,6 +10,7 @@ public class PlayerHealth : Health
     [SerializeField] private Animator animator;
 
     private PlayerStats playerStats;
+    [SerializeField] private AudioClip dieSfx;
 
     protected override void Awake()
     {
@@ -100,6 +101,7 @@ public class PlayerHealth : Health
         OnDie.Invoke();
 
         //TODO: SFX/VFX etc.
+        SFXPool.instance.PlaySound(dieSfx, SFXPool.MixGroup.misc);
 
         Debug.Log(gameObject.name + " died!");
         RunManager.Instance.RestartGame();
