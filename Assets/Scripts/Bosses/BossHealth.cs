@@ -51,8 +51,13 @@ public class BossHealth : Health
             }
         }
 
-
-        AbilityObjectManager.Instance.DestroyAllFatTentacles(); // TODO: Despawn animation
+        if (AbilityObjectManager.Instance != null)
+        {
+            AbilityObjectManager.Instance.DestroyAllFatTentacles(); // TODO: Despawn animation
+            AbilityObjectManager.Instance.DestroyAllFlails(); // TODO: Despawn animation
+            AbilityObjectManager.Instance.DisableAllPortals();
+            AbilityObjectManager.Instance.DestroyAllBigWavesOfDoom();
+        }
 
 
         OnDie.Invoke();

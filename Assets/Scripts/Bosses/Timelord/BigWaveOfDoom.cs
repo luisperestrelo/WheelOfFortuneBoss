@@ -36,6 +36,7 @@ public class BigWaveOfDoom : MonoBehaviour
         _elapsedTime += Time.deltaTime;
         if (_elapsedTime >= lifetime)
         {
+            AbilityObjectManager.Instance.UnregisterAbilityObject(gameObject);
             Destroy(gameObject);
         }
 

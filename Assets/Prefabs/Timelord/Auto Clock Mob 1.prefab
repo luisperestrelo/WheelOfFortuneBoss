@@ -294,6 +294,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3597745690745532431}
+    - targetCorrespondingSourceObject: {fileID: -8653719598885068355, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6432334490086130442}
   m_SourcePrefab: {fileID: 4843985084834002234, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}
 --- !u!1 &2374858245632122408 stripped
 GameObject:
@@ -468,6 +471,16 @@ MonoBehaviour:
   parrySfx: {fileID: 0}
   healSfx: {fileID: 0}
   damageSource: {fileID: -6581889347903889049}
+  basicPopupPrefab: {fileID: 1259023133563206875, guid: d50b5f5f347e32e4391849cb8f7997b1, type: 3}
+  bigHitPopupPrefab: {fileID: 1259023133563206875, guid: 5207d28f91a48ed4ea54911b00e69859, type: 3}
+  criticalHitPopupPrefab: {fileID: 1259023133563206875, guid: 6a005106e5a76e840861e7f26b2a163b, type: 3}
+  bigHitCriticalPopupPrefab: {fileID: 1259023133563206875, guid: ff2c419e576cea14a96a2373d37c85c2, type: 3}
+  healPopupPrefab: {fileID: 0}
+  basicPopupOffset: {x: 0, y: 2.5, z: -1}
+  bigHitPopupOffset: {x: 1.5, y: 1.5, z: -1}
+  criticalHitPopupOffset: {x: 0, y: 2, z: -1}
+  bigHitCriticalPopupOffset: {x: 0, y: 2, z: -1}
+  healPopupOffset: {x: 0, y: 0.5, z: -1}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -717,6 +730,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!50 &6432334490086130442
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2374858245632122408}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!4 &3475979744514934347 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7552582706839291426, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}

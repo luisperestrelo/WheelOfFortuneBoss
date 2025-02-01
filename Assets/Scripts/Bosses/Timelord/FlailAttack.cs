@@ -87,6 +87,7 @@ public class FlailAttack : MonoBehaviour
     {
         activeFlail = Instantiate(flail, flailSpawnPoint.position, Quaternion.Euler(0f, 0f, 270f));
         activeFlail.GetComponent<Animator>().enabled = false;
+        AbilityObjectManager.Instance.RegisterAbilityObject(activeFlail);
     }
 
     //voodoo to make animation work
@@ -106,6 +107,7 @@ public class FlailAttack : MonoBehaviour
 
     public void DespawnFlail()
     {
+        AbilityObjectManager.Instance.UnregisterAbilityObject(activeFlail);
         Destroy(activeFlail);
     }
 
