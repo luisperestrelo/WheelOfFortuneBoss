@@ -120,12 +120,12 @@ PolygonCollider2D:
       - {x: 12.864358, y: 3.1503131}
       - {x: 10.857635, y: 7.7959576}
       - {x: 10.247845, y: 8.445029}
-      - {x: 9.300684, y: 9.455603}
-      - {x: 3.443202, y: 3.3634071}
-      - {x: 1.2434244, y: 1.2124786}
+      - {x: 4.5778456, y: 12.471391}
+      - {x: 1.8499546, y: 5.2411613}
+      - {x: 0.67440796, y: 1.7245939}
       - {x: -0.035304546, y: 0.18889093}
-      - {x: -1.4538941, y: 1.5929854}
-      - {x: -9.170034, y: 9.432371}
+      - {x: -0.7710748, y: 2.389609}
+      - {x: -4.9024096, y: 12.277453}
       - {x: -10.358361, y: 8.445432}
       - {x: -13.229607, y: -0.10656425}
       - {x: -11.003471, y: -7.1425953}
@@ -145,14 +145,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rend Telegraph 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4916070466612276368, guid: b3ea892fa3496c04caf018f30774c040, type: 3}
+      propertyPath: m_LightCookieSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5e97daad0a5f0ab41bcaa3f9087e9711, type: 3}
+    - target: {fileID: 4916070466612276368, guid: b3ea892fa3496c04caf018f30774c040, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -0.2883911
+      objectReference: {fileID: 0}
+    - target: {fileID: 4916070466612276368, guid: b3ea892fa3496c04caf018f30774c040, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 12.83661
+      objectReference: {fileID: 0}
     - target: {fileID: 6895588126264947098, guid: b3ea892fa3496c04caf018f30774c040, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 86afb6d24fb75744a827360a73be2d53, type: 3}
+      objectReference: {fileID: 21300000, guid: 5e97daad0a5f0ab41bcaa3f9087e9711, type: 3}
     - target: {fileID: 8153959596815184043, guid: b3ea892fa3496c04caf018f30774c040, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d5bb17408464e44449d98f017a81b098, type: 3}
+      objectReference: {fileID: 21300000, guid: 1157cdbc4cb7b644aa4f74b02faba2af, type: 3}
     - target: {fileID: 8746246704082352661, guid: b3ea892fa3496c04caf018f30774c040, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

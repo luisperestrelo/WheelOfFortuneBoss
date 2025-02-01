@@ -1,10 +1,15 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class HealthGlobe : MonoBehaviour
 {
     [SerializeField] private Image fillImage;
+    [SerializeField] private Image whiteFillImage;
     private Health targetHealth;
+
+    private Coroutine reduceFillCoroutine;
+    private Coroutine reduceWhiteCoroutine;
 
     private void Start()
     {
@@ -23,6 +28,29 @@ public class HealthGlobe : MonoBehaviour
     public void OnHealthChanged(float currentHealth, float maxHealth)
     {
         float fillAmount = currentHealth / maxHealth;
+
         fillImage.fillAmount = fillAmount;
+        
+        if (reduceWhiteCoroutine != null)
+        {
+            StopCoroutine(reduceWhiteCoroutine);
+        }
+        reduceWhiteCoroutine = StartCoroutine(ReduceWhite(fillAmount));
+    }
+
+
+    private IEnumerator ReduceWhite(float toFillAmount)
+    {
+        var duration = 1f;
+        var elapsedTime = 0f;
+        
+        var fromWhite = whiteFillImage.fillAmount;
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+             
+            whiteFillImage.fillAmount = Mathf.Lerp(fromWhite, toFillAmount, elapsedTime / duration);
+            yield return null;
+        }
     }
 } 

@@ -25387,9 +25387,9 @@ MonoBehaviour:
   criticalHitPopupPrefab: {fileID: 1259023133563206875, guid: 6a005106e5a76e840861e7f26b2a163b, type: 3}
   bigHitCriticalPopupPrefab: {fileID: 1259023133563206875, guid: ff2c419e576cea14a96a2373d37c85c2, type: 3}
   healPopupPrefab: {fileID: 0}
-  basicPopupOffset: {x: 0, y: 2.5, z: -1}
+  basicPopupOffset: {x: 0, y: 0, z: -1}
   bigHitPopupOffset: {x: 1.5, y: 1.5, z: -1}
-  criticalHitPopupOffset: {x: 0, y: 2, z: -1}
+  criticalHitPopupOffset: {x: 0, y: 0.5, z: -1}
   bigHitCriticalPopupOffset: {x: 0, y: 2, z: -1}
   healPopupOffset: {x: 0, y: 0.5, z: -1}
   OnHealthChanged:
@@ -25828,6 +25828,7 @@ MonoBehaviour:
   poisonChance: 0
   basePoisonDamage: 1
   basePoisonDuration: 4
+  hasFullCircleBuffUpgrade: 0
   aggregatedCritChance: 0
   aggregatedDamageMultiplier: 0
   aggregatedDamageTakenMultiplier: 0
@@ -26881,24 +26882,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2787194071078884663}
     m_Modifications:
-    - target: {fileID: 1428884706792860193, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
-      propertyPath: m_Color.b
-      value: 0.15294118
-      objectReference: {fileID: 0}
-    - target: {fileID: 1428884706792860193, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
-      propertyPath: m_Color.g
-      value: 0.2901961
-      objectReference: {fileID: 0}
-    - target: {fileID: 1428884706792860193, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
-      propertyPath: m_Color.r
-      value: 0.8235294
-      objectReference: {fileID: 0}
-    - target: {fileID: 1428884706792860193, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
-      propertyPath: m_FillAmount
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2260388751877880850, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2704021124112133221, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
+      propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3144523016568934086, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
@@ -26908,6 +26897,22 @@ PrefabInstance:
     - target: {fileID: 4813874844992745611, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
       propertyPath: m_SortingOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032502897883012598, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032502897883012598, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032502897883012598, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 5032502897883012598, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5346252876921618707, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
       propertyPath: m_LocalScale.x
