@@ -9,6 +9,7 @@ public class VoidBurstAttack : BaseAttack
     public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle)
     {
         base.PerformAttack(playerCombat);
+        bool isCrit = false;
         InstantDamageDealer damageDealer = Instantiate(voidBurstPrefab, playerCombat.transform.position, Quaternion.identity);
 
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier() * playerStats.PositiveNegativeFieldsEffectivenessMultiplier;
@@ -19,6 +20,7 @@ public class VoidBurstAttack : BaseAttack
             damageMultiplier *= playerStats.CritMultiplier;
             Debug.Log("Void Burst CRIT!");
             playerCombat.NotifyCrit();
+            isCrit = true;
 
         }
         //playerCombat.shootAudioSource.PlayOneShot(playerCombat.shootSfx); //TODO: Add void burst sfx
@@ -26,10 +28,12 @@ public class VoidBurstAttack : BaseAttack
 
         damageDealer.SetDamage(BaseDamage * damageMultiplier);
         damageDealer.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
+        damageDealer.SetCrit(isCrit);
 
         Plane plane = new(Vector3.forward, playerCombat.transform.position);
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Vector3 hitPoint;
+
 
         float distance;
         if (plane.Raycast(ray, out distance))

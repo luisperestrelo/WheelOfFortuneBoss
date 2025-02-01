@@ -8,6 +8,8 @@ public class FireballAttack : BaseAttack
     public override void PerformAttack(PlayerCombat playerCombat, float fireRate, PlayerStats playerStats, int projectileCount, float spreadAngle = 15f)
     {
         base.PerformAttack(playerCombat);
+        
+        bool isCrit = false;
 
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
@@ -17,6 +19,7 @@ public class FireballAttack : BaseAttack
             Debug.Log("Fireball CRIT!");
 
             playerCombat.NotifyCrit();
+            isCrit = true;
         }
 
         //playerCombat.shootAudioSource.PlayOneShot(playerCombat.shootSfx); //TODO: Add fireball sfx
@@ -51,6 +54,7 @@ public class FireballAttack : BaseAttack
                     projectile.SetDamage(BaseDamage * damageMultiplier);
                     projectile.SetVelocity(direction * ProjectileSpeed);
                     projectile.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
+                    projectile.SetCrit(isCrit);
                 }
             }
             else
@@ -62,6 +66,7 @@ public class FireballAttack : BaseAttack
                 projectile.SetDamage(BaseDamage * damageMultiplier);
                 projectile.SetVelocity(direction * ProjectileSpeed);
                 projectile.SetPoisonStats(playerStats.PoisonChance, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier, playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
+                projectile.SetCrit(isCrit);
             }
         }
 

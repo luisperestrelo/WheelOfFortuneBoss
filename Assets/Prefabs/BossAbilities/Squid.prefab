@@ -587,6 +587,16 @@ MonoBehaviour:
   parrySfx: {fileID: 0}
   healSfx: {fileID: 0}
   damageSource: {fileID: -7626683472843423486}
+  basicPopupPrefab: {fileID: 1259023133563206875, guid: d50b5f5f347e32e4391849cb8f7997b1, type: 3}
+  bigHitPopupPrefab: {fileID: 1259023133563206875, guid: 5207d28f91a48ed4ea54911b00e69859, type: 3}
+  criticalHitPopupPrefab: {fileID: 1259023133563206875, guid: 6a005106e5a76e840861e7f26b2a163b, type: 3}
+  bigHitCriticalPopupPrefab: {fileID: 1259023133563206875, guid: ff2c419e576cea14a96a2373d37c85c2, type: 3}
+  healPopupPrefab: {fileID: 0}
+  basicPopupOffset: {x: 0, y: 2.5, z: -1}
+  bigHitPopupOffset: {x: 1.5, y: 1.5, z: -1}
+  criticalHitPopupOffset: {x: 0, y: 2, z: -1}
+  bigHitCriticalPopupOffset: {x: 0, y: 2, z: -1}
+  healPopupOffset: {x: 0, y: 0.5, z: -1}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -705,6 +715,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugBuffs: []
   debugDebuffs: []
+  removePoisonSfx: {fileID: 0}
 --- !u!1 &2373304938786357675
 GameObject:
   m_ObjectHideFlags: 0

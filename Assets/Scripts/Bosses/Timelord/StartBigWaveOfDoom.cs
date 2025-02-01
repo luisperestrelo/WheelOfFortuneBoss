@@ -24,7 +24,8 @@ public class StartBigWaveOfDoom : MonoBehaviour
     }
     public void StartWave()
     {
-        Instantiate(_bigWaveOfDoomPrefab, _spawnPoint.position, Quaternion.identity);
+        GameObject bigWave = Instantiate(_bigWaveOfDoomPrefab, _spawnPoint.position, Quaternion.identity);
+        AbilityObjectManager.Instance.RegisterAbilityObject(bigWave);
     }
 
 }

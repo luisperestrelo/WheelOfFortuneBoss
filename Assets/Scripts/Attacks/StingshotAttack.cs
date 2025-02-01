@@ -9,6 +9,8 @@ public class StingshotAttack : BaseAttack
     {
         base.PerformAttack(playerCombat);
 
+        bool isCrit = false;
+
         float damageMultiplier = playerCombat.GetUniversalDamageMultiplier();
 
         if (Random.value < playerStats.GetAggregatedCritChance())
@@ -16,6 +18,7 @@ public class StingshotAttack : BaseAttack
             damageMultiplier *= playerStats.CritMultiplier;
             Debug.Log("Stingshot CRIT!"); // TODO: This needs to be moved to the projectile itself...
             playerCombat.NotifyCrit();
+            isCrit = true;
 
         }
 
@@ -55,6 +58,7 @@ public class StingshotAttack : BaseAttack
                     //scales with poison chance in addition to normal scaling
 
                     projectile.SetPoisonStats(1f, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier * (1+ playerStats.PoisonChance), playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
+                    projectile.SetCrit(isCrit);
                 }
             }
             else
@@ -68,6 +72,7 @@ public class StingshotAttack : BaseAttack
                 projectile.SetVelocity(direction * ProjectileSpeed);
                 //scales with poison chance in addition to normal scaling
                 projectile.SetPoisonStats(1f, playerStats.BasePoisonDamage * damageMultiplier * playerStats.PoisonDamageOverTimeMultiplier * (1+ playerStats.PoisonChance), playerStats.BasePoisonDuration * playerStats.PoisonDurationMultiplier);
+                projectile.SetCrit(isCrit);
             }
         }
 

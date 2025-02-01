@@ -58,8 +58,63 @@ public class AbilityObjectManager : MonoBehaviour
         {
             if (obj.CompareTag("FatTentacle"))
             {
+                UnregisterAbilityObject(obj);
                 Destroy(obj);
             }
+        }
+    }
+
+    public void DestroyAllFlails()
+    {
+        if (activeAbilityObjects == null)
+        {
+            return;
+        }
+
+        if (activeAbilityObjects.Count == 0)
+        {
+            return;
+        }
+
+        foreach (GameObject obj in activeAbilityObjects)
+        {
+            if (obj.CompareTag("Flail"))
+            {
+                UnregisterAbilityObject(obj);
+                Destroy(obj);
+            }
+        }
+    }
+
+    public void DestroyAllBigWavesOfDoom()
+    {
+        if (activeAbilityObjects == null)
+        {
+            return;
+        }
+
+        if (activeAbilityObjects.Count == 0)
+        {
+            return;
+        }
+
+        foreach (GameObject obj in activeAbilityObjects)
+        {
+            if (obj.CompareTag("BigWaveOfDoom"))
+            {
+                UnregisterAbilityObject(obj);
+                Destroy(obj);
+            }
+        }
+    }
+
+    public void DisableAllPortals()
+    {
+        GameObject[] portals = GameObject.FindGameObjectsWithTag("Portal");
+        foreach (GameObject portal in portals)
+        {
+            portal.SetActive(false);
+            
         }
     }
 } 
