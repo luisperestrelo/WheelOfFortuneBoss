@@ -88,7 +88,7 @@ public class Health : MonoBehaviour
         Debug.Log(gameObject.name + " is Taking damage: " + damageAmount);
 
         currentHealth -= damageAmount;
-        OnHealthChanged.Invoke(currentHealth, maxHealth);
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
         Debug.Log("isDamageOverTime: " + isDamageOverTime);
         Debug.Log("isCrit in Health script: " + isCrit);
