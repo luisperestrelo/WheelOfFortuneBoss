@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -30,18 +31,30 @@ public class StatsDisplay : MonoBehaviour
 
     public void AddStatsToListToShow(List<StatType> statTypes)
     {
+        Debug.Log("AddStatsToListToShow");
+        Debug.Log(statsToDisplay.Count);
+        foreach (var statType in statTypes)
+        {
+            Debug.Log(statType + " is checked ");
+        }
+        
+        
         foreach (var statType in statTypes.Where(statType => !statsToDisplay.Contains(statType)))
         {
+            Debug.Log(statType + " added");
             statsToDisplay.Add(statType);
         }
+        
+        Debug.Log("statsToDisplay.Count");
+        Debug.Log(statsToDisplay.Count);
+        
     }
 
-    void Start()
-    {
-        // Enable for Testing
-         //AddAllStatsToShow();
 
-        // Always display these three stats by default:
+    private void Awake()
+    {
+        Debug.LogError("AWAKE");
+
         AddStatsToListToShow(new List<StatType>
         {
             StatType.Health,
@@ -49,6 +62,16 @@ public class StatsDisplay : MonoBehaviour
             StatType.CritMultiplier
         });
 
+    }
+    
+
+    void Start()
+    {
+        // Enable for Testing
+         //AddAllStatsToShow();
+
+        // Always display these three stats by default:
+        Debug.LogError("START");
         playerStats = FindObjectOfType<PlayerStats>();
         initialBgSize = bg.sizeDelta;
     }
@@ -57,6 +80,12 @@ public class StatsDisplay : MonoBehaviour
     {
         OnMouseHover += ShowTooltip;
         OnMouseLoseFocus += HideTooltip;
+        
+        Debug.Log("OnEnable in stats display");
+        if (playerStats)
+        {
+            UpdateStats();
+        }
     }
 
     private void OnDisable()
@@ -87,20 +116,43 @@ public class StatsDisplay : MonoBehaviour
 
     public void UpdateStats()
     {
+         playerStats = FindObjectOfType<PlayerStats>();
+        initialBgSize = bg.sizeDelta;
+        Debug.LogError("Update Stats");
         PopulateStats();
     }
 
     private void PopulateStats()
     {
+        Debug.LogError("PopulateStats befoer checking player stats");
+
+        if (!playerStats)
+            return;
+        Debug.LogError("PopulateStats after checking player stats");
+
+        
         statsDisplayItems.ForEach(x => Destroy(x.gameObject));
         statsDisplayItems.Clear();
 
         SetCurrentY(0f);
+        
+        Debug.LogError("PopStats1");
+        Debug.Log("PopStats1");
+        Debug.Log(statsToDisplay.Count);
+
+        if (statsToDisplay.Count == 0)
+        {
+            statsToDisplay.AddRange(new List<StatType>(){StatType.Health, StatType.CritChance, StatType.CritMultiplier});
+        }
 
         statsToDisplay.ForEach(type =>
         {
             var item = AddStatDisplay(type);
-            if (!item) return;
+            Debug.Log($"Trying stats for {item.Text}");
+            if (!item)
+            {
+                Debug.Log($"Failed adding stats for {item.Text}");
+            }
             SetCurrentY(currentY - item.Rect.rect.height);
             statsDisplayItems.Add(item);
         });
@@ -111,6 +163,7 @@ public class StatsDisplay : MonoBehaviour
     {
         currentY = value;
         bg.sizeDelta = new Vector2(initialBgSize.x, initialBgSize.y - currentY);
+        Debug.Log("BG Size delta" + bg.sizeDelta);
     }
 
     private StatsDisplayItem AddStatDisplay(StatType statType)
