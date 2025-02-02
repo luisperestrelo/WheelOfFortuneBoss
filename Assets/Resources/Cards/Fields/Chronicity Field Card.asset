@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Chronicity Field Card
   m_EditorClassIdentifier: 
   cardName: Chronicity
-  description: When charged, increase the time remaining on all poison stacks by
-    4 seconds
+  description: When Charged, increase the time remaining on all Poison stacks by
+    5 seconds
   rarity: 1
   icon: {fileID: 21300000, guid: ad160fa541c69dc4194a93a9b60b813e, type: 3}
   cardType: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Damage Buff Field card
   m_EditorClassIdentifier: 
   cardName: Damage Buff
-  description: While in this field, you deal 50% more damage. This buff lingers for
+  description: While in this Field, you deal 50% more damage. This Buff Lingers for
     2 seconds when you exit
   rarity: 1
   icon: {fileID: 21300000, guid: 8516a9e59a1ff4e439517921f85ef66d, type: 3}

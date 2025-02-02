@@ -27,6 +27,6 @@ MonoBehaviour:
   audioEffect: {fileID: 0}
   size: 1
   resetsOnExit: 0
-  decayRate: 0
+  decayRate: 1
   chargeTime: 1.5
-  poisonExtensionAmount: 8
+  poisonExtensionAmount: 5

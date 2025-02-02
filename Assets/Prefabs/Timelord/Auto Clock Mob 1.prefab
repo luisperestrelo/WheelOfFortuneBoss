@@ -190,11 +190,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.92387956
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.38268343
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}
       propertyPath: m_LocalRotation.y
@@ -206,7 +206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -45
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 25f7cd8f0c38aa544a553edd30e710da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a280b1b913d7ef4592ec39bca5d76ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 120
+  maxHealth: 200
   currentHealth: 0
   hpHeavyDamageThreshold: 25
   lightDamageSfx: {fileID: 8300000, guid: 3aa442dbdb54ca54793d85bf0bc8d3be, type: 3}
@@ -580,6 +580,7 @@ MonoBehaviour:
   poisonChance: 0
   basePoisonDamage: 1
   basePoisonDuration: 4
+  hasFullCircleBuffUpgrade: 0
   aggregatedCritChance: 0
   aggregatedDamageMultiplier: 0
   aggregatedDamageTakenMultiplier: 0
@@ -611,11 +612,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5.5
-  damage: 10
-  meleeRange: 3
+  damage: 9
+  meleeRange: 2.5
   animator: {fileID: 8737310575747726400}
   frontForMeleeHit: {fileID: 7531816643626266048}
-  meleeHitRadius: 2.5
+  meleeHitRadius: 3
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -780,6 +781,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3475979744514934347}
     m_Modifications:
+    - target: {fileID: 2704021124112133221, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3144523016568934086, guid: 29dfaf5e1233ae248be0504d8a4fbad6, type: 3}
       propertyPath: m_Name
       value: Healthbar

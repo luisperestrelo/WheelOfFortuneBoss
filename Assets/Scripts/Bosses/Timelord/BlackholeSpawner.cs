@@ -28,7 +28,7 @@ public class BlackholeSpawner : MonoBehaviour
     public void SpawnBlackhole()
     {
         int randomIndex = Random.Range(0, spawnPoints.Length);
-        Instantiate(blackholePrefab, spawnPoints[randomIndex].position, Quaternion.Euler(-45, 0, 0));
+        Instantiate(blackholePrefab, spawnPoints[randomIndex].position, Quaternion.Euler(0, 0, 0));
     }
 
     private void Update()

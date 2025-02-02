@@ -102,8 +102,12 @@ public class PredictTheFutureAbility : MonoBehaviour
         GameObject spawnedTelegraphFake = SpawnTelegraphRandomZ();
         GameObject spawnedTelegraph = SpawnTelegraphAtZ(spawnedTelegraphFake.transform.eulerAngles.z + 180f, true);
 
+        AbilityObjectManager.Instance.RegisterAbilityObject(spawnedTelegraph);
+        AbilityObjectManager.Instance.RegisterAbilityObject(spawnedTelegraphFake);
+
 
         // Hourglass runs for telegraphDuration. After that time, spawn effect & remove telegraph.
+
         hourglass.StartTimer(telegraphDuration, () =>
         {
             if (spawnedTelegraph != null)
@@ -123,8 +127,12 @@ public class PredictTheFutureAbility : MonoBehaviour
                 Instantiate(realFutureDamageEffect, effectCenter, effectRotation);
                 //Instantiate(realFutureDamageEffect, effectCenter, Quaternion.identity);
                 // The effect prefab handles the damage
+
+                AbilityObjectManager.Instance.UnregisterAbilityObject(spawnedTelegraph);
+                AbilityObjectManager.Instance.UnregisterAbilityObject(spawnedTelegraphFake);
                 Destroy(spawnedTelegraph);
                 Destroy(spawnedTelegraphFake);
+
             }
 
         });
@@ -139,6 +147,9 @@ public class PredictTheFutureAbility : MonoBehaviour
 
         GameObject spawnedTelegraphFake = SpawnTelegraphRandomZ();
         GameObject spawnedTelegraph = SpawnTelegraphAtZ(spawnedTelegraphFake.transform.eulerAngles.z + 180f, true);
+        AbilityObjectManager.Instance.RegisterAbilityObject(spawnedTelegraph);
+        AbilityObjectManager.Instance.RegisterAbilityObject(spawnedTelegraphFake);
+
 
 
         // Hourglass runs for telegraphDuration. After that time, spawn effect & remove telegraph.
@@ -161,8 +172,13 @@ public class PredictTheFutureAbility : MonoBehaviour
                 Instantiate(fakeFutureDamageEffect, effectCenter, effectRotation);
 
                 //Instantiate(fakeFutureDamageEffect, effectCenter, Quaternion.identity);
+
+                AbilityObjectManager.Instance.UnregisterAbilityObject(spawnedTelegraph);
+                AbilityObjectManager.Instance.UnregisterAbilityObject(spawnedTelegraphFake);
                 Destroy(spawnedTelegraph);
                 Destroy(spawnedTelegraphFake);
+
+
 
                 // The effect prefab handles the damage
 
@@ -181,3 +197,4 @@ public class PredictTheFutureAbility : MonoBehaviour
         return new Vector3(x, y, z);
     }
 }
+    

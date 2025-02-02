@@ -42,7 +42,7 @@ public class BigWaveOfDoom : MonoBehaviour
 
         transform.Translate(Vector2.left * speed * Time.deltaTime);
 
-        if (_isPlayerInWave)
+/*         if (_isPlayerInWave)
         {
             _damageTimer += Time.deltaTime;
 
@@ -56,7 +56,7 @@ public class BigWaveOfDoom : MonoBehaviour
             }
 
 
-        }
+        } */
     }
 
     private void OnTriggerEnter2D(Collider2D other)

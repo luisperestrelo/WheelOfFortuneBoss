@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Wager of Aeons Field Card
   m_EditorClassIdentifier: 
   cardName: Wager of Aeons
-  description: While in this field, your attack becomes a slash that evolves every
+  description: While in this Field, your Attack becomes a slash that evolves every
     2 seconds, up to 6 levels.
   rarity: 2
   icon: {fileID: 21300000, guid: 3c18d0a78f16dec4bb692f0690c6fa38, type: 3}
   cardType: 0
   isKissCurse: 1
-  downSideDescription: Every 2 seconds, inflicts a stacking 20% incoming-damage debuff,
-    which lingers for 3 seconds after you leave
+  downSideDescription: Every 2 seconds, inflicts a stacking 20% incoming-damage Debuff,
+    which Lingers for 3 seconds after you leave
   field: {fileID: 11400000, guid: 7a7322c246766e6468341027b92d9a94, type: 2}

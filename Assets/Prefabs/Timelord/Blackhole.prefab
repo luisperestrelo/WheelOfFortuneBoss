@@ -27,10 +27,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 6.3800006, y: 6.3800006, z: 6.3800006}
+  m_LocalScale: {x: 6.3800006, y: 6.380001, z: 6.380001}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7414794559611423445}
+  m_Father: {fileID: 7895619597885236879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6199171331777549870
 SpriteRenderer:
@@ -4946,7 +4946,7 @@ Transform:
   m_LocalScale: {x: 1.04, y: 1.04, z: 1.04}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7414794559611423445}
+  m_Father: {fileID: 7895619597885236879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4497809299666756930
 SpriteRenderer:
@@ -5044,7 +5044,7 @@ Transform:
   m_LocalScale: {x: 0.98, y: 0.98000014, z: 0.98000014}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7414794559611423445}
+  m_Father: {fileID: 7895619597885236879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1933900629041977293
 MonoBehaviour:
@@ -5124,10 +5124,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.05, y: 0.02, z: 0}
-  m_LocalScale: {x: 1.07, y: 1.07, z: 1.07}
+  m_LocalScale: {x: 1.07, y: 1.0700002, z: 1.0700002}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7414794559611423445}
+  m_Father: {fileID: 7895619597885236879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3352905097713397002
 SpriteRenderer:
@@ -5229,7 +5229,7 @@ Transform:
   m_Children:
   - {fileID: 557608608446247410}
   - {fileID: 7227432600455787210}
-  m_Father: {fileID: 7414794559611423445}
+  m_Father: {fileID: 7895619597885236879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4247981678838882244
 SpriteRenderer:
@@ -14911,6 +14911,45 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &8302429125788912481
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7895619597885236879}
+  m_Layer: 0
+  m_Name: Visuals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7895619597885236879
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8302429125788912481}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 882941298253009855}
+  - {fileID: 5031710814620221810}
+  - {fileID: 5531031422644667037}
+  - {fileID: 432808884966993188}
+  - {fileID: 5844719429154691458}
+  - {fileID: 1215738225613187427}
+  - {fileID: 8182914470163638409}
+  - {fileID: 9192100499351908528}
+  m_Father: {fileID: 7414794559611423445}
+  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
 --- !u!1 &8589396009976168173
 GameObject:
   m_ObjectHideFlags: 0
@@ -14938,11 +14977,11 @@ Transform:
   m_GameObject: {fileID: 8589396009976168173}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.14, y: 0.05, z: 0}
+  m_LocalPosition: {x: -0.14, y: 0.050000004, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7414794559611423445}
+  m_Father: {fileID: 7895619597885236879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3273003712221554398
 SpriteRenderer:
@@ -15035,12 +15074,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9071382149351023655}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.16, y: 0, z: 0.18}
-  m_LocalScale: {x: 0.76, y: 0.76, z: 0.76}
+  m_LocalScale: {x: 0.76, y: 0.76000005, z: 0.76000005}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7414794559611423445}
+  m_Father: {fileID: 7895619597885236879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1587092013968570172
 SpriteRenderer:
@@ -15122,10 +15161,10 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.05, y: 0.02, z: 0}
-  m_LocalScale: {x: 1.22, y: 1.22, z: 1.22}
+  m_LocalScale: {x: 1.22, y: 1.2200001, z: 1.2200001}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 7414794559611423445}
+  m_Father: {fileID: 7895619597885236879}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &712476569261436756
 SpriteRenderer:
@@ -15221,21 +15260,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9189785970137549737}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 882941298253009855}
-  - {fileID: 5031710814620221810}
-  - {fileID: 5531031422644667037}
-  - {fileID: 432808884966993188}
-  - {fileID: 5844719429154691458}
-  - {fileID: 1215738225613187427}
-  - {fileID: 8182914470163638409}
-  - {fileID: 9192100499351908528}
+  - {fileID: 7895619597885236879}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6556166744319852959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15249,7 +15281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  damage: 10
+  damage: 5
   duration: 10
 --- !u!70 &2953682833709864139
 CapsuleCollider2D:
@@ -15296,7 +15328,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_SortAtRoot: 1
 --- !u!82 &2802827210124800415
 AudioSource:

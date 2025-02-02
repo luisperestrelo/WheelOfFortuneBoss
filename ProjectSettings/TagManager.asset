@@ -13,6 +13,8 @@ TagManager:
   - Flail
   - BigWaveOfDoom
   - Portal
+  - FutureTelegraph
+  - Telegraph
   layers:
   - Default
   - TransparentFX
