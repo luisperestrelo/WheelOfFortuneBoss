@@ -80,6 +80,17 @@ public class BossHealth : Health
         Debug.Log(gameObject.name + " died!");
         Destroy(gameObject, 0.1f);
 
+        if (AbilityObjectManager.Instance != null)
+        {
+            AbilityObjectManager.Instance.DestroyAllFatTentacles(); // TODO: Despawn animation
+            AbilityObjectManager.Instance.DestroyAllFlails(); // TODO: Despawn animation
+            AbilityObjectManager.Instance.DisableAllPortals();
+            AbilityObjectManager.Instance.DestroyAllBigWavesOfDoom();
+            AbilityObjectManager.Instance.DisableAllRotatingOrbs();
+            AbilityObjectManager.Instance.DestroyAllTelegraphs();
+        }
+
+
 
 
         //base.Die();
