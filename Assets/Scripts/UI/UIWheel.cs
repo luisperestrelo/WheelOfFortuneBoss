@@ -49,6 +49,11 @@ public class UIWheel : MonoBehaviour
         UpdateWheelVisualization();
     }
 
+    private void OnEnable()
+    {
+        ConfirmButton.interactable = false;
+    }
+
     private void UpdateWheelVisualization()
     {
         // Clear existing segments, lines, 
@@ -168,6 +173,7 @@ public class UIWheel : MonoBehaviour
         {
             Debug.Log($"Line {index} clicked (insertion point)");
             selectedIndex = index;
+            ConfirmButton.interactable = true;
             SFXPool.instance.PlaySound(selectLineSfx);
         }
 
