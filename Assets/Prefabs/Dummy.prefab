@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 3737699018332008235}
   - component: {fileID: -4287059693438845489}
   - component: {fileID: -960222791904844731}
+  - component: {fileID: -8615642988379441678}
   m_Layer: 0
   m_Name: Dummy
   m_TagString: Enemy
@@ -328,6 +329,7 @@ MonoBehaviour:
   parrySfx: {fileID: 0}
   healSfx: {fileID: 0}
   damageSource: {fileID: 3194943305526586606}
+  deathParticle: {fileID: 482145474468753769, guid: 0790530806fad6046a5b58523b1e75d1, type: 3}
   basicPopupPrefab: {fileID: 1259023133563206875, guid: d50b5f5f347e32e4391849cb8f7997b1, type: 3}
   bigHitPopupPrefab: {fileID: 1259023133563206875, guid: 5207d28f91a48ed4ea54911b00e69859, type: 3}
   criticalHitPopupPrefab: {fileID: 1259023133563206875, guid: 6a005106e5a76e840861e7f26b2a163b, type: 3}
@@ -488,6 +490,21 @@ MonoBehaviour:
   debugBuffs: []
   debugDebuffs: []
   removePoisonSfx: {fileID: 0}
+--- !u!114 &-8615642988379441678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3523418360789619746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddc7c7e9a6ecabb44a40e5a3fd5b30dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 0.7830189, g: 0.43952474, b: 0.43952474, a: 0.53333336}
+  flashTime: 0.1
+  flashAmount: 0.08
 --- !u!1 &4850708966372650796
 GameObject:
   m_ObjectHideFlags: 0

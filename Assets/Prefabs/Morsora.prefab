@@ -25382,6 +25382,7 @@ MonoBehaviour:
   parrySfx: {fileID: 8300000, guid: 4736589d402b158409addc4fc6591e93, type: 3}
   healSfx: {fileID: 0}
   damageSource: {fileID: 8067951667134333179}
+  deathParticle: {fileID: 482145474468753769, guid: 0790530806fad6046a5b58523b1e75d1, type: 3}
   basicPopupPrefab: {fileID: 1259023133563206875, guid: d50b5f5f347e32e4391849cb8f7997b1, type: 3}
   bigHitPopupPrefab: {fileID: 1259023133563206875, guid: 5207d28f91a48ed4ea54911b00e69859, type: 3}
   criticalHitPopupPrefab: {fileID: 1259023133563206875, guid: 6a005106e5a76e840861e7f26b2a163b, type: 3}
@@ -25421,6 +25422,7 @@ MonoBehaviour:
   parrySfx: {fileID: 0}
   healSfx: {fileID: 0}
   damageSource: {fileID: 8067951667134333179}
+  deathParticle: {fileID: 0}
   basicPopupPrefab: {fileID: 0}
   bigHitPopupPrefab: {fileID: 0}
   criticalHitPopupPrefab: {fileID: 0}

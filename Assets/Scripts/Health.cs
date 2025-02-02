@@ -16,6 +16,7 @@ public class Health : MonoBehaviour
     [SerializeField] protected AudioClip parrySfx;
     [SerializeField] private AudioClip healSfx;
     [SerializeField] protected AudioSource damageSource;
+    [SerializeField] protected ParticleSystem deathParticle;
 
     [Header("Damage Numbers")]
     [Tooltip("Popup for hits below 125 damage (lightning blast base damage)")]
@@ -181,6 +182,7 @@ public class Health : MonoBehaviour
         OnDie.Invoke();
 
         //TODO: SFX/VFX etc.
+        Instantiate(deathParticle, transform.position, Quaternion.identity);
 
         Debug.Log(gameObject.name + " died!");
         Destroy(gameObject);
