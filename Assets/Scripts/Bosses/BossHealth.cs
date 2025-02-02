@@ -63,6 +63,7 @@ public class BossHealth : Health
             AbilityObjectManager.Instance.DisableAllPortals();
             AbilityObjectManager.Instance.DestroyAllBigWavesOfDoom();
             AbilityObjectManager.Instance.DisableAllRotatingOrbs();
+            AbilityObjectManager.Instance.DestroyAllTelegraphs();
         }
 
 

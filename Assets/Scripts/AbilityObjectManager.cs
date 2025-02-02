@@ -101,6 +101,27 @@ public class AbilityObjectManager : MonoBehaviour
             Destroy(obj);
         }
     }
+    public void DestroyAllTelegraphs()
+    {
+        if (activeAbilityObjects == null || activeAbilityObjects.Count == 0) return;
+
+        List<GameObject> objectsToDestroy = new List<GameObject>();
+        foreach (GameObject obj in activeAbilityObjects)
+        {
+            if (obj.CompareTag("Telegraph"))
+            {
+                objectsToDestroy.Add(obj);
+            }
+        }
+
+        foreach (GameObject obj in objectsToDestroy)
+        {
+            UnregisterAbilityObject(obj);
+            Destroy(obj);
+        }
+        
+        
+    }
 
     public void DisableAllPortals()
     {
