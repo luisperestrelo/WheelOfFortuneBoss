@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -36,12 +37,9 @@ public class StatsDisplay : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        // Enable for Testing
-         //AddAllStatsToShow();
 
-        // Always display these three stats by default:
+    private void Awake()
+    {
         AddStatsToListToShow(new List<StatType>
         {
             StatType.Health,
@@ -49,14 +47,28 @@ public class StatsDisplay : MonoBehaviour
             StatType.CritMultiplier
         });
 
-        playerStats = FindObjectOfType<PlayerStats>();
         initialBgSize = bg.sizeDelta;
+
+    }
+    
+
+    void Start()
+    {
+        // Enable for Testing
+         //AddAllStatsToShow();
+ 
+        playerStats = FindObjectOfType<PlayerStats>();
     }
 
     private void OnEnable()
     {
         OnMouseHover += ShowTooltip;
         OnMouseLoseFocus += HideTooltip;
+        
+        if (playerStats)
+        {
+            UpdateStats();
+        }
     }
 
     private void OnDisable()
@@ -87,20 +99,30 @@ public class StatsDisplay : MonoBehaviour
 
     public void UpdateStats()
     {
+        if(!playerStats) 
+            playerStats = FindObjectOfType<PlayerStats>();
         PopulateStats();
     }
 
     private void PopulateStats()
     {
+        if (!playerStats)
+            return;
+        
         statsDisplayItems.ForEach(x => Destroy(x.gameObject));
         statsDisplayItems.Clear();
 
         SetCurrentY(0f);
+        
+
+        if (statsToDisplay.Count == 0)
+        {
+            statsToDisplay.AddRange(new List<StatType>(){StatType.Health, StatType.CritChance, StatType.CritMultiplier});
+        }
 
         statsToDisplay.ForEach(type =>
         {
             var item = AddStatDisplay(type);
-            if (!item) return;
             SetCurrentY(currentY - item.Rect.rect.height);
             statsDisplayItems.Add(item);
         });
