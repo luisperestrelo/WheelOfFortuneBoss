@@ -446,6 +446,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3471733853132202502, guid: 1bc5080623ba4f84da5f15f6698adcdb, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 142.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6965172411037944260, guid: 1bc5080623ba4f84da5f15f6698adcdb, type: 3}
       propertyPath: m_Name
       value: StatUpgrade Card
@@ -505,6 +509,10 @@ PrefabInstance:
     - target: {fileID: 1794484079280621110, guid: 20789719d36f7f54fa03157a1dc8e135, type: 3}
       propertyPath: rotationSpeed
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3012574038733842673, guid: 20789719d36f7f54fa03157a1dc8e135, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 142.3
       objectReference: {fileID: 0}
     - target: {fileID: 3656331074564706349, guid: 20789719d36f7f54fa03157a1dc8e135, type: 3}
       propertyPath: m_LocalPosition.x
