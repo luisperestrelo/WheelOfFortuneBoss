@@ -2,11 +2,13 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public class WheelManager : MonoBehaviour
 {
     public List<WheelSegment> Segments { get;  set; } = new List<WheelSegment>();
     [SerializeField] private CircularPath circularPath;
+    [SerializeField] private TMP_FontAsset  cooldownFont;
     public CircularPath CircularPath => circularPath;
 
     public List<Field> FieldsToAddToWheel;
@@ -328,20 +330,25 @@ public class WheelManager : MonoBehaviour
             GameObject textObject = new GameObject($"CooldownText_{segment.Field.FieldName}");
             textObject.transform.SetParent(transform);
 
-            TextMesh textMesh = textObject.AddComponent<TextMesh>();
-            textMesh.text = ""; // Initially empty
-            textMesh.anchor = TextAnchor.MiddleCenter;
-            textMesh.alignment = TextAlignment.Center;
-            textMesh.fontSize = 12;
-            textMesh.color = Color.white;
+            TextMeshPro textMeshPro = textObject.AddComponent<TextMeshPro>();
+            textMeshPro.text = ""; // Initially empty
+            textMeshPro.alignment = TextAlignmentOptions.Center;
+            textMeshPro.fontSize = 8;
+            textMeshPro.color =  new Color(84f / 255f, 84f / 255f, 84f / 255f, 1f);
+
+            if (cooldownFont)
+            {
+                textMeshPro.font = cooldownFont;  
+            }
 
             Vector3 center = CircularPath.GetCenter();
             float radius = CircularPath.GetRadius();
             float angle = (segment.StartAngle + segment.EndAngle) / 2f - 90;
-            Vector3 textPosition = center + Quaternion.Euler(0, 0, angle) * Vector3.up * (radius + 0.5f); // Adjust 0.5f to position the text further out
+            Vector3 textPosition = center + Quaternion.Euler(0, 0, angle) * Vector3.up * (radius + 0.1f); // Adjust 0.5f to position the text further out
             textObject.transform.position = textPosition;
 
-            segment.CooldownText = textMesh;
+            segment.CooldownText = textMeshPro;
+            
         }
     }
 
@@ -408,7 +415,7 @@ public class WheelManager : MonoBehaviour
             {
                 if (segment.IsOnCooldown)
                 {
-                    segment.CooldownText.text = "On Cooldown!";
+                    segment.CooldownText.text = "On Cooldown";
                 }
                 else
                 {
