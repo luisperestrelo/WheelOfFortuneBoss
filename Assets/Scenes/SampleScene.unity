@@ -204,7 +204,7 @@ MonoBehaviour:
   timerText: {fileID: 2117838402}
   UICanvas: {fileID: 0}
   endGameMenu: {fileID: 0}
-  delayBetweenBosses: 3
+  delayBetweenBosses: 7
 --- !u!4 &135926543
 Transform:
   m_ObjectHideFlags: 0
@@ -6635,6 +6635,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4194812991541184202, guid: 54e5da7ab28035d4687d2f49a9ce78b5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 08f0efc478dc1e24999e851ed1a6ca1d, type: 3}
     - target: {fileID: 8127013335937502662, guid: 54e5da7ab28035d4687d2f49a9ce78b5, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4294967295

@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
 
     private WheelSegment currentSegment;
     private SpriteRenderer spriteRenderer;
+    private bool isSpawning = true;
 
     private void Awake()
     {
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
     private IEnumerator SpawnAnimation()
     {
         yield return null;
+        isSpawning = true;
         combatScript.enabled = false;
         spriteRenderer.enabled = false;
         playerSpinMovement.enabled = false;
@@ -56,6 +58,7 @@ public class Player : MonoBehaviour
         spriteRenderer.enabled = true;
         playerSpinMovement.enabled = true;
         combatScript.enabled = true;
+        isSpawning = false;
         vfx.SetActive(true);
     }
 
@@ -71,6 +74,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (isSpawning)
+            return;
         // Get the current segment from the WheelManager
         WheelSegment newSegment = wheelManager.GetCurrentSegment(playerSpinMovement.CurrentAngle);
 
