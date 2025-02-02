@@ -45,8 +45,8 @@ public class UpgradeDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     void Start()
     {
-        statUpgradeDisplay.gameObject.SetActive(false);
-        fieldCardDisplay.gameObject.SetActive(false);
+/*         statUpgradeDisplay.gameObject.SetActive(false);
+        fieldCardDisplay.gameObject.SetActive(false); */
     }
 
     private void DisplayPassive(Card card)
