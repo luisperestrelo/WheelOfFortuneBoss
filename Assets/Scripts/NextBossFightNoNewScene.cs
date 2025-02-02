@@ -11,6 +11,12 @@ public class NextBossFightNoNewScene : MonoBehaviour
     [SerializeField] private List<SoundProfile> profiles;
     [SerializeField] private TextMeshProUGUI timerText;
 
+    [SerializeField] private GameObject UICanvas;
+    [SerializeField] private GameObject endGameMenu;
+
+    private bool isEndlessMode = false;
+
+
     [SerializeField] private float delayBetweenBosses = 3f;
 
     private GameObject currentBoss;
@@ -19,7 +25,14 @@ public class NextBossFightNoNewScene : MonoBehaviour
     private BossHealth bossHealth;
     private PlayerHealth playerHealth;
 
+    private void Awake()
+    {
+        UICanvas = GameObject.Find("UICanvas");
+        endGameMenu = UICanvas.transform.Find("EndGameMenu").gameObject;
+    }
+
     private void Start()
+
     {
         bossSpawnPoint = FindObjectOfType<CircularPath>().transform;
         bossHealth = FindObjectOfType<BossHealth>();
@@ -34,12 +47,18 @@ public class NextBossFightNoNewScene : MonoBehaviour
     public void OnBossDefeated()
     {
         StartCoroutine(SpawnNextBossAfterDelay(delayBetweenBosses));
+        if (currentBossIndex == 2 && !isEndlessMode)
+        {
+            isEndlessMode = true;
+            Time.timeScale = 0f; // Pause the game
+            endGameMenu.SetActive(true);
+        }
     }
 
     IEnumerator SpawnNextBossAfterDelay(float delay)
     {
-        timerText.gameObject.SetActive(true);   
-        MusicPlayer.instance.LoadProfile(profiles[currentBossIndex + 1]);
+        timerText.gameObject.SetActive(true);
+        MusicPlayer.instance.LoadProfile(profiles[(currentBossIndex + 1) % bossPrefabs.Count]);
         float timeElapsed = 0;
         while (timeElapsed < delay)
         {
@@ -48,7 +67,8 @@ public class NextBossFightNoNewScene : MonoBehaviour
             yield return null;
         }
         timerText.gameObject.SetActive(false);
-        currentBossIndex++;
+        //currentBossIndex++;
+        currentBossIndex = (currentBossIndex + 1) % bossPrefabs.Count; // loop around
         SpawnNextBoss();
         HealPlayerToFull();
     }
@@ -60,14 +80,14 @@ public class NextBossFightNoNewScene : MonoBehaviour
             //Timelord spawns at a different position... theres some weird stuff going on 
             if (bossPrefabs[currentBossIndex].name == "Timelord-Skeleton-Merged")
             {
-                currentBoss = Instantiate(bossPrefabs[currentBossIndex], new Vector3(0.12f, -4.93f, 0), Quaternion.Euler(-45f,0,1.12f));
+                currentBoss = Instantiate(bossPrefabs[currentBossIndex], new Vector3(0.12f, -4.93f, 0), Quaternion.Euler(-45f, 0, 1.12f));
             }
 
             else
             {
                 currentBoss = Instantiate(bossPrefabs[currentBossIndex], bossSpawnPoint.position, bossSpawnPoint.rotation);
             }
-            
+
             bossHealth = currentBoss.GetComponent<BossHealth>();
             MusicPlayer.instance.StartSection(MusicPlayer.MusicSection.fight);
             if (bossHealth != null)

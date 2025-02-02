@@ -62,6 +62,7 @@ public class BossHealth : Health
             AbilityObjectManager.Instance.DestroyAllFlails(); // TODO: Despawn animation
             AbilityObjectManager.Instance.DisableAllPortals();
             AbilityObjectManager.Instance.DestroyAllBigWavesOfDoom();
+            AbilityObjectManager.Instance.DisableAllRotatingOrbs();
         }
 
 

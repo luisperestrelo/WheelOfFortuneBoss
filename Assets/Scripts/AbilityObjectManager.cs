@@ -111,4 +111,14 @@ public class AbilityObjectManager : MonoBehaviour
             
         }
     }
+
+    public void DisableAllRotatingOrbs()
+    {
+        GameObject orbHolder = GameObject.Find("Orb Holder");
+        if (orbHolder != null)
+        {
+            orbHolder.SetActive(false);
+        }
+    }
+
 } 

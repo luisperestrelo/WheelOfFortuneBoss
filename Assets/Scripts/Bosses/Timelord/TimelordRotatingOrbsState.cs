@@ -5,8 +5,8 @@ using UnityEngine;
 public class TimeLordRotatingOrbsState : TimelordBossState
 {
     private bool lasersEnabled = false;
-    private float nextStateTime = 6f; // Time after which you move to the next state
-    private float delayUntilLasersEnabled = 3f;
+    private float nextStateTime = 4.5f; // Time after which you move to the next state
+    private float delayUntilLasersEnabled = 1.5f;
 
     public TimeLordRotatingOrbsState(TimelordBossStateMachine stateMachine, TimelordBossController bossController)
         : base(stateMachine, bossController, "Idle")

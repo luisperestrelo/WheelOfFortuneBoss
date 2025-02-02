@@ -82,6 +82,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flail2
       objectReference: {fileID: 0}
+    - target: {fileID: -8653719598885068355, guid: 49c6c046687b3244290da41a68f62d1b, type: 3}
+      propertyPath: m_TagString
+      value: Flail
+      objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 49c6c046687b3244290da41a68f62d1b, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
