@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Fan of Knives Field Card
   m_EditorClassIdentifier: 
   cardName: Fan of Knives
-  description: While in this field, your attack is replaced with three small knives.
+  description: While in this Field, your Attack is replaced with three small knives.
   rarity: 0
   icon: {fileID: 21300000, guid: f42740757abd2234e994a3ea736560e9, type: 3}
   cardType: 0

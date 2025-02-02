@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Void Burst Card
   m_EditorClassIdentifier: 
   cardName: Void Burst
-  description: While in this field, your projectile becomes a powerful burst of energy.
+  description: While in this Field, your Attack becomes a powerful burst of energy.
   rarity: 1
   icon: {fileID: 21300000, guid: b3a9b730b786b124aa5f244c61d697c7, type: 3}
   cardType: 0
   isKissCurse: 1
-  downSideDescription: If you stand too long in this field, you become Cursed, taking
+  downSideDescription: If you stand too long in this Field, you become Cursed, taking
     20 damage over 5 seconds
   field: {fileID: 11400000, guid: 08d059c14894a174f900444170f61d48, type: 2}

@@ -29,4 +29,4 @@ MonoBehaviour:
   resetsOnExit: 0
   decayRate: 1
   chargeTime: 1.5
-  poisonExtensionAmount: 6
+  poisonExtensionAmount: 5
