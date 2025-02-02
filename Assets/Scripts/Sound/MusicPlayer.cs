@@ -315,7 +315,5 @@ public class MusicPlayer : MonoBehaviour
         float correctedTimeSamples = fightSource.timeSamples * (44100f / AudioSettings.outputSampleRate);
         if (correctedTimeSamples >= fightLoopEndSamples) { fightSource.timeSamples -= Mathf.RoundToInt(fightLoopLengthSamples * (AudioSettings.outputSampleRate / 44100f)); }
         //if (correctedTimeSamples >= fightLoopEndSamples) { fightSource.timeSamples = Mathf.RoundToInt(fightLoopStartSamples * (44100f / AudioSettings.outputSampleRate)); }
-        Debug.Log(correctedTimeSamples + " / " + fightLoopEndSamples);
-        Debug.Log("Original samples: " + fightSource.timeSamples + "   Audio samples: " + AudioSettings.outputSampleRate);
     }
 }
