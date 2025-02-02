@@ -182,7 +182,8 @@ public class Health : MonoBehaviour
         OnDie.Invoke();
 
         //TODO: SFX/VFX etc.
-        Instantiate(deathParticle, transform.position, Quaternion.identity);
+        if (deathParticle != null)
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
 
         Debug.Log(gameObject.name + " died!");
         Destroy(gameObject);
