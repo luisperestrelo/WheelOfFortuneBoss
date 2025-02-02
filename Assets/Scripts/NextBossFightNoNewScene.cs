@@ -13,6 +13,10 @@ public class NextBossFightNoNewScene : MonoBehaviour
 
     [SerializeField] private GameObject UICanvas;
     [SerializeField] private GameObject endGameMenu;
+    [SerializeField] private ParticleSystem spawnParticle;
+
+    [SerializeField] private AudioClip spawnSfx;
+    [SerializeField] private AudioClip spawnSfx2;
 
     private bool isEndlessMode = false;
 
@@ -47,6 +51,7 @@ public class NextBossFightNoNewScene : MonoBehaviour
     public void OnBossDefeated()
     {
         StartCoroutine(SpawnNextBossAfterDelay(delayBetweenBosses));
+        StartCoroutine(SpawnVfxAfterDelay(delayBetweenBosses - 4.5f));
         if (currentBossIndex == 2 && !isEndlessMode)
         {
             isEndlessMode = true;
@@ -82,6 +87,24 @@ public class NextBossFightNoNewScene : MonoBehaviour
 
         SpawnNextBoss();
         HealPlayerToFull();
+    }
+
+    private IEnumerator SpawnVfxAfterDelay(float delay)
+    {
+        float timeElapsed = 0;
+        while(timeElapsed < delay)
+        {
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        Instantiate(spawnParticle, bossSpawnPoint.position, Quaternion.identity);
+        SFXPool.instance.PlaySound(spawnSfx, SFXPool.MixGroup.ui);
+        while(timeElapsed < delay+3)
+        {
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        SFXPool.instance.PlaySound(spawnSfx2, SFXPool.MixGroup.ui);
     }
 
     void SpawnNextBoss()
