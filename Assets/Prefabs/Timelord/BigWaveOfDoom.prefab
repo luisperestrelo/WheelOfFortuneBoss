@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   lifetime: 14
-  damagePerSecond: 80
+  damagePerSecond: 65
   damageInterval: 0.4
 --- !u!61 &8698079212872156069
 BoxCollider2D:
