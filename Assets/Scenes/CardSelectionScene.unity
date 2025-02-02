@@ -2359,6 +2359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circularPath: {fileID: 1362018983}
+  cooldownFont: {fileID: 11400000, guid: b009d355716e1bf40b71c9cd81299a1f, type: 2}
   FieldsToAddToWheel: []
   LineMaterial: {fileID: 2100000, guid: e9d70703f58f2134781e0d9ef964f0ea, type: 2}
   LineWidth: 0.1
