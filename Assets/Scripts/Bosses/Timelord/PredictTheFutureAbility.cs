@@ -169,6 +169,7 @@ public class PredictTheFutureAbility : MonoBehaviour
 
                 Quaternion effectRotation = Quaternion.Euler(0f, 0f, mirroredAngle - bandaidOffset);
 
+                CameraMovement.instance.ShakeCamera(0.06f, 0.3f);
                 Instantiate(fakeFutureDamageEffect, effectCenter, effectRotation);
 
                 //Instantiate(fakeFutureDamageEffect, effectCenter, Quaternion.identity);
