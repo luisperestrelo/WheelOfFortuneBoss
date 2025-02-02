@@ -934,6 +934,9 @@ MonoBehaviour:
   timerText: {fileID: 2117838402}
   UICanvas: {fileID: 0}
   endGameMenu: {fileID: 0}
+  spawnParticle: {fileID: 2582934988511277670, guid: f84d07f3a548db34cb0207631825eb8d, type: 3}
+  spawnSfx: {fileID: 8300000, guid: c12b06aebe72bc24bb87a8f26596b994, type: 3}
+  spawnSfx2: {fileID: 8300000, guid: 752ec115592384849979ad6eafe1abe1, type: 3}
   delayBetweenBosses: 7
 --- !u!4 &135926543
 Transform:
