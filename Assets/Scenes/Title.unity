@@ -7271,7 +7271,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Threadborne
+  m_text: Threadbound
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b009d355716e1bf40b71c9cd81299a1f, type: 2}
   m_sharedMaterial: {fileID: -563198581256857477, guid: b009d355716e1bf40b71c9cd81299a1f, type: 2}
