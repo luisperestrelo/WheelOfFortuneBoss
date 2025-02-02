@@ -334,6 +334,7 @@ public class WheelManager : MonoBehaviour
             textMesh.alignment = TextAlignment.Center;
             textMesh.fontSize = 12;
             textMesh.color = Color.white;
+            
 
             Vector3 center = CircularPath.GetCenter();
             float radius = CircularPath.GetRadius();
