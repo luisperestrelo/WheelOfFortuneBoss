@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class WheelSegment : MonoBehaviour
@@ -10,7 +11,7 @@ public class WheelSegment : MonoBehaviour
     public float CooldownTimer { get; set; }
     public bool IsOnCooldown { get; private set; }
     private float cooldownTimer;
-    public TextMesh CooldownText { get; set; }
+    public TextMeshPro CooldownText { get; set; }
     public SpriteRenderer SegmentRenderer { get; private set; }
     public Collider2D SegmentCollider { get; private set; }
     public CircularPath CircularPath { get; private set; }
@@ -78,13 +79,14 @@ public class WheelSegment : MonoBehaviour
             polygonCollider.points = points;
         }
     }
-
+    
     public void StartCooldown()
     {
         PlayerStats playerStats = Object.FindObjectOfType<PlayerStats>();
 
         if (Field.Cooldown > 0)
         {
+            SetIconAlpha(0.25f);
             IsOnCooldown = true;
             cooldownTimer = Field.Cooldown * playerStats.FieldsCooldownMultiplier;
         }
@@ -98,8 +100,16 @@ public class WheelSegment : MonoBehaviour
             Rune?.SetCooldownProgress(1 - cooldownTimer / Field.Cooldown);
             if (cooldownTimer <= 0f)
             {
+                SetIconAlpha(1f);
                 IsOnCooldown = false;
             }
         }
+    }
+    
+    private void SetIconAlpha(float alpha)
+    {
+        Color currentColor = SegmentRenderer.color;
+        currentColor.a = alpha; 
+        SegmentRenderer.color = currentColor;
     }
 } 
