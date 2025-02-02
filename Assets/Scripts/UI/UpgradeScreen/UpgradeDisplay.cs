@@ -15,6 +15,7 @@ public class UpgradeDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [SerializeField] private AudioClip hoverSfx;
 
     [SerializeField] private CardTooltip tooltip;
+    [SerializeField] private float yTooltipBandaid;
 
     private Card card;
 
@@ -45,8 +46,8 @@ public class UpgradeDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     void Start()
     {
-/*         statUpgradeDisplay.gameObject.SetActive(false);
-        fieldCardDisplay.gameObject.SetActive(false); */
+        /*         statUpgradeDisplay.gameObject.SetActive(false);
+                fieldCardDisplay.gameObject.SetActive(false); */
     }
 
     private void DisplayPassive(Card card)
@@ -76,11 +77,23 @@ public class UpgradeDisplay : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     private void ShowTooltip(Card card, Vector2 position)
     {
         menuSource.PlayOneShot(hoverSfx, 0.7f);
-        var xOffset = position.x < Screen.width / 2 ? tooltip.Rect.sizeDelta.x : -tooltip.Rect.sizeDelta.x;
+
+        float xOffset = position.x < Screen.width / 2 ? tooltip.Rect.sizeDelta.x : -tooltip.Rect.sizeDelta.x;
+        float yOffset = position.y < Screen.height / 2 ? tooltip.Rect.sizeDelta.y : -tooltip.Rect.sizeDelta.y;
+
+
+        Vector2 tooltipPos = new Vector2(position.x + xOffset, position.y + yOffset + yTooltipBandaid);
+
+
+        tooltip.transform.position = tooltipPos;
+        tooltip.SetContent(card);
+        tooltip.gameObject.SetActive(true);
+
+  /*       var xOffset = position.x < Screen.width / 2 ? tooltip.Rect.sizeDelta.x : -tooltip.Rect.sizeDelta.x;
         tooltip.transform.position = new Vector2(position.x + xOffset, position.y);
 
         tooltip.SetContent(card);
-        tooltip.gameObject.SetActive(true);
+        tooltip.gameObject.SetActive(true); */
     }
 
     private void HideTooltip()

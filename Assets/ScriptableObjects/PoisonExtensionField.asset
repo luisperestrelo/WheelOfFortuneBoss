@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fieldName: Poison Extension
   description: When charged, increase the time remaining on all poison stacks by
-    8 seconds.
+    3 seconds.
   icon: {fileID: 21300000, guid: ad160fa541c69dc4194a93a9b60b813e, type: 3}
   color: {r: 0.18431373, g: 0.79607844, b: 0.4509804, a: 1}
   rune: {fileID: 0}
@@ -28,5 +28,5 @@ MonoBehaviour:
   size: 1
   resetsOnExit: 0
   decayRate: 1
-  chargeTime: 1.5
-  poisonExtensionAmount: 5
+  chargeTime: 2.15
+  poisonExtensionAmount: 3

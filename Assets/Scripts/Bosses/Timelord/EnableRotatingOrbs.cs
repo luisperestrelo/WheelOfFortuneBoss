@@ -86,6 +86,7 @@ public class EnableRotatingOrbs : MonoBehaviour
             laser.SetActive(enableLasers);
         }
         attackSource.PlayOneShot(activateLasersSfx);
+        CameraMovement.instance.ShakeCamera(0.06f, 0.28f);
         /*         foreach (Transform orbTransform in orbHolder.transform)
                {
                    Transform laserTransform = orbTransform.Find("Laser");

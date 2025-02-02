@@ -70,7 +70,7 @@ public class NextBossFightNoNewScene : MonoBehaviour
         //currentBossIndex++;
         currentBossIndex = (currentBossIndex + 1) % bossPrefabs.Count; // loop around
 
-        if (AbilityObjectManager.Instance != null)
+         if (AbilityObjectManager.Instance != null)
         {
             AbilityObjectManager.Instance.DestroyAllFatTentacles(); // TODO: Despawn animation
             AbilityObjectManager.Instance.DestroyAllFlails(); // TODO: Despawn animation
@@ -78,7 +78,7 @@ public class NextBossFightNoNewScene : MonoBehaviour
             AbilityObjectManager.Instance.DestroyAllBigWavesOfDoom();
             AbilityObjectManager.Instance.DisableAllRotatingOrbs();
             AbilityObjectManager.Instance.DestroyAllTelegraphs();
-        }
+        } 
 
         SpawnNextBoss();
         HealPlayerToFull();
