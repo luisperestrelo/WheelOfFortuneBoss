@@ -68,7 +68,7 @@ MonoBehaviour:
   lightFinalIntensity: 10
   activationTime: 4
   isLinearActivation: 0
-  damagePerSecond: 2.5
+  damagePerSecond: 3
   damageInterval: 0.4
   isFastRend: 1
 --- !u!60 &4683886324471244982

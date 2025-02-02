@@ -351,7 +351,7 @@ MonoBehaviour:
   pointer: {fileID: 3602039419190277393}
   color: {r: 1, g: 0, b: 0, a: 1}
   progressImage: {fileID: 6370403728750606469}
-  durationUntilPunishment: 8
+  durationUntilPunishment: 7
   slowZonePrefab: {fileID: 756021898830015811, guid: e3b17ebb4a7cc794bb1c41c016812e0f, type: 3}
   slowZoneDuration: 15
   tickSource: {fileID: -3597745690745532431}
@@ -471,6 +471,7 @@ MonoBehaviour:
   parrySfx: {fileID: 0}
   healSfx: {fileID: 0}
   damageSource: {fileID: -6581889347903889049}
+  deathParticle: {fileID: 0}
   basicPopupPrefab: {fileID: 1259023133563206875, guid: d50b5f5f347e32e4391849cb8f7997b1, type: 3}
   bigHitPopupPrefab: {fileID: 1259023133563206875, guid: 5207d28f91a48ed4ea54911b00e69859, type: 3}
   criticalHitPopupPrefab: {fileID: 1259023133563206875, guid: 6a005106e5a76e840861e7f26b2a163b, type: 3}
