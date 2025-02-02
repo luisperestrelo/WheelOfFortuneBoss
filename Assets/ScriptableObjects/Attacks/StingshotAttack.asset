@@ -15,6 +15,6 @@ MonoBehaviour:
   BaseDamage: 2
   FireRate: 0.3
   ProjectileCount: 3
-  ProjectileSpeed: 20
+  ProjectileSpeed: 10
   shootSfx: {fileID: 8300000, guid: 93c16c05b58971440892ed33a5e2bb5a, type: 3}
   stingshotPrefab: {fileID: -6345225672408866606, guid: 335b13b55907be449b46d30c7fdbc4af, type: 3}
