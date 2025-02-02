@@ -21379,8 +21379,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1625189718}
     - target: {fileID: 6544771894217963753, guid: 5aee488f00b0e3e42b9c4050ae6071fd, type: 3}
+      propertyPath: m_Name
+      value: TestItem (deactivate)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6544771894217963753, guid: 5aee488f00b0e3e42b9c4050ae6071fd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7189140801120924771, guid: 5aee488f00b0e3e42b9c4050ae6071fd, type: 3}
       propertyPath: m_text
