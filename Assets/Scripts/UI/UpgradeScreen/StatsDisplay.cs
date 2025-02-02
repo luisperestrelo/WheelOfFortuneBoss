@@ -31,21 +31,16 @@ public class StatsDisplay : MonoBehaviour
 
     public void AddStatsToListToShow(List<StatType> statTypes)
     {
-        Debug.Log("AddStatsToListToShow");
-        Debug.Log(statsToDisplay.Count);
-        foreach (var statType in statTypes)
-        {
-            Debug.Log(statType + " is checked ");
-        }
+
         
         
         foreach (var statType in statTypes.Where(statType => !statsToDisplay.Contains(statType)))
         {
-            Debug.Log(statType + " added");
+            // Debug.Log(statType + " added");
             statsToDisplay.Add(statType);
         }
         
-        Debug.Log("statsToDisplay.Count");
+        // Debug.Log("statsToDisplay.Count");
         Debug.Log(statsToDisplay.Count);
         
     }
@@ -53,7 +48,7 @@ public class StatsDisplay : MonoBehaviour
 
     private void Awake()
     {
-        Debug.LogError("AWAKE");
+        // Debug.LogError("AWAKE");
 
         AddStatsToListToShow(new List<StatType>
         {
@@ -61,6 +56,8 @@ public class StatsDisplay : MonoBehaviour
             StatType.CritChance,
             StatType.CritMultiplier
         });
+
+        initialBgSize = bg.sizeDelta;
 
     }
     
@@ -73,7 +70,7 @@ public class StatsDisplay : MonoBehaviour
         // Always display these three stats by default:
         Debug.LogError("START");
         playerStats = FindObjectOfType<PlayerStats>();
-        initialBgSize = bg.sizeDelta;
+        // initialBgSize = bg.sizeDelta;
     }
 
     private void OnEnable()
@@ -117,19 +114,15 @@ public class StatsDisplay : MonoBehaviour
     public void UpdateStats()
     {
          playerStats = FindObjectOfType<PlayerStats>();
-        initialBgSize = bg.sizeDelta;
-        Debug.LogError("Update Stats");
+        // initialBgSize = bg.sizeDelta;
+        // Debug.LogError("Update Stats");
         PopulateStats();
     }
 
     private void PopulateStats()
     {
-        Debug.LogError("PopulateStats befoer checking player stats");
-
         if (!playerStats)
             return;
-        Debug.LogError("PopulateStats after checking player stats");
-
         
         statsDisplayItems.ForEach(x => Destroy(x.gameObject));
         statsDisplayItems.Clear();
