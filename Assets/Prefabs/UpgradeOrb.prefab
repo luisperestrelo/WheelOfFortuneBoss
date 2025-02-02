@@ -63,7 +63,7 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 1, y: 0.43472755, z: 0.015686274, w: 0}
+      - m_Value: {x: 1.4980394, y: 0.651239, z: 0.023498654, w: 0}
         m_Name: New Color
         m_Overridden: 1
     m_Uint:
@@ -88,7 +88,7 @@ VFXRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126923400694600255}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5200686009550405897
 Transform:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4f3bf07e793176747a3d4148c1f7afbe, type: 2}
+  - {fileID: 2100000, guid: 05cf6266b871816438df32f9fa75452e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
