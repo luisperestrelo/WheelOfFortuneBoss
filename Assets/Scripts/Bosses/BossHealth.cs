@@ -71,7 +71,7 @@ public class BossHealth : Health
             AbilityObjectManager.Instance.DestroyAllTelegraphs();
         }
 
-
+        Instantiate(deathParticle, transform.position, Quaternion.identity);
         OnDie.Invoke();
 
         //TODO: SFX/VFX etc.
