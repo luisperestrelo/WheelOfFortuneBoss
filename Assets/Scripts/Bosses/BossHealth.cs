@@ -9,12 +9,14 @@ public class BossHealth : Health
     [SerializeField] private AudioClip dieSfx;
 
     private MorsoraBossController bossController;
+    private TimelordBossController timelordBossController;
     private bool isImmune = false;
 
     protected override void Awake()
     {
         base.Awake();
         bossController = GetComponent<MorsoraBossController>();
+        timelordBossController = GetComponent<TimelordBossController>();
     }
 
     public void SetImmune(bool isImmune)
@@ -43,8 +45,11 @@ public class BossHealth : Health
             bossController.SpawnUpgradeOrbWithOffset(-30f);
             bossController.SpawnUpgradeOrbWithOffset(+30f);
         }
-        
-        
+        else if (timelordBossController != null)
+        {
+            timelordBossController.SpawnUpgradeOrbWithOffset(-30f);
+            timelordBossController.SpawnUpgradeOrbWithOffset(+30f);
+        }
 
         //TODO: this is a shitty temporary solution
         else
